@@ -1,0 +1,61 @@
+package silence.simsool.lucentclient.mods;
+
+import java.util.Arrays;
+
+import silence.simsool.lucent.config.ModManager;
+import silence.simsool.lucentclient.mods.impl.graphics.AnimationsMod;
+import silence.simsool.lucentclient.mods.impl.graphics.BlockOverlayMod;
+import silence.simsool.lucentclient.mods.impl.graphics.DeathAnimationMod;
+import silence.simsool.lucentclient.mods.impl.graphics.FullbrightMod;
+import silence.simsool.lucentclient.mods.impl.graphics.NametagsMod;
+import silence.simsool.lucentclient.mods.impl.graphics.ParticlesMod;
+import silence.simsool.lucentclient.mods.impl.graphics.TimeChangerMod;
+import silence.simsool.lucentclient.mods.impl.hud.ArmorStatusMod;
+import silence.simsool.lucentclient.mods.impl.hud.DirectionMod;
+import silence.simsool.lucentclient.mods.impl.hud.InfoHUDMod;
+import silence.simsool.lucentclient.mods.impl.hud.KeystrokesMod;
+import silence.simsool.lucentclient.mods.impl.hud.PotionEffectsMod;
+import silence.simsool.lucentclient.mods.impl.hud.VanillaHUDMod;
+import silence.simsool.lucentclient.mods.impl.performance.EntityCullingMod;
+import silence.simsool.lucentclient.mods.impl.utility.ScrollableTooltipsMod;
+import silence.simsool.lucentclient.mods.impl.utility.TntTimerMod;
+import silence.simsool.lucentclient.mods.impl.utility.ToggleSprintMod;
+import silence.simsool.lucentclient.mods.impl.utility.ZoomMod;
+
+public class ModRegister {
+
+	public static void register(ModManager config) {
+
+		Arrays.asList(
+
+			// Graphics
+			new AnimationsMod(),
+			new BlockOverlayMod(),
+			new DeathAnimationMod(),
+			new FullbrightMod(),
+			new NametagsMod(),
+			new ParticlesMod(),
+			new TimeChangerMod(),
+
+			// HUD
+			new ArmorStatusMod(),
+			new DirectionMod(),
+			new InfoHUDMod(),
+			new KeystrokesMod(),
+			new PotionEffectsMod(),
+			new VanillaHUDMod(),
+
+			// Performance
+			new EntityCullingMod(),
+
+			// Utility
+			new ScrollableTooltipsMod(),
+			new TntTimerMod(),
+			new ToggleSprintMod(),
+			new ZoomMod()
+
+		).forEach(config::register);
+
+	}
+
+}

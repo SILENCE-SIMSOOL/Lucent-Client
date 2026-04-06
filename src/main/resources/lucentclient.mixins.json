@@ -1,0 +1,26 @@
+{
+	"required": true,
+	"package": "silence.simsool.lucentclient.mixin",
+	"compatibilityLevel": "JAVA_21",
+	"injectors": {
+		"defaultRequire": 1
+	},
+	"mixins": [
+		
+	],
+	"client": [
+		"mixins.MixinGui",
+		"mixins.MixinGuiAttackIndicator",
+		"mixins.MixinScreenEffectRenderer",
+		"mixins.MixinEntityRenderer",
+		"mixins.MixinLevelRenderer",
+		"mixins.MixinGameRenderer",
+		"mixins.MixinGameRendererHurtCam",
+		"mixins.MixinParticleEngine",
+		"mixins.MixinLocalPlayer",
+		"mixins.MixinLevel",
+		"mixins.MixinLivingEntityRenderer",
+		"mixins.MixinItemInHandRenderer",
+		"mixins.MixinGuiPotionEffects"
+	]
+}

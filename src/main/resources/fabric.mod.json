@@ -1,0 +1,28 @@
+{
+    "schemaVersion": 1,
+    "id": "lucentclient",
+    "version": "${version}",
+    "name": "Lucent Client",
+    "description": "A collection of essential and lightweight mods built with Lucent.",
+    "authors": [
+        "SimSool"
+    ],
+    "contact": {},
+    "license": "MIT",
+    "environment": "client",
+    "entrypoints": {
+        "client": [
+            "silence.simsool.lucentclient.LucentClient"
+        ]
+    },
+    "depends": {
+        "fabricloader": ">=0.15.11",
+        "minecraft": "~1.21",
+        "java": ">=21",
+        "fabric-api": "*",
+        "lucent": "*"
+    },
+    "mixins": [
+        "lucentclient.mixins.json"
+    ]
+}

@@ -1,4 +1,4 @@
-	package silence.simsool.lucentclient.huds.impl;
+package silence.simsool.lucentclient.huds.impl;
 
 import static silence.simsool.lucent.Lucent.mc;
 
@@ -6,9 +6,9 @@ import net.minecraft.client.gui.GuiGraphics;
 import silence.simsool.lucent.general.enums.HUDAlignment;
 import silence.simsool.lucent.general.enums.RenderType;
 import silence.simsool.lucent.general.models.abstracts.LucentHUD;
+import silence.simsool.lucent.general.utils.UDisplay;
+import silence.simsool.lucent.general.utils.UText;
 import silence.simsool.lucent.ui.utils.UIColors;
-import silence.simsool.lucent.ui.utils.nvg.Fonts;
-import silence.simsool.lucent.ui.utils.nvg.NVGRenderer;
 import silence.simsool.lucentclient.mods.impl.hud.KeystrokesMod;
 
 public class KeystrokesHUD extends LucentHUD {
@@ -19,12 +19,12 @@ public class KeystrokesHUD extends LucentHUD {
 
 	@Override
 	public RenderType getRenderType() {
-		return RenderType.NANOVG;
+		return RenderType.MINECRAFT;
 	}
 
 	@Override
 	public void draw(GuiGraphics guiGraphics) {
-		if (mc.player == null) return;
+		if (isEditHudOpen || UDisplay.isDebugScreen()) return;
 		render(guiGraphics, false);
 	}
 
@@ -34,8 +34,17 @@ public class KeystrokesHUD extends LucentHUD {
 	}
 
 	private void render(GuiGraphics guiGraphics, boolean preview) {
-		float rx = getRenderX();
-		float ry = getRenderY();
+		if (!preview && mc.player == null) return;
+		
+		int sw = UDisplay.getGuiScaledWidth();
+		int sh = UDisplay.getGuiScaledHeight();
+
+		float rx = x * sw;
+		float ry = y * sh;
+
+		if (alignment == HUDAlignment.CENTER) rx -= (getScaledWidth() / 2f);
+		else if (alignment == HUDAlignment.RIGHT) rx -= getScaledWidth();
+
 		float gs = scale;
 		float bw = 20f * gs;
 		float gap = 2f * gs;
@@ -46,25 +55,25 @@ public class KeystrokesHUD extends LucentHUD {
 		boolean s = !preview && mc.options.keyDown.isDown();
 		boolean d = !preview && mc.options.keyRight.isDown();
 
-		drawKey("W", rx + bw + gap, ry, bw, bw, w);
-		drawKey("A", rx, ry + bw + gap, bw, bw, a);
-		drawKey("S", rx + bw + gap, ry + bw + gap, bw, bw, s);
-		drawKey("D", rx + (bw + gap) * 2, ry + bw + gap, bw, bw, d);
+		drawKey(guiGraphics, "W", rx + bw + gap, ry, bw, bw, w);
+		drawKey(guiGraphics, "A", rx, ry + bw + gap, bw, bw, a);
+		drawKey(guiGraphics, "S", rx + bw + gap, ry + bw + gap, bw, bw, s);
+		drawKey(guiGraphics, "D", rx + (bw + gap) * 2, ry + bw + gap, bw, bw, d);
 		
 		float mbw = (bw * 3 + gap * 2) / 2f - gap / 2f;
 		boolean lmb = !preview && mc.options.keyAttack.isDown();
 		boolean rmb = !preview && mc.options.keyUse.isDown();
 		
-		drawKey("LMB", rx, ry + (bw + gap) * 2, mbw, bw, lmb);
-		drawKey("RMB", rx + mbw + gap, ry + (bw + gap) * 2, mbw, bw, rmb);
+		drawKey(guiGraphics, "LMB", rx, ry + (bw + gap) * 2, mbw, bw, lmb);
+		drawKey(guiGraphics, "RMB", rx + mbw + gap, ry + (bw + gap) * 2, mbw, bw, rmb);
 	}
 
-	private void drawKey(String key, float x, float y, float w, float h, boolean pressed) {
+	private void drawKey(GuiGraphics guiGraphics, String key, float x, float y, float w, float h, boolean pressed) {
 		int bg = pressed ? UIColors.withAlpha(UIColors.PURE_WHITE, 120) : UIColors.withAlpha(UIColors.PURE_BLACK, 100);
 		int fg = pressed ? UIColors.PURE_BLACK : UIColors.PURE_WHITE;
-		
-		NVGRenderer.rect(x, y, w, h, bg, 4f * scale);
-		NVGRenderer.centerText(key, x + w / 2f, y + (h - 11f * scale) / 2f, Fonts.PRETENDARD_SEMIBOLD, fg, 11f * scale);
+
+		guiGraphics.fill((int)x, (int)y, (int)(x + w), (int)(y + h), bg);
+		UText.drawCenteredText(guiGraphics, key, x + w / 2f, y + (h - 9f * scale) / 2f, scale, fg);
 	}
 
 	@Override

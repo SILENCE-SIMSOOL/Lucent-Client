@@ -5,9 +5,7 @@
 	"injectors": {
 		"defaultRequire": 1
 	},
-	"mixins": [
-		
-	],
+	"mixins": [],
 	"client": [
 		"mixins.MixinGui",
 		"mixins.MixinGuiAttackIndicator",
@@ -21,6 +19,7 @@
 		"mixins.MixinLevel",
 		"mixins.MixinLivingEntityRenderer",
 		"mixins.MixinItemInHandRenderer",
-		"mixins.MixinGuiPotionEffects"
+		"mixins.MixinGuiPotionEffects",
+		"mixins.MixinMouseHandler"
 	]
 }

@@ -7,6 +7,7 @@ import net.minecraft.core.Direction;
 import silence.simsool.lucent.general.enums.HUDAlignment;
 import silence.simsool.lucent.general.enums.RenderType;
 import silence.simsool.lucent.general.models.abstracts.LucentHUD;
+import silence.simsool.lucent.general.utils.UDisplay;
 import silence.simsool.lucent.ui.utils.UIColors;
 import silence.simsool.lucent.ui.utils.nvg.Fonts;
 import silence.simsool.lucent.ui.utils.nvg.NVGRenderer;
@@ -25,7 +26,7 @@ public class DirectionHUD extends LucentHUD {
 
 	@Override
 	public void draw(GuiGraphics guiGraphics) {
-		if (mc.player == null) return;
+		if (isEditHudOpen || UDisplay.isDebugScreen()) return;
 		render(guiGraphics, false);
 	}
 
@@ -35,6 +36,7 @@ public class DirectionHUD extends LucentHUD {
 	}
 
 	private void render(GuiGraphics guiGraphics, boolean preview) {
+		if (!preview && mc.player == null) return;
 		float rx = getRenderX();
 		float ry = getRenderY();
 		float fs = 18f * scale;

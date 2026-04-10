@@ -11,10 +11,14 @@ import silence.simsool.lucentclient.mods.impl.graphics.NametagsMod;
 import silence.simsool.lucentclient.mods.impl.graphics.ParticlesMod;
 import silence.simsool.lucentclient.mods.impl.graphics.TimeChangerMod;
 import silence.simsool.lucentclient.mods.impl.hud.ArmorStatusMod;
+import silence.simsool.lucentclient.mods.impl.hud.CPSMod;
+import silence.simsool.lucentclient.mods.impl.hud.CoordinatesMod;
 import silence.simsool.lucentclient.mods.impl.hud.DirectionMod;
-import silence.simsool.lucentclient.mods.impl.hud.InfoHUDMod;
+import silence.simsool.lucentclient.mods.impl.hud.FPSMod;
 import silence.simsool.lucentclient.mods.impl.hud.KeystrokesMod;
+import silence.simsool.lucentclient.mods.impl.hud.PingMod;
 import silence.simsool.lucentclient.mods.impl.hud.PotionEffectsMod;
+import silence.simsool.lucentclient.mods.impl.hud.TPSMod;
 import silence.simsool.lucentclient.mods.impl.hud.VanillaHUDMod;
 import silence.simsool.lucentclient.mods.impl.performance.EntityCullingMod;
 import silence.simsool.lucentclient.mods.impl.utility.ScrollableTooltipsMod;
@@ -40,7 +44,11 @@ public class ModRegister {
 			// HUD
 			new ArmorStatusMod(),
 			new DirectionMod(),
-			new InfoHUDMod(),
+			new FPSMod(),
+			new CPSMod(),
+			new TPSMod(),
+			new PingMod(),
+			new CoordinatesMod(),
 			new KeystrokesMod(),
 			new PotionEffectsMod(),
 			new VanillaHUDMod(),

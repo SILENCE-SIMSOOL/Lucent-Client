@@ -11,7 +11,6 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.item.PrimedTnt;
 import net.minecraft.world.phys.Vec3;
 import silence.simsool.lucent.Lucent;
-import silence.simsool.lucent.general.enums.ConfigType;
 import silence.simsool.lucent.general.models.abstracts.Mod;
 import silence.simsool.lucent.general.models.interfaces.annotations.ModConfig;
 
@@ -20,7 +19,13 @@ public class TntTimerMod extends Mod {
 
 	public TntTimerMod() {
 		super("TNT Timer", "Shows the remaining time before TNT explodes.", "Utility", "tnt, time, explode", "lucid:tnt");
+	}
 
+	public static boolean isEnabled() {
+		return Lucent.config.getModule(TntTimerMod.class).isEnabled;
+	}
+
+	{
 		WorldRenderEvents.AFTER_ENTITIES.register(context -> {
 			if (!isEnabled) return;
 			if (mc.level == null) return;
@@ -35,7 +40,7 @@ public class TntTimerMod extends Mod {
 					int ticks = tnt.getFuse();
 					double time = ticks / 20.0;
 					String text = String.format("%.2fs", time);
-					
+
 					double x = tnt.getX() - cameraPos.x();
 					double y = tnt.getY() + tnt.getBbHeight() + 0.5 - cameraPos.y();
 					double z = tnt.getZ() - cameraPos.z();
@@ -53,10 +58,6 @@ public class TntTimerMod extends Mod {
 			}
 			bufferSource.endBatch();
 		});
-	}
-
-	public static boolean isEnabled() {
-		return Lucent.config.getModule(TntTimerMod.class).isEnabled;
 	}
 
 }

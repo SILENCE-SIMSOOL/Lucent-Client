@@ -15,22 +15,18 @@ import silence.simsool.lucentclient.mods.impl.utility.ZoomMod;
 public class MixinGameRenderer {
 
 	@Unique
-	private double currentZoom = 1.0;
+	private float currentZoom = 1.0f;
 
 	@Inject(method = "getFov", at = @At("RETURN"), cancellable = true)
 	private void onGetFov(Camera camera, float f, boolean bl, CallbackInfoReturnable<Float> cir) {
 
 		if (ZoomMod.isEnabled()) {
-			double targetZoom = ZoomMod.ZoomKey.isKeyDown() ? (double) ZoomMod.ZoomFactor : 1.0;
+			float targetZoom = ZoomMod.ZoomKey.isKeyDown() ? ZoomMod.ZoomFactor : 1.0f;
 
 			if (ZoomMod.SmoothZoom) currentZoom = Mth.lerp(f * 0.2f, currentZoom, targetZoom);
 			else currentZoom = targetZoom;
 
-			if (currentZoom != 1.0) {
-				// 리턴 값이 Float이므로 계산 후 다시 float로 형변환해서 입력
-				float originalFov = cir.getReturnValue();
-				cir.setReturnValue((float) (originalFov / currentZoom));
-			}
+			if (currentZoom != 1.0) cir.setReturnValue(cir.getReturnValue() / currentZoom);
 		}
 	}
 

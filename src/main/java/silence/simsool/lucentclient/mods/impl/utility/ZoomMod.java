@@ -38,7 +38,7 @@ public class ZoomMod extends Mod {
 		step = 0.5,
 		priority = 990
 	)
-	public static double ZoomFactor = 4.0;
+	public static float ZoomFactor = 4.0f;
 
 	@ModConfig(
 		type = ConfigType.SWITCH,

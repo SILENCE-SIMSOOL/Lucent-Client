@@ -17,11 +17,55 @@ public class ArmorStatusMod extends Mod {
 
 	@ModConfig(
 		type = ConfigType.SWITCH,
-		name = "Enabled",
-		description = "Enable Armor Status HUD.",
-		category = "General",
-		priority = 1000
+		name = "Helmet",
+		description = "",
+		category = "Setup",
+		priority = 6
 	)
-	public static boolean Enabled = true;
+	public static boolean DisplayHelmet = true;
 
+	@ModConfig(
+		type = ConfigType.SWITCH,
+		name = "Chestplate",
+		description = "",
+		category = "Setup",
+		priority = 5
+	)
+	public static boolean DisplayChestplate = true;
+
+	@ModConfig(
+		type = ConfigType.SWITCH,
+		name = "Leggings",
+		description = "",
+		category = "Setup",
+		priority = 4
+	)
+	public static boolean DisplayLeggings = true;
+
+	@ModConfig(
+		type = ConfigType.SWITCH,
+		name = "Boots",
+		description = "",
+		category = "Setup",
+		priority = 3
+	)
+	public static boolean DisplayBoots = true;
+
+	@ModConfig(
+		type = ConfigType.SWITCH,
+		name = "Main Hand",
+		description = "",
+		category = "Setup",
+		priority = 2
+	)
+	public static boolean DisplayMainHand = false;
+
+	@ModConfig(
+		type = ConfigType.SWITCH,
+		name = "Off Hand",
+		description = "",
+		category = "Setup",
+		priority = 1
+	)
+	public static boolean DisplayOffHand = false;
 }

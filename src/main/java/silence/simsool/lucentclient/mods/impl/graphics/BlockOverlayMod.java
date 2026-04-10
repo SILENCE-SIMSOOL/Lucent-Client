@@ -33,7 +33,7 @@ public class BlockOverlayMod extends Mod {
 		name = "Outline Color",
 		description = "Color of the block outline.",
 		category = "Outline",
-		parent = "customOutline",
+		parent = "CustomOutline",
 		priority = 990
 	)
 	public static Color OutlineColor = new Color(255, 255, 255, 100);
@@ -43,31 +43,31 @@ public class BlockOverlayMod extends Mod {
 		name = "Outline Thickness",
 		description = "Width of the block selection outline.",
 		category = "Outline",
-		parent = "customOutline",
+		parent = "CustomOutline",
 		min = 0.5,
 		max = 5.0,
 		step = 0.1,
 		priority = 980
 	)
-	public static double OutlineThickness = 2.0;
+	public static float OutlineThickness = 2.0f;
 
-	@ModConfig(
-		type = ConfigType.SWITCH,
-		name = "Custom Fill",
-		description = "Enables custom fill rendering for selected blocks.",
-		category = "Fill",
-		priority = 900
-	)
-	public static boolean CustomFill = false;
-
-	@ModConfig(
-		type = ConfigType.COLOR,
-		name = "Fill Color",
-		description = "Color of the block faces.",
-		category = "Fill",
-		parent = "customFill",
-		priority = 890
-	)
-	public static Color FillColor = new Color(255, 255, 255, 50);
+//	@ModConfig(
+//		type = ConfigType.SWITCH,
+//		name = "Custom Fill",
+//		description = "Enables custom fill rendering for selected blocks.",
+//		category = "Fill",
+//		priority = 900
+//	)
+//	public static boolean CustomFill = false;
+//
+//	@ModConfig(
+//		type = ConfigType.COLOR,
+//		name = "Fill Color",
+//		description = "Color of the block faces.",
+//		category = "Fill",
+//		parent = "CustomFill",
+//		priority = 890
+//	)
+//	public static Color FillColor = new Color(255, 255, 255, 50);
 
 }

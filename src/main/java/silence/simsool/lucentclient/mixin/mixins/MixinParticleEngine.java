@@ -16,14 +16,21 @@ public class MixinParticleEngine {
 	@Inject(method = "add", at = @At("HEAD"), cancellable = true)
 	private void onAddParticle(Particle particle, CallbackInfo ci) {
 		if (ParticlesMod.isEnabled()) {
-			if (ParticlesMod.DisableBreakingParticles && particle instanceof TerrainParticle) {
-				ci.cancel();
+
+			if (ParticlesMod.DisableBreakingParticles) {
+				if (particle instanceof TerrainParticle) {
+					ci.cancel();
+					return;
+				}
 			}
-			// In 1.21.1 explosions are often different particles, like HugeExplosionSeedParticle, etc.
-			// Let's check by class name generic
-			if (ParticlesMod.DisableExplosionParticles && particle.getClass().getSimpleName().contains("Explosion")) {
-				ci.cancel();
+
+			if (ParticlesMod.DisableExplosionParticles) {
+				if (particle.getClass().getSimpleName().contains("Explosion")) {
+					ci.cancel();
+					return;
+				}
 			}
+
 		}
 	}
 

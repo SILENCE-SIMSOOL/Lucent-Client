@@ -1,12 +1,6 @@
 package silence.simsool.lucentclient.mods.impl.hud;
 
-import static silence.simsool.lucent.Lucent.mc;
-
-import net.fabricmc.fabric.api.client.rendering.v1.HudRenderCallback;
-import net.minecraft.util.StringUtil;
-import net.minecraft.world.effect.MobEffectInstance;
 import silence.simsool.lucent.Lucent;
-import silence.simsool.lucent.general.enums.ConfigType;
 import silence.simsool.lucent.general.models.abstracts.Mod;
 import silence.simsool.lucent.general.models.interfaces.annotations.ModConfig;
 

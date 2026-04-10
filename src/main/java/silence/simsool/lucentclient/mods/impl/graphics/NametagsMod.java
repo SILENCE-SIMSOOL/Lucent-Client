@@ -28,7 +28,7 @@ public class NametagsMod extends Mod {
 		name = "Text Shadow",
 		description = "Renders shadow under the nametag text.",
 		category = "General",
-		parent = "customNametags",
+		parent = "CustomNametags",
 		priority = 990
 	)
 	public static boolean TextShadow = true;
@@ -38,7 +38,7 @@ public class NametagsMod extends Mod {
 		name = "Show Background",
 		description = "Whether to draw a background behind the nametag.",
 		category = "Background",
-		parent = "customNametags",
+		parent = "CustomNametags",
 		priority = 900
 	)
 	public static boolean ShowBackground = true;
@@ -48,7 +48,7 @@ public class NametagsMod extends Mod {
 		name = "Background Color",
 		description = "The color of the nametag background.",
 		category = "Background",
-		parent = "showBackground",
+		parent = "ShowBackground",
 		priority = 890
 	)
 	public static Color BackgroundColor = new Color(0, 0, 0, 64);

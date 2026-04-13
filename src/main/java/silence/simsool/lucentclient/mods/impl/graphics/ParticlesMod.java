@@ -5,12 +5,13 @@ import silence.simsool.lucent.general.enums.ConfigType;
 import silence.simsool.lucent.general.models.abstracts.Mod;
 import silence.simsool.lucent.general.models.interfaces.annotations.ModConfig;
 import silence.simsool.lucentclient.mods.impl.utility.ToggleSprintMod;
+import silence.simsool.lucentclient.utils.LucentClientUtils;
 
 @ModConfig.CategoryPriority(name = "General", priority = 1000)
 public class ParticlesMod extends Mod {
 
 	public ParticlesMod() {
-		super("Particles", "Manage particle rendering.", "Graphics", "particle, magic", "lucid:particles");
+		super("Particles", "Manage particle rendering.", "Graphics", "particle, magic", LucentClientUtils.getModIcon("particles"));
 	}
 
 	public static boolean isEnabled() {

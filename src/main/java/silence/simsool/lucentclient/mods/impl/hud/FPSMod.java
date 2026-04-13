@@ -3,12 +3,13 @@ package silence.simsool.lucentclient.mods.impl.hud;
 import silence.simsool.lucent.general.enums.ConfigType;
 import silence.simsool.lucent.general.models.abstracts.Mod;
 import silence.simsool.lucent.general.models.interfaces.annotations.ModConfig;
+import silence.simsool.lucentclient.utils.LucentClientUtils;
 
 @ModConfig.CategoryPriority(name = "General", priority = 1000)
 public class FPSMod extends Mod {
 
 	public FPSMod() {
-		super("FPS", "Displays your current frames per second.", "HUD", "fps, frames", "lucid:info");
+		super("FPS", "Displays your current frames per second.", "HUD", "fps, frames", LucentClientUtils.getModIcon("fps"));
 	}
 
 	@ModConfig(type = ConfigType.SWITCH, name = "Text Shadow", priority = 1000)

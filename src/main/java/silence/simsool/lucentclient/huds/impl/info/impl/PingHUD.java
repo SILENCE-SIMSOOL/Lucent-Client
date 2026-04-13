@@ -1,0 +1,54 @@
+package silence.simsool.lucentclient.huds.impl.info.impl;
+
+import silence.simsool.lucent.general.enums.HUDAlignment;
+import silence.simsool.lucentclient.huds.impl.info.AbstractInfoHUD;
+import silence.simsool.lucentclient.mods.impl.hud.PingMod;
+
+public class PingHUD extends AbstractInfoHUD {
+
+	public PingHUD() {
+		super("hud_lucentclient_ping", PingMod.class, 0.02f, 0.11f, HUDAlignment.LEFT);
+	}
+
+	@Override
+	protected String getLabel() {
+		return "Ping";
+	}
+
+	@Override
+	protected String getValue(boolean preview) {
+		if (preview) return "24ms";
+		else return PingMod.getPing() + "ms";
+	}
+
+	@Override
+	protected boolean isReverseOrder() {
+		return PingMod.ReverseOrder;
+	}
+
+	@Override
+	protected boolean isShowBrackets() {
+		return PingMod.ShowBrackets;
+	}
+
+	@Override
+	protected boolean isShowShadow() {
+		return PingMod.TextShadow;
+	}
+
+	@Override
+	protected int getTextColor() {
+		return PingMod.TextColor;
+	}
+
+	@Override
+	protected boolean isShowBackground() {
+		return PingMod.ShowBackground;
+	}
+
+	@Override
+	protected int getBackgroundColor() {
+		return PingMod.BackgroundColor;
+	}
+
+}

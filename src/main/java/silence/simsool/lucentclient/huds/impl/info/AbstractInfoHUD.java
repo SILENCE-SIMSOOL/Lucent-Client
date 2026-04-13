@@ -2,6 +2,8 @@ package silence.simsool.lucentclient.huds.impl.info;
 
 import static silence.simsool.lucent.Lucent.mc;
 
+import org.joml.Matrix3x2fStack;
+
 import net.minecraft.client.gui.GuiGraphics;
 import silence.simsool.lucent.general.enums.HUDAlignment;
 import silence.simsool.lucent.general.enums.RenderType;
@@ -22,26 +24,28 @@ public abstract class AbstractInfoHUD extends LucentHUD {
 	}
 
 	protected abstract String getLabel();
+
 	protected abstract String getValue(boolean preview);
+
 	protected abstract boolean isReverseOrder();
+
 	protected abstract boolean isShowBrackets();
+
 	protected abstract boolean isShowShadow();
+
 	protected abstract int getTextColor();
+
 	protected abstract boolean isShowBackground();
+
 	protected abstract int getBackgroundColor();
 
 	protected String getFormattedText(boolean preview) {
 		String label = getLabel();
 		String val = getValue(preview);
 		String result;
-		if (isReverseOrder()) {
-			result = val + " " + label;
-		} else {
-			result = label + ": " + val;
-		}
-		if (isShowBrackets()) {
-			result = "[" + result + "]";
-		}
+		if (isReverseOrder()) result = val + " " + label;
+		else result = label + ": " + val;
+		if (isShowBrackets()) result = "[" + result + "]";
 		return result;
 	}
 
@@ -50,14 +54,14 @@ public abstract class AbstractInfoHUD extends LucentHUD {
 		String text = getFormattedText(true);
 		float w = mc.font.width(text);
 		if (isShowBackground()) w += 8;
-		return (w + 4) * ((float) UDisplay.getGuiScale() / NVGRenderer.getStandardGuiScale());
+		return w * ((float) UDisplay.getGuiScale() / NVGRenderer.getStandardGuiScale());
 	}
 
 	@Override
 	public float getPreviewHeight() {
 		float h = 9;
 		if (isShowBackground()) h = 18;
-		return (h + 4) * ((float) UDisplay.getGuiScale() / NVGRenderer.getStandardGuiScale());
+		return h * ((float) UDisplay.getGuiScale() / NVGRenderer.getStandardGuiScale());
 	}
 
 	@Override
@@ -72,36 +76,43 @@ public abstract class AbstractInfoHUD extends LucentHUD {
 	}
 
 	private void render(GuiGraphics guiGraphics, boolean preview) {
-		if (!preview && mc.player == null) return;
-
 		String text = getFormattedText(preview);
 		int sw = UDisplay.getGuiScaledWidth();
 		int sh = UDisplay.getGuiScaledHeight();
 
+		float baseW = mc.font.width(text);
+		float baseH = 9;
+		if (isShowBackground()) {
+			baseW += 8;
+			baseH = 18;
+		}
+
+		float scaledW = baseW * scale;
+		float scaledH = baseH * scale;
+
 		float rx = x * sw;
 		float ry = y * sh;
 
-		// Scaled width for alignment
-		float scaledW = getScaledWidth() / ((float) UDisplay.getGuiScale() / NVGRenderer.getStandardGuiScale());
-
-		if (alignment == HUDAlignment.CENTER) rx -= (getScaledWidth() / 2f);
-		else if (alignment == HUDAlignment.RIGHT) rx -= getScaledWidth();
-
-		float tw = mc.font.width(text) * scale;
-		float th = 9 * scale;
+		if (alignment == HUDAlignment.CENTER) rx -= (scaledW / 2f);
+		else if (alignment == HUDAlignment.RIGHT) rx -= scaledW;
 
 		if (isShowBackground()) {
-			float bw = tw + 8 * scale;
-			float bh = 18 * scale;
-			float bx = rx - 4 * scale;
-			float by = ry - 4.5f * scale;
-			guiGraphics.fill((int)bx, (int)by, (int)(bx + bw), (int)(by + bh), getBackgroundColor());
+			guiGraphics.fill((int) rx, (int) ry, (int) (rx + scaledW), (int) (ry + scaledH), getBackgroundColor());
 		}
 
-		guiGraphics.pose().pushMatrix();
-		guiGraphics.pose().translate(rx, ry);
-		guiGraphics.pose().scale(scale, scale);
+		float textX = rx;
+		float textY = ry;
+
+		if (isShowBackground()) {
+			textX += 4 * scale;
+			textY += 4.5f * scale;
+		}
+
+		Matrix3x2fStack pose = guiGraphics.pose();
+		pose.pushMatrix();
+		pose.translate(textX, textY);
+		pose.scale(scale, scale);
 		guiGraphics.drawString(mc.font, text, 0, 0, getTextColor(), isShowShadow());
-		guiGraphics.pose().popMatrix();
+		pose.popMatrix();
 	}
 }

@@ -1,12 +1,13 @@
-package silence.simsool.lucentclient.huds.impl.info;
+package silence.simsool.lucentclient.huds.impl.info.impl;
 
 import silence.simsool.lucent.general.enums.HUDAlignment;
+import silence.simsool.lucentclient.huds.impl.info.AbstractInfoHUD;
 import silence.simsool.lucentclient.mods.impl.hud.CPSMod;
 
 public class CPSHUD extends AbstractInfoHUD {
 
 	public CPSHUD() {
-		super("info_cps", CPSMod.class, 0.02f, 0.05f, HUDAlignment.LEFT);
+		super("hud_lucentclient_cps", CPSMod.class, 0.02f, 0.05f, HUDAlignment.LEFT);
 	}
 
 	@Override

@@ -10,6 +10,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import com.mojang.blaze3d.vertex.PoseStack;
+import com.mojang.math.Axis;
 
 import net.minecraft.client.renderer.ItemInHandRenderer;
 import net.minecraft.client.renderer.SubmitNodeCollector;
@@ -32,8 +33,35 @@ public class MixinItemInHandRenderer {
 		if (AnimationsMod.isEnabled()) {
 			if (displayContext == ItemDisplayContext.FIRST_PERSON_LEFT_HAND || displayContext == ItemDisplayContext.FIRST_PERSON_RIGHT_HAND) {
 				float scale = (float) AnimationsMod.ItemScale;
+				
+				float transX = (float) AnimationsMod.HeldItemX;
+				float transY = (float) AnimationsMod.HeldItemY;
+				float transZ = (float) AnimationsMod.HeldItemZ;
+
+				float yaw = (float) AnimationsMod.HeldItemYaw;
+				float pitch = (float) AnimationsMod.HeldItemPitch;
+				float roll = (float) AnimationsMod.HeldItemRoll;
+
+				poseStack.translate(transX, transY, transZ);
+				
+				if (yaw != 0.0f) {
+					poseStack.mulPose(Axis.YP.rotationDegrees(yaw));
+				}
+				if (pitch != 0.0f) {
+					poseStack.mulPose(Axis.XP.rotationDegrees(pitch));
+				}
+				if (roll != 0.0f) {
+					poseStack.mulPose(Axis.ZP.rotationDegrees(roll));
+				}
+
 				if (scale != 1.0f) {
 					poseStack.scale(scale, scale, scale);
+				}
+
+				if (AnimationsMod.FlatItem) {
+					// We only want to flatten items, usually not blocks but we can just flatten all.
+					// Z scale to close to 0 to make it flat
+					poseStack.scale(1.0f, 1.0f, 0.001f);
 				}
 			}
 		}

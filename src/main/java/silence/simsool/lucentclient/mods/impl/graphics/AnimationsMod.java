@@ -6,6 +6,7 @@ import silence.simsool.lucent.Lucent;
 import silence.simsool.lucent.general.enums.ConfigType;
 import silence.simsool.lucent.general.models.abstracts.Mod;
 import silence.simsool.lucent.general.models.interfaces.annotations.ModConfig;
+import silence.simsool.lucentclient.utils.LucentClientUtils;
 
 @ModConfig.CategoryPriority(name = "General", priority = 1000)
 @ModConfig.CategoryPriority(name = "Entity", priority = 900)
@@ -14,7 +15,7 @@ import silence.simsool.lucent.general.models.interfaces.annotations.ModConfig;
 public class AnimationsMod extends Mod {
 
 	public AnimationsMod() {
-		super("Animations", "Adjusts various animations and visual effects.", "Graphics", "animation, render, visual", "lucid:render");
+		super("Animations", "Adjusts various animations and visual effects.", "Graphics", "animation, render, visual", LucentClientUtils.getModIcon("animations"));
 	}
 
 	public static boolean isEnabled() {
@@ -32,33 +33,44 @@ public class AnimationsMod extends Mod {
 
 	@ModConfig(
 		type = ConfigType.SWITCH,
-		name = "No Hurt Cam",
-		description = "Disables camera shaking when taking damage.",
-		category = "General",
-		priority = 950
+		name = "Use Damage Color",
+		description = "Enable custom colors for damage and armor hurt.",
+		category = "Entity",
+		priority = 910
 	)
-	public static boolean NoHurtCam = true;
+	public static boolean UseDamageColor = false;
 
 	@ModConfig(
 		type = ConfigType.COLOR,
 		name = "Damage Color",
 		description = "Color of the entity when they take damage.",
 		category = "Entity",
+		parent = "UseDamageColor",
 		priority = 900
 	)
 	public static Color DamageColor = new Color(255, 0, 0, 76);
 
 	@ModConfig(
+		type = ConfigType.COLOR,
+		name = "Armor Hurt Color",
+		description = "Color of the armor when the entity takes damage.",
+		category = "Entity",
+		parent = "UseDamageColor",
+		priority = 890
+	)
+	public static Color ArmorHurtColor = new Color(255, 0, 0, 76);
+
+	@ModConfig(
 		type = ConfigType.SLIDER,
 		name = "Swing Speed",
-		description = "Speed of the player's arm swing animation.",
+		description = "Speed of the player's arm swing animation. (default: 6)",
 		category = "General",
-		min = 0.1,
-		max = 5.0,
-		step = 0.1,
+		min = 2,
+		max = 16,
+		step = 1,
 		priority = 990
 	)
-	public static double SwingSpeed = 1.0;
+	public static int SwingSpeed = 6;
 
 	@ModConfig(
 		type = ConfigType.SWITCH,
@@ -77,15 +89,6 @@ public class AnimationsMod extends Mod {
 		priority = 980
 	)
 	public static boolean DisableCameraPotionParticles = true;
-
-	@ModConfig(
-		type = ConfigType.COLOR,
-		name = "Armor Hurt Color",
-		description = "Color of the armor when the entity takes damage.",
-		category = "Entity",
-		priority = 890
-	)
-	public static Color ArmorHurtColor = new Color(255, 0, 0, 76);
 
 	@ModConfig(
 		type = ConfigType.SWITCH,
@@ -109,6 +112,78 @@ public class AnimationsMod extends Mod {
 	public static double ItemScale = 1.0;
 
 	@ModConfig(
+		type = ConfigType.SLIDER,
+		name = "Item X",
+		description = "X offset for your held item.",
+		category = "Item",
+		min = -2.0,
+		max = 2.0,
+		step = 0.05,
+		priority = 780
+	)
+	public static double HeldItemX = 0.0;
+
+	@ModConfig(
+		type = ConfigType.SLIDER,
+		name = "Item Y",
+		description = "Y offset for your held item.",
+		category = "Item",
+		min = -2.0,
+		max = 2.0,
+		step = 0.05,
+		priority = 770
+	)
+	public static double HeldItemY = 0.0;
+
+	@ModConfig(
+		type = ConfigType.SLIDER,
+		name = "Item Z",
+		description = "Z offset for your held item.",
+		category = "Item",
+		min = -2.0,
+		max = 2.0,
+		step = 0.05,
+		priority = 760
+	)
+	public static double HeldItemZ = 0.0;
+
+	@ModConfig(
+		type = ConfigType.SLIDER,
+		name = "Item Yaw",
+		description = "Yaw rotation for your held item.",
+		category = "Item",
+		min = -180.0,
+		max = 180.0,
+		step = 1.0,
+		priority = 750
+	)
+	public static double HeldItemYaw = 0.0;
+
+	@ModConfig(
+		type = ConfigType.SLIDER,
+		name = "Item Pitch",
+		description = "Pitch rotation for your held item.",
+		category = "Item",
+		min = -180.0,
+		max = 180.0,
+		step = 1.0,
+		priority = 740
+	)
+	public static double HeldItemPitch = 0.0;
+
+	@ModConfig(
+		type = ConfigType.SLIDER,
+		name = "Item Roll",
+		description = "Roll rotation for your held item.",
+		category = "Item",
+		min = -180.0,
+		max = 180.0,
+		step = 1.0,
+		priority = 730
+	)
+	public static double HeldItemRoll = 0.0;
+
+	@ModConfig(
 		type = ConfigType.SWITCH,
 		name = "Fire Overlay",
 		description = "Toggle the visibility of the fire overlay on your screen.",
@@ -122,7 +197,7 @@ public class AnimationsMod extends Mod {
 		name = "Fire Height",
 		description = "Adjust the height offset of the fire overlay.",
 		category = "Overlay",
-		parent = "fireOverlay",
+		parent = "FireOverlay",
 		min = 0.0,
 		max = 1.0,
 		step = 0.01,

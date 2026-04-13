@@ -13,12 +13,13 @@ import net.minecraft.world.phys.Vec3;
 import silence.simsool.lucent.Lucent;
 import silence.simsool.lucent.general.models.abstracts.Mod;
 import silence.simsool.lucent.general.models.interfaces.annotations.ModConfig;
+import silence.simsool.lucentclient.utils.LucentClientUtils;
 
 @ModConfig.CategoryPriority(name = "General", priority = 1000)
 public class TntTimerMod extends Mod {
 
 	public TntTimerMod() {
-		super("TNT Timer", "Shows the remaining time before TNT explodes.", "Utility", "tnt, time, explode", "lucid:tnt");
+		super("TNT Timer", "Shows the remaining time before TNT explodes.", "Utility", "tnt, time, explode", LucentClientUtils.getModIcon("tnt_timer"));
 	}
 
 	public static boolean isEnabled() {

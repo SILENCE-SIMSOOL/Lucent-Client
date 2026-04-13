@@ -14,12 +14,22 @@ import silence.simsool.lucentclient.mods.impl.hud.KeystrokesMod;
 public class KeystrokesHUD extends LucentHUD {
 
 	public KeystrokesHUD() {
-		super("keystrokes", KeystrokesMod.class, 0.05f, 0.4f, 1.0f, HUDAlignment.LEFT);
+		super("hud_lucentclient_keystrokes", KeystrokesMod.class, 0.05f, 0.4f, 1.0f, HUDAlignment.LEFT);
 	}
 
 	@Override
 	public RenderType getRenderType() {
 		return RenderType.MINECRAFT;
+	}
+
+	@Override
+	public float getPreviewWidth() {
+		return 64 * ((float) UDisplay.getGuiScale() / silence.simsool.lucent.ui.utils.nvg.NVGRenderer.getStandardGuiScale());
+	}
+
+	@Override
+	public float getPreviewHeight() {
+		return 64 * ((float) UDisplay.getGuiScale() / silence.simsool.lucent.ui.utils.nvg.NVGRenderer.getStandardGuiScale());
 	}
 
 	@Override
@@ -42,8 +52,10 @@ public class KeystrokesHUD extends LucentHUD {
 		float rx = x * sw;
 		float ry = y * sh;
 
-		if (alignment == HUDAlignment.CENTER) rx -= (getScaledWidth() / 2f);
-		else if (alignment == HUDAlignment.RIGHT) rx -= getScaledWidth();
+		float scaledW = 64 * scale;
+
+		if (alignment == HUDAlignment.CENTER) rx -= (scaledW / 2f);
+		else if (alignment == HUDAlignment.RIGHT) rx -= scaledW;
 
 		float gs = scale;
 		float bw = 20f * gs;
@@ -76,13 +88,4 @@ public class KeystrokesHUD extends LucentHUD {
 		UText.drawCenteredText(guiGraphics, key, x + w / 2f, y + (h - 9f * scale) / 2f, scale, fg);
 	}
 
-	@Override
-	public float getPreviewWidth() {
-		return 64;
-	}
-
-	@Override
-	public float getPreviewHeight() {
-		return 64;
-	}
 }

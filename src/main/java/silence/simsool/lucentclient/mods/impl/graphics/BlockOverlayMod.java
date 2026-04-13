@@ -6,13 +6,14 @@ import silence.simsool.lucent.Lucent;
 import silence.simsool.lucent.general.enums.ConfigType;
 import silence.simsool.lucent.general.models.abstracts.Mod;
 import silence.simsool.lucent.general.models.interfaces.annotations.ModConfig;
+import silence.simsool.lucentclient.utils.LucentClientUtils;
 
 @ModConfig.CategoryPriority(name = "Outline", priority = 1000)
 @ModConfig.CategoryPriority(name = "Fill", priority = 900)
 public class BlockOverlayMod extends Mod {
 
 	public BlockOverlayMod() {
-		super("Block Overlay", "Customizes the block selection overlay.", "Graphics", "block, overlay, outline", "lucid:block");
+		super("Block Overlay", "Customizes the block selection overlay.", "Graphics", "block, overlay, outline", LucentClientUtils.getModIcon("block_overlay"));
 	}
 
 	public static boolean isEnabled() {

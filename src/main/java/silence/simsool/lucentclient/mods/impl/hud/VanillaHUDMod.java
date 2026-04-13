@@ -6,6 +6,7 @@ import silence.simsool.lucent.Lucent;
 import silence.simsool.lucent.general.enums.ConfigType;
 import silence.simsool.lucent.general.models.abstracts.Mod;
 import silence.simsool.lucent.general.models.interfaces.annotations.ModConfig;
+import silence.simsool.lucentclient.utils.LucentClientUtils;
 
 @ModConfig.CategoryPriority(name = "General", priority = 1000)
 @ModConfig.CategoryPriority(name = "Bars", priority = 900)
@@ -14,7 +15,7 @@ import silence.simsool.lucent.general.models.interfaces.annotations.ModConfig;
 public class VanillaHUDMod extends Mod {
 
 	public VanillaHUDMod() {
-		super("Vanilla HUD", "Configure default Minecraft HUD elements.", "HUD", "vanilla, hud, bar", "lucid:hud");
+		super("Vanilla HUD", "Configure default Minecraft HUD elements.", "HUD", "vanilla, hud, bar", LucentClientUtils.getModIcon("vanillahud"));
 	}
 
 	public static boolean isEnabled() {

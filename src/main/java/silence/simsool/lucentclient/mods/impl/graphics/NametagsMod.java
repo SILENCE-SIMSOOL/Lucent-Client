@@ -5,13 +5,14 @@ import java.awt.Color;
 import silence.simsool.lucent.general.enums.ConfigType;
 import silence.simsool.lucent.general.models.abstracts.Mod;
 import silence.simsool.lucent.general.models.interfaces.annotations.ModConfig;
+import silence.simsool.lucentclient.utils.LucentClientUtils;
 
 @ModConfig.CategoryPriority(name = "General", priority = 1000)
 @ModConfig.CategoryPriority(name = "Background", priority = 900)
 public class NametagsMod extends Mod {
 
 	public NametagsMod() {
-		super("Nametags", "Customizes player nametags.", "Graphics", "name, tag, nametag", "lucid:tag");
+		super("Nametags", "Customizes player nametags.", "Graphics", "name, tag, nametag", LucentClientUtils.getModIcon("nametags"));
 	}
 
 	@ModConfig(

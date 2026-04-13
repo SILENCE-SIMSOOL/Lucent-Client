@@ -18,7 +18,7 @@ import silence.simsool.lucentclient.mods.impl.hud.ArmorStatusMod;
 public class ArmorStatusHUD extends LucentHUD {
 
 	public ArmorStatusHUD() {
-		super("armor_status", ArmorStatusMod.class, 0.95f, 0.4f, 1.0f, HUDAlignment.RIGHT);
+		super("hud_lucentclient_armorstatus", ArmorStatusMod.class, 0.95f, 0.4f, 1.0f, HUDAlignment.LEFT);
 	}
 
 	@Override

@@ -3,12 +3,13 @@ package silence.simsool.lucentclient.mods.impl.hud;
 import silence.simsool.lucent.general.enums.ConfigType;
 import silence.simsool.lucent.general.models.abstracts.Mod;
 import silence.simsool.lucent.general.models.interfaces.annotations.ModConfig;
+import silence.simsool.lucentclient.utils.LucentClientUtils;
 
 @ModConfig.CategoryPriority(name = "Coordinates", priority = 1000)
 public class CoordinatesMod extends Mod {
 
 	public CoordinatesMod() {
-		super("Coordinates", "Displays your current world coordinates and location info.", "HUD", "coordinates, coord, location, biome", "lucid:info");
+		super("Coordinates", "Displays your current world coordinates and location info.", "HUD", "coordinates, coord, location, biome", LucentClientUtils.getModIcon("coordinates"));
 	}
 
 	@ModConfig(type = ConfigType.SELECTOR, name = "List Mode", options = {"Vertical", "Horizontal", "Simple"}, priority = 1000)

@@ -21,7 +21,7 @@ public class MixinGameRenderer {
 	private void onGetFov(Camera camera, float f, boolean bl, CallbackInfoReturnable<Float> cir) {
 
 		if (ZoomMod.isEnabled()) {
-			float targetZoom = ZoomMod.ZoomKey.isKeyDown() ? ZoomMod.ZoomFactor : 1.0f;
+			float targetZoom = ZoomMod.getTargetZoom();
 
 			if (ZoomMod.SmoothZoom) currentZoom = Mth.lerp(f * 0.2f, currentZoom, targetZoom);
 			else currentZoom = targetZoom;

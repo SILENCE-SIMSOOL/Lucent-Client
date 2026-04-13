@@ -1,9 +1,11 @@
-package silence.simsool.lucentclient.huds.impl.info;
+package silence.simsool.lucentclient.huds.impl.info.impl;
 
 import static silence.simsool.lucent.Lucent.mc;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import org.joml.Matrix3x2fStack;
 
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.core.BlockPos;
@@ -17,7 +19,7 @@ import silence.simsool.lucentclient.mods.impl.hud.CoordinatesMod;
 public class CoordinatesHUD extends LucentHUD {
 
 	public CoordinatesHUD() {
-		super("info_coordinates", CoordinatesMod.class, 0.02f, 0.14f, 1.0f, HUDAlignment.LEFT);
+		super("hud_lucentclient_coordinates", CoordinatesMod.class, 0.02f, 0.14f, 1.0f, HUDAlignment.LEFT);
 	}
 
 	@Override
@@ -29,11 +31,9 @@ public class CoordinatesHUD extends LucentHUD {
 	public float getPreviewWidth() {
 		List<String> lines = getLines(true);
 		float maxW = 0;
-		for (String line : lines) {
-			maxW = Math.max(maxW, mc.font.width(line));
-		}
+		for (String line : lines) maxW = Math.max(maxW, mc.font.width(line));
 		if (CoordinatesMod.ShowBackground) maxW += 8;
-		return (maxW + 4) * ((float) UDisplay.getGuiScale() / NVGRenderer.getStandardGuiScale());
+		return maxW * ((float) UDisplay.getGuiScale() / NVGRenderer.getStandardGuiScale());
 	}
 
 	@Override
@@ -41,7 +41,7 @@ public class CoordinatesHUD extends LucentHUD {
 		List<String> lines = getLines(true);
 		float h = lines.size() * 10;
 		if (CoordinatesMod.ShowBackground) h = lines.size() * 9 + 9;
-		return (h + 4) * ((float) UDisplay.getGuiScale() / NVGRenderer.getStandardGuiScale());
+		return h * ((float) UDisplay.getGuiScale() / NVGRenderer.getStandardGuiScale());
 	}
 
 	@Override
@@ -55,38 +55,44 @@ public class CoordinatesHUD extends LucentHUD {
 		render(guiGraphics, true);
 	}
 
-	private void render(GuiGraphics guiGraphics, boolean preview) {
-		if (!preview && mc.player == null) return;
-
+	private void render(GuiGraphics graphics, boolean preview) {
 		List<String> lines = getLines(preview);
+		Matrix3x2fStack pose = graphics.pose();
 		int sw = UDisplay.getGuiScaledWidth();
 		int sh = UDisplay.getGuiScaledHeight();
 
 		float rx = x * sw;
 		float ry = y * sh;
 
-		if (alignment == HUDAlignment.CENTER) rx -= (getScaledWidth() / 2f);
-		else if (alignment == HUDAlignment.RIGHT) rx -= getScaledWidth();
-
 		float maxW = 0;
-		for (String line : lines) {
-			maxW = Math.max(maxW, mc.font.width(line) * scale);
-		}
+		for (String line : lines) maxW = Math.max(maxW, mc.font.width(line));
+
+		float scaledW = maxW * scale;
+
+		if (alignment == HUDAlignment.CENTER) rx -= (scaledW / 2f);
+		else if (alignment == HUDAlignment.RIGHT) rx -= scaledW;
 
 		if (CoordinatesMod.ShowBackground) {
-			float bw = maxW + 8 * scale;
+			float bw = maxW * scale + 8 * scale;
 			float bh = lines.size() * 9 * scale + 9 * scale;
 			float bx = rx - 4 * scale;
 			float by = ry - 4.5f * scale;
-			guiGraphics.fill((int)bx, (int)by, (int)(bx + bw), (int)(by + bh), CoordinatesMod.BackgroundColor);
+			graphics.fill((int)bx, (int)by, (int)(bx + bw), (int)(by + bh), CoordinatesMod.BackgroundColor);
 		}
 
 		for (int i = 0; i < lines.size(); i++) {
-			guiGraphics.pose().pushMatrix();
-			guiGraphics.pose().translate(rx, ry + i * 10 * scale);
-			guiGraphics.pose().scale(scale, scale);
-			guiGraphics.drawString(mc.font, lines.get(i), 0, 0, CoordinatesMod.TextColor, CoordinatesMod.TextShadow);
-			guiGraphics.pose().popMatrix();
+			String line = lines.get(i);
+			float lineW = mc.font.width(line);
+			float lx = rx;
+			
+			if (alignment == HUDAlignment.CENTER) lx += (maxW - lineW) * scale / 2f;
+			else if (alignment == HUDAlignment.RIGHT) lx += (maxW - lineW) * scale;
+			
+			pose.pushMatrix();
+			pose.translate(lx, ry + i * 10 * scale);
+			pose.scale(scale, scale);
+			graphics.drawString(mc.font, line, 0, 0, CoordinatesMod.TextColor, CoordinatesMod.TextShadow);
+			pose.popMatrix();
 		}
 	}
 
@@ -134,7 +140,10 @@ public class CoordinatesHUD extends LucentHUD {
 	}
 
 	private String getChunkStats() {
-		return "0/0"; // Fallback to avoid compilation errors for now
+		if (mc.levelRenderer == null) return "0/0";
+		int rendered = mc.levelRenderer.countRenderedSections();
+		int total = (int) mc.levelRenderer.getTotalSections();
+		return String.format("%d/%d", rendered, total);
 	}
 
 	private String getShortDirection() {
@@ -153,7 +162,18 @@ public class CoordinatesHUD extends LucentHUD {
 	}
 
 	private String getBiomeName() {
-		if (mc.level == null || mc.player == null) return "Plains";
-		return "Plains"; // Simplify to avoid API mismatch for now
+		if (mc.level == null || mc.player == null) return "Unknown";
+
+		return (mc.level.getBiome(mc.player.blockPosition())
+			.unwrapKey()
+			.map(key -> {
+				String path = key.identifier().getPath();
+				String name = path.replace('_', ' ');
+				if (name.length() > 0) return name.substring(0, 1).toUpperCase() + name.substring(1);
+				return name;
+			})
+			.orElse("Unknown")
+		);
 	}
+
 }

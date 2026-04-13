@@ -6,12 +6,13 @@ import java.util.List;
 import silence.simsool.lucent.general.enums.ConfigType;
 import silence.simsool.lucent.general.models.abstracts.Mod;
 import silence.simsool.lucent.general.models.interfaces.annotations.ModConfig;
+import silence.simsool.lucentclient.utils.LucentClientUtils;
 
 @ModConfig.CategoryPriority(name = "General", priority = 1000)
 public class CPSMod extends Mod {
 
 	public CPSMod() {
-		super("CPS", "Displays your current clicks per second.", "HUD", "cps, clicks", "lucid:info");
+		super("CPS", "Displays your current clicks per second.", "HUD", "cps, clicks", LucentClientUtils.getModIcon("cps"));
 	}
 
 	@ModConfig(type = ConfigType.SWITCH, name = "Text Shadow", priority = 1000)

@@ -1,5 +1,6 @@
 package silence.simsool.lucentclient.mods.impl.utility;
 
+import static silence.simsool.lucent.Lucent.mc;
 import org.lwjgl.glfw.GLFW;
 
 import silence.simsool.lucent.Lucent;
@@ -7,12 +8,13 @@ import silence.simsool.lucent.general.enums.ConfigType;
 import silence.simsool.lucent.general.models.abstracts.Mod;
 import silence.simsool.lucent.general.models.data.KeyBind;
 import silence.simsool.lucent.general.models.interfaces.annotations.ModConfig;
+import silence.simsool.lucentclient.utils.LucentClientUtils;
 
 @ModConfig.CategoryPriority(name = "General", priority = 1000)
 public class ZoomMod extends Mod {
 
 	public ZoomMod() {
-		super("Zoom", "Allows you to zoom in using a keybind.", "Utility", "zoom, optifine, vision", "lucid:zoom");
+		super("Zoom", "Allows you to zoom in using a keybind.", "Utility", "zoom, optifine, vision", LucentClientUtils.getModIcon("zoom"));
 	}
 
 	public static boolean isEnabled() {
@@ -48,5 +50,13 @@ public class ZoomMod extends Mod {
 		priority = 980
 	)
 	public static boolean SmoothZoom = true;
+
+	public static boolean isZoomKeyDown() {
+		return ZoomKey.isKeyDown() && mc.screen == null;
+	}
+
+	public static float getTargetZoom() {
+		return isZoomKeyDown() ? ZoomFactor : 1.0f;
+	}
 
 }

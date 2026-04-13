@@ -4,11 +4,12 @@ import silence.simsool.lucent.Lucent;
 import silence.simsool.lucent.general.enums.ConfigType;
 import silence.simsool.lucent.general.models.abstracts.Mod;
 import silence.simsool.lucent.general.models.interfaces.annotations.ModConfig;
+import silence.simsool.lucentclient.utils.LucentClientUtils;
 
 public class ArmorStatusMod extends Mod {
 
 	public ArmorStatusMod() {
-		super("Armor Status", "Displays currently equipped armor durability.", "HUD", "armor, durability, status", "lucid:armor");
+		super("Armor Status", "Displays currently equipped armor durability.", "HUD", "armor, durability, status", LucentClientUtils.getModIcon("armor_status"));
 	}
 
 	public static boolean isEnabled() {

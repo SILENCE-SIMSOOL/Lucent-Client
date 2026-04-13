@@ -3,12 +3,13 @@ package silence.simsool.lucentclient.mods.impl.hud;
 import silence.simsool.lucent.general.enums.ConfigType;
 import silence.simsool.lucent.general.models.abstracts.Mod;
 import silence.simsool.lucent.general.models.interfaces.annotations.ModConfig;
+import silence.simsool.lucentclient.utils.LucentClientUtils;
 
 @ModConfig.CategoryPriority(name = "General", priority = 1000)
 public class TPSMod extends Mod {
 
 	public TPSMod() {
-		super("TPS", "Displays server ticks per second.", "HUD", "tps, ticks", "lucid:info");
+		super("TPS", "Displays server ticks per second.", "HUD", "tps, ticks", LucentClientUtils.getModIcon("tps"));
 	}
 
 	@ModConfig(type = ConfigType.SWITCH, name = "Text Shadow", priority = 1000)

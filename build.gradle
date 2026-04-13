@@ -54,6 +54,8 @@ dependencies {
 
 	def lucentVersion = "${project.lucent_version}-${project.minecraft_version}-${project.lucent_library}"
 	modImplementation "com.github.SILENCE-SIMSOOL:lucent:${lucentVersion}"
+	
+	modImplementation files("libs/SilenceUtils-1.0.0.jar")
 }
 
 processResources {

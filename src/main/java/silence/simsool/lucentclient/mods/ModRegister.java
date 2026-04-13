@@ -22,6 +22,9 @@ import silence.simsool.lucentclient.mods.impl.hud.PotionEffectsMod;
 import silence.simsool.lucentclient.mods.impl.hud.TPSMod;
 import silence.simsool.lucentclient.mods.impl.hud.VanillaHUDMod;
 import silence.simsool.lucentclient.mods.impl.performance.EntityCullingMod;
+import silence.simsool.lucentclient.mods.impl.performance.HUDCullingMod;
+import silence.simsool.lucentclient.mods.impl.performance.MemoryLeakFixMod;
+import silence.simsool.lucentclient.mods.impl.performance.NetworkFixMod;
 import silence.simsool.lucentclient.mods.impl.utility.ScrollableTooltipsMod;
 import silence.simsool.lucentclient.mods.impl.utility.TntTimerMod;
 import silence.simsool.lucentclient.mods.impl.utility.ToggleSprintMod;
@@ -57,6 +60,9 @@ public class ModRegister {
 
 			// Performance
 			new EntityCullingMod(),
+			new HUDCullingMod(),
+			new MemoryLeakFixMod(),
+			new NetworkFixMod(),
 
 			// Utility
 			new ScrollableTooltipsMod(),

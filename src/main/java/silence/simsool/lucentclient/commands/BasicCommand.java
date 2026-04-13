@@ -7,7 +7,7 @@ import net.fabricmc.fabric.api.client.command.v2.FabricClientCommandSource;
 import net.minecraft.commands.Commands;
 import silence.simsool.lucent.general.utils.UChat;
 import silence.simsool.lucentclient.LucentClient;
-import silence.simsool.lucentclient.handler.TPSHandler;
+import silence.simsool.lucentclient.handler.ServerHandler;
 import silence.simsool.lucentclient.mods.impl.hud.PingMod;
 
 public class BasicCommand {
@@ -30,14 +30,14 @@ public class BasicCommand {
 	}
 
 	private static int displayTps() {
-		float tps = TPSHandler.getTPS();
+		float tps = ServerHandler.getTPS();
 		String color = tps >= 18.0 ? "§a" : (tps >= 13.0 ? "§e" : "§c");
 		UChat.chat(LucentClient.PREFIX + "§fCurrent TPS: " + color + String.format("%.1f", tps));
 		return 1;
 	}
 
 	private static int displayPing() {
-		int ping = PingMod.getPing();
+		int ping = ServerHandler.getAveragePing();
 		String color = ping < 100 ? "§a" : (ping < 200 ? "§e" : "§c");
 		UChat.chat(LucentClient.PREFIX + "§fCurrent Ping: " + color + ping + "ms");
 		return 1;

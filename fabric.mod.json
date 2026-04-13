@@ -1,0 +1,63 @@
+{
+  "schemaVersion": 1,
+  "id": "silenceutils",
+  "version": "1.0.0",
+  "name": "SilenceUtils",
+  "description": "",
+  "authors": [
+    "SimSool",
+    "Daniel"
+  ],
+  "contact": {
+    "homepage": "",
+    "sources": ""
+  },
+  "license": "MIT",
+  "icon": "icon.png",
+  "environment": "client",
+  "entrypoints": {
+    "client": [
+      "silence.simsool.silenceutils.Main"
+    ]
+  },
+  "mixins": [
+    "silenceutils.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": "\u003e\u003d0.15.11",
+    "minecraft": "~1.21",
+    "java": "\u003e\u003d21",
+    "fabric-api": "*"
+  },
+  "suggests": {
+    "another-mod": "*"
+  },
+  "custom": {
+    "modmenu": {
+      "links": {
+        "modmenu.discord": "https://discord.gg/2Zt8HDksJs"
+      },
+      "update_checker": false
+    }
+  },
+  "jars": [
+    {
+      "file": "META-INF/jars/lucent-1.0.8-1.21.11-1.jar"
+    },
+    {
+      "file": "META-INF/jars/lwjgl-nanovg-3.3.3-natives-linux.jar"
+    },
+    {
+      "file": "META-INF/jars/lwjgl-nanovg-3.3.3-natives-macos-arm64.jar"
+    },
+    {
+      "file": "META-INF/jars/lwjgl-nanovg-3.3.3-natives-macos.jar"
+    },
+    {
+      "file": "META-INF/jars/lwjgl-nanovg-3.3.3-natives-windows.jar"
+    },
+    {
+      "file": "META-INF/jars/lwjgl-nanovg-3.3.3.jar"
+    }
+  ]
+}

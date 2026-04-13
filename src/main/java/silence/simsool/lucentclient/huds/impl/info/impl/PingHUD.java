@@ -1,6 +1,7 @@
 package silence.simsool.lucentclient.huds.impl.info.impl;
 
 import silence.simsool.lucent.general.enums.HUDAlignment;
+import silence.simsool.lucentclient.handler.ServerHandler;
 import silence.simsool.lucentclient.huds.impl.info.AbstractInfoHUD;
 import silence.simsool.lucentclient.mods.impl.hud.PingMod;
 
@@ -18,7 +19,7 @@ public class PingHUD extends AbstractInfoHUD {
 	@Override
 	protected String getValue(boolean preview) {
 		if (preview) return "24ms";
-		else return PingMod.getPing() + "ms";
+		else return ServerHandler.getAveragePing() + "ms";
 	}
 
 	@Override

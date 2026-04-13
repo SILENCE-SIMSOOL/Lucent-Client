@@ -12,12 +12,15 @@ import net.minecraft.client.renderer.entity.EntityRenderer;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.decoration.ArmorStand;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.ClipContext;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
 import silence.simsool.lucentclient.mods.impl.graphics.DeathAnimationMod;
 import silence.simsool.lucentclient.mods.impl.performance.EntityCullingMod;
+import silence.simsool.lucentclient.utils.LucentClientUtils;
+
 
 @Mixin(EntityRenderer.class)
 public abstract class MixinEntityRenderer<T extends Entity> {
@@ -44,6 +47,8 @@ public abstract class MixinEntityRenderer<T extends Entity> {
 	@Inject(method = "shouldRender", at = @At("RETURN"), cancellable = true)
 	private void onShouldRenderReturn(T entity, Frustum frustum, double x, double y, double z, CallbackInfoReturnable<Boolean> cir) {
 		if (cir.getReturnValue() && EntityCullingMod.isEnabled()) {
+			if (entity instanceof Player && LucentClientUtils.checkInDungeon()) return;
+
 			Entity cameraEntity = mc.getCameraEntity();
 
 			if (entity != cameraEntity && mc.level != null && cameraEntity != null) {

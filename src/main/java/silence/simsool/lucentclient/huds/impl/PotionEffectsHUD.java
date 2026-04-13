@@ -14,6 +14,7 @@ import silence.simsool.lucent.general.enums.RenderType;
 import silence.simsool.lucent.general.models.abstracts.LucentHUD;
 import silence.simsool.lucent.general.utils.UDisplay;
 import silence.simsool.lucent.general.utils.UText;
+import silence.simsool.lucent.ui.utils.UIColors;
 import silence.simsool.lucent.ui.utils.nvg.NVGRenderer;
 import silence.simsool.lucentclient.mods.impl.hud.PotionEffectsMod;
 
@@ -83,7 +84,7 @@ public class PotionEffectsHUD extends LucentHUD {
 			if (alignment == HUDAlignment.CENTER) lx += (maxW - lineW) * scale / 2f;
 			else if (alignment == HUDAlignment.RIGHT) lx += (maxW - lineW) * scale;
 			
-			UText.drawText(guiGraphics, line, lx, ry + yOffset, scale);
+			UText.drawText(guiGraphics, line, lx, ry + yOffset, scale, UIColors.PURE_WHITE, true);
 			yOffset += lineH;
 		}
 	}

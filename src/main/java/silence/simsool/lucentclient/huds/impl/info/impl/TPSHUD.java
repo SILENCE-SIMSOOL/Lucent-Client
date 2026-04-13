@@ -1,7 +1,7 @@
 package silence.simsool.lucentclient.huds.impl.info.impl;
 
 import silence.simsool.lucent.general.enums.HUDAlignment;
-import silence.simsool.lucentclient.handler.TPSHandler;
+import silence.simsool.lucentclient.handler.ServerHandler;
 import silence.simsool.lucentclient.huds.impl.info.AbstractInfoHUD;
 import silence.simsool.lucentclient.mods.impl.hud.TPSMod;
 
@@ -19,7 +19,7 @@ public class TPSHUD extends AbstractInfoHUD {
 	@Override
 	protected String getValue(boolean preview) {
 		if (preview) return "20.0";
-		return TPSHandler.getTextTPS();
+		return ServerHandler.getTextTPS();
 	}
 
 	@Override

@@ -26,6 +26,15 @@
 		"mixins.MixinMouseHandler",
 		"mixins.MixinOverlayTexture",
 		"mixins.MixinParticleEngine",
-		"mixins.MixinScreenEffectRenderer"
+		"mixins.MixinScreenEffectRenderer",
+
+		"mixins.memoryleak.MixinBiome_ThreadLocal",
+		"mixins.memoryleak.MixinBlockState_Cache",
+		"mixins.memoryleak.MixinMinecraft_TargetClear",
+
+		"mixins.network.misc.MixinServerEntity",
+		"mixins.network.misc.MixinUtf8String",
+		"mixins.network.misc.MixinVarInt",
+		"mixins.network.pipeline.MixinLegacyQueryHandler"
 	]
 }

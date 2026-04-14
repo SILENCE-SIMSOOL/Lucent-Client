@@ -1,4 +1,4 @@
-﻿package silence.simsool.lucentclient.mods.impl.graphics;
+package silence.simsool.lucentclient.mods.impl.graphics;
 
 import java.awt.Color;
 

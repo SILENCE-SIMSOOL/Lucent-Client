@@ -1,4 +1,4 @@
-﻿package silence.simsool.lucentclient.mods.impl.performance;
+package silence.simsool.lucentclient.mods.impl.performance;
 
 import net.fabricmc.fabric.api.client.rendering.v1.world.WorldRenderEvents;
 import silence.simsool.lucent.Lucent;

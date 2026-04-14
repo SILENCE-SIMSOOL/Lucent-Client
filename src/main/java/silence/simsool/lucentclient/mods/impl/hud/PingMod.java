@@ -1,4 +1,4 @@
-﻿package silence.simsool.lucentclient.mods.impl.hud;
+package silence.simsool.lucentclient.mods.impl.hud;
 
 import static silence.simsool.lucent.Lucent.mc;
 

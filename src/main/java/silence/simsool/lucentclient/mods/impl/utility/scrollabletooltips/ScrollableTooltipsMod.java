@@ -1,4 +1,4 @@
-﻿package silence.simsool.lucentclient.mods.impl.utility.scrollabletooltips;
+package silence.simsool.lucentclient.mods.impl.utility.scrollabletooltips;
 
 import org.lwjgl.glfw.GLFW;
 

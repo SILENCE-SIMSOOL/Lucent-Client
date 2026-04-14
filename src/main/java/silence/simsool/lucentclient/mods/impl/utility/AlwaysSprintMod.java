@@ -1,4 +1,4 @@
-﻿package silence.simsool.lucentclient.mods.impl.utility;
+package silence.simsool.lucentclient.mods.impl.utility;
 
 import silence.simsool.lucent.Lucent;
 import silence.simsool.lucent.general.models.abstracts.Mod;

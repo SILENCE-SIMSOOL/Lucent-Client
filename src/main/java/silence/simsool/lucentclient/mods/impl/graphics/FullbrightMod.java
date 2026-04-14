@@ -1,4 +1,4 @@
-﻿package silence.simsool.lucentclient.mods.impl.graphics;
+package silence.simsool.lucentclient.mods.impl.graphics;
 
 import silence.simsool.lucent.Lucent;
 import silence.simsool.lucent.general.enums.ConfigType;

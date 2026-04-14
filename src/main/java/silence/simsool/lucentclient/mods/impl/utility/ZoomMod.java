@@ -1,4 +1,4 @@
-﻿package silence.simsool.lucentclient.mods.impl.utility;
+package silence.simsool.lucentclient.mods.impl.utility;
 
 import static silence.simsool.lucent.Lucent.mc;
 import org.lwjgl.glfw.GLFW;

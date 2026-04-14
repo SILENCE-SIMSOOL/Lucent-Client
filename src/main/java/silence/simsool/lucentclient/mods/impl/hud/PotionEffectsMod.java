@@ -1,4 +1,4 @@
-﻿package silence.simsool.lucentclient.mods.impl.hud;
+package silence.simsool.lucentclient.mods.impl.hud;
 
 import silence.simsool.lucent.Lucent;
 import silence.simsool.lucent.general.enums.ConfigType;

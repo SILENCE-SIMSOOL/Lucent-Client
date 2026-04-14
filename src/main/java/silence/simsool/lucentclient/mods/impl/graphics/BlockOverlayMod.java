@@ -1,4 +1,4 @@
-package silence.simsool.lucentclient.mods.impl.graphics;
+﻿package silence.simsool.lucentclient.mods.impl.graphics;
 
 import java.awt.Color;
 
@@ -13,11 +13,16 @@ import silence.simsool.lucentclient.utils.LucentClientUtils;
 public class BlockOverlayMod extends Mod {
 
 	public BlockOverlayMod() {
-		super("Block Overlay", "Customizes the block selection overlay.", "Graphics", "block, overlay, outline", LucentClientUtils.getModIcon("block_overlay"));
+		super(
+				"Block Overlay", "Customizes the block selection overlay.",
+				"Graphics",
+				"",
+				LucentClientUtils.getModIcon("block_overlay")
+		);
 	}
 
 	public static boolean isEnabled() {
-		return Lucent.config.getModule(BlockOverlayMod.class).isEnabled;
+		return Lucent.config.isModuleEnabled(BlockOverlayMod.class);
 	}
 
 	@ModConfig(

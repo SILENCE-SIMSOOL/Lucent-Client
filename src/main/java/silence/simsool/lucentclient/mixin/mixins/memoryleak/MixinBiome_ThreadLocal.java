@@ -22,7 +22,7 @@ public abstract class MixinBiome_ThreadLocal {
 	@SuppressWarnings("unchecked")
 	@WrapOperation(method = "<init>", at = @At(value = "INVOKE", target = "Ljava/lang/ThreadLocal;withInitial(Ljava/util/function/Supplier;)Ljava/lang/ThreadLocal;"))
 	private ThreadLocal<Long2FloatLinkedOpenHashMap> useStaticThreadLocal(Supplier<?> supplier, Operation<ThreadLocal<Long2FloatLinkedOpenHashMap>> original) {
-		if (MemoryLeakFixMod.isEnabled()) {
+		if (MemoryLeakFixMod.isEnabled() && MemoryLeakFixMod.StaticBiomeCache) {
 			if (betterTempCache == null) betterTempCache = original.call((Supplier<Long2FloatLinkedOpenHashMap>) supplier);
 			return betterTempCache;
 		}

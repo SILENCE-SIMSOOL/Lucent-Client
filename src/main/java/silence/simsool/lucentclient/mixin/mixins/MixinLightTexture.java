@@ -12,7 +12,7 @@ public class MixinLightTexture {
 
 	@ModifyVariable(method = "updateLightTexture", at = @At(value = "STORE"), ordinal = 6)
 	private float modifyBrightness(float originalBrightness) {
-		if (FullbrightMod.isEnabled()) return 15.0f;
+		if (FullbrightMod.isEnabled()) return FullbrightMod.BrightnessLevel;
 		return originalBrightness;
 	}
 

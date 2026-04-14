@@ -15,9 +15,7 @@ public class MixinGameRendererHurtCam {
 
 	@Inject(method = "bobHurt", at = @At("HEAD"), cancellable = true)
 	private void onBobHurt(PoseStack poseStack, float f, CallbackInfo ci) {
-		if (HurtCamMod.isEnabled() && HurtCamMod.NoHurtCam) {
-			ci.cancel();
-		}
+		if (HurtCamMod.isEnabled() && HurtCamMod.DisableHurtCam) ci.cancel();
 	}
 
 }

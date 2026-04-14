@@ -7,6 +7,23 @@
 	},
 	"mixins": [],
 	"client": [
+		"accessors.AccessorKeyBind",
+		"accessors.AccessorOrderedTextTooltipComponent",
+
+		"mixins.memoryleak.MixinBiome_ThreadLocal",
+		"mixins.memoryleak.MixinBlockState_Cache",
+		"mixins.memoryleak.MixinMinecraft_TargetClear",
+
+		"mixins.network.misc.MixinServerEntity",
+		"mixins.network.misc.MixinUtf8String",
+		"mixins.network.misc.MixinVarInt",
+		"mixins.network.pipeline.MixinLegacyQueryHandler",
+		"mixins.network.pipeline.MixinVarint21FrameDecoder",
+		
+		"mixins.scrollabletooltips.MixinGuiGraphics_ScrollableTooltips",
+		"mixins.scrollabletooltips.MixinMouse_ScrollableTooltips",
+		"mixins.scrollabletooltips.MixinScreen_ScrollableTooltips",
+
 		"mixins.MixinBossHealthOverlay",
 		"mixins.MixinClientPacketListener",
 		"mixins.MixinDebugScreenOverlay",
@@ -26,15 +43,6 @@
 		"mixins.MixinMouseHandler",
 		"mixins.MixinOverlayTexture",
 		"mixins.MixinParticleEngine",
-		"mixins.MixinScreenEffectRenderer",
-
-		"mixins.memoryleak.MixinBiome_ThreadLocal",
-		"mixins.memoryleak.MixinBlockState_Cache",
-		"mixins.memoryleak.MixinMinecraft_TargetClear",
-
-		"mixins.network.misc.MixinServerEntity",
-		"mixins.network.misc.MixinUtf8String",
-		"mixins.network.misc.MixinVarInt",
-		"mixins.network.pipeline.MixinLegacyQueryHandler"
+		"mixins.MixinScreenEffectRenderer"
 	]
 }

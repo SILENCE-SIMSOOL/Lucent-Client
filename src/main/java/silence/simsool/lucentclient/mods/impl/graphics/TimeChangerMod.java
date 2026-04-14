@@ -1,4 +1,4 @@
-package silence.simsool.lucentclient.mods.impl.graphics;
+﻿package silence.simsool.lucentclient.mods.impl.graphics;
 
 import silence.simsool.lucent.Lucent;
 import silence.simsool.lucent.general.enums.ConfigType;
@@ -10,11 +10,16 @@ import silence.simsool.lucentclient.utils.LucentClientUtils;
 public class TimeChangerMod extends Mod {
 
 	public TimeChangerMod() {
-		super("Time Changer", "Allows you to set a fixed client-side time.", "Graphics", "time, day, night", LucentClientUtils.getModIcon("time_changer"));
+		super(
+				"Time Changer", "Allows you to set a fixed client-side time.",
+				"Graphics",
+				"day, night",
+				LucentClientUtils.getModIcon("time_changer")
+		);
 	}
 
 	public static boolean isEnabled() {
-		return Lucent.config.getModule(TimeChangerMod.class).isEnabled;
+		return Lucent.config.isModuleEnabled(TimeChangerMod.class);
 	}
 
 	@ModConfig(

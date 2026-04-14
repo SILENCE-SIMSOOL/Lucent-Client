@@ -15,11 +15,16 @@ import silence.simsool.lucentclient.utils.LucentClientUtils;
 public class AnimationsMod extends Mod {
 
 	public AnimationsMod() {
-		super("Animations", "Adjusts various animations and visual effects.", "Graphics", "animation, render, visual", LucentClientUtils.getModIcon("animations"));
+		super(
+				"Animations", "Changes the appearance of the first-person view model",
+				"Graphics",
+				"equip, damage, hit, haste, camera, potion, particle, item, scale, swing, fire, shield",
+				LucentClientUtils.getModIcon("animations")
+		);
 	}
 
 	public static boolean isEnabled() {
-		return Lucent.config.getModule(AnimationsMod.class).isEnabled;
+		return Lucent.config.isModuleEnabled(AnimationsMod.class);
 	}
 
 	@ModConfig(
@@ -33,12 +38,22 @@ public class AnimationsMod extends Mod {
 
 	@ModConfig(
 		type = ConfigType.SWITCH,
-		name = "Use Damage Color",
+		name = "Custom Hit Color",
 		description = "Enable custom colors for damage and armor hurt.",
 		category = "Entity",
 		priority = 910
 	)
-	public static boolean UseDamageColor = false;
+	public static boolean CustomHitColor = false;
+
+	@ModConfig(
+		type = ConfigType.SWITCH,
+		name = "Armor Hit Color",
+		description = "",
+		category = "Entity",
+		parent = "CustomHitColor",
+		priority = 905
+	)
+	public static boolean ArmorHitColor = false;
 
 	@ModConfig(
 		type = ConfigType.COLOR,
@@ -48,29 +63,19 @@ public class AnimationsMod extends Mod {
 		parent = "UseDamageColor",
 		priority = 900
 	)
-	public static Color DamageColor = new Color(255, 0, 0, 76);
-
-	@ModConfig(
-		type = ConfigType.COLOR,
-		name = "Armor Hurt Color",
-		description = "Color of the armor when the entity takes damage.",
-		category = "Entity",
-		parent = "UseDamageColor",
-		priority = 890
-	)
-	public static Color ArmorHurtColor = new Color(255, 0, 0, 76);
+	public static Color HitColor = new Color(255, 0, 0, 76);
 
 	@ModConfig(
 		type = ConfigType.SLIDER,
 		name = "Swing Speed",
-		description = "Speed of the player's arm swing animation. (default: 6)",
+		description = "Speed of the player's arm swing animation. Higher values are faster. (default: 12)",
 		category = "General",
-		min = 2,
+		min = 1,
 		max = 16,
 		step = 1,
 		priority = 990
 	)
-	public static int SwingSpeed = 6;
+	public static int SwingSpeed = 8;
 
 	@ModConfig(
 		type = ConfigType.SWITCH,
@@ -90,14 +95,14 @@ public class AnimationsMod extends Mod {
 	)
 	public static boolean DisableCameraPotionParticles = true;
 
-	@ModConfig(
-		type = ConfigType.SWITCH,
-		name = "Flat Item",
-		description = "Renders held items as flat 2D maps.",
-		category = "Item",
-		priority = 800
-	)
-	public static boolean FlatItem = false;
+//	@ModConfig(
+//		type = ConfigType.SWITCH,
+//		name = "Flat Item",
+//		description = "Renders held items as flat 2D maps.",
+//		category = "Item",
+//		priority = 800
+//	)
+//	public static boolean FlatItem = false;
 
 	@ModConfig(
 		type = ConfigType.SLIDER,
@@ -204,5 +209,16 @@ public class AnimationsMod extends Mod {
 		priority = 690
 	)
 	public static double FireHeight = 0.5;
+
+	@ModConfig(
+		type = ConfigType.SLIDER,
+		name = "Shield Height",
+		description = "Y offset for your shield.",
+		category = "Shield",
+		min = -0.5,
+		max = 0.5,
+		step = 0.1
+	)
+	public static float ShieldHeight = 0.0f;
 
 }

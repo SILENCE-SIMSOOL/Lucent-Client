@@ -1,4 +1,4 @@
-package silence.simsool.lucentclient.mods.impl.graphics;
+﻿package silence.simsool.lucentclient.mods.impl.graphics;
 
 import silence.simsool.lucent.Lucent;
 import silence.simsool.lucent.general.enums.ConfigType;
@@ -11,11 +11,16 @@ import silence.simsool.lucentclient.utils.LucentClientUtils;
 public class PlayerModelMod extends Mod {
 
 	public PlayerModelMod() {
-		super("Player Model", "Modify your player and armor model.", "Graphics", "armor, model, player", LucentClientUtils.getModIcon("player_model"));
+		super(
+				"Player Model", "Modify your player and armor model.",
+				"Graphics",
+				"armor",
+				LucentClientUtils.getModIcon("player_model")
+		);
 	}
 
 	public static boolean isEnabled() {
-		return Lucent.config.getModule(PlayerModelMod.class).isEnabled;
+		return Lucent.config.isModuleEnabled(PlayerModelMod.class);
 	}
 
 	@ModConfig(
@@ -168,3 +173,4 @@ public class PlayerModelMod extends Mod {
 	public static double PlayerScale = 1.0;
 
 }
+

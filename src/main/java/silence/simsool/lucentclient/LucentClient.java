@@ -8,6 +8,7 @@ import silence.simsool.lucent.Lucent;
 import silence.simsool.lucent.config.api.LucentAPI;
 import silence.simsool.lucentclient.commands.BasicCommand;
 import silence.simsool.lucentclient.huds.HUDRegister;
+import silence.simsool.lucentclient.init.Keybinds;
 import silence.simsool.lucentclient.mods.ModRegister;
 
 public class LucentClient implements ClientModInitializer {
@@ -21,13 +22,14 @@ public class LucentClient implements ClientModInitializer {
 	@Override
 	public void onInitializeClient() {
 		Lucent.LOG.info("Initializing LucentClient...");
-		
+
 		ClientCommandRegistrationCallback.EVENT.register((dispatcher, registryAccess) -> {
 			BasicCommand.register(dispatcher);
 		});
 
 		ModRegister.register(config);
 		HUDRegister.register(LucentAPI.getHUDManager());
+		Keybinds.init();
 
 	}
 

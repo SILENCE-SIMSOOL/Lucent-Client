@@ -1,5 +1,6 @@
-package silence.simsool.lucentclient.mods.impl.graphics;
+﻿package silence.simsool.lucentclient.mods.impl.graphics;
 
+import silence.simsool.lucent.Lucent;
 import silence.simsool.lucent.general.enums.ConfigType;
 import silence.simsool.lucent.general.models.abstracts.Mod;
 import silence.simsool.lucent.general.models.interfaces.annotations.ModConfig;
@@ -8,7 +9,16 @@ import silence.simsool.lucentclient.utils.LucentClientUtils;
 public class DeathAnimationMod extends Mod {
 
 	public DeathAnimationMod() {
-		super("Death Animation", "Hides death animation of entities", "Graphics", "entity", LucentClientUtils.getModIcon("death_animation"));
+		super(
+				"Death Animation", "Hides death animation of entities",
+				"Graphics",
+				"entity, hide",
+				LucentClientUtils.getModIcon("death_animation")
+		);
+	}
+
+	public static boolean isEnabled() {
+		return Lucent.config.isModuleEnabled(DeathAnimationMod.class);
 	}
 
 	@ModConfig(

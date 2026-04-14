@@ -27,27 +27,38 @@ public abstract class MixinEntityRenderer<T extends Entity> {
 
 	@Inject(method = "shouldRender", at = @At("HEAD"), cancellable = true)
 	private void onShouldRender(T entity, Frustum frustum, double x, double y, double z, CallbackInfoReturnable<Boolean> cir) {
-		if (DeathAnimationMod.HideEntityDeathAnimation) {
+		if (DeathAnimationMod.isEnabled()) {
 			if (entity instanceof LivingEntity livingEntity && livingEntity.isDeadOrDying()) {
-				cir.setReturnValue(false);
-				return;
-			}
-		}
-		if (DeathAnimationMod.HideArmorStandDeathAnimation) {
-			if (entity instanceof ArmorStand armorStand) {
-				Entity before = armorStand.level().getEntity(armorStand.getId() - 1);
-				if (before instanceof LivingEntity livingEntity && livingEntity.isDeadOrDying()) {
+				if (DeathAnimationMod.HideEntityDeathAnimation) {
 					cir.setReturnValue(false);
 					return;
 				}
 			}
+			if (entity instanceof ArmorStand armorStand) {
+				Entity before = armorStand.level().getEntity(armorStand.getId() - 1);
+				if (before instanceof LivingEntity livingEntity && livingEntity.isDeadOrDying()) {
+					if (DeathAnimationMod.HideArmorStandDeathAnimation) {
+						cir.setReturnValue(false);
+						return;
+					}
+				}
+			}
 		}
+		cir.setReturnValue(true);
 	}
 
 	@Inject(method = "shouldRender", at = @At("RETURN"), cancellable = true)
 	private void onShouldRenderReturn(T entity, Frustum frustum, double x, double y, double z, CallbackInfoReturnable<Boolean> cir) {
 		if (cir.getReturnValue() && EntityCullingMod.isEnabled()) {
-			if (entity instanceof Player && LucentClientUtils.checkInDungeon()) return;
+
+			if (entity instanceof Player) {
+				if (!EntityCullingMod.CullPlayers) return;
+				if (LucentClientUtils.checkInDungeon()) return;
+			}
+
+			else {
+				if (!EntityCullingMod.CullEntities) return;
+			}
 
 			Entity cameraEntity = mc.getCameraEntity();
 

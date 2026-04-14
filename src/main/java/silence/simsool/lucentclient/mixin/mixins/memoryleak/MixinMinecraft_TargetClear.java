@@ -28,7 +28,7 @@ public abstract class MixinMinecraft_TargetClear {
 
 	@Inject(method = "tick", at = @At("HEAD"))
 	private void resetTarget(CallbackInfo ci) {
-		if (MemoryLeakFixMod.isEnabled()) {
+		if (MemoryLeakFixMod.isEnabled() && MemoryLeakFixMod.TargetCleanup) {
 			this.crosshairPickEntity = null;
 			this.hitResult = null;
 		}

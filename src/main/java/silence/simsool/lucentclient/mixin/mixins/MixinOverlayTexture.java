@@ -29,11 +29,11 @@ public class MixinOverlayTexture {
 
 	@Inject(method = "getTextureView", at = @At("HEAD"))
 	private void onGetTextureView(CallbackInfoReturnable<GpuTextureView> cir) {
-		if (AnimationsMod.isEnabled() && AnimationsMod.UseDamageColor) {
-			int dInt = AnimationsMod.DamageColor.getRGB();
+		if (AnimationsMod.isEnabled() && AnimationsMod.CustomHitColor) {
+			int dInt = AnimationsMod.HitColor.getRGB();
 
 			if (!wasCustomColor || lastDamageColor != dInt) {
-				updateTexture(AnimationsMod.DamageColor);
+				updateTexture(AnimationsMod.HitColor);
 				lastDamageColor = dInt;
 				wasCustomColor = true;
 			}

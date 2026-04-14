@@ -17,6 +17,7 @@ import net.minecraft.client.renderer.SubmitNodeCollector;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.ShieldItem;
 import silence.simsool.lucentclient.mods.impl.graphics.AnimationsMod;
 
 @Mixin(ItemInHandRenderer.class)
@@ -32,8 +33,11 @@ public class MixinItemInHandRenderer {
 	private void onRenderItem(LivingEntity entity, ItemStack itemStack, ItemDisplayContext displayContext, PoseStack poseStack, SubmitNodeCollector bufferSource, int i, CallbackInfo ci) {
 		if (AnimationsMod.isEnabled()) {
 			if (displayContext == ItemDisplayContext.FIRST_PERSON_LEFT_HAND || displayContext == ItemDisplayContext.FIRST_PERSON_RIGHT_HAND) {
+
+				boolean left = displayContext == ItemDisplayContext.FIRST_PERSON_LEFT_HAND;
+
 				float scale = (float) AnimationsMod.ItemScale;
-				
+
 				float transX = (float) AnimationsMod.HeldItemX;
 				float transY = (float) AnimationsMod.HeldItemY;
 				float transZ = (float) AnimationsMod.HeldItemZ;
@@ -42,27 +46,24 @@ public class MixinItemInHandRenderer {
 				float pitch = (float) AnimationsMod.HeldItemPitch;
 				float roll = (float) AnimationsMod.HeldItemRoll;
 
+				// 왼손 반전 (Y 제외)
+				if (left) {
+					transX = -transX;
+					transZ = -transZ;
+					yaw = -yaw;
+					roll = -roll;
+				}
+
+				if (itemStack.getItem() instanceof ShieldItem) {
+					transY += (float) AnimationsMod.ShieldHeight;
+				}
+
 				poseStack.translate(transX, transY, transZ);
-				
-				if (yaw != 0.0f) {
-					poseStack.mulPose(Axis.YP.rotationDegrees(yaw));
-				}
-				if (pitch != 0.0f) {
-					poseStack.mulPose(Axis.XP.rotationDegrees(pitch));
-				}
-				if (roll != 0.0f) {
-					poseStack.mulPose(Axis.ZP.rotationDegrees(roll));
-				}
 
-				if (scale != 1.0f) {
-					poseStack.scale(scale, scale, scale);
-				}
-
-				if (AnimationsMod.FlatItem) {
-					// We only want to flatten items, usually not blocks but we can just flatten all.
-					// Z scale to close to 0 to make it flat
-					poseStack.scale(1.0f, 1.0f, 0.001f);
-				}
+				if (yaw != 0.0f) poseStack.mulPose(Axis.YP.rotationDegrees(yaw));
+				if (pitch != 0.0f) poseStack.mulPose(Axis.XP.rotationDegrees(pitch));
+				if (roll != 0.0f) poseStack.mulPose(Axis.ZP.rotationDegrees(roll));
+				if (scale != 1.0f) poseStack.scale(scale, scale, scale);
 			}
 		}
 	}

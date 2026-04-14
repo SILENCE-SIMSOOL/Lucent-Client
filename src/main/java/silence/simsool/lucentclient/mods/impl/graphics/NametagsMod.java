@@ -12,7 +12,12 @@ import silence.simsool.lucentclient.utils.LucentClientUtils;
 public class NametagsMod extends Mod {
 
 	public NametagsMod() {
-		super("Nametags", "Customizes player nametags.", "Graphics", "name, tag, nametag", LucentClientUtils.getModIcon("nametags"));
+		super(
+				"Nametags", "Customizes player nametags.",
+				"Graphics",
+				"",
+				LucentClientUtils.getModIcon("nametags")
+		);
 	}
 
 	@ModConfig(

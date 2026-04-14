@@ -14,7 +14,7 @@ public class MixinDebugScreenOverlay {
 
 	@ModifyVariable(method = "render", at = @At(value = "STORE"), ordinal = 0)
 	private List<String> onRenderDebugScreen(List<String> list) {
-		if (EntityCullingMod.isEnabled()) {
+		if (EntityCullingMod.isEnabled() && EntityCullingMod.ShowDebugInfo) {
 			//list.add("[Lucent] Occlusion Culled Entities: " + EntityCullingMod.lastCulledEntities);
 			list.addFirst(EntityCullingMod.getCulledEntitiesInfo());
 		}

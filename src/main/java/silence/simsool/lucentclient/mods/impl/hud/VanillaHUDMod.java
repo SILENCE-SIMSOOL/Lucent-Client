@@ -1,4 +1,4 @@
-package silence.simsool.lucentclient.mods.impl.hud;
+﻿package silence.simsool.lucentclient.mods.impl.hud;
 
 import java.awt.Color;
 
@@ -15,11 +15,16 @@ import silence.simsool.lucentclient.utils.LucentClientUtils;
 public class VanillaHUDMod extends Mod {
 
 	public VanillaHUDMod() {
-		super("Vanilla HUD", "Configure default Minecraft HUD elements.", "HUD", "vanilla, hud, bar", LucentClientUtils.getModIcon("vanillahud"));
+		super(
+				"Vanilla HUD", "Configure default Minecraft HUD elements.",
+				"HUD",
+				"bar, health, hunger, armor, boss, scoreboard, indicator",
+				LucentClientUtils.getModIcon("vanillahud")
+		);
 	}
 
 	public static boolean isEnabled() {
-		return Lucent.config.getModule(VanillaHUDMod.class).isEnabled;
+		return Lucent.config.isModuleEnabled(VanillaHUDMod.class);
 	}
 
 	@ModConfig(

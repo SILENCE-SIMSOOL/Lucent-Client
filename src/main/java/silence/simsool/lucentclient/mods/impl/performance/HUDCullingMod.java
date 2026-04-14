@@ -1,4 +1,4 @@
-package silence.simsool.lucentclient.mods.impl.performance;
+﻿package silence.simsool.lucentclient.mods.impl.performance;
 
 import silence.simsool.lucent.Lucent;
 import silence.simsool.lucent.general.enums.ConfigType;
@@ -15,7 +15,7 @@ public class HUDCullingMod extends Mod {
 	}
 
 	public static boolean isEnabled() {
-		return Lucent.config.getModule(HUDCullingMod.class).isEnabled;
+		return Lucent.config.isModuleEnabled(HUDCullingMod.class);
 	}
 
 	@ModConfig(

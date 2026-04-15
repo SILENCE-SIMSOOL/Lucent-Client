@@ -21,7 +21,7 @@ import silence.simsool.lucentclient.mods.impl.hud.PotionEffectsMod;
 public class PotionEffectsHUD extends LucentHUD {
 
 	public PotionEffectsHUD() {
-		super("lucentclient_potioneffects", PotionEffectsMod.class, 0.005f, 0.268f, 1.0f, HUDAlignment.RIGHT);
+		super("lucentclient_potioneffects", PotionEffectsMod.class, 0.005f, 0.22777778f, 1.0f, HUDAlignment.LEFT);
 	}
 
 	@Override

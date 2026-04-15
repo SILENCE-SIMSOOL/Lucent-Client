@@ -9,7 +9,7 @@ import silence.simsool.lucentclient.mods.impl.hud.FPSMod;
 public class FPSHUD extends AbstractInfoHUD {
 
 	public FPSHUD() {
-		super("lucentclient_fps", FPSMod.class, 0.005f, 0.166f, HUDAlignment.LEFT);
+		super("lucentclient_fps", FPSMod.class, 0.00625f, 0.1537037f, HUDAlignment.LEFT);
 	}
 
 	@Override

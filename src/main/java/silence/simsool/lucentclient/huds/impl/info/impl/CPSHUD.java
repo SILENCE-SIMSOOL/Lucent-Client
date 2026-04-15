@@ -7,7 +7,7 @@ import silence.simsool.lucentclient.mods.impl.hud.CPSMod;
 public class CPSHUD extends AbstractInfoHUD {
 
 	public CPSHUD() {
-		super("lucentclient_cps", CPSMod.class, 0.005f, 0.14f, HUDAlignment.LEFT);
+		super("lucentclient_cps", CPSMod.class, 0.00625f, 0.13333334f, HUDAlignment.LEFT);
 	}
 
 	@Override

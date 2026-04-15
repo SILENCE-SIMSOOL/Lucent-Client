@@ -8,7 +8,7 @@ import silence.simsool.lucentclient.mods.impl.hud.PingMod;
 public class PingHUD extends AbstractInfoHUD {
 
 	public PingHUD() {
-		super("lucentclient_ping", PingMod.class, 0.005f, 0.223f, HUDAlignment.LEFT);
+		super("lucentclient_ping", PingMod.class, 0.00625f, 0.19444445f, HUDAlignment.LEFT);
 	}
 
 	@Override

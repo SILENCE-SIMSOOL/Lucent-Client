@@ -39,4 +39,5 @@ public class MixinGui {
 		//if (DevConfig.HIDE_XP_BAR) return false;
 		return original;
 	}
+
 }

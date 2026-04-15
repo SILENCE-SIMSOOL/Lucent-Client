@@ -15,7 +15,7 @@ import silence.simsool.lucentclient.mods.impl.hud.KeystrokesMod;
 public class KeystrokesHUD extends LucentHUD {
 
 	public KeystrokesHUD() {
-		super("lucentclient_keystrokes", KeystrokesMod.class, 0.927f, 0.009f, 1.0f, HUDAlignment.LEFT);
+		super("lucentclient_keystrokes", KeystrokesMod.class, 0.92604166f, 0.011111111f, 1.0f, HUDAlignment.LEFT);
 	}
 
 	@Override

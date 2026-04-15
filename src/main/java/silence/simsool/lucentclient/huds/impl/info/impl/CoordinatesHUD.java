@@ -19,7 +19,7 @@ import silence.simsool.lucentclient.mods.impl.hud.CoordinatesMod;
 public class CoordinatesHUD extends LucentHUD {
 
 	public CoordinatesHUD() {
-		super("lucentclient_coordinates", CoordinatesMod.class, 0.005f, 0.0129f, 1.0f, HUDAlignment.LEFT);
+		super("lucentclient_coordinates", CoordinatesMod.class, 0.00625f, 0.011111111f, 1.0f, HUDAlignment.LEFT);
 	}
 
 	@Override

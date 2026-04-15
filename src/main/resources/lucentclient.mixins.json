@@ -9,6 +9,12 @@
 	"client": [
 		"accessors.AccessorKeyBind",
 		"accessors.AccessorOrderedTextTooltipComponent",
+		"accessors.AccessorChatComponent",
+
+		"mixins.chatting.MixinChatComponent__ChattingRenderFlag",
+		"mixins.chatting.MixinChatComponent_Chatting",
+		"mixins.chatting.MixinChatScreen_Chatting",
+		"mixins.chatting.MixinGuiGraphics_Chatting",
 
 		"mixins.memoryleak.MixinBiome_ThreadLocal",
 		"mixins.memoryleak.MixinBlockState_Cache",
@@ -19,7 +25,7 @@
 		"mixins.network.misc.MixinVarInt",
 		"mixins.network.pipeline.MixinLegacyQueryHandler",
 		"mixins.network.pipeline.MixinVarint21FrameDecoder",
-		
+
 		"mixins.scrollabletooltips.MixinGuiGraphics_ScrollableTooltips",
 		"mixins.scrollabletooltips.MixinMouse_ScrollableTooltips",
 		"mixins.scrollabletooltips.MixinScreen_ScrollableTooltips",

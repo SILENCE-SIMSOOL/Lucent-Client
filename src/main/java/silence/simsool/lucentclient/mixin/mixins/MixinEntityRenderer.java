@@ -25,39 +25,62 @@ import silence.simsool.lucentclient.utils.LucentClientUtils;
 @Mixin(EntityRenderer.class)
 public abstract class MixinEntityRenderer<T extends Entity> {
 
-	@Inject(method = "shouldRender", at = @At("HEAD"), cancellable = true)
-	private void onShouldRender(T entity, Frustum frustum, double x, double y, double z, CallbackInfoReturnable<Boolean> cir) {
-		if (DeathAnimationMod.isEnabled()) {
-			if (entity instanceof LivingEntity livingEntity && livingEntity.isDeadOrDying()) {
-				if (DeathAnimationMod.HideEntityDeathAnimation) {
-					cir.setReturnValue(false);
-					return;
-				}
-			}
-			if (entity instanceof ArmorStand armorStand) {
-				Entity before = armorStand.level().getEntity(armorStand.getId() - 1);
-				if (before instanceof LivingEntity livingEntity && livingEntity.isDeadOrDying()) {
-					if (DeathAnimationMod.HideArmorStandDeathAnimation) {
-						cir.setReturnValue(false);
-						return;
-					}
-				}
-			}
-		}
-		cir.setReturnValue(true);
-	}
+//	@Inject(method = "shouldRender", at = @At("HEAD"), cancellable = true)
+//	private void onShouldRender(T entity, Frustum frustum, double x, double y, double z, CallbackInfoReturnable<Boolean> cir) {
+//		if (DeathAnimationMod.isEnabled()) {
+//			if (entity instanceof LivingEntity livingEntity && livingEntity.isDeadOrDying()) {
+//				if (DeathAnimationMod.HideEntityDeathAnimation) {
+//					cir.setReturnValue(false);
+//					return;
+//				}
+//			}
+//			if (entity instanceof ArmorStand armorStand) {
+//				Entity before = armorStand.level().getEntity(armorStand.getId() - 1);
+//				if (before instanceof LivingEntity livingEntity && livingEntity.isDeadOrDying()) {
+//					if (DeathAnimationMod.HideArmorStandDeathAnimation) {
+//						cir.setReturnValue(false);
+//						return;
+//					}
+//				}
+//			}
+//		}
+//		cir.setReturnValue(true);
+//	}
 
 	@Inject(method = "shouldRender", at = @At("RETURN"), cancellable = true)
 	private void onShouldRenderReturn(T entity, Frustum frustum, double x, double y, double z, CallbackInfoReturnable<Boolean> cir) {
 		if (cir.getReturnValue() && EntityCullingMod.isEnabled()) {
 
+			if (DeathAnimationMod.isEnabled()) {
+				if (entity instanceof LivingEntity livingEntity && livingEntity.isDeadOrDying()) {
+					if (DeathAnimationMod.HideEntityDeathAnimation) {
+						cir.setReturnValue(false);
+						return;
+					}
+				}
+				if (entity instanceof ArmorStand armorStand) {
+					Entity before = armorStand.level().getEntity(armorStand.getId() - 1);
+					if (before instanceof LivingEntity livingEntity && livingEntity.isDeadOrDying()) {
+						if (DeathAnimationMod.HideArmorStandDeathAnimation) {
+							cir.setReturnValue(false);
+							return;
+						}
+					}
+				}
+			}
+
 			if (entity instanceof Player) {
-				if (!EntityCullingMod.CullPlayers) return;
-				if (LucentClientUtils.checkInDungeon()) return;
+				if (!EntityCullingMod.CullPlayers || LucentClientUtils.checkInDungeon()) {
+					cir.setReturnValue(true);
+					return;
+				}
 			}
 
 			else {
-				if (!EntityCullingMod.CullEntities) return;
+				if (!EntityCullingMod.CullEntities) {
+					cir.setReturnValue(true);
+					return;
+				}
 			}
 
 			Entity cameraEntity = mc.getCameraEntity();

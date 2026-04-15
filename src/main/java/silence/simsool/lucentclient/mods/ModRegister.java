@@ -8,9 +8,7 @@ import silence.simsool.lucentclient.mods.impl.graphics.BlockOverlayMod;
 import silence.simsool.lucentclient.mods.impl.graphics.DeathAnimationMod;
 import silence.simsool.lucentclient.mods.impl.graphics.FullbrightMod;
 import silence.simsool.lucentclient.mods.impl.graphics.HurtCamMod;
-import silence.simsool.lucentclient.mods.impl.graphics.NametagsMod;
 import silence.simsool.lucentclient.mods.impl.graphics.ParticlesMod;
-import silence.simsool.lucentclient.mods.impl.graphics.PlayerModelMod;
 import silence.simsool.lucentclient.mods.impl.graphics.TimeChangerMod;
 import silence.simsool.lucentclient.mods.impl.hud.ArmorStatusMod;
 import silence.simsool.lucentclient.mods.impl.hud.CPSMod;
@@ -25,8 +23,8 @@ import silence.simsool.lucentclient.mods.impl.performance.EntityCullingMod;
 import silence.simsool.lucentclient.mods.impl.performance.HUDCullingMod;
 import silence.simsool.lucentclient.mods.impl.performance.MemoryLeakFixMod;
 import silence.simsool.lucentclient.mods.impl.performance.network.NetworkFixMod;
-import silence.simsool.lucentclient.mods.impl.utility.TntTimerMod;
 import silence.simsool.lucentclient.mods.impl.utility.AlwaysSprintMod;
+import silence.simsool.lucentclient.mods.impl.utility.ChattingMod;
 import silence.simsool.lucentclient.mods.impl.utility.ZoomMod;
 import silence.simsool.lucentclient.mods.impl.utility.scrollabletooltips.ScrollableTooltipsMod;
 
@@ -42,9 +40,9 @@ public class ModRegister {
 			new DeathAnimationMod(),
 			new FullbrightMod(),
 			new HurtCamMod(),
-			new NametagsMod(),
+			//new NametagsMod(),
 			new ParticlesMod(),
-			new PlayerModelMod(),
+			//new PlayerModelMod(),
 			new TimeChangerMod(),
 
 			// HUD
@@ -66,9 +64,10 @@ public class ModRegister {
 
 			// Utility
 			new ScrollableTooltipsMod(),
-			new TntTimerMod(),
+			//new TntTimerMod(),
 			new AlwaysSprintMod(),
-			new ZoomMod()
+			new ZoomMod(),
+			new ChattingMod()
 
 		).forEach(config::register);
 

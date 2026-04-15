@@ -1,28 +1,32 @@
 {
-    "schemaVersion": 1,
-    "id": "lucentclient",
-    "version": "${version}",
-    "name": "Lucent Client",
-    "description": "A collection of essential and lightweight mods built with Lucent.",
-    "authors": [
-        "SimSool"
-    ],
-    "contact": {},
-    "license": "MIT",
-    "environment": "client",
-    "entrypoints": {
-        "client": [
-            "silence.simsool.lucentclient.LucentClient"
-        ]
-    },
-    "depends": {
-        "fabricloader": ">=0.15.11",
-        "minecraft": "~1.21",
-        "java": ">=21",
-        "fabric-api": "*",
-        "lucent": "*"
-    },
-    "mixins": [
-        "lucentclient.mixins.json"
-    ]
+	"schemaVersion": 1,
+	"id": "lucentclient",
+	"version": "${version}",
+	"name": "Lucent Client",
+	"description": "A collection of essential and lightweight mods built with Lucent.",
+	"authors": [
+		"SimSool"
+	],
+	"contact": {
+		"homepage": "",
+		"sources": ""
+	},
+	"license": "MIT",
+	"icon": "assets/lucent/icon.png",
+	"environment": "client",
+	"mixins": [
+		"lucentclient.mixins.json"
+	],
+	"entrypoints": {
+		"client": [
+			"silence.simsool.lucentclient.LucentClient"
+		]
+	},
+	"depends": {
+		"fabricloader": ">=0.15.11",
+		"minecraft": "~1.21",
+		"java": ">=21",
+		"fabric-api": "*",
+		"lucent": ">=1.0.9"
+	}
 }

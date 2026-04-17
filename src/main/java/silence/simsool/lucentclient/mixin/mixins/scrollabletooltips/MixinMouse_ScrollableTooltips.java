@@ -11,8 +11,7 @@ import com.mojang.blaze3d.platform.InputConstants;
 import com.mojang.blaze3d.platform.Window;
 
 import net.minecraft.client.MouseHandler;
-import silence.simsool.lucent.general.utils.UDisplay;
-
+import silence.simsool.lucent.general.utils.useful.UDisplay;
 import silence.simsool.lucentclient.mods.impl.utility.scrollabletooltips.ScrollableTooltipsMod;
 import silence.simsool.lucentclient.mods.impl.utility.scrollabletooltips.utils.ScrollTracker;
 

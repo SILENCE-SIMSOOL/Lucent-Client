@@ -8,7 +8,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import net.minecraft.client.gui.screens.ChatScreen;
 import net.minecraft.client.input.KeyEvent;
 import net.minecraft.client.input.MouseButtonEvent;
-import silence.simsool.lucent.general.utils.UMouse;
+import silence.simsool.lucent.general.utils.useful.UMouse;
 import silence.simsool.lucentclient.mods.impl.utility.ChattingMod;
 
 @Mixin(ChatScreen.class)

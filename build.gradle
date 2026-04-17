@@ -56,7 +56,7 @@ dependencies {
 	modImplementation "com.github.SILENCE-SIMSOOL:lucent:${lucentVersion}"
 	include "com.github.SILENCE-SIMSOOL:lucent:${lucentVersion}"
 	
-	modImplementation files("libs/SilenceUtils-1.0.0.jar")
+	//modImplementation files("libs/SilenceUtils-1.0.0.jar")
 }
 
 processResources {

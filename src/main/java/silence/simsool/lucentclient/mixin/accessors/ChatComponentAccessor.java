@@ -10,7 +10,7 @@ import net.minecraft.client.GuiMessage;
 import net.minecraft.client.gui.components.ChatComponent;
 
 @Mixin(ChatComponent.class)
-public interface AccessorChatComponent {
+public interface ChatComponentAccessor {
 
 	@Accessor("allMessages")
 	List<GuiMessage> getAllMessages();

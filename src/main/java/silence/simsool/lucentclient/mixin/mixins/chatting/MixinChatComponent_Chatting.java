@@ -7,16 +7,16 @@ import org.spongepowered.asm.mixin.Mixin;
 import net.minecraft.client.GuiMessage;
 import net.minecraft.client.Options;
 import net.minecraft.client.gui.components.ChatComponent;
-import silence.simsool.lucent.general.utils.UDisplay;
+import silence.simsool.lucent.general.utils.useful.UDisplay;
 import silence.simsool.lucentclient.ducks.IChatComponent;
-import silence.simsool.lucentclient.mixin.accessors.AccessorChatComponent;
+import silence.simsool.lucentclient.mixin.accessors.ChatComponentAccessor;
 
 @Mixin(ChatComponent.class)
 public abstract class MixinChatComponent_Chatting implements IChatComponent {
 
 	@Override
 	public GuiMessage getMessageAt(double mouseX, double mouseY) {
-		AccessorChatComponent accessor = (AccessorChatComponent) this;
+		ChatComponentAccessor accessor = (ChatComponentAccessor) this;
 		if (accessor.getTrimmedMessages().isEmpty()) return null;
 
 		Options options = mc.options;

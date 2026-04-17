@@ -9,7 +9,7 @@ import silence.simsool.lucent.general.enums.HUDAlignment;
 import silence.simsool.lucent.general.enums.RenderType;
 import silence.simsool.lucent.general.models.abstracts.LucentHUD;
 import silence.simsool.lucent.general.models.abstracts.Mod;
-import silence.simsool.lucent.general.utils.UDisplay;
+import silence.simsool.lucent.general.utils.useful.UDisplay;
 import silence.simsool.lucent.ui.utils.nvg.NVGRenderer;
 
 public abstract class AbstractInfoHUD extends LucentHUD {

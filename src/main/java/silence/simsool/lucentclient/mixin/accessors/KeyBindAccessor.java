@@ -8,7 +8,7 @@ import com.mojang.blaze3d.platform.InputConstants;
 import net.minecraft.client.KeyMapping;
 
 @Mixin(KeyMapping.class)
-public interface AccessorKeyBind {
+public interface KeyBindAccessor {
 
 	@Accessor
 	InputConstants.Key getKey();

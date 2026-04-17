@@ -39,7 +39,7 @@ public class AnimationsMod extends Mod {
 	@ModConfig(
 		type = ConfigType.SWITCH,
 		name = "Custom Hit Color",
-		description = "Enable custom colors for damage and armor hurt.",
+		description = "Enable custom colors for damage and armor hurt. \n&c(Not yet)",
 		category = "Entity",
 		priority = 910
 	)
@@ -57,10 +57,10 @@ public class AnimationsMod extends Mod {
 
 	@ModConfig(
 		type = ConfigType.COLOR,
-		name = "Damage Color",
+		name = "Hit Color",
 		description = "Color of the entity when they take damage.",
 		category = "Entity",
-		parent = "UseDamageColor",
+		parent = "CustomHitColor",
 		priority = 900
 	)
 	public static Color HitColor = new Color(255, 0, 0, 76);

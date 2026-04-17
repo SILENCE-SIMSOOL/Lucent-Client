@@ -25,10 +25,11 @@ import silence.simsool.lucentclient.mods.impl.performance.MemoryLeakFixMod;
 import silence.simsool.lucentclient.mods.impl.performance.network.NetworkFixMod;
 import silence.simsool.lucentclient.mods.impl.utility.AlwaysSprintMod;
 import silence.simsool.lucentclient.mods.impl.utility.ChattingMod;
+import silence.simsool.lucentclient.mods.impl.utility.TntTimerMod;
 import silence.simsool.lucentclient.mods.impl.utility.ZoomMod;
 import silence.simsool.lucentclient.mods.impl.utility.scrollabletooltips.ScrollableTooltipsMod;
 
-public class ModRegister {
+public class LucentClientModRegister {
 
 	public static void register(ModManager config) {
 
@@ -64,7 +65,7 @@ public class ModRegister {
 
 			// Utility
 			new ScrollableTooltipsMod(),
-			//new TntTimerMod(),
+			new TntTimerMod(),
 			new AlwaysSprintMod(),
 			new ZoomMod(),
 			new ChattingMod()

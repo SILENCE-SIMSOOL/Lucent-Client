@@ -4,10 +4,9 @@ import com.mojang.brigadier.CommandDispatcher;
 
 import net.fabricmc.fabric.api.client.command.v2.ClientCommandManager;
 import net.fabricmc.fabric.api.client.command.v2.FabricClientCommandSource;
-import silence.simsool.lucent.general.utils.UChat;
+import silence.simsool.lucent.general.utils.useful.UChat;
 import silence.simsool.lucentclient.LucentClient;
 import silence.simsool.lucentclient.handler.ServerHandler;
-import silence.simsool.lucentclient.utils.LucentClientUtils;
 
 public class BasicCommand {
 

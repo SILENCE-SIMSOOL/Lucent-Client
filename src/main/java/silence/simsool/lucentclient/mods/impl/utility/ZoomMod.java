@@ -3,6 +3,7 @@ package silence.simsool.lucentclient.mods.impl.utility;
 import static silence.simsool.lucent.Lucent.mc;
 import org.lwjgl.glfw.GLFW;
 
+import net.minecraft.util.Mth;
 import silence.simsool.lucent.Lucent;
 import silence.simsool.lucent.general.enums.ConfigType;
 import silence.simsool.lucent.general.models.abstracts.Mod;
@@ -50,12 +51,28 @@ public class ZoomMod extends Mod {
 	)
 	public static KeyBind ZoomKey = KeyBind.ofKey(GLFW.GLFW_KEY_C, 0);
 
+	private static float scrollFactor = 1.0f;
+
 	public static boolean isZoomKeyDown() {
 		return ZoomKey.isKeyDown() && mc.screen == null;
 	}
 
 	public static float getTargetZoom() {
 		return isZoomKeyDown() ? ZoomFactor : 1.0f;
+	}
+
+	public static boolean handleScroll(double amount) {
+		if (isEnabled() && isZoomKeyDown()) {
+			if (amount > 0) scrollFactor += 0.5f;
+			else if (amount < 0) scrollFactor -= 0.5f;
+
+			scrollFactor = Mth.clamp(scrollFactor, 1.0f, 10.0f);
+			return true; // 믹스인에서 ci.cancel() 하도록 true 반환
+		}
+		
+		// 줌 키를 안 누르고 있을 때는 배율 초기화 및 바닐라 동작 허용
+		scrollFactor = 1.0f;
+		return false;
 	}
 
 }

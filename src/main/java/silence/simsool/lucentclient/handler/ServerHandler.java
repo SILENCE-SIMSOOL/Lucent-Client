@@ -5,6 +5,7 @@ import net.minecraft.util.Mth;
 import net.minecraft.util.Util;
 
 public class ServerHandler {
+
 	private static long lastPacketTime = -1L;
 	private static float currentTps = 20.0f;
 	private static int currentPing = 0;
@@ -57,4 +58,5 @@ public class ServerHandler {
 		currentPing = 0;
 		averagePing = 0;
 	}
+
 }

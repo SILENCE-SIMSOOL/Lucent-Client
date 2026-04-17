@@ -1,0 +1,6 @@
+{
+	"mixin_dir": "src/main/java/silence/simsool/lucentclient/mixin/",
+	"mixin_package": "silence.simsool.lucentclient.mixin",
+	"json_file": "src/main/resources/lucentclient.mixins.json"
+	"default_target": "client"
+}

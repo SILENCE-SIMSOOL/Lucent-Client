@@ -9,13 +9,14 @@ import silence.simsool.lucent.config.api.LucentAPI;
 import silence.simsool.lucentclient.commands.BasicCommand;
 import silence.simsool.lucentclient.huds.HUDRegister;
 import silence.simsool.lucentclient.init.Keybinds;
-import silence.simsool.lucentclient.mods.ModRegister;
+import silence.simsool.lucentclient.mods.LucentClientModRegister;
+
 
 public class LucentClient implements ClientModInitializer {
 
 	public static final String ID = "lucentclient";
 	public static final String NAME = "Lucent Client";
-	public static final String VERSION = "0.0.1";
+	public static final String VERSION = "0.0.2";
 
 	public static final String PREFIX = "§b[§fLucent Client§b] ";
 
@@ -27,7 +28,9 @@ public class LucentClient implements ClientModInitializer {
 			BasicCommand.register(dispatcher);
 		});
 
-		ModRegister.register(config);
+		LucentClientModRegister.register(config);
+		config.loadGlobalConfig();
+		config.loadConfigs();
 		HUDRegister.register(LucentAPI.getHUDManager());
 		Keybinds.init();
 

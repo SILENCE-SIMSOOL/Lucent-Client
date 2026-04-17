@@ -7,7 +7,7 @@ import net.minecraft.client.gui.screens.inventory.tooltip.ClientTextTooltip;
 import net.minecraft.util.FormattedCharSequence;
 
 @Mixin(ClientTextTooltip.class)
-public interface AccessorOrderedTextTooltipComponent {
+public interface OrderedTextTooltipComponentAccessor {
 
 	@Accessor
 	FormattedCharSequence getText();

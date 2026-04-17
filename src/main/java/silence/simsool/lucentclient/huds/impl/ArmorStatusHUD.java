@@ -11,7 +11,7 @@ import net.minecraft.world.item.Items;
 import silence.simsool.lucent.general.enums.HUDAlignment;
 import silence.simsool.lucent.general.enums.RenderType;
 import silence.simsool.lucent.general.models.abstracts.LucentHUD;
-import silence.simsool.lucent.general.utils.UDisplay;
+import silence.simsool.lucent.general.utils.useful.UDisplay;
 import silence.simsool.lucent.ui.utils.nvg.NVGRenderer;
 import silence.simsool.lucentclient.mods.impl.hud.ArmorStatusMod;
 

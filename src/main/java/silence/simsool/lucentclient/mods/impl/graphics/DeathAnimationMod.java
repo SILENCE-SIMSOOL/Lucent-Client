@@ -27,7 +27,7 @@ public class DeathAnimationMod extends Mod {
 		description = "Hides death animation of entities.",
 		category = "General"
 	)
-	public static boolean HideEntityDeathAnimation = false;
+	public static boolean HideEntityDeathAnimation = true;
 
 	@ModConfig(
 		type = ConfigType.SWITCH,
@@ -35,6 +35,6 @@ public class DeathAnimationMod extends Mod {
 		description = "Hides death animation of armor stands.",
 		category = "General"
 	)
-	public static boolean HideArmorStandDeathAnimation = false;
+	public static boolean HideArmorStandDeathAnimation = true;
 
 }

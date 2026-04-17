@@ -1,1 +1,1 @@
-gradlew build --refresh-dependencies && pause
+gradlew clean build --refresh-dependencies && pause

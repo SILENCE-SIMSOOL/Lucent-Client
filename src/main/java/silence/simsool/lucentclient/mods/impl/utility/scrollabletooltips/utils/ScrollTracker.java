@@ -11,8 +11,8 @@ import com.mojang.blaze3d.platform.Window;
 import net.minecraft.client.gui.screens.inventory.tooltip.ClientTextTooltip;
 import net.minecraft.client.gui.screens.inventory.tooltip.ClientTooltipComponent;
 import net.minecraft.util.Mth;
-import silence.simsool.lucent.general.utils.UDisplay;
-import silence.simsool.lucentclient.mixin.accessors.AccessorOrderedTextTooltipComponent;
+import silence.simsool.lucent.general.utils.useful.UDisplay;
+import silence.simsool.lucentclient.mixin.accessors.OrderedTextTooltipComponentAccessor;
 import silence.simsool.lucentclient.mods.impl.utility.scrollabletooltips.ScrollableTooltipsMod;
 
 public class ScrollTracker {
@@ -128,8 +128,8 @@ public class ScrollTracker {
 			if (item2.get(i) instanceof ClientTextTooltip && !(item1.get(i) instanceof ClientTextTooltip)) return false;
 			if (!(item1.get(i) instanceof ClientTextTooltip) && !(item2.get(i) instanceof ClientTextTooltip)) continue;
 
-			AccessorOrderedTextTooltipComponent accessible1 = (AccessorOrderedTextTooltipComponent) item1.get(i);
-			AccessorOrderedTextTooltipComponent accessible2 = (AccessorOrderedTextTooltipComponent) item2.get(i);
+			OrderedTextTooltipComponentAccessor accessible1 = (OrderedTextTooltipComponentAccessor) item1.get(i);
+			OrderedTextTooltipComponentAccessor accessible2 = (OrderedTextTooltipComponentAccessor) item2.get(i);
 
 			String text1 = OrderedTextReader.read(accessible1.getText());
 			String text2 = OrderedTextReader.read(accessible2.getText());

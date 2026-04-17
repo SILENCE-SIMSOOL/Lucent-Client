@@ -29,7 +29,7 @@ public class ScrollableTooltipsMod extends Mod {
 		description = "Allows moving the tooltip using the W, A, S, and D keys.",
 		category = "General"
 	)
-	public static boolean UseWASD = true; // WASD ?ㅻ? ?ъ슜?섏뿬 ?댄똻???대룞?????덇쾶 ?⑸땲??
+	public static boolean UseWASD = false;
 
 	@ModConfig(
 		type = ConfigType.SWITCH,
@@ -37,7 +37,7 @@ public class ScrollableTooltipsMod extends Mod {
 		description = "Hold the Left Shift key to switch the mouse wheel scroll direction to horizontal.",
 		category = "General"
 	)
-	public static boolean UseLShift = true; // ?쇱そ ?쒗봽???ㅻ? ?꾨Ⅸ ?곹깭?먯꽌 留덉슦???좎쓣 ?뚮━硫?媛濡쒕줈 ?ㅽ겕濡ㅽ빀?덈떎.
+	public static boolean UseLShift = true;
 
 	@ModConfig(
 		type = ConfigType.SWITCH,
@@ -45,7 +45,7 @@ public class ScrollableTooltipsMod extends Mod {
 		description = "Automatically resets the tooltip's scroll position when it is no longer being actively updated.",
 		category = "General"
 	)
-	public static boolean ResetOnUnlock = true; // ?댄똻 ?낅뜲?댄듃媛 以묐떒?섎㈃ ?ㅽ겕濡??꾩튂瑜??먮룞?쇰줈 珥덇린?뷀빀?덈떎.
+	public static boolean ResetOnUnlock = true;
 
 	@ModConfig(
 		type = ConfigType.SWITCH,
@@ -53,7 +53,7 @@ public class ScrollableTooltipsMod extends Mod {
 		description = "Uses matrix transforms for tooltip movement. Better compatibility, but may cause rare artifacts.",
 		category = "Matrix"
 	)
-	public static boolean MatrixMode = true; // ?됰젹 蹂?섏쑝濡??댄똻 ?대룞. ?명솚?깆? ?믪?留??쒕Ц 洹몃옒???ㅻ쪟 媛?μ꽦 ?덉쓬.
+	public static boolean MatrixMode = true;
 
 	@ModConfig(
 		type = ConfigType.SWITCH,
@@ -62,7 +62,7 @@ public class ScrollableTooltipsMod extends Mod {
 		category = "Matrix",
 		parent = "Enable Matrix Transformation Mode"
 	)
-	public static boolean StartOnTop = true; // ?댄똻???붾㈃ ?곷떒???덈Т 媛源뚯썙 ?섎━??寃쎌슦, ?먮룞?쇰줈 ?꾨옒濡?諛??媛?낆꽦???뺣낫?⑸땲?? (留ㅽ듃由?뒪 紐⑤뱶 鍮꾪솢???쒖뿉留??묐룞)
+	public static boolean StartOnTop = true;
 
 	@ModConfig(
 		type = ConfigType.SWITCH,
@@ -71,7 +71,7 @@ public class ScrollableTooltipsMod extends Mod {
 		category = "Invert",
 		priority = 2
 	)
-	public static boolean InvertXScroll = false; // 媛濡??ㅽ겕濡?諛⑺뼢??諛섎?濡?諛붽퓠?덈떎.
+	public static boolean InvertXScroll = false;
 
 	@ModConfig(
 		type = ConfigType.SWITCH,
@@ -80,7 +80,7 @@ public class ScrollableTooltipsMod extends Mod {
 		category = "Invert",
 		priority = 1
 	)
-	public static boolean InvertYScroll = false; // ?몃줈 ?ㅽ겕濡?諛⑺뼢??諛섎?濡?諛붽퓠?덈떎.
+	public static boolean InvertYScroll = false;
 
 	@ModConfig(
 		type = ConfigType.KEYBIND,

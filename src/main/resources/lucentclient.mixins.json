@@ -7,35 +7,21 @@
 	},
 	"mixins": [],
 	"client": [
-		"accessors.AccessorKeyBind",
-		"accessors.AccessorOrderedTextTooltipComponent",
-		"accessors.AccessorChatComponent",
-
-		"mixins.chatting.MixinChatComponent__ChattingRenderFlag",
+		"accessors.ChatComponentAccessor",
+		"accessors.KeyBindAccessor",
+		"accessors.OrderedTextTooltipComponentAccessor",
 		"mixins.chatting.MixinChatComponent_Chatting",
+		"mixins.chatting.MixinChatComponent__ChattingRenderFlag",
 		"mixins.chatting.MixinChatScreen_Chatting",
 		"mixins.chatting.MixinGuiGraphics_Chatting",
-
 		"mixins.memoryleak.MixinBiome_ThreadLocal",
 		"mixins.memoryleak.MixinBlockState_Cache",
 		"mixins.memoryleak.MixinMinecraft_TargetClear",
-
-		"mixins.network.misc.MixinServerEntity",
-		"mixins.network.misc.MixinUtf8String",
-		"mixins.network.misc.MixinVarInt",
-		"mixins.network.pipeline.MixinLegacyQueryHandler",
-		"mixins.network.pipeline.MixinVarint21FrameDecoder",
-
-		"mixins.scrollabletooltips.MixinGuiGraphics_ScrollableTooltips",
-		"mixins.scrollabletooltips.MixinMouse_ScrollableTooltips",
-		"mixins.scrollabletooltips.MixinScreen_ScrollableTooltips",
-
 		"mixins.MixinBossHealthOverlay",
 		"mixins.MixinClientPacketListener",
 		"mixins.MixinDebugScreenOverlay",
 		"mixins.MixinEntityRenderer",
 		"mixins.MixinGameRenderer",
-		"mixins.MixinGameRendererHurtCam",
 		"mixins.MixinGui",
 		"mixins.MixinGuiAttackIndicator",
 		"mixins.MixinGuiPotionEffects",
@@ -47,8 +33,15 @@
 		"mixins.MixinLivingEntityRenderer",
 		"mixins.MixinLocalPlayer",
 		"mixins.MixinMouseHandler",
-		"mixins.MixinOverlayTexture",
 		"mixins.MixinParticleEngine",
-		"mixins.MixinScreenEffectRenderer"
+		"mixins.MixinScreenEffectRenderer",
+		"mixins.network.misc.MixinServerEntity",
+		"mixins.network.misc.MixinUtf8String",
+		"mixins.network.misc.MixinVarInt",
+		"mixins.network.pipeline.MixinLegacyQueryHandler",
+		"mixins.network.pipeline.MixinVarint21FrameDecoder",
+		"mixins.scrollabletooltips.MixinGuiGraphics_ScrollableTooltips",
+		"mixins.scrollabletooltips.MixinMouse_ScrollableTooltips",
+		"mixins.scrollabletooltips.MixinScreen_ScrollableTooltips"
 	]
 }

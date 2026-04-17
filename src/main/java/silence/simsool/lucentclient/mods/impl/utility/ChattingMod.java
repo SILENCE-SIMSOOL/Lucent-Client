@@ -12,7 +12,7 @@ import silence.simsool.lucent.general.enums.ConfigType;
 import silence.simsool.lucent.general.models.abstracts.Mod;
 import silence.simsool.lucent.general.models.data.KeyBind;
 import silence.simsool.lucent.general.models.interfaces.annotations.ModConfig;
-import silence.simsool.lucent.general.utils.UChat;
+import silence.simsool.lucent.general.utils.useful.UChat;
 import silence.simsool.lucentclient.ducks.IChatComponent;
 
 @ModConfig.CategoryPriority(name = "General", priority = 1000)

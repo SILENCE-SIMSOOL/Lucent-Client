@@ -5,7 +5,7 @@ import static silence.simsool.lucent.Lucent.mc;
 import org.joml.Matrix3x2fStack;
 
 import net.minecraft.client.gui.GuiGraphics;
-import silence.simsool.lucent.general.enums.HUDAlignment;
+import silence.simsool.lucent.general.enums.Align;
 import silence.simsool.lucent.general.enums.RenderType;
 import silence.simsool.lucent.general.models.abstracts.LucentHUD;
 import silence.simsool.lucent.general.models.abstracts.Mod;
@@ -14,7 +14,7 @@ import silence.simsool.lucent.ui.utils.nvg.NVGRenderer;
 
 public abstract class AbstractInfoHUD extends LucentHUD {
 
-	protected AbstractInfoHUD(String id, Class<? extends Mod> moduleClass, float defaultX, float defaultY, HUDAlignment defaultAlignment) {
+	protected AbstractInfoHUD(String id, Class<? extends Mod> moduleClass, float defaultX, float defaultY, Align defaultAlignment) {
 		super(id, moduleClass, defaultX, defaultY, 1.0f, defaultAlignment);
 	}
 
@@ -93,8 +93,8 @@ public abstract class AbstractInfoHUD extends LucentHUD {
 		float rx = x * sw;
 		float ry = y * sh;
 
-		if (alignment == HUDAlignment.CENTER) rx -= (scaledW / 2f);
-		else if (alignment == HUDAlignment.RIGHT) rx -= scaledW;
+		if (alignment == Align.CENTER) rx -= (scaledW / 2f);
+		else if (alignment == Align.RIGHT) rx -= scaledW;
 
 		if (isShowBackground()) {
 			guiGraphics.fill((int) rx, (int) ry, (int) (rx + scaledW), (int) (ry + scaledH), getBackgroundColor());

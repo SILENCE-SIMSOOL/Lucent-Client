@@ -2,14 +2,14 @@ package silence.simsool.lucentclient.huds.impl.info.impl;
 
 import static silence.simsool.lucent.Lucent.mc;
 
-import silence.simsool.lucent.general.enums.HUDAlignment;
+import silence.simsool.lucent.general.enums.Align;
 import silence.simsool.lucentclient.huds.impl.info.AbstractInfoHUD;
 import silence.simsool.lucentclient.mods.impl.hud.FPSMod;
 
 public class FPSHUD extends AbstractInfoHUD {
 
 	public FPSHUD() {
-		super("lucentclient_fps", FPSMod.class, 0.00625f, 0.1537037f, HUDAlignment.LEFT);
+		super("lucentclient_fps", FPSMod.class, 0.00625f, 0.1537037f, Align.LEFT);
 	}
 
 	@Override

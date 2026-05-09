@@ -1,6 +1,6 @@
 package silence.simsool.lucentclient.huds.impl.info.impl;
 
-import silence.simsool.lucent.general.enums.HUDAlignment;
+import silence.simsool.lucent.general.enums.Align;
 import silence.simsool.lucentclient.handler.ServerHandler;
 import silence.simsool.lucentclient.huds.impl.info.AbstractInfoHUD;
 import silence.simsool.lucentclient.mods.impl.hud.TPSMod;
@@ -8,7 +8,7 @@ import silence.simsool.lucentclient.mods.impl.hud.TPSMod;
 public class TPSHUD extends AbstractInfoHUD {
 
 	public TPSHUD() {
-		super("lucentclient_tps", TPSMod.class, 0.00625f, 0.17407407f, HUDAlignment.LEFT);
+		super("lucentclient_tps", TPSMod.class, 0.00625f, 0.17407407f, Align.LEFT);
 	}
 
 	@Override

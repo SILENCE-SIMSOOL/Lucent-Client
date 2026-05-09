@@ -49,14 +49,14 @@ public class TntTimerMod extends Mod {
 	public static boolean TextShadow = true;
 
 	{
-		LucentEvent.RENDER_EXTRACT_EVENT.register(partial -> {
+		LucentEvent.RENDER_EXTRACT_EVENT.register(event -> {
 			if (isEnabled()) {
 				for (Entity entity : mc.level.entitiesForRendering()) {
 					if (entity instanceof PrimedTnt tnt) {
 						int ticks = tnt.getFuse();
 						double time = ticks / 20.0;
 						String text = String.format("%.2fs", time);
-						RenderUtils.drawText(text, entity.getPosition(partial).add(0, 1.44f, 0), 1.0f, true);
+						RenderUtils.drawText(text, entity.getPosition(event.partialTick).add(0, 1.44f, 0), 1.0f, true);
 					}
 				}
 

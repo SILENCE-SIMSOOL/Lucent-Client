@@ -1,8 +1,11 @@
 package silence.simsool.lucentclient.handler;
 
 import static silence.simsool.lucent.Lucent.mc;
+import net.minecraft.network.protocol.ping.ClientboundPongResponsePacket;
 import net.minecraft.util.Mth;
 import net.minecraft.util.Util;
+import silence.simsool.lucent.events.impl.LucentEvent;
+import silence.simsool.lucent.events.impl.PacketEvent;
 
 public class ServerHandler {
 
@@ -10,6 +13,14 @@ public class ServerHandler {
 	private static float currentTps = 20.0f;
 	private static int currentPing = 0;
 	private static int averagePing = 0;
+
+	public static void init() {
+		PacketEvent.RECEIVE.register(event -> {
+			if (event.packet instanceof ClientboundPongResponsePacket pong) onPingPacket(pong.time());
+		});
+		LucentEvent.SERVER_TICK_EVENT.register(ServerHandler::onTimePacket);
+		LucentEvent.SERVER_DISCONNECT_EVENT.register(ServerHandler::reset);
+	}
 
 	public static void onTimePacket() {
 		long now = System.currentTimeMillis();

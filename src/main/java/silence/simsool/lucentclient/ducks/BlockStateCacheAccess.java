@@ -3,11 +3,13 @@ package silence.simsool.lucentclient.ducks;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
 public interface BlockStateCacheAccess {
-    VoxelShape getCollisionShape();
 
-    void setCollisionShape(VoxelShape newShape);
+	VoxelShape getCollisionShape();
 
-    boolean[] getFaceSturdy();
+	void setCollisionShape(VoxelShape newShape);
 
-    void setFaceSturdy(boolean[] newFaceSturdyArray);
+	boolean[] getFaceSturdy();
+
+	void setFaceSturdy(boolean[] newFaceSturdyArray);
+
 }

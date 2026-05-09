@@ -12,7 +12,7 @@
 		"sources": ""
 	},
 	"license": "MIT",
-	"icon": "assets/lucentclient/icon.png",
+	"icon": "icon.png",
 	"environment": "client",
 	"mixins": [
 		"lucentclient.mixins.json"

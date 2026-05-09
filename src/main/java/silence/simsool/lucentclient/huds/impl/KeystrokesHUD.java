@@ -3,7 +3,7 @@ package silence.simsool.lucentclient.huds.impl;
 import static silence.simsool.lucent.Lucent.mc;
 
 import net.minecraft.client.gui.GuiGraphics;
-import silence.simsool.lucent.general.enums.HUDAlignment;
+import silence.simsool.lucent.general.enums.Align;
 import silence.simsool.lucent.general.enums.RenderType;
 import silence.simsool.lucent.general.models.abstracts.LucentHUD;
 import silence.simsool.lucent.general.utils.useful.UDisplay;
@@ -15,7 +15,7 @@ import silence.simsool.lucentclient.mods.impl.hud.KeystrokesMod;
 public class KeystrokesHUD extends LucentHUD {
 
 	public KeystrokesHUD() {
-		super("lucentclient_keystrokes", KeystrokesMod.class, 0.92604166f, 0.011111111f, 1.0f, HUDAlignment.LEFT);
+		super("lucentclient_keystrokes", KeystrokesMod.class, 0.92604166f, 0.011111111f, 1.0f, Align.LEFT);
 	}
 
 	@Override
@@ -55,8 +55,8 @@ public class KeystrokesHUD extends LucentHUD {
 
 		float scaledW = 64 * scale;
 
-		if (alignment == HUDAlignment.CENTER) rx -= (scaledW / 2f);
-		else if (alignment == HUDAlignment.RIGHT) rx -= scaledW;
+		if (alignment == Align.CENTER) rx -= (scaledW / 2f);
+		else if (alignment == Align.RIGHT) rx -= scaledW;
 
 		float gs = scale;
 		float bw = 20f * gs;

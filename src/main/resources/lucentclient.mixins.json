@@ -18,7 +18,6 @@
 		"mixins.memoryleak.MixinBlockState_Cache",
 		"mixins.memoryleak.MixinMinecraft_TargetClear",
 		"mixins.MixinBossHealthOverlay",
-		"mixins.MixinClientPacketListener",
 		"mixins.MixinDebugScreenOverlay",
 		"mixins.MixinEntityRenderer",
 		"mixins.MixinGameRenderer",

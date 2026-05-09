@@ -21,9 +21,9 @@ public class ChattingMod extends Mod {
 
 	public ChattingMod() {
 		super(
-				"Chatting Mod", "Enhances your chat experience with various features.",
+				"Chatting", "Enhances your chat experience with various features.",
 				"Utility",
-				"chat, ui",
+				"",
 				"/assets/lucentclient/textures/modicons/chatting.png"
 		);
 	}

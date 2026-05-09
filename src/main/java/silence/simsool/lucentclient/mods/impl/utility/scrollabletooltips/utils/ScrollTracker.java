@@ -16,6 +16,7 @@ import silence.simsool.lucentclient.mixin.accessors.OrderedTextTooltipComponentA
 import silence.simsool.lucentclient.mods.impl.utility.scrollabletooltips.ScrollableTooltipsMod;
 
 public class ScrollTracker {
+
 	private static List<ClientTooltipComponent> currentItem;
 
 	private static long unlockTime = System.currentTimeMillis();
@@ -163,4 +164,5 @@ public class ScrollTracker {
 	public static boolean hasMoved() {
 		return moved;
 	}
+
 }

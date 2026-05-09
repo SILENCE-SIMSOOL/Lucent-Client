@@ -8,7 +8,7 @@ import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
-import silence.simsool.lucent.general.enums.HUDAlignment;
+import silence.simsool.lucent.general.enums.Align;
 import silence.simsool.lucent.general.enums.RenderType;
 import silence.simsool.lucent.general.models.abstracts.LucentHUD;
 import silence.simsool.lucent.general.utils.useful.UDisplay;
@@ -18,7 +18,7 @@ import silence.simsool.lucentclient.mods.impl.hud.ArmorStatusMod;
 public class ArmorStatusHUD extends LucentHUD {
 
 	public ArmorStatusHUD() {
-		super("lucentclient_armorstatus", ArmorStatusMod.class, 0.005f, 0.42920354f, 1.0f, HUDAlignment.LEFT);
+		super("lucentclient_armorstatus", ArmorStatusMod.class, 0.005f, 0.42920354f, 1.0f, Align.LEFT);
 	}
 
 	@Override
@@ -63,8 +63,8 @@ public class ArmorStatusHUD extends LucentHUD {
 		float rx = x * sw;
 		float ry = y * sh;
 
-		if (alignment == HUDAlignment.CENTER) rx -= (getScaledWidth() / 2f);
-		else if (alignment == HUDAlignment.RIGHT) rx -= getScaledWidth();
+		if (alignment == Align.CENTER) rx -= (getScaledWidth() / 2f);
+		else if (alignment == Align.RIGHT) rx -= getScaledWidth();
 
 		int offset = 0;
 		

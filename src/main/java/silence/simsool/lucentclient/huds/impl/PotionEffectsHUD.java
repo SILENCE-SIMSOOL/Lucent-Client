@@ -9,7 +9,7 @@ import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.network.chat.Component;
 import net.minecraft.util.StringUtil;
 import net.minecraft.world.effect.MobEffectInstance;
-import silence.simsool.lucent.general.enums.HUDAlignment;
+import silence.simsool.lucent.general.enums.Align;
 import silence.simsool.lucent.general.enums.RenderType;
 import silence.simsool.lucent.general.models.abstracts.LucentHUD;
 import silence.simsool.lucent.general.utils.useful.UDisplay;
@@ -21,7 +21,7 @@ import silence.simsool.lucentclient.mods.impl.hud.PotionEffectsMod;
 public class PotionEffectsHUD extends LucentHUD {
 
 	public PotionEffectsHUD() {
-		super("lucentclient_potioneffects", PotionEffectsMod.class, 0.005f, 0.22777778f, 1.0f, HUDAlignment.LEFT);
+		super("lucentclient_potioneffects", PotionEffectsMod.class, 0.005f, 0.22777778f, 1.0f, Align.LEFT);
 	}
 
 	@Override
@@ -70,8 +70,8 @@ public class PotionEffectsHUD extends LucentHUD {
 
 		float scaledW = maxW * scale;
 
-		if (alignment == HUDAlignment.CENTER) rx -= (scaledW / 2f);
-		else if (alignment == HUDAlignment.RIGHT) rx -= scaledW;
+		if (alignment == Align.CENTER) rx -= (scaledW / 2f);
+		else if (alignment == Align.RIGHT) rx -= scaledW;
 		
 		float lineH = 10f * scale;
 		int yOffset = 0;
@@ -81,8 +81,8 @@ public class PotionEffectsHUD extends LucentHUD {
 			float lineW = mc.font.width(line);
 			float lx = rx;
 			
-			if (alignment == HUDAlignment.CENTER) lx += (maxW - lineW) * scale / 2f;
-			else if (alignment == HUDAlignment.RIGHT) lx += (maxW - lineW) * scale;
+			if (alignment == Align.CENTER) lx += (maxW - lineW) * scale / 2f;
+			else if (alignment == Align.RIGHT) lx += (maxW - lineW) * scale;
 			
 			UText.drawText(guiGraphics, line, lx, ry + yOffset, scale, UIColors.PURE_WHITE, true);
 			yOffset += lineH;

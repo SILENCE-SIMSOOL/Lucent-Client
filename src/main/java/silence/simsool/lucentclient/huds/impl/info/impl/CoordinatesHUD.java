@@ -9,7 +9,7 @@ import org.joml.Matrix3x2fStack;
 
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.core.BlockPos;
-import silence.simsool.lucent.general.enums.HUDAlignment;
+import silence.simsool.lucent.general.enums.Align;
 import silence.simsool.lucent.general.enums.RenderType;
 import silence.simsool.lucent.general.models.abstracts.LucentHUD;
 import silence.simsool.lucent.general.utils.useful.UDisplay;
@@ -19,7 +19,7 @@ import silence.simsool.lucentclient.mods.impl.hud.CoordinatesMod;
 public class CoordinatesHUD extends LucentHUD {
 
 	public CoordinatesHUD() {
-		super("lucentclient_coordinates", CoordinatesMod.class, 0.00625f, 0.011111111f, 1.0f, HUDAlignment.LEFT);
+		super("lucentclient_coordinates", CoordinatesMod.class, 0.00625f, 0.011111111f, 1.0f, Align.LEFT);
 	}
 
 	@Override
@@ -69,8 +69,8 @@ public class CoordinatesHUD extends LucentHUD {
 
 		float scaledW = maxW * scale;
 
-		if (alignment == HUDAlignment.CENTER) rx -= (scaledW / 2f);
-		else if (alignment == HUDAlignment.RIGHT) rx -= scaledW;
+		if (alignment == Align.CENTER) rx -= (scaledW / 2f);
+		else if (alignment == Align.RIGHT) rx -= scaledW;
 
 		if (CoordinatesMod.ShowBackground) {
 			float bw = maxW * scale + 8 * scale;
@@ -85,8 +85,8 @@ public class CoordinatesHUD extends LucentHUD {
 			float lineW = mc.font.width(line);
 			float lx = rx;
 			
-			if (alignment == HUDAlignment.CENTER) lx += (maxW - lineW) * scale / 2f;
-			else if (alignment == HUDAlignment.RIGHT) lx += (maxW - lineW) * scale;
+			if (alignment == Align.CENTER) lx += (maxW - lineW) * scale / 2f;
+			else if (alignment == Align.RIGHT) lx += (maxW - lineW) * scale;
 			
 			pose.pushMatrix();
 			pose.translate(lx, ry + i * 10 * scale);

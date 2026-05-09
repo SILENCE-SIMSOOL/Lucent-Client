@@ -3,9 +3,11 @@ package silence.simsool.lucentclient.mods.impl.graphics;
 import java.awt.Color;
 
 import silence.simsool.lucent.Lucent;
+import silence.simsool.lucent.general.enums.Align;
 import silence.simsool.lucent.general.enums.ConfigType;
 import silence.simsool.lucent.general.models.abstracts.Mod;
 import silence.simsool.lucent.general.models.interfaces.annotations.ModConfig;
+import silence.simsool.lucent.general.models.interfaces.annotations.ModConfigExtra;
 import silence.simsool.lucentclient.utils.LucentClientUtils;
 
 @ModConfig.CategoryPriority(name = "General", priority = 1000)
@@ -104,86 +106,79 @@ public class AnimationsMod extends Mod {
 //	)
 //	public static boolean FlatItem = false;
 
-	@ModConfig(
+	@ModConfigExtra(
 		type = ConfigType.SLIDER,
 		name = "Item Scale",
 		description = "Scale factor for your held item.",
 		category = "Item",
-		min = 0.1,
-		max = 2.0,
-		step = 0.05,
+		min = 0.1, max = 2.0, step = 0.05,
+		align = Align.RIGHT,
 		priority = 790
 	)
 	public static double ItemScale = 1.0;
 
-	@ModConfig(
+	@ModConfigExtra(
 		type = ConfigType.SLIDER,
 		name = "Item X",
 		description = "X offset for your held item.",
 		category = "Item",
-		min = -2.0,
-		max = 2.0,
-		step = 0.05,
+		min = -2.0, max = 2.0, step = 0.05,
+		align = Align.RIGHT,
 		priority = 780
 	)
 	public static double HeldItemX = 0.0;
 
-	@ModConfig(
+	@ModConfigExtra(
 		type = ConfigType.SLIDER,
 		name = "Item Y",
 		description = "Y offset for your held item.",
 		category = "Item",
-		min = -2.0,
-		max = 2.0,
-		step = 0.05,
+		min = -2.0, max = 2.0, step = 0.05,
+		align = Align.RIGHT,
 		priority = 770
 	)
 	public static double HeldItemY = 0.0;
 
-	@ModConfig(
+	@ModConfigExtra(
 		type = ConfigType.SLIDER,
 		name = "Item Z",
 		description = "Z offset for your held item.",
 		category = "Item",
-		min = -2.0,
-		max = 2.0,
-		step = 0.05,
+		min = -2.0, max = 2.0, step = 0.05,
+		align = Align.RIGHT,
 		priority = 760
 	)
 	public static double HeldItemZ = 0.0;
 
-	@ModConfig(
+	@ModConfigExtra(
 		type = ConfigType.SLIDER,
 		name = "Item Yaw",
 		description = "Yaw rotation for your held item.",
 		category = "Item",
-		min = -180.0,
-		max = 180.0,
-		step = 1.0,
+		min = -180.0, max = 180.0, step = 1.0,
+		align = Align.RIGHT,
 		priority = 750
 	)
 	public static double HeldItemYaw = 0.0;
 
-	@ModConfig(
+	@ModConfigExtra(
 		type = ConfigType.SLIDER,
 		name = "Item Pitch",
 		description = "Pitch rotation for your held item.",
 		category = "Item",
-		min = -180.0,
-		max = 180.0,
-		step = 1.0,
+		min = -180.0, max = 180.0, step = 1.0,
+		align = Align.RIGHT,
 		priority = 740
 	)
 	public static double HeldItemPitch = 0.0;
 
-	@ModConfig(
+	@ModConfigExtra(
 		type = ConfigType.SLIDER,
 		name = "Item Roll",
 		description = "Roll rotation for your held item.",
 		category = "Item",
-		min = -180.0,
-		max = 180.0,
-		step = 1.0,
+		min = -180.0, max = 180.0, step = 1.0,
+		align = Align.RIGHT,
 		priority = 730
 	)
 	public static double HeldItemRoll = 0.0;

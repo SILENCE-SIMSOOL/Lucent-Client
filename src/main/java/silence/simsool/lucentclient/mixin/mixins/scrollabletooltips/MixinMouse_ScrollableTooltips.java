@@ -1,5 +1,7 @@
 package silence.simsool.lucentclient.mixin.mixins.scrollabletooltips;
 
+import static silence.simsool.lucent.Lucent.mc;
+
 import org.lwjgl.glfw.GLFW;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
@@ -8,9 +10,9 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import com.mojang.blaze3d.platform.InputConstants;
-import com.mojang.blaze3d.platform.Window;
 
 import net.minecraft.client.MouseHandler;
+import net.minecraft.client.gui.screens.ChatScreen;
 import silence.simsool.lucent.general.utils.useful.UDisplay;
 import silence.simsool.lucentclient.mods.impl.utility.scrollabletooltips.ScrollableTooltipsMod;
 import silence.simsool.lucentclient.mods.impl.utility.scrollabletooltips.utils.ScrollTracker;
@@ -21,8 +23,9 @@ public class MixinMouse_ScrollableTooltips {
 	@Inject(method = "onScroll", at = @At("HEAD"), cancellable = true)
 	private void trackWheel(long window, double horizontal, double vertical, CallbackInfo info) {
 		if (ScrollableTooltipsMod.isEnabled() && !ScrollTracker.isLocked()) {
-			Window mcWindow = UDisplay.getWindow();
-			boolean isHorizontal = ScrollableTooltipsMod.horizontal.isKeyDown() || (ScrollableTooltipsMod.UseLShift && InputConstants.isKeyDown(mcWindow, GLFW.GLFW_KEY_LEFT_SHIFT));
+			if (mc.screen instanceof ChatScreen) return;
+
+			boolean isHorizontal = ScrollableTooltipsMod.horizontal.isKeyDown() || (ScrollableTooltipsMod.UseLShift && InputConstants.isKeyDown(UDisplay.getWindow(), GLFW.GLFW_KEY_LEFT_SHIFT));
 
 			if (isHorizontal) scrollX(vertical);
 			else scrollY(vertical);

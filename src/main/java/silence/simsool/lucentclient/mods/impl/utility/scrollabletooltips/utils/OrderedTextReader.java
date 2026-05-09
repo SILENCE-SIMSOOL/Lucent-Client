@@ -5,6 +5,7 @@ import net.minecraft.util.FormattedCharSequence;
 import net.minecraft.util.FormattedCharSink;
 
 public class OrderedTextReader {
+
 	private static class Visitor implements FormattedCharSink {
 		private int finalIndex = -1;
 		private final StringBuilder outputBuilder = new StringBuilder();
@@ -28,4 +29,5 @@ public class OrderedTextReader {
 		text.accept(visitor);
 		return visitor.getString();
 	}
+
 }

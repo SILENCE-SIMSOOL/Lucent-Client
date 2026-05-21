@@ -40,6 +40,15 @@ public class AnimationsMod extends Mod {
 
 	@ModConfig(
 		type = ConfigType.SWITCH,
+		name = "Fix Slot Drop",
+		description = "",
+		category = "General",
+		priority = 990
+	)
+	public static boolean FixSlotDrop = true;
+
+	@ModConfig(
+		type = ConfigType.SWITCH,
 		name = "Custom Hit Color",
 		description = "Enable custom colors for damage and armor hurt. \n&c(Not yet)",
 		category = "Entity",

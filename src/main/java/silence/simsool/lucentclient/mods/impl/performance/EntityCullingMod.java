@@ -2,8 +2,11 @@ package silence.simsool.lucentclient.mods.impl.performance;
 
 import static silence.simsool.lucent.Lucent.mc;
 
+import java.util.List;
 import java.util.Map;
 import java.util.WeakHashMap;
+import java.util.concurrent.CopyOnWriteArrayList;
+import java.util.function.Predicate;
 
 import net.fabricmc.fabric.api.client.rendering.v1.world.WorldRenderEvents;
 import net.minecraft.world.entity.Entity;
@@ -51,6 +54,7 @@ public class EntityCullingMod extends Mod {
 	)
 	public static boolean ShowDebugInfo = true;
 
+	public static final List<Predicate<Entity>> IGNORE_FILTERS = new CopyOnWriteArrayList<>();
 	public static final Map<Entity, VisibilityState> visibilityCache = new WeakHashMap<>();
 	public static int culledEntities = 0;
 	public static int lastCulledEntities = 0;

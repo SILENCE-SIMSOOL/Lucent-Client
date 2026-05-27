@@ -4,7 +4,6 @@ import silence.simsool.lucent.Lucent;
 import silence.simsool.lucent.general.enums.ConfigType;
 import silence.simsool.lucent.general.models.abstracts.Mod;
 import silence.simsool.lucent.general.models.interfaces.annotations.ModConfig;
-import silence.simsool.lucentclient.mods.impl.utility.AlwaysSprintMod;
 import silence.simsool.lucentclient.utils.LucentClientUtils;
 
 @ModConfig.CategoryPriority(name = "General", priority = 1000)
@@ -20,7 +19,7 @@ public class ParticlesMod extends Mod {
 	}
 
 	public static boolean isEnabled() {
-		return Lucent.config.isModuleEnabled(AlwaysSprintMod.class);
+		return Lucent.config.isModuleEnabled(ParticlesMod.class);
 	}
 
 	@ModConfig(

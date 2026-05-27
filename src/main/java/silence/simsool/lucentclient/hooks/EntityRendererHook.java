@@ -11,13 +11,23 @@ import net.minecraft.world.entity.decoration.ArmorStand;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
+import net.minecraft.world.entity.item.FallingBlockEntity;
+import java.util.function.Predicate;
 import silence.simsool.lucentclient.mods.impl.graphics.DeathAnimationMod;
+import silence.simsool.lucentclient.mods.impl.graphics.HideFallingBlockMod;
 import silence.simsool.lucentclient.mods.impl.performance.EntityCullingMod;
 import silence.simsool.lucentclient.utils.LucentClientUtils;
 
 public class EntityRendererHook {
 
 	public static void onShouldRender(Entity entity, Frustum frustum, double x, double y, double z, CallbackInfoReturnable<Boolean> cir) {
+
+		if (HideFallingBlockMod.isEnabled()) {
+			if (entity instanceof FallingBlockEntity) {
+				cir.setReturnValue(false);
+				return;
+			}
+		}
 
 		if (DeathAnimationMod.isEnabled()) {
 			if (entity instanceof LivingEntity livingEntity && livingEntity.isDeadOrDying()) {
@@ -42,6 +52,15 @@ public class EntityRendererHook {
 			boolean shouldCull = entity instanceof Player 
 				? (EntityCullingMod.CullPlayers && !LucentClientUtils.checkInDungeon())
 				: EntityCullingMod.CullEntities;
+
+			if (shouldCull) {
+				for (Predicate<Entity> filter : EntityCullingMod.IGNORE_FILTERS) {
+					if (filter.test(entity)) {
+						shouldCull = false;
+						break;
+					}
+				}
+			}
 
 			if (shouldCull) {
 				Entity cameraEntity = mc.getCameraEntity();

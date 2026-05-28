@@ -35,7 +35,8 @@ public class BasicCommand {
 	}
 
 	private static int displayPing() {
-		int ping = ServerHandler.getAveragePing();
+		//ClientHandler.sendPacket(new ServerboundPingRequestPacket(Util.getMillis()));
+		int ping = ServerHandler.getPing();
 		String color = ping < 100 ? "§a" : (ping < 200 ? "§e" : "§c");
 		UChat.chat(LucentClient.PREFIX + "§fCurrent Ping: " + color + ping + "ms");
 		return 1;

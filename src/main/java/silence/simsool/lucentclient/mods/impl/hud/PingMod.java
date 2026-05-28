@@ -20,7 +20,7 @@ public class PingMod extends Mod {
 		super(
 				"Ping", "Displays your latency to the server.",
 				"HUD",
-				"ping, latency",
+				"latency",
 				LucentClientUtils.getModIcon("ping")
 		);
 	}

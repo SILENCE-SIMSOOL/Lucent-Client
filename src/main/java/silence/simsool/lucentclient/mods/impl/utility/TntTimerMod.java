@@ -5,9 +5,9 @@ import static silence.simsool.lucent.Lucent.mc;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.item.PrimedTnt;
 import silence.simsool.lucent.Lucent;
-import silence.simsool.lucent.events.impl.LucentEvent;
 import silence.simsool.lucent.general.enums.ConfigType;
 import silence.simsool.lucent.general.models.abstracts.Mod;
+import silence.simsool.lucent.general.models.data.events.lucentevent.WorldRenderEvent;
 import silence.simsool.lucent.general.models.interfaces.annotations.ModConfig;
 import silence.simsool.lucent.general.utils.render.RenderUtils;
 import silence.simsool.lucentclient.utils.LucentClientUtils;
@@ -48,20 +48,16 @@ public class TntTimerMod extends Mod {
 	)
 	public static boolean TextShadow = true;
 
-	{
-		LucentEvent.RENDER_EXTRACT_EVENT.register(event -> {
-			if (isEnabled()) {
-				for (Entity entity : mc.level.entitiesForRendering()) {
-					if (entity instanceof PrimedTnt tnt) {
-						int ticks = tnt.getFuse();
-						double time = ticks / 20.0;
-						String text = String.format("%.2fs", time);
-						RenderUtils.drawText(text, entity.getPosition(event.partialTick).add(0, 1.44f, 0), 1.0f, true);
-					}
-				}
-
+	@Override
+	public void onWorldRender(WorldRenderEvent event) {
+		for (Entity entity : mc.level.entitiesForRendering()) {
+			if (entity instanceof PrimedTnt tnt) {
+				int ticks = tnt.getFuse();
+				double time = ticks / 20.0;
+				String text = String.format("%.2fs", time);
+				RenderUtils.drawText(text, entity.getPosition(event.partialTick).add(0, 1.44f, 0), 1.0f, true);
 			}
-		});
+		}
 	}
 
 }

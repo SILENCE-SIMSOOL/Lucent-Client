@@ -173,4 +173,3 @@ public class PlayerModelMod extends Mod {
 	public static double PlayerScale = 1.0;
 
 }
-

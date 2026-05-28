@@ -41,11 +41,17 @@ public abstract class AbstractInfoHUD extends LucentHUD {
 
 	protected String getFormattedText(boolean preview) {
 		String label = getLabel();
-		String val = getValue(preview);
+		String value = getValue(preview);
 		String result;
-		if (isReverseOrder()) result = val + " " + label;
-		else result = label + ": " + val;
+
+		if (isReverseOrder()) {
+			if (label.equals("Ping")) result = value;
+			else result = value + " " + label;
+		}
+		else result = label + ": " + value;
+
 		if (isShowBrackets()) result = "[" + result + "]";
+
 		return result;
 	}
 
@@ -115,4 +121,5 @@ public abstract class AbstractInfoHUD extends LucentHUD {
 		guiGraphics.drawString(mc.font, text, 0, 0, getTextColor(), isShowShadow());
 		pose.popMatrix();
 	}
+
 }

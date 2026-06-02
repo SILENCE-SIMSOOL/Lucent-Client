@@ -86,7 +86,7 @@ jar {
 task remapPluginJar(type: net.fabricmc.loom.task.RemapJarTask) {
 	dependsOn jar
 	input = jar.archiveFile
-	archiveClassifier = 'plugin'
+	archiveClassifier = 'lite'
 	addNestedDependencies = false
 }
 
@@ -104,7 +104,7 @@ publishing {
 			from components.java
 
 			artifact(remapPluginJar) {
-				classifier = "plugin"
+				classifier = "lite"
 			}
 		}
 	}

@@ -5,9 +5,9 @@ import static silence.simsool.lucent.Lucent.mc;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.item.PrimedTnt;
 import silence.simsool.lucent.Lucent;
+import silence.simsool.lucent.events.impl.LucentEvent.RenderWorldEvent;
 import silence.simsool.lucent.general.enums.ConfigType;
 import silence.simsool.lucent.general.models.abstracts.Mod;
-import silence.simsool.lucent.general.models.data.events.lucentevent.WorldRenderEvent;
 import silence.simsool.lucent.general.models.interfaces.annotations.ModConfig;
 import silence.simsool.lucent.general.utils.render.RenderUtils;
 import silence.simsool.lucentclient.utils.LucentClientUtils;
@@ -49,7 +49,7 @@ public class TntTimerMod extends Mod {
 	public static boolean TextShadow = true;
 
 	@Override
-	public void onWorldRender(WorldRenderEvent event) {
+	public void onRenderWorld(RenderWorldEvent event) {
 		for (Entity entity : mc.level.entitiesForRendering()) {
 			if (entity instanceof PrimedTnt tnt) {
 				int ticks = tnt.getFuse();

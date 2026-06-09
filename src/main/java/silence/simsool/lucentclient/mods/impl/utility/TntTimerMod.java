@@ -9,7 +9,7 @@ import silence.simsool.lucent.events.impl.LucentEvent.RenderWorldEvent;
 import silence.simsool.lucent.general.enums.ConfigType;
 import silence.simsool.lucent.general.models.abstracts.Mod;
 import silence.simsool.lucent.general.models.interfaces.annotations.ModConfig;
-import silence.simsool.lucent.general.utils.render.RenderUtils;
+import silence.simsool.lucent.general.utils.render.Render3D;
 import silence.simsool.lucentclient.utils.LucentClientUtils;
 
 @ModConfig.CategoryPriority(name = "General", priority = 1000)
@@ -55,7 +55,7 @@ public class TntTimerMod extends Mod {
 				int ticks = tnt.getFuse();
 				double time = ticks / 20.0;
 				String text = String.format("%.2fs", time);
-				RenderUtils.drawText(text, entity.getPosition(event.partialTick).add(0, 1.44f, 0), 1.0f, true);
+				Render3D.drawText(text, entity.getPosition(event.partialTick).add(0, 1.44f, 0), 1.0f, true);
 			}
 		}
 	}

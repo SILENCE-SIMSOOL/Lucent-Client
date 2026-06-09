@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import silence.simsool.lucent.Lucent;
+import silence.simsool.lucent.events.impl.LucentEvent;
 import silence.simsool.lucent.general.enums.ConfigType;
 import silence.simsool.lucent.general.models.abstracts.Mod;
 import silence.simsool.lucent.general.models.interfaces.annotations.ModConfig;
@@ -84,11 +85,13 @@ public class CPSMod extends Mod {
 	private static final List<Long> leftClicks = new ArrayList<>();
 	private static final List<Long> rightClicks = new ArrayList<>();
 
-	public static synchronized void addLeftClick() {
+	@Override
+	public void onLeftClickPost(LucentEvent.LeftClickPostEvent event) {
 		leftClicks.add(System.currentTimeMillis());
 	}
 
-	public static synchronized void addRightClick() {
+	@Override
+	public void onRightClickPost(LucentEvent.RightClickPostEvent event) {
 		rightClicks.add(System.currentTimeMillis());
 	}
 

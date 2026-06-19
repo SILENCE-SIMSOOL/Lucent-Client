@@ -17,7 +17,7 @@ public abstract class MixinLocalPlayer {
 
 	@Inject(method = "swing(Lnet/minecraft/world/InteractionHand;)V", at = @At("HEAD"), cancellable = true)
 	private void cancelGuiDropSwing(InteractionHand hand, CallbackInfo ci) {
-		if (AnimationsMod.FixSlotDrop && UScreen.isScreenOpen()) {
+		if (AnimationsMod.isEnabled() && AnimationsMod.FixSlotDrop && UScreen.isScreenOpen()) {
 			ci.cancel();
 		}
 	}

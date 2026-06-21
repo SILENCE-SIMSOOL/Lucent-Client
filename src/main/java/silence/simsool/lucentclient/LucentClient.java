@@ -26,9 +26,6 @@ public class LucentClient implements ClientModInitializer {
 		Lucent.LOG.info("Initializing LucentClient...");
 
 		LucentClientModRegister.register(config);
-//		config.loadGlobalConfig();
-//		config.loadConfigs();
-
 		HUDRegister.register(LucentAPI.getHUDManager());
 		Keybinds.init();
 		ServerHandler.init();

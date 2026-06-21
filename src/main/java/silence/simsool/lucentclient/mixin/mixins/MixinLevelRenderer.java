@@ -8,14 +8,16 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 
 import net.minecraft.client.renderer.LevelRenderer;
-import net.minecraft.client.renderer.state.BlockOutlineRenderState;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.block.state.BlockState;
 import silence.simsool.lucentclient.mods.impl.graphics.BlockOverlayMod;
 
 @Mixin(LevelRenderer.class)
 public class MixinLevelRenderer {
 
 	@Inject(method = "renderHitOutline", at = @At("HEAD"), cancellable = true)
-	private void onRenderHitOutline(PoseStack poseStack, VertexConsumer builder, double camX, double camY, double camZ, BlockOutlineRenderState state, int color, float width, CallbackInfo ci) {
+	private void onRenderHitOutline(PoseStack poseStack, VertexConsumer builder, Entity entity, double camX, double camY, double camZ, BlockPos blockPos, BlockState blockState, CallbackInfo ci) {
 		if (BlockOverlayMod.isEnabled()) {
 			ci.cancel();
 		}

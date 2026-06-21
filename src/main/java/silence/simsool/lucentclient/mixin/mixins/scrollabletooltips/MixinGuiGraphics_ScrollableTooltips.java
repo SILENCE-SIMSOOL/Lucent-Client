@@ -15,28 +15,28 @@ import com.llamalad7.mixinextras.sugar.Local;
 import com.llamalad7.mixinextras.sugar.ref.LocalIntRef;
 
 import net.minecraft.client.gui.Font;
-import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.gui.screens.inventory.tooltip.ClientTooltipComponent;
 import net.minecraft.client.gui.screens.inventory.tooltip.ClientTooltipPositioner;
 import net.minecraft.resources.Identifier;
 import silence.simsool.lucentclient.mods.impl.utility.scrollabletooltips.ScrollableTooltipsMod;
 import silence.simsool.lucentclient.mods.impl.utility.scrollabletooltips.utils.ScrollTracker;
 
-@Mixin(value = GuiGraphics.class, priority = 1001)
+@Mixin(value = GuiGraphicsExtractor.class, priority = 1001)
 public abstract class MixinGuiGraphics_ScrollableTooltips {
 
 	@Shadow
 	@Final
 	private Matrix3x2fStack pose;
 
-	@Inject(method = "renderTooltip", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/screens/inventory/tooltip/ClientTooltipPositioner;positionTooltip(IIIIII)Lorg/joml/Vector2ic;"))
+	@Inject(method = "tooltip", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/screens/inventory/tooltip/ClientTooltipPositioner;positionTooltip(IIIIII)Lorg/joml/Vector2ic;"), remap = false)
 	public void applyTracker(Font font, List<ClientTooltipComponent> lines, int xo, int yo, ClientTooltipPositioner positioner, @Nullable Identifier style, CallbackInfo ci) {
 		ScrollTracker.unlock();
 		ScrollTracker.update();
 		ScrollTracker.setItem(lines);
 	}
 
-	@Inject(method = "renderTooltip", at = @At(value = "INVOKE", target = "Lorg/joml/Matrix3x2fStack;pushMatrix()Lorg/joml/Matrix3x2fStack;"))
+	@Inject(method = "tooltip", at = @At(value = "INVOKE", target = "Lorg/joml/Matrix3x2fStack;pushMatrix()Lorg/joml/Matrix3x2fStack;"), remap = false)
 	private void editXY(Font font, List<ClientTooltipComponent> lines, int xo, int yo, ClientTooltipPositioner positioner, @Nullable Identifier style, CallbackInfo info, @Local(ordinal = 2) LocalIntRef x, @Local(ordinal = 3) LocalIntRef y) {
 		if (!ScrollableTooltipsMod.MatrixMode) {
 			x.set(x.get() + ScrollTracker.getXOffset());
@@ -52,7 +52,7 @@ public abstract class MixinGuiGraphics_ScrollableTooltips {
 		}
 	}
 
-	@Inject(method = "renderTooltip", at = @At("HEAD"))
+	@Inject(method = "tooltip", at = @At("HEAD"), remap = false)
 	private void headMatrices(Font font, List<ClientTooltipComponent> lines, int xo, int yo, ClientTooltipPositioner positioner, @Nullable Identifier style, CallbackInfo info) {
 		if (ScrollableTooltipsMod.MatrixMode) {
 			this.pose.pushMatrix();
@@ -60,7 +60,7 @@ public abstract class MixinGuiGraphics_ScrollableTooltips {
 		}
 	}
 
-	@Inject(method = "renderTooltip", at = @At("TAIL"))
+	@Inject(method = "tooltip", at = @At("TAIL"), remap = false)
 	private void tailMatrices(Font font, List<ClientTooltipComponent> lines, int xo, int yo, ClientTooltipPositioner positioner, @Nullable Identifier style, CallbackInfo info) {
 		if (ScrollableTooltipsMod.MatrixMode) this.pose.popMatrix();
 	}

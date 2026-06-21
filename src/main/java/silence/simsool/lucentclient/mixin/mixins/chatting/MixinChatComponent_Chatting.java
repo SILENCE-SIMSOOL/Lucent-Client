@@ -4,7 +4,7 @@ import static silence.simsool.lucent.Lucent.mc;
 
 import org.spongepowered.asm.mixin.Mixin;
 
-import net.minecraft.client.GuiMessage;
+import net.minecraft.client.multiplayer.chat.GuiMessage;
 import net.minecraft.client.Options;
 import net.minecraft.client.gui.components.ChatComponent;
 import silence.simsool.lucent.general.utils.useful.UDisplay;

@@ -6,7 +6,7 @@ import java.awt.Color;
 
 import org.lwjgl.glfw.GLFW;
 
-import net.minecraft.client.GuiMessage;
+import net.minecraft.client.multiplayer.chat.GuiMessage;
 import silence.simsool.lucent.Lucent;
 import silence.simsool.lucent.general.enums.ConfigType;
 import silence.simsool.lucent.general.models.abstracts.Mod;
@@ -80,7 +80,7 @@ public class ChattingMod extends Mod {
 	public static boolean isRenderingChat = false;
 
 	public static boolean copyAt(double mouseX, double mouseY) {
-		if (mc.gui.getChat() instanceof IChatComponent chat) {
+		if (mc.gui.hud.getChat() instanceof IChatComponent chat) {
 			GuiMessage msg = chat.getMessageAt(mouseX, mouseY);
 			if (msg != null) {
 				String plainText = UChat.cleanColor(msg.content().getString());

@@ -1,5 +1,5 @@
 plugins {
-	id 'net.fabricmc.fabric-loom-remap' version "${loom_version}"
+	id 'net.fabricmc.fabric-loom' version "${loom_version}"
 	id 'maven-publish'
 }
 
@@ -38,25 +38,24 @@ loom {
 
 dependencies {
 	minecraft "com.mojang:minecraft:${project.minecraft_version}"
-	mappings loom.officialMojangMappings()
-	modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
-	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
+	implementation "net.fabricmc:fabric-loader:${project.loader_version}"
+	implementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 
-	modRuntimeOnly("me.djtheredstoner:DevAuth-fabric:${property("devauth_version")}")
+	runtimeOnly("me.djtheredstoner:DevAuth-fabric:${property("devauth_version")}")
  
 	def lwjglVersion = project.property("minecraft_lwjgl_version")
-	modImplementation "org.lwjgl:lwjgl-nanovg:${lwjglVersion}"
+	implementation "org.lwjgl:lwjgl-nanovg:${lwjglVersion}"
 	include "org.lwjgl:lwjgl-nanovg:${lwjglVersion}"
 	["windows", "linux", "macos", "macos-arm64"].each { os ->
-		modImplementation "org.lwjgl:lwjgl-nanovg:${lwjglVersion}:natives-${os}"
+		implementation "org.lwjgl:lwjgl-nanovg:${lwjglVersion}:natives-${os}"
 		include "org.lwjgl:lwjgl-nanovg:${lwjglVersion}:natives-${os}"
 	}
 
 	def lucentVersion = "${project.lucent_version}-${project.minecraft_version}-${project.lucent_library}"
-	modImplementation "com.github.SILENCE-SIMSOOL:lucent:${lucentVersion}"
+	implementation "com.github.SILENCE-SIMSOOL:lucent:${lucentVersion}"
 	include "com.github.SILENCE-SIMSOOL:lucent:${lucentVersion}"
 	
-	//modImplementation files("libs/SilenceUtils-1.0.0.jar")
+	//implementation files("libs/SilenceUtils-1.0.0.jar")
 }
 
 processResources {
@@ -69,13 +68,16 @@ processResources {
 }
 
 tasks.withType(JavaCompile).configureEach {
-	it.options.release = 21
+	it.options.release = 25
 	it.options.encoding = "UTF-8"
 }
 
 java {
-	sourceCompatibility = JavaVersion.VERSION_21
-	targetCompatibility = JavaVersion.VERSION_21
+	toolchain {
+		languageVersion = JavaLanguageVersion.of(25)
+	}
+	sourceCompatibility = JavaVersion.VERSION_25
+	targetCompatibility = JavaVersion.VERSION_25
 }
 
 jar {
@@ -83,16 +85,13 @@ jar {
 	exclude "**/*.java"
 }
 
-task remapPluginJar(type: net.fabricmc.loom.task.RemapJarTask) {
+task remapPluginJar(type: Jar) {
 	dependsOn jar
-	input = jar.archiveFile
 	archiveClassifier = 'lite'
-	addNestedDependencies = false
-}
-
-remapJar {
-	archiveClassifier = ''
-	addNestedDependencies = true
+	manifest.from jar.manifest
+	from({ zipTree(jar.archiveFile) }) {
+		exclude 'META-INF/MANIFEST.MF'
+	}
 }
 
 assemble.dependsOn remapPluginJar

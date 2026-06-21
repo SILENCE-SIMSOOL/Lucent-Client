@@ -8,7 +8,7 @@ import java.util.WeakHashMap;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.function.Predicate;
 
-import net.fabricmc.fabric.api.client.rendering.v1.world.WorldRenderEvents;
+import net.fabricmc.fabric.api.client.rendering.v1.level.LevelRenderEvents;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.level.ClipContext;
 import net.minecraft.world.phys.AABB;
@@ -66,7 +66,7 @@ public class EntityCullingMod extends Mod {
 	}
 
 	{
-		WorldRenderEvents.BEFORE_ENTITIES.register(context -> {
+		LevelRenderEvents.START_MAIN.register(context -> {
 			lastCulledEntities = culledEntities;
 			culledEntities = 0;
 		});

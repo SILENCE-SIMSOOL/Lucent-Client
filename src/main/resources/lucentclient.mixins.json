@@ -22,6 +22,7 @@
 		"mixins.MixinDebugScreenOverlay",
 		"mixins.MixinEntityRenderer",
 		"mixins.MixinGameRenderer",
+		"mixins.MixinCamera",
 		"mixins.MixinGui",
 		"mixins.MixinGuiAttackIndicator",
 		"mixins.MixinGuiPotionEffects",

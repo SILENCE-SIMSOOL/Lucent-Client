@@ -4,7 +4,7 @@ import static silence.simsool.lucent.Lucent.mc;
 
 import org.joml.Matrix3x2fStack;
 
-import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
@@ -44,17 +44,17 @@ public class ArmorStatusHUD extends LucentHUD {
 	}
 
 	@Override
-	public void draw(GuiGraphics guiGraphics) {
+	public void draw(GuiGraphicsExtractor guiGraphics) {
 		if (isEditHudOpen || UDisplay.isDebugScreen()) return;
 		render(guiGraphics, false);
 	}
 
 	@Override
-	public void preview(GuiGraphics guiGraphics) {
+	public void preview(GuiGraphicsExtractor guiGraphics) {
 		render(guiGraphics, true);
 	}
 
-	private void render(GuiGraphics guiGraphics, boolean preview) {
+	private void render(GuiGraphicsExtractor guiGraphics, boolean preview) {
 		if (!preview && mc.player == null) return;
 
 		int sw = mc.getWindow().getGuiScaledWidth();
@@ -77,7 +77,7 @@ public class ArmorStatusHUD extends LucentHUD {
 		offset = renderSlot(guiGraphics, EquipmentSlot.OFFHAND, ArmorStatusMod.DisplayOffHand, rx, ry, offset, preview);
 	}
 
-	private int renderSlot(GuiGraphics guiGraphics, EquipmentSlot slot, boolean isEnabled, float rx, float ry, int offset, boolean preview) {
+	private int renderSlot(GuiGraphicsExtractor guiGraphics, EquipmentSlot slot, boolean isEnabled, float rx, float ry, int offset, boolean preview) {
 		if (!isEnabled) return offset;
 
 		ItemStack stack = preview ? getPlaceholder(slot) : mc.player.getItemBySlot(slot);
@@ -88,8 +88,8 @@ public class ArmorStatusHUD extends LucentHUD {
 		pose.translate(Math.round(rx), Math.round(ry + offset));
 		pose.scale(scale, scale);
 
-		guiGraphics.renderItem(stack, 0, 0);
-		guiGraphics.renderItemDecorations(mc.font, stack, 0, 0);
+		guiGraphics.item(stack, 0, 0);
+		guiGraphics.itemDecorations(mc.font, stack, 0, 0);
 
 		pose.popMatrix();
 		return offset + (int)(18 * scale);

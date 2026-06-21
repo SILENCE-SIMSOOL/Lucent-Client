@@ -89,7 +89,7 @@ public class EntityRendererHook {
 					else return;
 				}
 
-				Vec3 camPos = mc.gameRenderer.getMainCamera().position();
+				Vec3 camPos = mc.gameRenderer.mainCamera().position();
 				AABB box = entity.getBoundingBox().inflate(0.05);
 
 				state.visible = EntityCullingMod.isVisibleOptimized(camPos, box, cameraEntity, distSq);

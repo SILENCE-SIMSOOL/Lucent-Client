@@ -5,7 +5,7 @@ import static silence.simsool.lucent.Lucent.mc;
 import java.util.ArrayList;
 import java.util.List;
 
-import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.network.chat.Component;
 import net.minecraft.util.StringUtil;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -45,17 +45,17 @@ public class PotionEffectsHUD extends LucentHUD {
 	}
 
 	@Override
-	public void draw(GuiGraphics guiGraphics) {
+	public void draw(GuiGraphicsExtractor guiGraphics) {
 		if (isEditHudOpen || UDisplay.isDebugScreen()) return;
 		render(guiGraphics, false);
 	}
 
 	@Override
-	public void preview(GuiGraphics guiGraphics) {
+	public void preview(GuiGraphicsExtractor guiGraphics) {
 		render(guiGraphics, true);
 	}
 
-	private void render(GuiGraphics guiGraphics, boolean preview) {
+	private void render(GuiGraphicsExtractor guiGraphics, boolean preview) {
 		List<String> lines = getLines(preview);
 		if (lines.isEmpty()) return;
 

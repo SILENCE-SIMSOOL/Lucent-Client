@@ -7,7 +7,7 @@ import java.util.List;
 
 import org.joml.Matrix3x2fStack;
 
-import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.core.BlockPos;
 import silence.simsool.lucent.general.enums.Align;
 import silence.simsool.lucent.general.enums.RenderType;
@@ -45,17 +45,17 @@ public class CoordinatesHUD extends LucentHUD {
 	}
 
 	@Override
-	public void draw(GuiGraphics guiGraphics) {
+	public void draw(GuiGraphicsExtractor guiGraphics) {
 		if (isEditHudOpen || UDisplay.isDebugScreen()) return;
 		render(guiGraphics, false);
 	}
 
 	@Override
-	public void preview(GuiGraphics guiGraphics) {
+	public void preview(GuiGraphicsExtractor guiGraphics) {
 		render(guiGraphics, true);
 	}
 
-	private void render(GuiGraphics graphics, boolean preview) {
+	private void render(GuiGraphicsExtractor graphics, boolean preview) {
 		List<String> lines = getLines(preview);
 		Matrix3x2fStack pose = graphics.pose();
 		int sw = UDisplay.getGuiScaledWidth();
@@ -91,7 +91,7 @@ public class CoordinatesHUD extends LucentHUD {
 			pose.pushMatrix();
 			pose.translate(lx, ry + i * 10 * scale);
 			pose.scale(scale, scale);
-			graphics.drawString(mc.font, line, 0, 0, CoordinatesMod.TextColor, CoordinatesMod.TextShadow);
+			graphics.text(mc.font, line, 0, 0, CoordinatesMod.TextColor, CoordinatesMod.TextShadow);
 			pose.popMatrix();
 		}
 	}
@@ -140,10 +140,13 @@ public class CoordinatesHUD extends LucentHUD {
 	}
 
 	private String getChunkStats() {
-		if (mc.levelRenderer == null) return "0/0";
-		int rendered = mc.levelRenderer.countRenderedSections();
-		int total = (int) mc.levelRenderer.getTotalSections();
-		return String.format("%d/%d", rendered, total);
+		if (mc.levelExtractor == null) return "0/0";
+		String debug = mc.levelExtractor.sectionStatistics();
+		if (debug != null && debug.startsWith("C: ")) {
+			String[] parts = debug.substring(3).split(" ");
+			if (parts.length > 0) return parts[0];
+		}
+		return "0/0";
 	}
 
 	private String getShortDirection() {

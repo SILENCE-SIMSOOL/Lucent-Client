@@ -2,7 +2,7 @@ package silence.simsool.lucentclient.huds.impl;
 
 import static silence.simsool.lucent.Lucent.mc;
 
-import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
 import silence.simsool.lucent.general.enums.Align;
 import silence.simsool.lucent.general.enums.RenderType;
 import silence.simsool.lucent.general.models.abstracts.LucentHUD;
@@ -34,17 +34,17 @@ public class KeystrokesHUD extends LucentHUD {
 	}
 
 	@Override
-	public void draw(GuiGraphics guiGraphics) {
+	public void draw(GuiGraphicsExtractor guiGraphics) {
 		if (isEditHudOpen || UDisplay.isDebugScreen()) return;
 		render(guiGraphics, false);
 	}
 
 	@Override
-	public void preview(GuiGraphics guiGraphics) {
+	public void preview(GuiGraphicsExtractor guiGraphics) {
 		render(guiGraphics, true);
 	}
 
-	private void render(GuiGraphics guiGraphics, boolean preview) {
+	private void render(GuiGraphicsExtractor guiGraphics, boolean preview) {
 		if (!preview && mc.player == null) return;
 		
 		int sw = UDisplay.getGuiScaledWidth();
@@ -81,7 +81,7 @@ public class KeystrokesHUD extends LucentHUD {
 		drawKey(guiGraphics, "RMB", rx + mbw + gap, ry + (bw + gap) * 2, mbw, bw, rmb);
 	}
 
-	private void drawKey(GuiGraphics guiGraphics, String key, float x, float y, float w, float h, boolean pressed) {
+	private void drawKey(GuiGraphicsExtractor guiGraphics, String key, float x, float y, float w, float h, boolean pressed) {
 		int bg = pressed ? UIColors.withAlpha(UIColors.PURE_WHITE, 120) : UIColors.withAlpha(UIColors.PURE_BLACK, 100);
 		int fg = pressed ? UIColors.PURE_BLACK : UIColors.PURE_WHITE;
 

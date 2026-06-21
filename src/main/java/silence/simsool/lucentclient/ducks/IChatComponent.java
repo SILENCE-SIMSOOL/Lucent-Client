@@ -1,6 +1,6 @@
 package silence.simsool.lucentclient.ducks;
 
-import net.minecraft.client.GuiMessage;
+import net.minecraft.client.multiplayer.chat.GuiMessage;
 
 public interface IChatComponent {
 

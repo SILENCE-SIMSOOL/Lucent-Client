@@ -4,7 +4,7 @@ import static silence.simsool.lucent.Lucent.mc;
 
 import org.joml.Matrix3x2fStack;
 
-import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
 import silence.simsool.lucent.general.enums.Align;
 import silence.simsool.lucent.general.enums.RenderType;
 import silence.simsool.lucent.general.models.abstracts.LucentHUD;
@@ -71,17 +71,17 @@ public abstract class AbstractInfoHUD extends LucentHUD {
 	}
 
 	@Override
-	public void draw(GuiGraphics guiGraphics) {
+	public void draw(GuiGraphicsExtractor guiGraphics) {
 		if (isEditHudOpen || UDisplay.isDebugScreen()) return;
 		render(guiGraphics, false);
 	}
 
 	@Override
-	public void preview(GuiGraphics guiGraphics) {
+	public void preview(GuiGraphicsExtractor guiGraphics) {
 		render(guiGraphics, true);
 	}
 
-	private void render(GuiGraphics guiGraphics, boolean preview) {
+	private void render(GuiGraphicsExtractor guiGraphics, boolean preview) {
 		String text = getFormattedText(preview);
 		int sw = UDisplay.getGuiScaledWidth();
 		int sh = UDisplay.getGuiScaledHeight();
@@ -118,7 +118,7 @@ public abstract class AbstractInfoHUD extends LucentHUD {
 		pose.pushMatrix();
 		pose.translate(textX, textY);
 		pose.scale(scale, scale);
-		guiGraphics.drawString(mc.font, text, 0, 0, getTextColor(), isShowShadow());
+		guiGraphics.text(mc.font, text, 0, 0, getTextColor(), isShowShadow());
 		pose.popMatrix();
 	}
 

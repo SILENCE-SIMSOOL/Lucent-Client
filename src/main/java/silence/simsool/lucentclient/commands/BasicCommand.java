@@ -2,7 +2,7 @@ package silence.simsool.lucentclient.commands;
 
 import com.mojang.brigadier.CommandDispatcher;
 
-import net.fabricmc.fabric.api.client.command.v2.ClientCommandManager;
+import net.fabricmc.fabric.api.client.command.v2.ClientCommands;
 import net.fabricmc.fabric.api.client.command.v2.FabricClientCommandSource;
 import silence.simsool.lucent.general.utils.useful.UChat;
 import silence.simsool.lucentclient.LucentClient;
@@ -12,16 +12,16 @@ public class BasicCommand {
 
 	public static void register(CommandDispatcher<FabricClientCommandSource> dispatcher) {
 
-		dispatcher.register(ClientCommandManager.literal("lc")
-			.then(ClientCommandManager.literal("tps").executes(context -> displayTps()))
-			.then(ClientCommandManager.literal("ping").executes(context -> displayPing()))
+		dispatcher.register(ClientCommands.literal("lc")
+			.then(ClientCommands.literal("tps").executes(context -> displayTps()))
+			.then(ClientCommands.literal("ping").executes(context -> displayPing()))
 		);
 
-		dispatcher.register(ClientCommandManager.literal("tps")
+		dispatcher.register(ClientCommands.literal("tps")
 			.executes(context -> displayTps())
 		);
 
-		dispatcher.register(ClientCommandManager.literal("ping")
+		dispatcher.register(ClientCommands.literal("ping")
 			.executes(context -> displayPing())
 		);
 

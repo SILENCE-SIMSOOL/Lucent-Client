@@ -10,10 +10,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import com.mojang.blaze3d.platform.InputConstants;
 
 import net.minecraft.client.MouseHandler;
-import net.minecraft.client.gui.screens.ChatScreen;
-import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import silence.simsool.lucent.general.utils.useful.UDisplay;
-import silence.simsool.lucent.general.utils.useful.UScreen;
 import silence.simsool.lucentclient.mods.impl.utility.scrollabletooltips.ScrollableTooltipsMod;
 import silence.simsool.lucentclient.mods.impl.utility.scrollabletooltips.utils.ScrollTracker;
 
@@ -23,17 +20,17 @@ public class MixinMouse_ScrollableTooltips {
 	@Inject(method = "onScroll", at = @At("HEAD"), cancellable = true)
 	private void trackWheel(long window, double horizontal, double vertical, CallbackInfo info) {
 		if (ScrollableTooltipsMod.isEnabled() && !ScrollTracker.isLocked()) {
-			if (UScreen.getScreen() instanceof ChatScreen || UScreen.getScreen() instanceof AbstractContainerScreen) return;
+			if (ScrollableTooltipsMod.shouldExecute()) {
+				boolean isHorizontal = ScrollableTooltipsMod.horizontal.isKeyDown() || (ScrollableTooltipsMod.UseLShift && InputConstants.isKeyDown(UDisplay.getWindow(), GLFW.GLFW_KEY_LEFT_SHIFT));
 
-			boolean isHorizontal = ScrollableTooltipsMod.horizontal.isKeyDown() || (ScrollableTooltipsMod.UseLShift && InputConstants.isKeyDown(UDisplay.getWindow(), GLFW.GLFW_KEY_LEFT_SHIFT));
+				if (isHorizontal) scrollX(vertical);
+				else scrollY(vertical);
 
-			if (isHorizontal) scrollX(vertical);
-			else scrollY(vertical);
+				if (horizontal > 0) ScrollTracker.scrollLeft();
+				else if (horizontal < 0) ScrollTracker.scrollRight();
 
-			if (horizontal > 0) ScrollTracker.scrollLeft();
-			else if (horizontal < 0) ScrollTracker.scrollRight();
-
-			info.cancel();
+				info.cancel();
+			}
 		}
 	}
 

@@ -2,11 +2,15 @@ package silence.simsool.lucentclient.mods.impl.utility.scrollabletooltips;
 
 import org.lwjgl.glfw.GLFW;
 
+import net.minecraft.client.gui.screens.Screen;
+import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
+import net.minecraft.client.gui.screens.inventory.CreativeModeInventoryScreen;
 import silence.simsool.lucent.Lucent;
 import silence.simsool.lucent.general.enums.ConfigType;
 import silence.simsool.lucent.general.models.abstracts.Mod;
 import silence.simsool.lucent.general.models.data.KeyBind;
 import silence.simsool.lucent.general.models.interfaces.annotations.ModConfig;
+import silence.simsool.lucent.general.utils.useful.UScreen;
 import silence.simsool.lucentclient.utils.LucentClientUtils;
 
 @ModConfig.CategoryPriority(name = "General", priority = 1000)
@@ -113,5 +117,19 @@ public class ScrollableTooltipsMod extends Mod {
 		category = "Keybind"
 	)
 	public static KeyBind horizontal = KeyBind.ofKey(GLFW.GLFW_KEY_LEFT_SHIFT, 0);
+
+	public static boolean shouldExecute() {
+		Screen screen = UScreen.getScreen();
+
+		if (screen instanceof CreativeModeInventoryScreen) {
+			return false;
+		}
+
+		if (screen instanceof AbstractContainerScreen) {
+			return true;
+		}
+
+		return false;
+	}
 
 }

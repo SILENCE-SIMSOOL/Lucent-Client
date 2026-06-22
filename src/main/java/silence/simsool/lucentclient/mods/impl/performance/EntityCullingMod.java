@@ -48,6 +48,14 @@ public class EntityCullingMod extends Mod {
 
 	@ModConfig(
 		type = ConfigType.SWITCH,
+		name = "Cull Dropped Items",
+		description = "Enables culling for dropped item entities when they are not visible.",
+		category = "General"
+	)
+	public static boolean CullDroppedItems = true;
+
+	@ModConfig(
+		type = ConfigType.SWITCH,
 		name = "Show Debug Info",
 		description = "Displays the number of culled entities on the F3 debug screen.",
 		category = "Debug"

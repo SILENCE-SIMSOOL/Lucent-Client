@@ -91,6 +91,7 @@ task remapPluginJar(type: Jar) {
 	manifest.from jar.manifest
 	from({ zipTree(jar.archiveFile) }) {
 		exclude 'META-INF/MANIFEST.MF'
+		exclude 'META-INF/jars/**'
 	}
 }
 

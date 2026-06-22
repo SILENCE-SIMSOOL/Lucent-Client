@@ -12,6 +12,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.entity.item.FallingBlockEntity;
+import net.minecraft.world.entity.item.ItemEntity;
 import java.util.function.Predicate;
 import silence.simsool.lucentclient.mods.impl.graphics.DeathAnimationMod;
 import silence.simsool.lucentclient.mods.impl.graphics.HideFallingBlockMod;
@@ -49,9 +50,14 @@ public class EntityRendererHook {
 
 		if (EntityCullingMod.isEnabled()) {
  
-			boolean shouldCull = entity instanceof Player 
-				? (EntityCullingMod.CullPlayers && !LucentClientUtils.checkInDungeon())
-				: EntityCullingMod.CullEntities;
+			boolean shouldCull;
+			if (entity instanceof Player) {
+				shouldCull = EntityCullingMod.CullPlayers && !LucentClientUtils.checkInDungeon();
+			} else if (entity instanceof ItemEntity) {
+				shouldCull = EntityCullingMod.CullDroppedItems;
+			} else {
+				shouldCull = EntityCullingMod.CullEntities;
+			}
 
 			if (shouldCull) {
 				for (Predicate<Entity> filter : EntityCullingMod.IGNORE_FILTERS) {

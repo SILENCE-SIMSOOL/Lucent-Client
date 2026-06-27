@@ -377,7 +377,7 @@
 	"lucent.config.lucentclient.coordinatesmod.property.showccounter.name": "청크 기준 좌표(C) 표시",
 	"lucent.config.lucentclient.coordinatesmod.property.showccounter.description": "현재 청크 내에서의 상대적인 좌표(C 카운터)를 화면에 표시합니다.",
 	"lucent.chat.lucentclient.chattingmod.copied": "채팅이 복사되었습니다!",
-	"Vertical": "세로",
-	"Horizontal": "가로",
-	"Simple": "심플"
+	"lucent.config.lucentclient.coordinatesmod.property.listmode.vertical": "세로",
+	"lucent.config.lucentclient.coordinatesmod.property.listmode.horizontal": "가로",
+	"lucent.config.lucentclient.coordinatesmod.property.listmode.simple": "심플"
 }

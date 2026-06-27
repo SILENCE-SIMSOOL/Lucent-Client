@@ -1,5 +1,7 @@
 package silence.simsool.lucentclient.mods.impl.graphics;
 
+import silence.simsool.lucent.general.utils.LucentCategory;
+
 import static silence.simsool.lucent.Lucent.mc;
 
 import java.awt.Color;
@@ -21,8 +23,8 @@ public class BlockOverlayMod extends Mod {
 
 	public BlockOverlayMod() {
 		super(
-				"Block Overlay", "Customizes the block selection overlay.",
-				"Graphics",
+				"lucent.config.lucentclient.blockoverlaymod.general.name", "lucent.config.lucentclient.blockoverlaymod.general.description",
+				LucentCategory.GRAPHICS,
 				"",
 				LucentClientUtils.getModIcon("block_overlay")
 		);
@@ -34,8 +36,8 @@ public class BlockOverlayMod extends Mod {
 
 	@ModConfig(
 		type = ConfigType.SWITCH,
-		name = "Custom Fill",
-		description = "Enables custom fill rendering for selected blocks.",
+		name = "lucent.config.lucentclient.blockoverlaymod.property.customfill.name",
+		description = "lucent.config.lucentclient.blockoverlaymod.property.customfill.description",
 		category = "Fill",
 		priority = 1000
 	)
@@ -43,8 +45,8 @@ public class BlockOverlayMod extends Mod {
 
 	@ModConfig(
 		type = ConfigType.COLOR,
-		name = "Fill Color",
-		description = "Color of the block faces.",
+		name = "lucent.config.lucentclient.blockoverlaymod.property.fillcolor.name",
+		description = "lucent.config.lucentclient.blockoverlaymod.property.fillcolor.description",
 		category = "Fill",
 		parent = "CustomFill",
 		priority = 990
@@ -53,8 +55,8 @@ public class BlockOverlayMod extends Mod {
 
 	@ModConfig(
 		type = ConfigType.SWITCH,
-		name = "Custom Outline",
-		description = "Enables custom outline rendering for selected blocks.",
+		name = "lucent.config.lucentclient.blockoverlaymod.property.customoutline.name",
+		description = "lucent.config.lucentclient.blockoverlaymod.property.customoutline.description",
 		category = "Outline",
 		priority = 500
 	)
@@ -62,8 +64,8 @@ public class BlockOverlayMod extends Mod {
 
 	@ModConfig(
 		type = ConfigType.COLOR,
-		name = "Outline Color",
-		description = "Color of the block outline.",
+		name = "lucent.config.lucentclient.blockoverlaymod.property.outlinecolor.name",
+		description = "lucent.config.lucentclient.blockoverlaymod.property.outlinecolor.description",
 		category = "Outline",
 		parent = "CustomOutline",
 		priority = 490
@@ -72,8 +74,8 @@ public class BlockOverlayMod extends Mod {
 
 	@ModConfig(
 		type = ConfigType.SLIDER,
-		name = "Outline Thickness",
-		description = "Width of the block selection outline.",
+		name = "lucent.config.lucentclient.blockoverlaymod.property.outlinethickness.name",
+		description = "lucent.config.lucentclient.blockoverlaymod.property.outlinethickness.description",
 		category = "Outline",
 		parent = "CustomOutline",
 		min = 0.5,

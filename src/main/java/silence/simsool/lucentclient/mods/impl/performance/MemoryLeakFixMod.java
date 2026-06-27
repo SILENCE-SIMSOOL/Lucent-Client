@@ -1,5 +1,7 @@
 package silence.simsool.lucentclient.mods.impl.performance;
 
+import silence.simsool.lucent.general.utils.LucentCategory;
+
 import silence.simsool.lucent.Lucent;
 import silence.simsool.lucent.general.enums.ConfigType;
 import silence.simsool.lucent.general.models.abstracts.Mod;
@@ -10,8 +12,8 @@ public class MemoryLeakFixMod extends Mod {
 
 	public MemoryLeakFixMod() {
 		super(
-				"MemoryLeak Fix", "Fixes various memory leaks in the game to maintain long-term stability.",
-				"Performance",
+				"lucent.config.lucentclient.memoryleakfixmod.general.name", "lucent.config.lucentclient.memoryleakfixmod.general.description",
+				LucentCategory.PERFORMANCE,
 				"optimize",
 				LucentClientUtils.getModIcon("memoryleak_fix")
 		);
@@ -23,17 +25,15 @@ public class MemoryLeakFixMod extends Mod {
 
 	@ModConfig(
 		type = ConfigType.SWITCH,
-		name = "Static Biome Cache",
-		description = "Uses a static ThreadLocal for biome temperature caching to prevent memory leaks during world transitions.",
-		category = "General"
+		name = "lucent.config.lucentclient.memoryleakfixmod.property.staticbiomecache.name",
+		description = "lucent.config.lucentclient.memoryleakfixmod.property.staticbiomecache.description"
 	)
 	public static boolean StaticBiomeCache = true;
 
 	@ModConfig(
 		type = ConfigType.SWITCH,
-		name = "Target Entity Cleanup",
-		description = "Clears crosshair target data every tick to prevent entity references from being held in memory.",
-		category = "General"
+		name = "lucent.config.lucentclient.memoryleakfixmod.property.targetcleanup.name",
+		description = "lucent.config.lucentclient.memoryleakfixmod.property.targetcleanup.description"
 	)
 	public static boolean TargetCleanup = true;
 

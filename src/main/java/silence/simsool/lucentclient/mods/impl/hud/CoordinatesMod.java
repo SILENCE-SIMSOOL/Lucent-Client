@@ -1,5 +1,7 @@
 package silence.simsool.lucentclient.mods.impl.hud;
 
+import silence.simsool.lucent.general.utils.LucentCategory;
+
 import silence.simsool.lucent.Lucent;
 import silence.simsool.lucent.general.enums.ConfigType;
 import silence.simsool.lucent.general.models.abstracts.Mod;
@@ -13,8 +15,8 @@ public class CoordinatesMod extends Mod {
 
 	public CoordinatesMod() {
 		super(
-				"Coordinates", "Displays your current world coordinates and location info.",
-				"HUD",
+				"lucent.config.lucentclient.coordinatesmod.general.name", "lucent.config.lucentclient.coordinatesmod.general.description",
+				LucentCategory.HUB,
 				"location, biome",
 				LucentClientUtils.getModIcon("coordinates")
 		);
@@ -26,9 +28,8 @@ public class CoordinatesMod extends Mod {
 
 	@ModConfig(
 		type = ConfigType.SELECTOR, 
-		name = "List Mode", 
-		description = "Changes the display layout of the coordinates on the screen.",
-		category = "General",
+		name = "lucent.config.lucentclient.coordinatesmod.property.listmode.name", 
+		description = "lucent.config.lucentclient.coordinatesmod.property.listmode.description",
 		options = {"Vertical", "Horizontal", "Simple"}, 
 		priority = 1000
 	)
@@ -36,44 +37,40 @@ public class CoordinatesMod extends Mod {
 
 	@ModConfig(
 		type = ConfigType.SWITCH, 
-		name = "Text Shadow", 
-		description = "Adds a shadow effect to the coordinate text on the screen.",
-		category = "General",
+		name = "lucent.config.lucentclient.coordinatesmod.property.textshadow.name", 
+		description = "lucent.config.lucentclient.coordinatesmod.property.textshadow.description",
 		priority = 930
 	)
 	public static boolean TextShadow = true;
 
 	@ModConfig(
 		type = ConfigType.COLOR, 
-		name = "Text Color", 
-		description = "Sets the color of the coordinate text displayed on the screen.",
-		category = "General",
+		name = "lucent.config.lucentclient.coordinatesmod.property.textcolor.name", 
+		description = "lucent.config.lucentclient.coordinatesmod.property.textcolor.description",
 		priority = 920
 	)
 	public static int TextColor = 0xFFFFFFFF;
 
 	@ModConfig(
 		type = ConfigType.SWITCH, 
-		name = "Show Background", 
-		description = "Displays a background box behind the coordinate text on the screen.",
-		category = "General",
+		name = "lucent.config.lucentclient.coordinatesmod.property.showbackground.name", 
+		description = "lucent.config.lucentclient.coordinatesmod.property.showbackground.description",
 		priority = 910
 	)
 	public static boolean ShowBackground = false;
 
 	@ModConfig(
 		type = ConfigType.COLOR, 
-		name = "Background Color", 
-		description = "Sets the color of the background box displayed on the screen.",
-		category = "General",
+		name = "lucent.config.lucentclient.coordinatesmod.property.backgroundcolor.name", 
+		description = "lucent.config.lucentclient.coordinatesmod.property.backgroundcolor.description",
 		priority = 900
 	)
 	public static int BackgroundColor = 0x80000000;
 
 	@ModConfig(
 		type = ConfigType.SWITCH, 
-		name = "Show X", 
-		description = "Displays the X-axis coordinate on the screen.",
+		name = "lucent.config.lucentclient.coordinatesmod.property.showx.name", 
+		description = "lucent.config.lucentclient.coordinatesmod.property.showx.description",
 		category = "Coordinates",
 		priority = 990
 	)
@@ -81,8 +78,8 @@ public class CoordinatesMod extends Mod {
 
 	@ModConfig(
 		type = ConfigType.SWITCH, 
-		name = "Show Y", 
-		description = "Displays the Y-axis coordinate on the screen.",
+		name = "lucent.config.lucentclient.coordinatesmod.property.showy.name", 
+		description = "lucent.config.lucentclient.coordinatesmod.property.showy.description",
 		category = "Coordinates",
 		priority = 980
 	)
@@ -90,8 +87,8 @@ public class CoordinatesMod extends Mod {
 
 	@ModConfig(
 		type = ConfigType.SWITCH, 
-		name = "Show Z", 
-		description = "Displays the Z-axis coordinate on the screen.",
+		name = "lucent.config.lucentclient.coordinatesmod.property.showz.name", 
+		description = "lucent.config.lucentclient.coordinatesmod.property.showz.description",
 		category = "Coordinates",
 		priority = 970
 	)
@@ -99,8 +96,8 @@ public class CoordinatesMod extends Mod {
 
 	@ModConfig(
 		type = ConfigType.SWITCH, 
-		name = "Show C Counter", 
-		description = "Displays the chunk-relative coordinate (C counter) on the screen.",
+		name = "lucent.config.lucentclient.coordinatesmod.property.showccounter.name", 
+		description = "lucent.config.lucentclient.coordinatesmod.property.showccounter.description",
 		category = "Information",
 		priority = 960
 	)
@@ -108,8 +105,8 @@ public class CoordinatesMod extends Mod {
 
 	@ModConfig(
 		type = ConfigType.SWITCH, 
-		name = "Show Direction", 
-		description = "Displays the direction you are facing on the screen.",
+		name = "lucent.config.lucentclient.coordinatesmod.property.showdirection.name", 
+		description = "lucent.config.lucentclient.coordinatesmod.property.showdirection.description",
 		category = "Information",
 		priority = 950
 	)
@@ -117,8 +114,8 @@ public class CoordinatesMod extends Mod {
 
 	@ModConfig(
 		type = ConfigType.SWITCH, 
-		name = "Show Biome", 
-		description = "Displays the current biome name on the screen.",
+		name = "lucent.config.lucentclient.coordinatesmod.property.showbiome.name", 
+		description = "lucent.config.lucentclient.coordinatesmod.property.showbiome.description",
 		category = "Information",
 		priority = 940
 	)

@@ -1,5 +1,7 @@
 package silence.simsool.lucentclient.mods.impl.hud;
 
+import silence.simsool.lucent.general.utils.LucentCategory;
+
 import silence.simsool.lucent.Lucent;
 import silence.simsool.lucent.general.enums.ConfigType;
 import silence.simsool.lucent.general.models.abstracts.Mod;
@@ -10,8 +12,8 @@ public class PotionEffectsMod extends Mod {
 
 	public PotionEffectsMod() {
 		super(
-				"Potion Effects", "Customizable potion effect HUD.",
-				"HUD",
+				"lucent.config.lucentclient.potioneffectsmod.general.name", "lucent.config.lucentclient.potioneffectsmod.general.description",
+				LucentCategory.HUB,
 				"potion, effect, status",
 				LucentClientUtils.getModIcon("potion_effects")
 		);
@@ -23,18 +25,16 @@ public class PotionEffectsMod extends Mod {
 
 	@ModConfig(
 		type = ConfigType.SWITCH,
-		name = "Show Icons",
-		description = "Displays the icons of active potion effects on the screen.",
-		category = "General",
+		name = "lucent.config.lucentclient.potioneffectsmod.property.showicons.name",
+		description = "lucent.config.lucentclient.potioneffectsmod.property.showicons.description",
 		priority = 2
 	)
 	public static boolean ShowIcons = true;
 
 	@ModConfig(
 		type = ConfigType.SWITCH,
-		name = "Show Duration",
-		description = "Displays the remaining duration of potion effects on the screen.",
-		category = "General",
+		name = "lucent.config.lucentclient.potioneffectsmod.property.showduration.name",
+		description = "lucent.config.lucentclient.potioneffectsmod.property.showduration.description",
 		priority = 1
 	)
 	public static boolean ShowDuration = true;

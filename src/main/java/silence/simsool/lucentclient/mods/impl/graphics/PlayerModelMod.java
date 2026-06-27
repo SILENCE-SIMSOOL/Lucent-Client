@@ -1,5 +1,7 @@
 package silence.simsool.lucentclient.mods.impl.graphics;
 
+import silence.simsool.lucent.general.utils.LucentCategory;
+
 import silence.simsool.lucent.Lucent;
 import silence.simsool.lucent.general.enums.ConfigType;
 import silence.simsool.lucent.general.models.abstracts.Mod;
@@ -12,8 +14,8 @@ public class PlayerModelMod extends Mod {
 
 	public PlayerModelMod() {
 		super(
-				"Player Model", "Modify your player and armor model.",
-				"Graphics",
+				"lucent.config.lucentclient.playermodelmod.general.name", "lucent.config.lucentclient.playermodelmod.general.description",
+				LucentCategory.GRAPHICS,
 				"armor",
 				LucentClientUtils.getModIcon("player_model")
 		);
@@ -25,8 +27,8 @@ public class PlayerModelMod extends Mod {
 
 	@ModConfig(
 			type = ConfigType.SWITCH,
-			name = "Hide Armor",
-			description = "Prevents rendering of selectable armor pieces.",
+			name = "lucent.config.lucentclient.playermodelmod.property.hidearmor.name",
+			description = "lucent.config.lucentclient.playermodelmod.property.hidearmor.description",
 			category = "Armor Model",
 			priority = 1000
 	)
@@ -34,8 +36,8 @@ public class PlayerModelMod extends Mod {
 
 	@ModConfig(
 			type = ConfigType.SWITCH,
-			name = "Hide Armor Self",
-			description = "Hide the armor of yourself.",
+			name = "lucent.config.lucentclient.playermodelmod.property.hidearmorself.name",
+			description = "lucent.config.lucentclient.playermodelmod.property.hidearmorself.description",
 			category = "Armor Model",
 			parent = "HideArmor",
 			priority = 990
@@ -44,8 +46,8 @@ public class PlayerModelMod extends Mod {
 
 	@ModConfig(
 			type = ConfigType.SWITCH,
-			name = "Hide Armor Others",
-			description = "Hide the armor of others.",
+			name = "lucent.config.lucentclient.playermodelmod.property.hidearmorothers.name",
+			description = "lucent.config.lucentclient.playermodelmod.property.hidearmorothers.description",
 			category = "Armor Model",
 			parent = "HideArmor",
 			priority = 980
@@ -54,8 +56,8 @@ public class PlayerModelMod extends Mod {
 
 	@ModConfig(
 			type = ConfigType.SWITCH,
-			name = "Hide Armor Only Player",
-			description = "Only hide armor on players.",
+			name = "lucent.config.lucentclient.playermodelmod.property.hidearmoronlyplayer.name",
+			description = "lucent.config.lucentclient.playermodelmod.property.hidearmoronlyplayer.description",
 			category = "Armor Model",
 			parent = "HideArmor",
 			priority = 970
@@ -64,8 +66,8 @@ public class PlayerModelMod extends Mod {
 
 	@ModConfig(
 			type = ConfigType.SWITCH,
-			name = "Hide Self Helmet",
-			description = "Hide your helmet.",
+			name = "lucent.config.lucentclient.playermodelmod.property.hidearmorselfhelmet.name",
+			description = "lucent.config.lucentclient.playermodelmod.property.hidearmorselfhelmet.description",
 			category = "Armor Model",
 			parent = "HideArmorSelf",
 			priority = 960
@@ -74,8 +76,8 @@ public class PlayerModelMod extends Mod {
 
 	@ModConfig(
 			type = ConfigType.SWITCH,
-			name = "Hide Self Chestplate",
-			description = "Hide your chestplate.",
+			name = "lucent.config.lucentclient.playermodelmod.property.hidearmorselfchestplate.name",
+			description = "lucent.config.lucentclient.playermodelmod.property.hidearmorselfchestplate.description",
 			category = "Armor Model",
 			parent = "HideArmorSelf",
 			priority = 950
@@ -84,8 +86,8 @@ public class PlayerModelMod extends Mod {
 
 	@ModConfig(
 			type = ConfigType.SWITCH,
-			name = "Hide Self Leggings",
-			description = "Hide your leggings.",
+			name = "lucent.config.lucentclient.playermodelmod.property.hidearmorselfleggings.name",
+			description = "lucent.config.lucentclient.playermodelmod.property.hidearmorselfleggings.description",
 			category = "Armor Model",
 			parent = "HideArmorSelf",
 			priority = 940
@@ -94,8 +96,8 @@ public class PlayerModelMod extends Mod {
 
 	@ModConfig(
 			type = ConfigType.SWITCH,
-			name = "Hide Self Boots",
-			description = "Hide your boots.",
+			name = "lucent.config.lucentclient.playermodelmod.property.hidearmorselfboots.name",
+			description = "lucent.config.lucentclient.playermodelmod.property.hidearmorselfboots.description",
 			category = "Armor Model",
 			parent = "HideArmorSelf",
 			priority = 930
@@ -104,8 +106,8 @@ public class PlayerModelMod extends Mod {
 
 	@ModConfig(
 			type = ConfigType.SWITCH,
-			name = "Hide Self Skull",
-			description = "Hide your skull.",
+			name = "lucent.config.lucentclient.playermodelmod.property.hidearmorselfskull.name",
+			description = "lucent.config.lucentclient.playermodelmod.property.hidearmorselfskull.description",
 			category = "Armor Model",
 			parent = "HideArmorSelf",
 			priority = 920
@@ -114,8 +116,8 @@ public class PlayerModelMod extends Mod {
 
 	@ModConfig(
 			type = ConfigType.SWITCH,
-			name = "Hide Others Helmet",
-			description = "Hide other players' helmets.",
+			name = "lucent.config.lucentclient.playermodelmod.property.hidearmorothershelmet.name",
+			description = "lucent.config.lucentclient.playermodelmod.property.hidearmorothershelmet.description",
 			category = "Armor Model",
 			parent = "HideArmorOthers",
 			priority = 910
@@ -124,8 +126,8 @@ public class PlayerModelMod extends Mod {
 
 	@ModConfig(
 			type = ConfigType.SWITCH,
-			name = "Hide Others Chestplate",
-			description = "Hide other players' chestplates.",
+			name = "lucent.config.lucentclient.playermodelmod.property.hidearmorotherschestplate.name",
+			description = "lucent.config.lucentclient.playermodelmod.property.hidearmorotherschestplate.description",
 			category = "Armor Model",
 			parent = "HideArmorOthers",
 			priority = 900
@@ -134,8 +136,8 @@ public class PlayerModelMod extends Mod {
 
 	@ModConfig(
 			type = ConfigType.SWITCH,
-			name = "Hide Others Leggings",
-			description = "Hide other players' leggings.",
+			name = "lucent.config.lucentclient.playermodelmod.property.hidearmorothersleggings.name",
+			description = "lucent.config.lucentclient.playermodelmod.property.hidearmorothersleggings.description",
 			category = "Armor Model",
 			parent = "HideArmorOthers",
 			priority = 890
@@ -144,8 +146,8 @@ public class PlayerModelMod extends Mod {
 
 	@ModConfig(
 			type = ConfigType.SWITCH,
-			name = "Hide Others Boots",
-			description = "Hide other players' boots.",
+			name = "lucent.config.lucentclient.playermodelmod.property.hidearmorothersboots.name",
+			description = "lucent.config.lucentclient.playermodelmod.property.hidearmorothersboots.description",
 			category = "Armor Model",
 			parent = "HideArmorOthers",
 			priority = 880
@@ -154,8 +156,8 @@ public class PlayerModelMod extends Mod {
 
 	@ModConfig(
 			type = ConfigType.SWITCH,
-			name = "Hide Others Skull",
-			description = "Hide other players' skulls.",
+			name = "lucent.config.lucentclient.playermodelmod.property.hidearmorothersskull.name",
+			description = "lucent.config.lucentclient.playermodelmod.property.hidearmorothersskull.description",
 			category = "Armor Model",
 			parent = "HideArmorOthers",
 			priority = 870
@@ -164,8 +166,8 @@ public class PlayerModelMod extends Mod {
 
 	@ModConfig(
 			type = ConfigType.SLIDER,
-			name = "Player Scale",
-			description = "Changes player scale. default: 1",
+			name = "lucent.config.lucentclient.playermodelmod.property.playerscale.name",
+			description = "lucent.config.lucentclient.playermodelmod.property.playerscale.description",
 			category = "Player Model",
 			min = 0.0, max = 2.0, step = 0.1,
 			priority = 800

@@ -1,5 +1,7 @@
 package silence.simsool.lucentclient.mods.impl.graphics;
 
+import silence.simsool.lucent.general.utils.LucentCategory;
+
 import silence.simsool.lucent.Lucent;
 import silence.simsool.lucent.general.enums.ConfigType;
 import silence.simsool.lucent.general.models.abstracts.Mod;
@@ -10,8 +12,8 @@ public class DeathAnimationMod extends Mod {
 
 	public DeathAnimationMod() {
 		super(
-				"Death Animation", "Hides death animation of entities",
-				"Graphics",
+				"lucent.config.lucentclient.deathanimationmod.general.name", "lucent.config.lucentclient.deathanimationmod.general.description",
+				LucentCategory.GRAPHICS,
 				"entity, hide",
 				LucentClientUtils.getModIcon("death_animation")
 		);
@@ -23,17 +25,15 @@ public class DeathAnimationMod extends Mod {
 
 	@ModConfig(
 		type = ConfigType.SWITCH,
-		name = "Hide Entity",
-		description = "Hides death animation of entities.",
-		category = "General"
+		name = "lucent.config.lucentclient.deathanimationmod.property.hideentitydeathanimation.name",
+		description = "lucent.config.lucentclient.deathanimationmod.property.hideentitydeathanimation.description"
 	)
 	public static boolean HideEntityDeathAnimation = true;
 
 	@ModConfig(
 		type = ConfigType.SWITCH,
-		name = "Hide Armor Stands",
-		description = "Hides death animation of armor stands.",
-		category = "General"
+		name = "lucent.config.lucentclient.deathanimationmod.property.hidearmorstanddeathanimation.name",
+		description = "lucent.config.lucentclient.deathanimationmod.property.hidearmorstanddeathanimation.description"
 	)
 	public static boolean HideArmorStandDeathAnimation = true;
 

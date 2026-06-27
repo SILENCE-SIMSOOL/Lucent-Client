@@ -1,5 +1,7 @@
 package silence.simsool.lucentclient.mods.impl.hud;
 
+import silence.simsool.lucent.general.utils.LucentCategory;
+
 import static silence.simsool.lucent.Lucent.mc;
 
 import net.minecraft.client.multiplayer.ClientPacketListener;
@@ -18,8 +20,8 @@ public class PingMod extends Mod {
 
 	public PingMod() {
 		super(
-				"Ping", "Displays your latency to the server.",
-				"HUD",
+				"lucent.config.lucentclient.pingmod.general.name", "lucent.config.lucentclient.pingmod.general.description",
+				LucentCategory.HUB,
 				"latency",
 				LucentClientUtils.getModIcon("ping")
 		);
@@ -31,26 +33,24 @@ public class PingMod extends Mod {
 
 	@ModConfig(
 		type = ConfigType.SWITCH, 
-		name = "Show Brackets", 
-		description = "Encloses the ping value in brackets on the screen.",
-		category = "General",
+		name = "lucent.config.lucentclient.pingmod.property.showbrackets.name", 
+		description = "lucent.config.lucentclient.pingmod.property.showbrackets.description",
 		priority = 2
 	)
 	public static boolean ShowBrackets = true;
 
 	@ModConfig(
 		type = ConfigType.SWITCH, 
-		name = "Reverse Order", 
-		description = "Swaps the display order of the ping label and value on the screen.",
-		category = "General",
+		name = "lucent.config.lucentclient.pingmod.property.reverseorder.name", 
+		description = "lucent.config.lucentclient.pingmod.property.reverseorder.description",
 		priority = 1
 	)
 	public static boolean ReverseOrder = true;
 
 	@ModConfig(
 		type = ConfigType.SWITCH, 
-		name = "Text Shadow", 
-		description = "Adds a shadow effect to the ping text on the screen.",
+		name = "lucent.config.lucentclient.pingmod.property.textshadow.name", 
+		description = "lucent.config.lucentclient.pingmod.property.textshadow.description",
 		category = "Text Style",
 		priority = 2
 	)
@@ -58,8 +58,8 @@ public class PingMod extends Mod {
 
 	@ModConfig(
 		type = ConfigType.COLOR, 
-		name = "Text Color", 
-		description = "Sets the color of the ping text displayed on the screen.",
+		name = "lucent.config.lucentclient.pingmod.property.textcolor.name", 
+		description = "lucent.config.lucentclient.pingmod.property.textcolor.description",
 		category = "Text Style",
 		priority = 1
 	)
@@ -67,8 +67,8 @@ public class PingMod extends Mod {
 
 	@ModConfig(
 		type = ConfigType.SWITCH, 
-		name = "Show Background", 
-		description = "Displays a background box behind the ping text on the screen.",
+		name = "lucent.config.lucentclient.pingmod.property.showbackground.name", 
+		description = "lucent.config.lucentclient.pingmod.property.showbackground.description",
 		category = "Background",
 		priority = 2
 	)
@@ -76,8 +76,8 @@ public class PingMod extends Mod {
 
 	@ModConfig(
 		type = ConfigType.COLOR, 
-		name = "Background Color", 
-		description = "Sets the color of the background box displayed on the screen.",
+		name = "lucent.config.lucentclient.pingmod.property.backgroundcolor.name", 
+		description = "lucent.config.lucentclient.pingmod.property.backgroundcolor.description",
 		category = "Background",
 		priority = 1
 	)

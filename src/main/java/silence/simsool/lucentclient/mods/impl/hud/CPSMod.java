@@ -1,5 +1,7 @@
 package silence.simsool.lucentclient.mods.impl.hud;
 
+import silence.simsool.lucent.general.utils.LucentCategory;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,8 +19,8 @@ public class CPSMod extends Mod {
 
 	public CPSMod() {
 		super(
-				"CPS", "Displays your current clicks per second.",
-				"HUD",
+				"lucent.config.lucentclient.cpsmod.general.name", "lucent.config.lucentclient.cpsmod.general.description",
+				LucentCategory.HUB,
 				"click",
 				LucentClientUtils.getModIcon("cps")
 		);
@@ -30,26 +32,24 @@ public class CPSMod extends Mod {
 
 	@ModConfig(
 		type = ConfigType.SWITCH, 
-		name = "Show Brackets", 
-		description = "Encloses the CPS value in brackets on the screen.",
-		category = "General",
+		name = "lucent.config.lucentclient.cpsmod.property.showbrackets.name", 
+		description = "lucent.config.lucentclient.cpsmod.property.showbrackets.description",
 		priority = 2
 	)
 	public static boolean ShowBrackets = true;
 
 	@ModConfig(
 		type = ConfigType.SWITCH, 
-		name = "Reverse Order", 
-		description = "Swaps the display order of left and right clicks on the screen.",
-		category = "General",
+		name = "lucent.config.lucentclient.cpsmod.property.reverseorder.name", 
+		description = "lucent.config.lucentclient.cpsmod.property.reverseorder.description",
 		priority = 1
 	)
 	public static boolean ReverseOrder = true;
 
 	@ModConfig(
 		type = ConfigType.SWITCH, 
-		name = "Text Shadow", 
-		description = "Adds a shadow effect to the CPS text on the screen.",
+		name = "lucent.config.lucentclient.cpsmod.property.textshadow.name", 
+		description = "lucent.config.lucentclient.cpsmod.property.textshadow.description",
 		category = "Text Style",
 		priority = 2
 	)
@@ -57,8 +57,8 @@ public class CPSMod extends Mod {
 
 	@ModConfig(
 		type = ConfigType.COLOR, 
-		name = "Text Color", 
-		description = "Sets the color of the CPS text displayed on the screen.",
+		name = "lucent.config.lucentclient.cpsmod.property.textcolor.name", 
+		description = "lucent.config.lucentclient.cpsmod.property.textcolor.description",
 		category = "Text Style",
 		priority = 1
 	)
@@ -66,8 +66,8 @@ public class CPSMod extends Mod {
 
 	@ModConfig(
 		type = ConfigType.SWITCH, 
-		name = "Show Background", 
-		description = "Displays a background box behind the CPS text on the screen.",
+		name = "lucent.config.lucentclient.cpsmod.property.showbackground.name", 
+		description = "lucent.config.lucentclient.cpsmod.property.showbackground.description",
 		category = "Background",
 		priority = 2
 	)
@@ -75,8 +75,8 @@ public class CPSMod extends Mod {
 
 	@ModConfig(
 		type = ConfigType.COLOR, 
-		name = "Background Color", 
-		description = "Sets the color of the background box displayed on the screen.",
+		name = "lucent.config.lucentclient.cpsmod.property.backgroundcolor.name", 
+		description = "lucent.config.lucentclient.cpsmod.property.backgroundcolor.description",
 		category = "Background",
 		priority = 1
 	)

@@ -1,11 +1,15 @@
 package silence.simsool.lucentclient.mods.impl.utility;
 
+import silence.simsool.lucent.general.utils.LucentCategory;
+
 import static silence.simsool.lucent.Lucent.mc;
 
 import java.awt.Color;
 
 import org.lwjgl.glfw.GLFW;
 
+import net.minecraft.ChatFormatting;
+import net.minecraft.network.chat.Component;
 import net.minecraft.client.multiplayer.chat.GuiMessage;
 import silence.simsool.lucent.Lucent;
 import silence.simsool.lucent.general.enums.ConfigType;
@@ -21,8 +25,8 @@ public class ChattingMod extends Mod {
 
 	public ChattingMod() {
 		super(
-				"Chatting", "Enhances your chat experience with various features.",
-				"Utility",
+				"lucent.config.lucentclient.chattingmod.general.name", "lucent.config.lucentclient.chattingmod.general.description",
+				LucentCategory.UTILITY,
 				"",
 				"/assets/lucentclient/textures/modicons/chatting.png"
 		);
@@ -34,8 +38,8 @@ public class ChattingMod extends Mod {
 
 	@ModConfig(
 		type = ConfigType.SWITCH,
-		name = "Chat Background",
-		description = "Toggles the chat background visibility.",
+		name = "lucent.config.lucentclient.chattingmod.property.chatbackground.name",
+		description = "lucent.config.lucentclient.chattingmod.property.chatbackground.description",
 		category = "Appearance",
 		priority = 100
 	)
@@ -43,8 +47,8 @@ public class ChattingMod extends Mod {
 
 	@ModConfig(
 		type = ConfigType.COLOR,
-		name = "Background Color",
-		description = "Sets the color of the chat background.",
+		name = "lucent.config.lucentclient.chattingmod.property.backgroundcolor.name",
+		description = "lucent.config.lucentclient.chattingmod.property.backgroundcolor.description",
 		category = "Appearance",
 		priority = 90
 	)
@@ -52,26 +56,24 @@ public class ChattingMod extends Mod {
 
 	@ModConfig(
 		type = ConfigType.SWITCH,
-		name = "Chat Copy",
-		description = "Enables the ability to copy chat messages.",
-		category = "General",
+		name = "lucent.config.lucentclient.chattingmod.property.chatcopy.name",
+		description = "lucent.config.lucentclient.chattingmod.property.chatcopy.description",
 		priority = 80
 	)
 	public static boolean ChatCopy = true;
 
 	@ModConfig(
 		type = ConfigType.KEYBIND,
-		name = "Copy Keybind",
-		description = "Keybind to copy the chat message under the mouse cursor.",
-		category = "General",
+		name = "lucent.config.lucentclient.chattingmod.property.copykey.name",
+		description = "lucent.config.lucentclient.chattingmod.property.copykey.description",
 		priority = 70
 	)
 	public static KeyBind CopyKey = KeyBind.ofMouse(GLFW.GLFW_MOUSE_BUTTON_RIGHT, 0);
 
 	@ModConfig(
 		type = ConfigType.SWITCH,
-		name = "Chat Text Shadow",
-		description = "Toggles the shadow on chat text.",
+		name = "lucent.config.lucentclient.chattingmod.property.chattextshadow.name",
+		description = "lucent.config.lucentclient.chattingmod.property.chattextshadow.description",
 		category = "Appearance",
 		priority = 60
 	)
@@ -85,7 +87,7 @@ public class ChattingMod extends Mod {
 			if (msg != null) {
 				String plainText = UChat.cleanColor(msg.content().getString());
 				mc.keyboardHandler.setClipboard(plainText);
-				UChat.chat("§aChat has been copied!");
+				UChat.chat(Component.translatable("lucent.chat.lucentclient.chattingmod.copied").withStyle(ChatFormatting.GREEN));
 				return true;
 			}
 		}

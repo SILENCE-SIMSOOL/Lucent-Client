@@ -30,10 +30,10 @@ public class CoordinatesMod extends Mod {
 		type = ConfigType.SELECTOR, 
 		name = "lucent.config.lucentclient.coordinatesmod.property.listmode.name", 
 		description = "lucent.config.lucentclient.coordinatesmod.property.listmode.description",
-		options = {"Vertical", "Horizontal", "Simple"}, 
+		options = {"vertical", "horizontal", "simple"}, 
 		priority = 1000
 	)
-	public static String ListMode = "Vertical";
+	public static String ListMode = "vertical";
 
 	@ModConfig(
 		type = ConfigType.SWITCH, 

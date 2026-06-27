@@ -106,7 +106,7 @@ public class CoordinatesHUD extends LucentHUD {
 		
 		String mode = CoordinatesMod.ListMode;
 		
-		if (mode.equals("Vertical")) {
+		if (mode.equals("vertical")) {
 			if (CoordinatesMod.ShowX) lines.add(xStr);
 			if (CoordinatesMod.ShowY) lines.add(yStr);
 			if (CoordinatesMod.ShowZ) lines.add(zStr);
@@ -116,7 +116,7 @@ public class CoordinatesHUD extends LucentHUD {
 				String biome = getBiomeName();
 				if (biome != null) lines.add("Biome: " + biome);
 			}
-		} else if (mode.equals("Horizontal")) {
+		} else if (mode.equals("horizontal")) {
 			StringBuilder sb = new StringBuilder("(");
 			boolean first = true;
 			if (CoordinatesMod.ShowX) { sb.append(xStr); first = false; }
@@ -126,7 +126,7 @@ public class CoordinatesHUD extends LucentHUD {
 			if (CoordinatesMod.ShowDirection) { if (!first) sb.append(", "); sb.append(getShortDirection()); first = false; }
 			sb.append(")");
 			lines.add(sb.toString());
-		} else if (mode.equals("Simple")) {
+		} else if (mode.equals("simple")) {
 			lines.add("XYZ: " + pos.getX() + ", " + pos.getY() + ", " + pos.getZ());
 			if (CoordinatesMod.ShowCCounter) lines.add("C: " + getChunkStats());
 			if (CoordinatesMod.ShowDirection) lines.add("Direction: " + getShortDirection());

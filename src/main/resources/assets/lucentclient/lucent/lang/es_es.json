@@ -369,7 +369,7 @@
 	"lucent.config.lucentclient.coordinatesmod.property.showccounter.name": "Show C Counter",
 	"lucent.config.lucentclient.coordinatesmod.property.showccounter.description": "Displays the chunk-relative coordinate (C counter) on the screen.",
 	"lucent.chat.lucentclient.chattingmod.copied": "Chat has been copied!",
-	"Vertical": "Vertical",
-	"Horizontal": "Horizontal",
-	"Simple": "Simple"
+	"lucent.config.lucentclient.coordinatesmod.property.listmode.vertical": "Vertical",
+	"lucent.config.lucentclient.coordinatesmod.property.listmode.horizontal": "Horizontal",
+	"lucent.config.lucentclient.coordinatesmod.property.listmode.simple": "Simple"
 }

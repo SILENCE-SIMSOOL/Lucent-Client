@@ -1,5 +1,7 @@
 package silence.simsool.lucentclient.mods.impl.graphics;
 
+import silence.simsool.lucent.general.utils.LucentCategory;
+
 import silence.simsool.lucent.Lucent;
 import silence.simsool.lucent.general.enums.ConfigType;
 import silence.simsool.lucent.general.models.abstracts.Mod;
@@ -11,8 +13,8 @@ public class TimeChangerMod extends Mod {
 
 	public TimeChangerMod() {
 		super(
-				"Time Changer", "Allows you to set a fixed client-side time.",
-				"Graphics",
+				"lucent.config.lucentclient.timechangermod.general.name", "lucent.config.lucentclient.timechangermod.general.description",
+				LucentCategory.GRAPHICS,
 				"day, night",
 				LucentClientUtils.getModIcon("time_changer")
 		);
@@ -24,9 +26,8 @@ public class TimeChangerMod extends Mod {
 
 	@ModConfig(
 		type = ConfigType.SELECTOR,
-		name = "Time Selection",
-		description = "Select a preset time or use custom value.",
-		category = "General",
+		name = "lucent.config.lucentclient.timechangermod.property.timeselection.name",
+		description = "lucent.config.lucentclient.timechangermod.property.timeselection.description",
 		options = {"Off", "Day", "Noon", "Sunset", "Night", "Midnight", "Custom"},
 		priority = 1000
 	)
@@ -34,9 +35,8 @@ public class TimeChangerMod extends Mod {
 
 	@ModConfig(
 		type = ConfigType.SLIDER,
-		name = "Custom Time",
-		description = "Manual time value when 'Custom' is selected.",
-		category = "General",
+		name = "lucent.config.lucentclient.timechangermod.property.customtimevalue.name",
+		description = "lucent.config.lucentclient.timechangermod.property.customtimevalue.description",
 		parent = "timeSelection",
 		min = 0,
 		max = 24000,

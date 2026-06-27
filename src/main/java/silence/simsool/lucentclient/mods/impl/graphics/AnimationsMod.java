@@ -1,5 +1,7 @@
 package silence.simsool.lucentclient.mods.impl.graphics;
 
+import silence.simsool.lucent.general.utils.LucentCategory;
+
 import java.awt.Color;
 
 import silence.simsool.lucent.Lucent;
@@ -18,8 +20,8 @@ public class AnimationsMod extends Mod {
 
 	public AnimationsMod() {
 		super(
-				"Animations", "Changes the appearance of the first-person view model",
-				"Graphics",
+				"lucent.config.lucentclient.animationsmod.general.name", "lucent.config.lucentclient.animationsmod.general.description",
+				LucentCategory.GRAPHICS,
 				"equip, damage, hit, haste, camera, potion, particle, item, scale, swing, fire, shield",
 				LucentClientUtils.getModIcon("animations")
 		);
@@ -31,26 +33,24 @@ public class AnimationsMod extends Mod {
 
 	@ModConfig(
 		type = ConfigType.SWITCH,
-		name = "No Equip Reset",
-		description = "",
-		category = "General",
+		name = "lucent.config.lucentclient.animationsmod.property.noequipreset.name",
+		description = "lucent.config.lucentclient.animationsmod.property.noequipreset.description",
 		priority = 1000
 	)
 	public static boolean NoEquipReset = true;
 
 	@ModConfig(
 		type = ConfigType.SWITCH,
-		name = "Fix Slot Drop",
-		description = "",
-		category = "General",
+		name = "lucent.config.lucentclient.animationsmod.property.fixslotdrop.name",
+		description = "lucent.config.lucentclient.animationsmod.property.fixslotdrop.description",
 		priority = 990
 	)
 	public static boolean FixSlotDrop = true;
 
 	@ModConfig(
 		type = ConfigType.SWITCH,
-		name = "Custom Hit Color",
-		description = "Enable custom colors for damage and armor hurt. \n&c(Not yet)",
+		name = "lucent.config.lucentclient.animationsmod.property.customhitcolor.name",
+		description = "lucent.config.lucentclient.animationsmod.property.customhitcolor.description",
 		category = "Entity",
 		priority = 910
 	)
@@ -58,8 +58,8 @@ public class AnimationsMod extends Mod {
 
 	@ModConfig(
 		type = ConfigType.SWITCH,
-		name = "Armor Hit Color",
-		description = "",
+		name = "lucent.config.lucentclient.animationsmod.property.armorhitcolor.name",
+		description = "lucent.config.lucentclient.animationsmod.property.armorhitcolor.description",
 		category = "Entity",
 		parent = "CustomHitColor",
 		priority = 905
@@ -68,8 +68,8 @@ public class AnimationsMod extends Mod {
 
 	@ModConfig(
 		type = ConfigType.COLOR,
-		name = "Hit Color",
-		description = "Color of the entity when they take damage.",
+		name = "lucent.config.lucentclient.animationsmod.property.hitcolor.name",
+		description = "lucent.config.lucentclient.animationsmod.property.hitcolor.description",
 		category = "Entity",
 		parent = "CustomHitColor",
 		priority = 900
@@ -78,8 +78,8 @@ public class AnimationsMod extends Mod {
 
 	@ModConfig(
 		type = ConfigType.SLIDER,
-		name = "Swing Speed",
-		description = "Speed of the player's arm swing animation. Higher values are faster. (default: 12)",
+		name = "lucent.config.lucentclient.animationsmod.property.swingspeed.name",
+		description = "lucent.config.lucentclient.animationsmod.property.swingspeed.description",
 		category = "General",
 		min = 1,
 		max = 16,
@@ -90,18 +90,16 @@ public class AnimationsMod extends Mod {
 
 	@ModConfig(
 		type = ConfigType.SWITCH,
-		name = "Ignore Haste",
-		description = "Ignores the actual speed increase from Haste for the swing animation.",
-		category = "General",
+		name = "lucent.config.lucentclient.animationsmod.property.ignorehaste.name",
+		description = "lucent.config.lucentclient.animationsmod.property.ignorehaste.description",
 		priority = 985
 	)
 	public static boolean IgnoreHaste = true;
 
 	@ModConfig(
 		type = ConfigType.SWITCH,
-		name = "Disable Camera Potion Particles",
-		description = "Hides potion particles from your perspective.",
-		category = "General",
+		name = "lucent.config.lucentclient.animationsmod.property.disablecamerapotionparticles.name",
+		description = "lucent.config.lucentclient.animationsmod.property.disablecamerapotionparticles.description",
 		priority = 980
 	)
 	public static boolean DisableCameraPotionParticles = true;
@@ -117,8 +115,8 @@ public class AnimationsMod extends Mod {
 
 	@ModConfigExtra(
 		type = ConfigType.SLIDER,
-		name = "Item Scale",
-		description = "Scale factor for your held item.",
+		name = "lucent.config.lucentclient.animationsmod.property.itemscale.name",
+		description = "lucent.config.lucentclient.animationsmod.property.itemscale.description",
 		category = "Item",
 		min = 0.1, max = 2.0, step = 0.05,
 		align = Align.RIGHT,
@@ -128,8 +126,8 @@ public class AnimationsMod extends Mod {
 
 	@ModConfigExtra(
 		type = ConfigType.SLIDER,
-		name = "Item X",
-		description = "X offset for your held item.",
+		name = "lucent.config.lucentclient.animationsmod.property.helditemx.name",
+		description = "lucent.config.lucentclient.animationsmod.property.helditemx.description",
 		category = "Item",
 		min = -2.0, max = 2.0, step = 0.05,
 		align = Align.RIGHT,
@@ -139,8 +137,8 @@ public class AnimationsMod extends Mod {
 
 	@ModConfigExtra(
 		type = ConfigType.SLIDER,
-		name = "Item Y",
-		description = "Y offset for your held item.",
+		name = "lucent.config.lucentclient.animationsmod.property.helditemy.name",
+		description = "lucent.config.lucentclient.animationsmod.property.helditemy.description",
 		category = "Item",
 		min = -2.0, max = 2.0, step = 0.05,
 		align = Align.RIGHT,
@@ -150,8 +148,8 @@ public class AnimationsMod extends Mod {
 
 	@ModConfigExtra(
 		type = ConfigType.SLIDER,
-		name = "Item Z",
-		description = "Z offset for your held item.",
+		name = "lucent.config.lucentclient.animationsmod.property.helditemz.name",
+		description = "lucent.config.lucentclient.animationsmod.property.helditemz.description",
 		category = "Item",
 		min = -2.0, max = 2.0, step = 0.05,
 		align = Align.RIGHT,
@@ -161,8 +159,8 @@ public class AnimationsMod extends Mod {
 
 	@ModConfigExtra(
 		type = ConfigType.SLIDER,
-		name = "Item Yaw",
-		description = "Yaw rotation for your held item.",
+		name = "lucent.config.lucentclient.animationsmod.property.helditemyaw.name",
+		description = "lucent.config.lucentclient.animationsmod.property.helditemyaw.description",
 		category = "Item",
 		min = -180.0, max = 180.0, step = 1.0,
 		align = Align.RIGHT,
@@ -172,8 +170,8 @@ public class AnimationsMod extends Mod {
 
 	@ModConfigExtra(
 		type = ConfigType.SLIDER,
-		name = "Item Pitch",
-		description = "Pitch rotation for your held item.",
+		name = "lucent.config.lucentclient.animationsmod.property.helditempitch.name",
+		description = "lucent.config.lucentclient.animationsmod.property.helditempitch.description",
 		category = "Item",
 		min = -180.0, max = 180.0, step = 1.0,
 		align = Align.RIGHT,
@@ -183,8 +181,8 @@ public class AnimationsMod extends Mod {
 
 	@ModConfigExtra(
 		type = ConfigType.SLIDER,
-		name = "Item Roll",
-		description = "Roll rotation for your held item.",
+		name = "lucent.config.lucentclient.animationsmod.property.helditemroll.name",
+		description = "lucent.config.lucentclient.animationsmod.property.helditemroll.description",
 		category = "Item",
 		min = -180.0, max = 180.0, step = 1.0,
 		align = Align.RIGHT,
@@ -194,8 +192,8 @@ public class AnimationsMod extends Mod {
 
 	@ModConfig(
 		type = ConfigType.SWITCH,
-		name = "Fire Overlay",
-		description = "Toggle the visibility of the fire overlay on your screen.",
+		name = "lucent.config.lucentclient.animationsmod.property.fireoverlay.name",
+		description = "lucent.config.lucentclient.animationsmod.property.fireoverlay.description",
 		category = "Overlay",
 		priority = 700
 	)
@@ -203,8 +201,8 @@ public class AnimationsMod extends Mod {
 
 	@ModConfig(
 		type = ConfigType.SLIDER,
-		name = "Fire Height",
-		description = "Adjust the height offset of the fire overlay.",
+		name = "lucent.config.lucentclient.animationsmod.property.fireheight.name",
+		description = "lucent.config.lucentclient.animationsmod.property.fireheight.description",
 		category = "Overlay",
 		parent = "FireOverlay",
 		min = 0.0,
@@ -216,8 +214,8 @@ public class AnimationsMod extends Mod {
 
 	@ModConfig(
 		type = ConfigType.SLIDER,
-		name = "Shield Height",
-		description = "Y offset for your shield.",
+		name = "lucent.config.lucentclient.animationsmod.property.shieldheight.name",
+		description = "lucent.config.lucentclient.animationsmod.property.shieldheight.description",
 		category = "Shield",
 		min = -0.5,
 		max = 0.5,

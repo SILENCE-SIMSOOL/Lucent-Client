@@ -1,5 +1,7 @@
 package silence.simsool.lucentclient.mods.impl.utility;
 
+import silence.simsool.lucent.general.utils.LucentCategory;
+
 import static silence.simsool.lucent.Lucent.mc;
 
 import net.minecraft.world.entity.Entity;
@@ -19,8 +21,8 @@ public class TntTimerMod extends Mod {
 
 	public TntTimerMod() {
 		super(
-				"TNT Timer", "Shows the remaining time before TNT explodes.",
-				"Utility",
+				"lucent.config.lucentclient.tnttimermod.general.name", "lucent.config.lucentclient.tnttimermod.general.description",
+				LucentCategory.UTILITY,
 				"tnt, time, explode",
 				LucentClientUtils.getModIcon("tnt_timer")
 		);
@@ -32,8 +34,8 @@ public class TntTimerMod extends Mod {
 
 	@ModConfig(
 		type = ConfigType.SWITCH, 
-		name = "Show Background", 
-		description = "Displays a background box behind the TNT timer text.",
+		name = "lucent.config.lucentclient.tnttimermod.property.showbackground.name", 
+		description = "lucent.config.lucentclient.tnttimermod.property.showbackground.description",
 		category = "Background",
 		priority = 2
 	)
@@ -41,8 +43,8 @@ public class TntTimerMod extends Mod {
 
 	@ModConfig(
 		type = ConfigType.SWITCH, 
-		name = "Text Shadow", 
-		description = "Adds a shadow effect to the TNT timer text.",
+		name = "lucent.config.lucentclient.tnttimermod.property.textshadow.name", 
+		description = "lucent.config.lucentclient.tnttimermod.property.textshadow.description",
 		category = "Text Style",
 		priority = 1
 	)

@@ -1,5 +1,7 @@
 package silence.simsool.lucentclient.mods.impl.performance.network;
 
+import silence.simsool.lucent.general.utils.LucentCategory;
+
 import silence.simsool.lucent.Lucent;
 import silence.simsool.lucent.general.enums.ConfigType;
 import silence.simsool.lucent.general.models.abstracts.Mod;
@@ -10,8 +12,8 @@ public class NetworkFixMod extends Mod {
 
 	public NetworkFixMod() {
 		super(
-				"Network Fix", "Optimizes network settings to reduce lag and improve connection stability.",
-				"Performance",
+				"lucent.config.lucentclient.networkfixmod.general.name", "lucent.config.lucentclient.networkfixmod.general.description",
+				LucentCategory.PERFORMANCE,
 				"optimize, internet",
 				LucentClientUtils.getModIcon("network_fix")
 		);
@@ -23,8 +25,8 @@ public class NetworkFixMod extends Mod {
 
 	@ModConfig(
 		type = ConfigType.SWITCH,
-		name = "Immutable Passengers List",
-		description = "Uses ImmutableList for entity passengers to optimize memory and network synchronization.",
+		name = "lucent.config.lucentclient.networkfixmod.property.immutablepassengers.name",
+		description = "lucent.config.lucentclient.networkfixmod.property.immutablepassengers.description",
 		category = "Options",
 		priority = 1000
 	)
@@ -32,32 +34,32 @@ public class NetworkFixMod extends Mod {
 
 	@ModConfig(
 		type = ConfigType.SWITCH,
-		name = "Fast UTF-8 Encoding",
-		description = "Optimizes UTF-8 string encoding to improve network performance and reduce CPU usage.",
+		name = "lucent.config.lucentclient.networkfixmod.property.fastutf8encoding.name",
+		description = "lucent.config.lucentclient.networkfixmod.property.fastutf8encoding.description",
 		category = "Options"
 	)
 	public static boolean FastUtf8Encoding = true;
 
 	@ModConfig(
 		type = ConfigType.SWITCH,
-		name = "Fast VarInt Serialization",
-		description = "Optimizes VarInt writing and size calculation to speed up packet serialization.",
+		name = "lucent.config.lucentclient.networkfixmod.property.fastvarint.name",
+		description = "lucent.config.lucentclient.networkfixmod.property.fastvarint.description",
 		category = "Options"
 	)
 	public static boolean FastVarInt = true;
 
 	@ModConfig(
 		type = ConfigType.SWITCH,
-		name = "Legacy Query Fix",
-		description = "Prevents memory leaks by properly clearing buffers when legacy server queries are inactive.",
+		name = "lucent.config.lucentclient.networkfixmod.property.legacyqueryfix.name",
+		description = "lucent.config.lucentclient.networkfixmod.property.legacyqueryfix.description",
 		category = "Options"
 	)
 	public static boolean LegacyQueryFix = true;
 
 	@ModConfig(
 		type = ConfigType.SWITCH,
-		name = "Fast Frame Decoding",
-		description = "Highly optimizes the VarInt-based frame decoder to speed up incoming packet processing.",
+		name = "lucent.config.lucentclient.networkfixmod.property.fastframedecoding.name",
+		description = "lucent.config.lucentclient.networkfixmod.property.fastframedecoding.description",
 		category = "Options"
 	)
 	public static boolean FastFrameDecoding = true;

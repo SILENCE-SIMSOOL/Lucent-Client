@@ -1,5 +1,7 @@
 package silence.simsool.lucentclient.mods.impl.graphics;
 
+import silence.simsool.lucent.general.utils.LucentCategory;
+
 import silence.simsool.lucent.Lucent;
 import silence.simsool.lucent.general.enums.ConfigType;
 import silence.simsool.lucent.general.models.abstracts.Mod;
@@ -10,8 +12,8 @@ public class FullbrightMod extends Mod {
 
 	public FullbrightMod() {
 		super(
-				"Fullbright", "Makes everything fully bright.",
-				"Graphics",
+				"lucent.config.lucentclient.fullbrightmod.general.name", "lucent.config.lucentclient.fullbrightmod.general.description",
+				LucentCategory.GRAPHICS,
 				"light, gamma",
 				LucentClientUtils.getModIcon("fullbright")
 		);
@@ -23,9 +25,8 @@ public class FullbrightMod extends Mod {
 
 	@ModConfig(
 		type = ConfigType.SLIDER,
-		name = "Brightness Level",
-		description = "Sets the gamma level.",
-		category = "General",
+		name = "lucent.config.lucentclient.fullbrightmod.property.brightnesslevel.name",
+		description = "lucent.config.lucentclient.fullbrightmod.property.brightnesslevel.description",
 		min = 0.0, max = 15.0, step = 0.1
 	)
 	public static float BrightnessLevel = 15.0f;

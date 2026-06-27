@@ -1,5 +1,7 @@
 package silence.simsool.lucentclient.mods.impl.performance;
 
+import silence.simsool.lucent.general.utils.LucentCategory;
+
 import silence.simsool.lucent.Lucent;
 import silence.simsool.lucent.general.enums.ConfigType;
 import silence.simsool.lucent.general.models.abstracts.Mod;
@@ -11,7 +13,9 @@ import silence.simsool.lucentclient.utils.LucentClientUtils;
 public class HUDCullingMod extends Mod {
 
 	public HUDCullingMod() {
-		super("HUD Culling", "Lowers the maximum rendering frame rate for HUD elements to save performance.", "Performance", "culling, hud, performance", LucentClientUtils.getModIcon("entity_culling"));
+		super(
+				"lucent.config.lucentclient.hudcullingmod.general.name", "lucent.config.lucentclient.hudcullingmod.general.description",
+				LucentCategory.PERFORMANCE, "culling, hud, performance", LucentClientUtils.getModIcon("entity_culling"));
 	}
 
 	public static boolean isEnabled() {
@@ -20,9 +24,8 @@ public class HUDCullingMod extends Mod {
 
 	@ModConfig(
 		type = ConfigType.SLIDER,
-		name = "Max Render FPS",
-		description = "The target maximum FPS for rendering HUD elements.",
-		category = "General",
+		name = "lucent.config.lucentclient.hudcullingmod.property.maxrenderfps.name",
+		description = "lucent.config.lucentclient.hudcullingmod.property.maxrenderfps.description",
 		min = 5,
 		max = 144,
 		step = 1,
@@ -32,8 +35,8 @@ public class HUDCullingMod extends Mod {
 
 	@ModConfig(
 		type = ConfigType.SWITCH,
-		name = "Cull Overlays",
-		description = "Cull Pumpkin, freezing, spyglass, portal (except Vignette).",
+		name = "lucent.config.lucentclient.hudcullingmod.property.culloverlays.name",
+		description = "lucent.config.lucentclient.hudcullingmod.property.culloverlays.description",
 		category = "Targets",
 		priority = 980
 	)
@@ -41,8 +44,8 @@ public class HUDCullingMod extends Mod {
 
 	@ModConfig(
 		type = ConfigType.SWITCH,
-		name = "Cull Hotbar",
-		description = "Cull the hotbar.",
+		name = "lucent.config.lucentclient.hudcullingmod.property.cullhotbar.name",
+		description = "lucent.config.lucentclient.hudcullingmod.property.cullhotbar.description",
 		category = "Targets",
 		priority = 970
 	)
@@ -50,8 +53,8 @@ public class HUDCullingMod extends Mod {
 
 	@ModConfig(
 		type = ConfigType.SWITCH,
-		name = "Cull Crosshair",
-		description = "Cull the crosshair.",
+		name = "lucent.config.lucentclient.hudcullingmod.property.cullcrosshair.name",
+		description = "lucent.config.lucentclient.hudcullingmod.property.cullcrosshair.description",
 		category = "Targets",
 		priority = 960
 	)
@@ -59,8 +62,8 @@ public class HUDCullingMod extends Mod {
 
 	@ModConfig(
 		type = ConfigType.SWITCH,
-		name = "Cull Bossbars",
-		description = "Cull bossbars.",
+		name = "lucent.config.lucentclient.hudcullingmod.property.cullbossbars.name",
+		description = "lucent.config.lucentclient.hudcullingmod.property.cullbossbars.description",
 		category = "Targets",
 		priority = 950
 	)
@@ -68,8 +71,8 @@ public class HUDCullingMod extends Mod {
 
 	@ModConfig(
 		type = ConfigType.SWITCH,
-		name = "Cull Debug Screen",
-		description = "Cull the F3 debug screen.",
+		name = "lucent.config.lucentclient.hudcullingmod.property.culldebugscreen.name",
+		description = "lucent.config.lucentclient.hudcullingmod.property.culldebugscreen.description",
 		category = "Targets",
 		priority = 940
 	)
@@ -77,8 +80,8 @@ public class HUDCullingMod extends Mod {
 
 	@ModConfig(
 		type = ConfigType.SWITCH,
-		name = "Cull Titles",
-		description = "Cull titles.",
+		name = "lucent.config.lucentclient.hudcullingmod.property.culltitles.name",
+		description = "lucent.config.lucentclient.hudcullingmod.property.culltitles.description",
 		category = "Targets",
 		priority = 930
 	)
@@ -86,8 +89,8 @@ public class HUDCullingMod extends Mod {
 
 	@ModConfig(
 		type = ConfigType.SWITCH,
-		name = "Cull Scoreboard",
-		description = "Cull the scoreboard.",
+		name = "lucent.config.lucentclient.hudcullingmod.property.cullscoreboard.name",
+		description = "lucent.config.lucentclient.hudcullingmod.property.cullscoreboard.description",
 		category = "Targets",
 		priority = 920
 	)
@@ -95,8 +98,8 @@ public class HUDCullingMod extends Mod {
 
 	@ModConfig(
 		type = ConfigType.SWITCH,
-		name = "Cull Chat",
-		description = "Cull the chat.",
+		name = "lucent.config.lucentclient.hudcullingmod.property.cullchat.name",
+		description = "lucent.config.lucentclient.hudcullingmod.property.cullchat.description",
 		category = "Targets",
 		priority = 910
 	)

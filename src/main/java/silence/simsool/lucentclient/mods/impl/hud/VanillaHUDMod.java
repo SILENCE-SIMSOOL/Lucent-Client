@@ -1,5 +1,7 @@
 package silence.simsool.lucentclient.mods.impl.hud;
 
+import silence.simsool.lucent.general.utils.LucentCategory;
+
 import java.awt.Color;
 
 import silence.simsool.lucent.Lucent;
@@ -16,8 +18,8 @@ public class VanillaHUDMod extends Mod {
 
 	public VanillaHUDMod() {
 		super(
-				"Vanilla HUD", "Configure default Minecraft HUD elements.",
-				"HUD",
+				"lucent.config.lucentclient.vanillahudmod.general.name", "lucent.config.lucentclient.vanillahudmod.general.description",
+				LucentCategory.HUB,
 				"bar, health, hunger, armor, boss, scoreboard, indicator",
 				LucentClientUtils.getModIcon("vanillahud")
 		);
@@ -29,8 +31,8 @@ public class VanillaHUDMod extends Mod {
 
 	@ModConfig(
 		type = ConfigType.SWITCH,
-		name = "Health Bar",
-		description = "Toggle the visibility of your health bar.",
+		name = "lucent.config.lucentclient.vanillahudmod.property.healthbar.name",
+		description = "lucent.config.lucentclient.vanillahudmod.property.healthbar.description",
 		category = "Bars",
 		priority = 1000
 	)
@@ -38,8 +40,8 @@ public class VanillaHUDMod extends Mod {
 
 	@ModConfig(
 		type = ConfigType.SWITCH,
-		name = "Hunger Bar",
-		description = "Toggle the visibility of your hunger bar.",
+		name = "lucent.config.lucentclient.vanillahudmod.property.hungerbar.name",
+		description = "lucent.config.lucentclient.vanillahudmod.property.hungerbar.description",
 		category = "Bars",
 		priority = 990
 	)
@@ -47,8 +49,8 @@ public class VanillaHUDMod extends Mod {
 
 	@ModConfig(
 		type = ConfigType.SWITCH,
-		name = "Armor Bar",
-		description = "Toggle the visibility of your armor bar.",
+		name = "lucent.config.lucentclient.vanillahudmod.property.armorbar.name",
+		description = "lucent.config.lucentclient.vanillahudmod.property.armorbar.description",
 		category = "Bars",
 		priority = 980
 	)
@@ -56,8 +58,8 @@ public class VanillaHUDMod extends Mod {
 
 	@ModConfig(
 		type = ConfigType.SWITCH,
-		name = "Boss Bar",
-		description = "Toggle the visibility of the boss health bars.",
+		name = "lucent.config.lucentclient.vanillahudmod.property.bossbar.name",
+		description = "lucent.config.lucentclient.vanillahudmod.property.bossbar.description",
 		category = "Bars",
 		priority = 970
 	)
@@ -65,8 +67,8 @@ public class VanillaHUDMod extends Mod {
 
 	@ModConfig(
 		type = ConfigType.SWITCH,
-		name = "Boss Bar Shadow",
-		description = "Toggle text shadow for the boss health bar names.",
+		name = "lucent.config.lucentclient.vanillahudmod.property.bossbarshadow.name",
+		description = "lucent.config.lucentclient.vanillahudmod.property.bossbarshadow.description",
 		category = "Bars",
 		parent = "bossBar",
 		priority = 960
@@ -75,8 +77,8 @@ public class VanillaHUDMod extends Mod {
 
 	@ModConfig(
 		type = ConfigType.SWITCH,
-		name = "Scoreboard",
-		description = "Toggle the visibility of the sidebar scoreboard.",
+		name = "lucent.config.lucentclient.vanillahudmod.property.scoreboard.name",
+		description = "lucent.config.lucentclient.vanillahudmod.property.scoreboard.description",
 		category = "Scoreboard",
 		priority = 800
 	)
@@ -84,8 +86,8 @@ public class VanillaHUDMod extends Mod {
 
 	@ModConfig(
 		type = ConfigType.SWITCH,
-		name = "Scoreboard Shadow",
-		description = "Toggle text shadow for the scoreboard entries.",
+		name = "lucent.config.lucentclient.vanillahudmod.property.scoreboardshadow.name",
+		description = "lucent.config.lucentclient.vanillahudmod.property.scoreboardshadow.description",
 		category = "Scoreboard",
 		parent = "scoreboard",
 		priority = 795
@@ -94,8 +96,8 @@ public class VanillaHUDMod extends Mod {
 
 	@ModConfig(
 		type = ConfigType.COLOR,
-		name = "Title BG Color",
-		description = "Background color for the scoreboard title.",
+		name = "lucent.config.lucentclient.vanillahudmod.property.scoreboardtitlecolor.name",
+		description = "lucent.config.lucentclient.vanillahudmod.property.scoreboardtitlecolor.description",
 		category = "Scoreboard",
 		parent = "scoreboard",
 		priority = 790
@@ -104,8 +106,8 @@ public class VanillaHUDMod extends Mod {
 
 	@ModConfig(
 		type = ConfigType.COLOR,
-		name = "Content BG Color",
-		description = "Background color for the scoreboard entries.",
+		name = "lucent.config.lucentclient.vanillahudmod.property.scoreboardcontentcolor.name",
+		description = "lucent.config.lucentclient.vanillahudmod.property.scoreboardcontentcolor.description",
 		category = "Scoreboard",
 		parent = "scoreboard",
 		priority = 785
@@ -114,8 +116,8 @@ public class VanillaHUDMod extends Mod {
 
 	@ModConfig(
 		type = ConfigType.SWITCH,
-		name = "Block Breaking",
-		description = "Toggle attack indicator for block breaking.",
+		name = "lucent.config.lucentclient.vanillahudmod.property.indicatorblockbreaking.name",
+		description = "lucent.config.lucentclient.vanillahudmod.property.indicatorblockbreaking.description",
 		category = "Attack Indicator",
 		priority = 700
 	)
@@ -123,8 +125,8 @@ public class VanillaHUDMod extends Mod {
 
 	@ModConfig(
 		type = ConfigType.SWITCH,
-		name = "Ranged Weapon Draw",
-		description = "Toggle attack indicator for bow/crossbow charging.",
+		name = "lucent.config.lucentclient.vanillahudmod.property.indicatorrangeddraw.name",
+		description = "lucent.config.lucentclient.vanillahudmod.property.indicatorrangeddraw.description",
 		category = "Attack Indicator",
 		priority = 690
 	)
@@ -132,8 +134,8 @@ public class VanillaHUDMod extends Mod {
 
 	@ModConfig(
 		type = ConfigType.SWITCH,
-		name = "Eating & Drinking",
-		description = "Toggle attack indicator when eating or drinking.",
+		name = "lucent.config.lucentclient.vanillahudmod.property.indicatoreatingdrinking.name",
+		description = "lucent.config.lucentclient.vanillahudmod.property.indicatoreatingdrinking.description",
 		category = "Attack Indicator",
 		priority = 680
 	)
@@ -141,8 +143,8 @@ public class VanillaHUDMod extends Mod {
 
 	@ModConfig(
 		type = ConfigType.SWITCH,
-		name = "Item Cooldowns",
-		description = "Toggle attack indicator for item cooldowns (like ender pearls).",
+		name = "lucent.config.lucentclient.vanillahudmod.property.indicatoritemcooldowns.name",
+		description = "lucent.config.lucentclient.vanillahudmod.property.indicatoritemcooldowns.description",
 		category = "Attack Indicator",
 		priority = 670
 	)

@@ -1,5 +1,7 @@
 package silence.simsool.lucentclient.mods.impl.utility;
 
+import silence.simsool.lucent.general.utils.LucentCategory;
+
 import org.lwjgl.glfw.GLFW;
 
 import net.minecraft.util.Mth;
@@ -15,8 +17,8 @@ public class ZoomMod extends Mod {
 
 	public ZoomMod() {
 		super(
-				"Zoom", "Allows you to zoom in using a keybind.",
-				"Utility",
+				"lucent.config.lucentclient.zoommod.general.name", "lucent.config.lucentclient.zoommod.general.description",
+				LucentCategory.UTILITY,
 				"",
 				LucentClientUtils.getModIcon("zoom")
 		);
@@ -28,25 +30,23 @@ public class ZoomMod extends Mod {
 
 	@ModConfig(
 		type = ConfigType.SWITCH,
-		name = "Smooth Zoom",
-		description = "Whether to smoothly animate the zoom transition.",
-		category = "General"
+		name = "lucent.config.lucentclient.zoommod.property.smoothzoom.name",
+		description = "lucent.config.lucentclient.zoommod.property.smoothzoom.description"
 	)
 	public static boolean SmoothZoom = true;
 
 	@ModConfig(
 		type = ConfigType.SLIDER,
-		name = "Zoom Factor",
-		description = "How much to zoom in when the key is pressed.",
-		category = "General",
+		name = "lucent.config.lucentclient.zoommod.property.zoomfactor.name",
+		description = "lucent.config.lucentclient.zoommod.property.zoomfactor.description",
 		min = 1.0, max = 10.0, step = 0.5
 	)
 	public static float ZoomFactor = 4.0f;
 
 	@ModConfig(
 		type = ConfigType.KEYBIND,
-		name = "Zoom Key",
-		description = "Key used to zoom in.",
+		name = "lucent.config.lucentclient.zoommod.property.zoomkey.name",
+		description = "lucent.config.lucentclient.zoommod.property.zoomkey.description",
 		category = "Keybind"
 	)
 	public static KeyBind ZoomKey = KeyBind.ofKey(GLFW.GLFW_KEY_C, 0);

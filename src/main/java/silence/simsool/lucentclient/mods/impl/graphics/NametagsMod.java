@@ -1,5 +1,7 @@
 package silence.simsool.lucentclient.mods.impl.graphics;
 
+import silence.simsool.lucent.general.utils.LucentCategory;
+
 import java.awt.Color;
 
 import silence.simsool.lucent.general.enums.ConfigType;
@@ -13,8 +15,8 @@ public class NametagsMod extends Mod {
 
 	public NametagsMod() {
 		super(
-				"Nametags", "Customizes player nametags.",
-				"Graphics",
+				"lucent.config.lucentclient.nametagsmod.general.name", "lucent.config.lucentclient.nametagsmod.general.description",
+				LucentCategory.GRAPHICS,
 				"",
 				LucentClientUtils.getModIcon("nametags")
 		);
@@ -22,18 +24,16 @@ public class NametagsMod extends Mod {
 
 	@ModConfig(
 		type = ConfigType.SWITCH,
-		name = "Custom Nametags",
-		description = "Enable custom nametags rendering.",
-		category = "General",
+		name = "lucent.config.lucentclient.nametagsmod.property.customnametags.name",
+		description = "lucent.config.lucentclient.nametagsmod.property.customnametags.description",
 		priority = 1000
 	)
 	public static boolean CustomNametags = true;
 
 	@ModConfig(
 		type = ConfigType.SWITCH,
-		name = "Text Shadow",
-		description = "Renders shadow under the nametag text.",
-		category = "General",
+		name = "lucent.config.lucentclient.nametagsmod.property.textshadow.name",
+		description = "lucent.config.lucentclient.nametagsmod.property.textshadow.description",
 		parent = "CustomNametags",
 		priority = 990
 	)
@@ -41,8 +41,8 @@ public class NametagsMod extends Mod {
 
 	@ModConfig(
 		type = ConfigType.SWITCH,
-		name = "Show Background",
-		description = "Whether to draw a background behind the nametag.",
+		name = "lucent.config.lucentclient.nametagsmod.property.showbackground.name",
+		description = "lucent.config.lucentclient.nametagsmod.property.showbackground.description",
 		category = "Background",
 		parent = "CustomNametags",
 		priority = 900
@@ -51,8 +51,8 @@ public class NametagsMod extends Mod {
 
 	@ModConfig(
 		type = ConfigType.COLOR,
-		name = "Background Color",
-		description = "The color of the nametag background.",
+		name = "lucent.config.lucentclient.nametagsmod.property.backgroundcolor.name",
+		description = "lucent.config.lucentclient.nametagsmod.property.backgroundcolor.description",
 		category = "Background",
 		parent = "ShowBackground",
 		priority = 890

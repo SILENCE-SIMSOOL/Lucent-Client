@@ -1,5 +1,7 @@
 package silence.simsool.lucentclient.mods.impl.hud;
 
+import silence.simsool.lucent.general.utils.LucentCategory;
+
 import silence.simsool.lucent.Lucent;
 import silence.simsool.lucent.general.enums.ConfigType;
 import silence.simsool.lucent.general.models.abstracts.Mod;
@@ -10,8 +12,8 @@ public class KeystrokesMod extends Mod {
 
 	public KeystrokesMod() {
 		super(
-				"Keystrokes", "Shows your keyboard and mouse clicks.",
-				"HUD",
+				"lucent.config.lucentclient.keystrokesmod.general.name", "lucent.config.lucentclient.keystrokesmod.general.description",
+				LucentCategory.HUB,
 				"mouse, click",
 				LucentClientUtils.getModIcon("keystrokes")
 		);
@@ -23,18 +25,16 @@ public class KeystrokesMod extends Mod {
 
 	@ModConfig(
 		type = ConfigType.SWITCH,
-		name = "Show Mouse Buttons",
-		description = "Displays left and right mouse clicks on the screen.",
-		category = "General",
+		name = "lucent.config.lucentclient.keystrokesmod.property.showmousebuttons.name",
+		description = "lucent.config.lucentclient.keystrokesmod.property.showmousebuttons.description",
 		priority = 2
 	)
 	public static boolean ShowMouseButtons = true;
 
 	@ModConfig(
 		type = ConfigType.SWITCH,
-		name = "Show Spacebar",
-		description = "Displays spacebar clicks on the screen.",
-		category = "General",
+		name = "lucent.config.lucentclient.keystrokesmod.property.showspacebar.name",
+		description = "lucent.config.lucentclient.keystrokesmod.property.showspacebar.description",
 		priority = 1
 	)
 	public static boolean ShowSpacebar = false;

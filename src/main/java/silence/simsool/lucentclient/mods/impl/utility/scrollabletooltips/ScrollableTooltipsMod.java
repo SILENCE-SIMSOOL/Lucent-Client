@@ -1,5 +1,7 @@
 package silence.simsool.lucentclient.mods.impl.utility.scrollabletooltips;
 
+import silence.simsool.lucent.general.utils.LucentCategory;
+
 import org.lwjgl.glfw.GLFW;
 
 import net.minecraft.client.gui.screens.Screen;
@@ -20,7 +22,12 @@ import silence.simsool.lucentclient.utils.LucentClientUtils;
 public class ScrollableTooltipsMod extends Mod {
 
 	public ScrollableTooltipsMod() {
-		super("Scrollable Tooltips", "Allows you to scroll long item tooltips.", "Utility", "scroll, tooltip, item", LucentClientUtils.getModIcon("scrollable_tooltips"));
+		super(
+				"lucent.config.lucentclient.scrollabletooltipsmod.general.name", "lucent.config.lucentclient.scrollabletooltipsmod.general.description",
+				LucentCategory.UTILITY,
+				"scroll, tooltip, item",
+				LucentClientUtils.getModIcon("scrollable_tooltips")
+		);
 	}
 
 	public static boolean isEnabled() {
@@ -29,49 +36,47 @@ public class ScrollableTooltipsMod extends Mod {
 
 	@ModConfig(
 		type = ConfigType.SWITCH,
-		name = "Enable WASD Scrolling",
-		description = "Allows moving the tooltip using the W, A, S, and D keys.",
-		category = "General"
+		name = "lucent.config.lucentclient.scrollabletooltipsmod.property.usewasd.name",
+		description = "lucent.config.lucentclient.scrollabletooltipsmod.property.usewasd.description"
 	)
 	public static boolean UseWASD = false;
 
 	@ModConfig(
 		type = ConfigType.SWITCH,
-		name = "Use Left Shift for Horizontal Scroll",
-		description = "Hold the Left Shift key to switch the mouse wheel scroll direction to horizontal.",
-		category = "General"
+		name = "lucent.config.lucentclient.scrollabletooltipsmod.property.uselshift.name",
+		description = "lucent.config.lucentclient.scrollabletooltipsmod.property.uselshift.description"
 	)
 	public static boolean UseLShift = true;
 
 	@ModConfig(
 		type = ConfigType.SWITCH,
-		name = "Reset Position on Unlock",
-		description = "Automatically resets the tooltip's scroll position when it is no longer being actively updated.",
-		category = "General"
+		name = "lucent.config.lucentclient.scrollabletooltipsmod.property.resetonunlock.name",
+		description = "lucent.config.lucentclient.scrollabletooltipsmod.property.resetonunlock.description"
 	)
 	public static boolean ResetOnUnlock = true;
 
 	@ModConfig(
 		type = ConfigType.SWITCH,
-		name = "Matrix Transformation Mode",
-		description = "Uses matrix transforms for tooltip movement. Better compatibility, but may cause rare artifacts.",
-		category = "Matrix"
+		name = "lucent.config.lucentclient.scrollabletooltipsmod.property.matrixmode.name",
+		description = "lucent.config.lucentclient.scrollabletooltipsmod.property.matrixmode.description",
+		category = "Matrix",
+		priority = 1000
 	)
 	public static boolean MatrixMode = true;
 
 	@ModConfig(
 		type = ConfigType.SWITCH,
-		name = "Auto-Adjust to Top",
-		description = "Prevents tooltips from being cut off by automatically shifting them downward if they are too close to the top edge. (Only works when Matrix Mode is disabled)",
+		name = "lucent.config.lucentclient.scrollabletooltipsmod.property.startontop.name",
+		description = "lucent.config.lucentclient.scrollabletooltipsmod.property.startontop.description",
 		category = "Matrix",
-		parent = "Enable Matrix Transformation Mode"
+		parent = "!MatrixMode"
 	)
 	public static boolean StartOnTop = true;
 
 	@ModConfig(
 		type = ConfigType.SWITCH,
-		name = "Invert Horizontal Scroll",
-		description = "Inverts the direction of horizontal scrolling.",
+		name = "lucent.config.lucentclient.scrollabletooltipsmod.property.invertxscroll.name",
+		description = "lucent.config.lucentclient.scrollabletooltipsmod.property.invertxscroll.description",
 		category = "Invert",
 		priority = 2
 	)
@@ -79,8 +84,8 @@ public class ScrollableTooltipsMod extends Mod {
 
 	@ModConfig(
 		type = ConfigType.SWITCH,
-		name = "Invert Vertical Scroll",
-		description = "Inverts the direction of vertical scrolling.",
+		name = "lucent.config.lucentclient.scrollabletooltipsmod.property.invertyscroll.name",
+		description = "lucent.config.lucentclient.scrollabletooltipsmod.property.invertyscroll.description",
 		category = "Invert",
 		priority = 1
 	)
@@ -88,32 +93,32 @@ public class ScrollableTooltipsMod extends Mod {
 
 	@ModConfig(
 		type = ConfigType.KEYBIND,
-		name = "Move Up",
-		description = "Key used to scroll the tooltip up.",
+		name = "lucent.config.lucentclient.scrollabletooltipsmod.property.moveup.name",
+		description = "lucent.config.lucentclient.scrollabletooltipsmod.property.moveup.description",
 		category = "Keybind"
 	)
 	public static KeyBind moveUp = KeyBind.ofKey(GLFW.GLFW_KEY_UP, 0);
 
 	@ModConfig(
 		type = ConfigType.KEYBIND,
-		name = "Move Down",
-		description = "Key used to scroll the tooltip down.",
+		name = "lucent.config.lucentclient.scrollabletooltipsmod.property.movedown.name",
+		description = "lucent.config.lucentclient.scrollabletooltipsmod.property.movedown.description",
 		category = "Keybind"
 	)
 	public static KeyBind moveDown = KeyBind.ofKey(GLFW.GLFW_KEY_DOWN, 0);
 
 	@ModConfig(
 		type = ConfigType.KEYBIND,
-		name = "Reset",
-		description = "Key used to reset the tooltip scroll position.",
+		name = "lucent.config.lucentclient.scrollabletooltipsmod.property.reset.name",
+		description = "lucent.config.lucentclient.scrollabletooltipsmod.property.reset.description",
 		category = "Keybind"
 	)
 	public static KeyBind reset = KeyBind.ofKey(GLFW.GLFW_KEY_UNKNOWN, 0);
 
 	@ModConfig(
 		type = ConfigType.KEYBIND,
-		name = "Horizontal Scroll Modifier",
-		description = "Key held to scroll horizontally instead of vertically.",
+		name = "lucent.config.lucentclient.scrollabletooltipsmod.property.horizontal.name",
+		description = "lucent.config.lucentclient.scrollabletooltipsmod.property.horizontal.description",
 		category = "Keybind"
 	)
 	public static KeyBind horizontal = KeyBind.ofKey(GLFW.GLFW_KEY_LEFT_SHIFT, 0);

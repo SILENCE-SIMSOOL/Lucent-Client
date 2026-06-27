@@ -1,5 +1,7 @@
 package silence.simsool.lucentclient.mods.impl.performance;
 
+import silence.simsool.lucent.general.utils.LucentCategory;
+
 import static silence.simsool.lucent.Lucent.mc;
 
 import java.util.List;
@@ -14,6 +16,7 @@ import net.minecraft.world.level.ClipContext;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
+import net.minecraft.locale.Language;
 import silence.simsool.lucent.Lucent;
 import silence.simsool.lucent.general.enums.ConfigType;
 import silence.simsool.lucent.general.models.abstracts.Mod;
@@ -23,7 +26,9 @@ import silence.simsool.lucentclient.utils.LucentClientUtils;
 public class EntityCullingMod extends Mod {
 
 	public EntityCullingMod() {
-		super("Entity Culling", "Improves performance by not rendering hidden entities.", "Performance", "culling, entity, performance", LucentClientUtils.getModIcon("entity_culling"));
+		super(
+				"lucent.config.lucentclient.entitycullingmod.general.name", "lucent.config.lucentclient.entitycullingmod.general.description",
+				LucentCategory.PERFORMANCE, "culling, entity, performance", LucentClientUtils.getModIcon("entity_culling"));
 	}
 
 	public static boolean isEnabled() {
@@ -32,32 +37,29 @@ public class EntityCullingMod extends Mod {
 
 	@ModConfig(
 		type = ConfigType.SWITCH,
-		name = "Cull Players",
-		description = "Enables culling for player entities when they are not visible.",
-		category = "General"
+		name = "lucent.config.lucentclient.entitycullingmod.property.cullplayers.name",
+		description = "lucent.config.lucentclient.entitycullingmod.property.cullplayers.description"
 	)
 	public static boolean CullPlayers = true;
 
 	@ModConfig(
 		type = ConfigType.SWITCH,
-		name = "Cull Entities",
-		description = "Enables culling for general entities (mobs, items, etc.) when they are not visible.",
-		category = "General"
+		name = "lucent.config.lucentclient.entitycullingmod.property.cullentities.name",
+		description = "lucent.config.lucentclient.entitycullingmod.property.cullentities.description"
 	)
 	public static boolean CullEntities = true;
 
 	@ModConfig(
 		type = ConfigType.SWITCH,
-		name = "Cull Dropped Items",
-		description = "Enables culling for dropped item entities when they are not visible.",
-		category = "General"
+		name = "lucent.config.lucentclient.entitycullingmod.property.culldroppeditems.name",
+		description = "lucent.config.lucentclient.entitycullingmod.property.culldroppeditems.description"
 	)
 	public static boolean CullDroppedItems = true;
 
 	@ModConfig(
 		type = ConfigType.SWITCH,
-		name = "Show Debug Info",
-		description = "Displays the number of culled entities on the F3 debug screen.",
+		name = "lucent.config.lucentclient.entitycullingmod.property.showdebuginfo.name",
+		description = "lucent.config.lucentclient.entitycullingmod.property.showdebuginfo.description",
 		category = "Debug"
 	)
 	public static boolean ShowDebugInfo = true;
@@ -81,7 +83,7 @@ public class EntityCullingMod extends Mod {
 	}
 
 	public static String getCulledEntitiesInfo() {
-		return "Culled Entities: " + lastCulledEntities;
+		return Language.getInstance().getOrDefault("lucent.debug.lucentclient.entitycullingmod.culledentities") + lastCulledEntities;
 	}
 
 	public static boolean isVisibleOptimized(Vec3 camPos, AABB box, Entity cameraEntity, double distSq) {

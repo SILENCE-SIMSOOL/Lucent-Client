@@ -1,5 +1,7 @@
 package silence.simsool.lucentclient.mods.impl.graphics;
 
+import silence.simsool.lucent.general.utils.LucentCategory;
+
 import silence.simsool.lucent.Lucent;
 import silence.simsool.lucent.general.enums.ConfigType;
 import silence.simsool.lucent.general.models.abstracts.Mod;
@@ -10,8 +12,8 @@ public class HurtCamMod extends Mod {
 
 	public HurtCamMod() {
 		super(
-				"Hurt Cam", "Modify the camera shaking when taking damage.",
-				"Graphics",
+				"lucent.config.lucentclient.hurtcammod.general.name", "lucent.config.lucentclient.hurtcammod.general.description",
+				LucentCategory.GRAPHICS,
 				"hurt, camera, shake",
 				LucentClientUtils.getModIcon("hurtcam")
 		);
@@ -23,9 +25,8 @@ public class HurtCamMod extends Mod {
 
 	@ModConfig(
 		type = ConfigType.SWITCH,
-		name = "Disable Hurt Cam",
-		description = "Completely disables the camera shake effect when taking damage.",
-		category = "General"
+		name = "lucent.config.lucentclient.hurtcammod.property.disablehurtcam.name",
+		description = "lucent.config.lucentclient.hurtcammod.property.disablehurtcam.description"
 	)
 	public static boolean DisableHurtCam = true;
 

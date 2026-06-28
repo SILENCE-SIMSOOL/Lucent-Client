@@ -10,6 +10,7 @@ import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.client.CameraType;
 import silence.simsool.lucentclient.mods.impl.hud.VanillaHUDMod;
 
 @Mixin(Gui.class)
@@ -37,6 +38,14 @@ public class MixinGui {
 	@ModifyExpressionValue(method = "renderHotbarAndDecorations", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/multiplayer/MultiPlayerGameMode;hasExperience()Z"))
 	private boolean onCancelXPLevel(boolean original) {
 		//if (DevConfig.HIDE_XP_BAR) return false;
+		return original;
+	}
+
+	@ModifyExpressionValue(method = "renderCrosshair", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/CameraType;isFirstPerson()Z"))
+	private boolean onIsFirstPerson(boolean original) {
+		if (VanillaHUDMod.isEnabled() && VanillaHUDMod.ThirdPersonCrosshair) {
+			return true;
+		}
 		return original;
 	}
 

@@ -1,7 +1,5 @@
 package silence.simsool.lucentclient.mods.impl.performance;
 
-import silence.simsool.lucent.general.utils.LucentCategory;
-
 import static silence.simsool.lucent.Lucent.mc;
 
 import java.util.List;
@@ -16,11 +14,11 @@ import net.minecraft.world.level.ClipContext;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
-import net.minecraft.locale.Language;
 import silence.simsool.lucent.Lucent;
 import silence.simsool.lucent.general.enums.ConfigType;
 import silence.simsool.lucent.general.models.abstracts.Mod;
 import silence.simsool.lucent.general.models.interfaces.annotations.ModConfig;
+import silence.simsool.lucent.general.utils.LucentCategory;
 import silence.simsool.lucentclient.utils.LucentClientUtils;
 
 public class EntityCullingMod extends Mod {
@@ -83,7 +81,7 @@ public class EntityCullingMod extends Mod {
 	}
 
 	public static String getCulledEntitiesInfo() {
-		return Language.getInstance().getOrDefault("lucent.debug.lucentclient.entitycullingmod.culledentities") + lastCulledEntities;
+		return "Culled Entities: " + lastCulledEntities;
 	}
 
 	public static boolean isVisibleOptimized(Vec3 camPos, AABB box, Entity cameraEntity, double distSq) {

@@ -40,6 +40,7 @@
 		"mixins.network.pipeline.MixinVarint21FrameDecoder",
 		"mixins.scrollabletooltips.MixinGuiGraphics_ScrollableTooltips",
 		"mixins.scrollabletooltips.MixinMouse_ScrollableTooltips",
-		"mixins.scrollabletooltips.MixinScreen_ScrollableTooltips"
+		"mixins.scrollabletooltips.MixinScreen_ScrollableTooltips",
+		"mixins.MixinOptions"
 	]
 }

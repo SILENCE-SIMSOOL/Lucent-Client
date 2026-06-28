@@ -11,7 +11,7 @@
 		"homepage": "",
 		"sources": ""
 	},
-	"license": "MIT",
+	"license": "SILENCE LICENSE 1.0",
 	"icon": "icon.png",
 	"environment": "client",
 	"mixins": [

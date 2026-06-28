@@ -7,8 +7,8 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
 
-import net.minecraft.client.gui.Hud;
 import net.minecraft.client.gui.GuiGraphicsExtractor;
+import net.minecraft.client.gui.Hud;
 import net.minecraft.world.entity.player.Player;
 import silence.simsool.lucentclient.mods.impl.hud.VanillaHUDMod;
 
@@ -37,6 +37,14 @@ public class MixinGui {
 	@ModifyExpressionValue(method = "extractHotbarAndDecorations", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/multiplayer/MultiPlayerGameMode;hasExperience()Z"), remap = false)
 	private boolean onCancelXPLevel(boolean original) {
 		//if (DevConfig.HIDE_XP_BAR) return false;
+		return original;
+	}
+
+	@ModifyExpressionValue(method = "extractCrosshair", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/CameraType;isFirstPerson()Z"), remap = false)
+	private boolean onIsFirstPerson(boolean original) {
+		if (VanillaHUDMod.isEnabled() && VanillaHUDMod.ThirdPersonCrosshair) {
+			return true;
+		}
 		return original;
 	}
 

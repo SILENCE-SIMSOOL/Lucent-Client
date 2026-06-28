@@ -18,6 +18,7 @@ public class MixinDebugScreenOverlay {
 	private void onExtractLines(GuiGraphicsExtractor guiGraphics, List<String> list, boolean left, CallbackInfo ci) {
 		if (left) {
 			if (EntityCullingMod.isEnabled() && EntityCullingMod.ShowDebugInfo) {
+				list.removeIf(s -> s.startsWith("Culled Entities: ")); // need for sodium bug
 				list.addFirst(EntityCullingMod.getCulledEntitiesInfo());
 			}
 		}

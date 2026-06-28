@@ -31,6 +31,15 @@ public class VanillaHUDMod extends Mod {
 
 	@ModConfig(
 		type = ConfigType.SWITCH,
+		name = "lucent.config.lucentclient.vanillahudmod.property.thirdpersoncrosshair.name",
+		description = "lucent.config.lucentclient.vanillahudmod.property.thirdpersoncrosshair.description",
+		category = "General",
+		priority = 1100
+	)
+	public static boolean ThirdPersonCrosshair = false;
+
+	@ModConfig(
+		type = ConfigType.SWITCH,
 		name = "lucent.config.lucentclient.vanillahudmod.property.healthbar.name",
 		description = "lucent.config.lucentclient.vanillahudmod.property.healthbar.description",
 		category = "Bars",

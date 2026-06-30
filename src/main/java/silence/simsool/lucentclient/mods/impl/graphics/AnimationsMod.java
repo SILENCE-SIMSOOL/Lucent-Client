@@ -104,11 +104,11 @@ public class AnimationsMod extends Mod {
 
 	@ModConfig(
 		type = ConfigType.SWITCH,
-		name = "lucent.config.lucentclient.animationsmod.property.disableuseanimation.name",
-		description = "lucent.config.lucentclient.animationsmod.property.disableuseanimation.description",
+		name = "lucent.config.lucentclient.animationsmod.property.disableentityclickanimation.name",
+		description = "lucent.config.lucentclient.animationsmod.property.disableentityclickanimation.description",
 		priority = 975
 	)
-	public static boolean DisableUseAnimation = false;
+	public static boolean DisableEntityClickAnimation = false;
 
 //	@ModConfig(
 //		type = ConfigType.SWITCH,

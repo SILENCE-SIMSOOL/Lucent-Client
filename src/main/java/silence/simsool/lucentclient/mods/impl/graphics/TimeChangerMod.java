@@ -8,14 +8,13 @@ import silence.simsool.lucent.general.models.abstracts.Mod;
 import silence.simsool.lucent.general.models.interfaces.annotations.ModConfig;
 import silence.simsool.lucentclient.utils.LucentClientUtils;
 
-@ModConfig.CategoryPriority(name = "General", priority = 1000)
 public class TimeChangerMod extends Mod {
 
 	public TimeChangerMod() {
 		super(
 				"lucent.config.lucentclient.timechangermod.general.name", "lucent.config.lucentclient.timechangermod.general.description",
 				LucentCategory.GRAPHICS,
-				"day, night",
+				"time, changer, day, night",
 				LucentClientUtils.getModIcon("time_changer")
 		);
 	}

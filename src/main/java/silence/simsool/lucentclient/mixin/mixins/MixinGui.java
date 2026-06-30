@@ -10,7 +10,6 @@ import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.client.CameraType;
 import silence.simsool.lucentclient.mods.impl.hud.VanillaHUDMod;
 
 @Mixin(Gui.class)

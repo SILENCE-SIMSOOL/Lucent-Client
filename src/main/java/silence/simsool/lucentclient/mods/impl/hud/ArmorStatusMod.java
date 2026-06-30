@@ -14,7 +14,7 @@ public class ArmorStatusMod extends Mod {
 		super(
 				"lucent.config.lucentclient.armorstatusmod.general.name", "lucent.config.lucentclient.armorstatusmod.general.description",
 				LucentCategory.HUB,
-				"armor, durability, status",
+				"armor, status, durability",
 				LucentClientUtils.getModIcon("armor_status")
 		);
 	}

@@ -14,7 +14,7 @@ public class DeathAnimationMod extends Mod {
 		super(
 				"lucent.config.lucentclient.deathanimationmod.general.name", "lucent.config.lucentclient.deathanimationmod.general.description",
 				LucentCategory.GRAPHICS,
-				"entity, hide",
+				"death, animation, entity, hide",
 				LucentClientUtils.getModIcon("death_animation")
 		);
 	}

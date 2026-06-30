@@ -8,7 +8,6 @@ import silence.simsool.lucent.general.models.abstracts.Mod;
 import silence.simsool.lucent.general.models.interfaces.annotations.ModConfig;
 import silence.simsool.lucentclient.utils.LucentClientUtils;
 
-@ModConfig.CategoryPriority(name = "General", priority = 1000)
 @ModConfig.CategoryPriority(name = "Coordinates", priority = 500)
 @ModConfig.CategoryPriority(name = "Information", priority = 100)
 public class CoordinatesMod extends Mod {

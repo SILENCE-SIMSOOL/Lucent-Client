@@ -26,7 +26,10 @@ public class EntityCullingMod extends Mod {
 	public EntityCullingMod() {
 		super(
 				"lucent.config.lucentclient.entitycullingmod.general.name", "lucent.config.lucentclient.entitycullingmod.general.description",
-				LucentCategory.PERFORMANCE, "culling, entity, performance", LucentClientUtils.getModIcon("entity_culling"));
+				LucentCategory.PERFORMANCE,
+				"entity, culling, performance, optimize",
+				LucentClientUtils.getModIcon("entity_culling")
+		);
 	}
 
 	public static boolean isEnabled() {

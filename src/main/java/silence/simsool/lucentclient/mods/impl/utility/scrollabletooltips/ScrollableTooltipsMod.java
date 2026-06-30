@@ -15,7 +15,6 @@ import silence.simsool.lucent.general.models.interfaces.annotations.ModConfig;
 import silence.simsool.lucent.general.utils.useful.UScreen;
 import silence.simsool.lucentclient.utils.LucentClientUtils;
 
-@ModConfig.CategoryPriority(name = "General", priority = 1000)
 @ModConfig.CategoryPriority(name = "Matrix", priority = 500)
 @ModConfig.CategoryPriority(name = "Invert", priority = 250)
 @ModConfig.CategoryPriority(name = "Keybind", priority = 100)

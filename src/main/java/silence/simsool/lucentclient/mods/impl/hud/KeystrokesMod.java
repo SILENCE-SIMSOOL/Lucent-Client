@@ -14,7 +14,7 @@ public class KeystrokesMod extends Mod {
 		super(
 				"lucent.config.lucentclient.keystrokesmod.general.name", "lucent.config.lucentclient.keystrokesmod.general.description",
 				LucentCategory.HUB,
-				"mouse, click",
+				"key, stroke, keyboard, mouse, click",
 				LucentClientUtils.getModIcon("keystrokes")
 		);
 	}

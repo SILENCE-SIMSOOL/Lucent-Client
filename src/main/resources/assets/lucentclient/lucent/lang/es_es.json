@@ -1,5 +1,4 @@
 {
-	"lucent.chat.lucentclient.chattingmod.copied": "Chat has been copied!",
 	"lucent.config.lucentclient.alwayssprintmod.general.description": "Permite alternar el estado de carrera.",
 	"lucent.config.lucentclient.alwayssprintmod.general.name": "Esprintar siempre",
 	"lucent.config.lucentclient.animationsmod.general.description": "Cambia la apariencia del modelo de vista en primera persona.",
@@ -10,6 +9,8 @@
 	"lucent.config.lucentclient.animationsmod.property.customhitcolor.name": "Custom Hit Color",
 	"lucent.config.lucentclient.animationsmod.property.disablecamerapotionparticles.description": "Oculta las partículas de pociones desde tu perspectiva.",
 	"lucent.config.lucentclient.animationsmod.property.disablecamerapotionparticles.name": "Desactivar partículas de pociones en la cámara",
+	"lucent.config.lucentclient.animationsmod.property.disableuseanimation.description": "Disables the arm swing animation when using items.",
+	"lucent.config.lucentclient.animationsmod.property.disableuseanimation.name": "Disable Use Animation",
 	"lucent.config.lucentclient.animationsmod.property.fireheight.description": "Ajusta el desplazamiento de altura de la superposición de fuego.",
 	"lucent.config.lucentclient.animationsmod.property.fireheight.name": "Altura del fuego",
 	"lucent.config.lucentclient.animationsmod.property.fireoverlay.description": "Alterna la visibilidad de la superposición de fuego.",
@@ -82,6 +83,7 @@
 	"lucent.config.lucentclient.chattingmod.property.chattextshadow.name": "Sombra del texto del chat",
 	"lucent.config.lucentclient.chattingmod.property.copykey.description": "Tecla para copiar el mensaje de chat bajo el cursor del ratón.",
 	"lucent.config.lucentclient.chattingmod.property.copykey.name": "Tecla para copiar",
+	"lucent.chat.lucentclient.chattingmod.copied": "Chat has been copied!",
 	"lucent.config.lucentclient.coordinatesmod.general.description": "Muestra tus coordenadas mundiales actuales e información de ubicación.",
 	"lucent.config.lucentclient.coordinatesmod.general.name": "Coordenadas",
 	"lucent.config.lucentclient.coordinatesmod.property.backgroundcolor.description": "Establece el color del cuadro de fondo.",

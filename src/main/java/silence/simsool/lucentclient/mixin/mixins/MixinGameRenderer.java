@@ -23,7 +23,6 @@ public class MixinGameRenderer {
 
 	@Inject(method = "getFov", at = @At("RETURN"), cancellable = true)
 	private void onGetFov(Camera camera, float f, boolean bl, CallbackInfoReturnable<Float> cir) {
-
 		if (ZoomMod.isEnabled()) {
 			float targetZoom = ZoomMod.getTargetZoom();
 			if (ZoomMod.SmoothZoom) currentZoom = UAnimation.lerp(currentZoom, targetZoom, 0.2f);

@@ -1,5 +1,4 @@
 {
-	"lucent.chat.lucentclient.chattingmod.copied": "Chat has been copied!",
 	"lucent.config.lucentclient.alwayssprintmod.general.description": "ダッシュ状態を切り替えられるようにします。",
 	"lucent.config.lucentclient.alwayssprintmod.general.name": "常時ダッシュ",
 	"lucent.config.lucentclient.animationsmod.general.description": "一人称視点での手持ちモデルの外観を変更します。",
@@ -10,6 +9,8 @@
 	"lucent.config.lucentclient.animationsmod.property.customhitcolor.name": "Custom Hit Color",
 	"lucent.config.lucentclient.animationsmod.property.disablecamerapotionparticles.description": "自分の画面からポーションのパーティクルを非表示にします。",
 	"lucent.config.lucentclient.animationsmod.property.disablecamerapotionparticles.name": "画面のポーションパーティクル無効化",
+	"lucent.config.lucentclient.animationsmod.property.disableuseanimation.description": "右クリックでアイテムを使用する際の腕を振るアニメーションを無効化します。",
+	"lucent.config.lucentclient.animationsmod.property.disableuseanimation.name": "アイテム使用アニメーションの無効化",
 	"lucent.config.lucentclient.animationsmod.property.fireheight.description": "炎のオーバーレイの高さオフセットを調整します。",
 	"lucent.config.lucentclient.animationsmod.property.fireheight.name": "炎の高さ",
 	"lucent.config.lucentclient.animationsmod.property.fireoverlay.description": "自分が炎上している際の炎の画面エフェクトの表示/非表示を切り替えます。",
@@ -82,6 +83,7 @@
 	"lucent.config.lucentclient.chattingmod.property.chattextshadow.name": "チャットテキストの影",
 	"lucent.config.lucentclient.chattingmod.property.copykey.description": "マウスカーソルの下にあるチャットメッセージをコピーするためのキーバインド。",
 	"lucent.config.lucentclient.chattingmod.property.copykey.name": "コピーのキーバインド",
+	"lucent.chat.lucentclient.chattingmod.copied": "Chat has been copied!",
 	"lucent.config.lucentclient.coordinatesmod.general.description": "現在の座標と位置情報を表示します。",
 	"lucent.config.lucentclient.coordinatesmod.general.name": "座標",
 	"lucent.config.lucentclient.coordinatesmod.property.backgroundcolor.description": "画面上に表示される背景ボックスのカラーを設定します。",

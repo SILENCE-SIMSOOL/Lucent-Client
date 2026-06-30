@@ -12,7 +12,7 @@ public class AlwaysSprintMod extends Mod {
 		super(
 				"lucent.config.lucentclient.alwayssprintmod.general.name", "lucent.config.lucentclient.alwayssprintmod.general.description",
 				LucentCategory.UTILITY,
-				"toggle, sneak",
+				"always, sprint, toggle, sneak",
 				LucentClientUtils.getModIcon("always_sprint")
 		);
 	}

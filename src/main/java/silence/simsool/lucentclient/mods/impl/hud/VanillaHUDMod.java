@@ -10,17 +10,18 @@ import silence.simsool.lucent.general.models.abstracts.Mod;
 import silence.simsool.lucent.general.models.interfaces.annotations.ModConfig;
 import silence.simsool.lucentclient.utils.LucentClientUtils;
 
-@ModConfig.CategoryPriority(name = "General", priority = 1000)
 @ModConfig.CategoryPriority(name = "Bars", priority = 900)
+@ModConfig.CategoryPriority(name = "Crosshair", priority = 900)
 @ModConfig.CategoryPriority(name = "Scoreboard", priority = 800)
-@ModConfig.CategoryPriority(name = "Attack Indicator", priority = 700)
+@ModConfig.CategoryPriority(name = "Potion", priority = 700)
+@ModConfig.CategoryPriority(name = "Attack Indicator", priority = 600)
 public class VanillaHUDMod extends Mod {
 
 	public VanillaHUDMod() {
 		super(
 				"lucent.config.lucentclient.vanillahudmod.general.name", "lucent.config.lucentclient.vanillahudmod.general.description",
 				LucentCategory.HUB,
-				"bar, health, hunger, armor, boss, scoreboard, indicator",
+				"bar, health, hunger, armor, boss, scoreboard, indicator, crosshair, potion, effect",
 				LucentClientUtils.getModIcon("vanillahud")
 		);
 	}
@@ -28,15 +29,6 @@ public class VanillaHUDMod extends Mod {
 	public static boolean isEnabled() {
 		return Lucent.config.isModuleEnabled(VanillaHUDMod.class);
 	}
-
-	@ModConfig(
-		type = ConfigType.SWITCH,
-		name = "lucent.config.lucentclient.vanillahudmod.property.thirdpersoncrosshair.name",
-		description = "lucent.config.lucentclient.vanillahudmod.property.thirdpersoncrosshair.description",
-		category = "General",
-		priority = 1100
-	)
-	public static boolean ThirdPersonCrosshair = false;
 
 	@ModConfig(
 		type = ConfigType.SWITCH,
@@ -86,10 +78,18 @@ public class VanillaHUDMod extends Mod {
 
 	@ModConfig(
 		type = ConfigType.SWITCH,
+		name = "lucent.config.lucentclient.vanillahudmod.property.thirdpersoncrosshair.name",
+		description = "lucent.config.lucentclient.vanillahudmod.property.thirdpersoncrosshair.description",
+		category = "Crosshair"
+	)
+	public static boolean ThirdPersonCrosshair = false;
+
+	@ModConfig(
+		type = ConfigType.SWITCH,
 		name = "lucent.config.lucentclient.vanillahudmod.property.scoreboard.name",
 		description = "lucent.config.lucentclient.vanillahudmod.property.scoreboard.description",
 		category = "Scoreboard",
-		priority = 800
+		priority = 1000
 	)
 	public static boolean Scoreboard = true;
 
@@ -99,7 +99,7 @@ public class VanillaHUDMod extends Mod {
 		description = "lucent.config.lucentclient.vanillahudmod.property.scoreboardshadow.description",
 		category = "Scoreboard",
 		parent = "scoreboard",
-		priority = 795
+		priority = 900
 	)
 	public static boolean ScoreboardShadow = true;
 
@@ -109,7 +109,7 @@ public class VanillaHUDMod extends Mod {
 		description = "lucent.config.lucentclient.vanillahudmod.property.scoreboardtitlecolor.description",
 		category = "Scoreboard",
 		parent = "scoreboard",
-		priority = 790
+		priority = 800
 	)
 	public static Color ScoreboardTitleColor = new Color(0, 0, 0, 80);
 
@@ -119,9 +119,17 @@ public class VanillaHUDMod extends Mod {
 		description = "lucent.config.lucentclient.vanillahudmod.property.scoreboardcontentcolor.description",
 		category = "Scoreboard",
 		parent = "scoreboard",
-		priority = 785
+		priority = 700
 	)
 	public static Color ScoreboardContentColor = new Color(0, 0, 0, 60);
+
+	@ModConfig(
+		type = ConfigType.SWITCH,
+		name = "lucent.config.lucentclient.vanillahudmod.property.potioneffects.name",
+		description = "lucent.config.lucentclient.vanillahudmod.property.potioneffects.description",
+		category = "Potion"
+	)
+	public static boolean PotionEffects = false;
 
 	@ModConfig(
 		type = ConfigType.SWITCH,
@@ -137,7 +145,7 @@ public class VanillaHUDMod extends Mod {
 		name = "lucent.config.lucentclient.vanillahudmod.property.indicatorrangeddraw.name",
 		description = "lucent.config.lucentclient.vanillahudmod.property.indicatorrangeddraw.description",
 		category = "Attack Indicator",
-		priority = 690
+		priority = 1000
 	)
 	public static boolean IndicatorRangedDraw = true;
 
@@ -146,7 +154,7 @@ public class VanillaHUDMod extends Mod {
 		name = "lucent.config.lucentclient.vanillahudmod.property.indicatoreatingdrinking.name",
 		description = "lucent.config.lucentclient.vanillahudmod.property.indicatoreatingdrinking.description",
 		category = "Attack Indicator",
-		priority = 680
+		priority = 900
 	)
 	public static boolean IndicatorEatingDrinking = true;
 
@@ -155,7 +163,7 @@ public class VanillaHUDMod extends Mod {
 		name = "lucent.config.lucentclient.vanillahudmod.property.indicatoritemcooldowns.name",
 		description = "lucent.config.lucentclient.vanillahudmod.property.indicatoritemcooldowns.description",
 		category = "Attack Indicator",
-		priority = 670
+		priority = 800
 	)
 	public static boolean IndicatorItemCooldowns = true;
 

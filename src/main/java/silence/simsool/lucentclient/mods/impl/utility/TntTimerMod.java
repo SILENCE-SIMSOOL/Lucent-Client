@@ -14,7 +14,6 @@ import silence.simsool.lucent.general.models.interfaces.annotations.ModConfig;
 import silence.simsool.lucent.general.utils.render.Render3D;
 import silence.simsool.lucentclient.utils.LucentClientUtils;
 
-@ModConfig.CategoryPriority(name = "General", priority = 1000)
 @ModConfig.CategoryPriority(name = "Text Style", priority = 500)
 @ModConfig.CategoryPriority(name = "Background", priority = 100)
 public class TntTimerMod extends Mod {

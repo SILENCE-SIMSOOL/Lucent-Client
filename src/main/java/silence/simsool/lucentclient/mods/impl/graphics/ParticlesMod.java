@@ -12,14 +12,13 @@ import silence.simsool.lucent.general.models.abstracts.Mod;
 import silence.simsool.lucent.general.models.interfaces.annotations.ModConfig;
 import silence.simsool.lucentclient.utils.LucentClientUtils;
 
-@ModConfig.CategoryPriority(name = "General", priority = 1000)
 public class ParticlesMod extends Mod {
 
 	public ParticlesMod() {
 		super(
 				"lucent.config.lucentclient.particlesmod.general.name", "lucent.config.lucentclient.particlesmod.general.description",
 				LucentCategory.GRAPHICS,
-				"break, block, explode, explosion",
+				"particle, break, block, explode, explosion, implosion, hyperion smoke",
 				LucentClientUtils.getModIcon("particles")
 		);
 	}

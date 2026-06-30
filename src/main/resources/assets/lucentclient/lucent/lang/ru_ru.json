@@ -1,5 +1,4 @@
 {
-	"lucent.chat.lucentclient.chattingmod.copied": "Chat has been copied!",
 	"lucent.config.lucentclient.alwayssprintmod.general.description": "Позволяет переключать режим бега.",
 	"lucent.config.lucentclient.alwayssprintmod.general.name": "Авто-бег",
 	"lucent.config.lucentclient.animationsmod.general.description": "Изменяет отображение рук и предметов от первого лица.",
@@ -10,6 +9,8 @@
 	"lucent.config.lucentclient.animationsmod.property.customhitcolor.name": "Custom Hit Color",
 	"lucent.config.lucentclient.animationsmod.property.disablecamerapotionparticles.description": "Отключает отображение летающих частиц эффектов зелий перед вашим лицом.",
 	"lucent.config.lucentclient.animationsmod.property.disablecamerapotionparticles.name": "Скрыть частицы от первого лица",
+	"lucent.config.lucentclient.animationsmod.property.disableuseanimation.description": "Отключает анимацию взмаха руки при использовании предметов правой кнопкой мыши.",
+	"lucent.config.lucentclient.animationsmod.property.disableuseanimation.name": "Отключить анимацию использования",
 	"lucent.config.lucentclient.animationsmod.property.fireheight.description": "Настройка смещения высоты огненного оверлея.",
 	"lucent.config.lucentclient.animationsmod.property.fireheight.name": "Высота огня",
 	"lucent.config.lucentclient.animationsmod.property.fireoverlay.description": "Переключает отображение огня на вашем экране, когда вы горите.",
@@ -82,6 +83,7 @@
 	"lucent.config.lucentclient.chattingmod.property.chattextshadow.name": "Тень текста чата",
 	"lucent.config.lucentclient.chattingmod.property.copykey.description": "Клавиша для копирования сообщения чата, на которое наведен курсор мыши.",
 	"lucent.config.lucentclient.chattingmod.property.copykey.name": "Клавиша копирования",
+	"lucent.chat.lucentclient.chattingmod.copied": "Chat has been copied!",
 	"lucent.config.lucentclient.coordinatesmod.general.description": "Отображает текущие координаты в мире и информацию о местоположении.",
 	"lucent.config.lucentclient.coordinatesmod.general.name": "Координаты",
 	"lucent.config.lucentclient.coordinatesmod.property.backgroundcolor.description": "Задает цвет фоновой подложки текста на экране.",

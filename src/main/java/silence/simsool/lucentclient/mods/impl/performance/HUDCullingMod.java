@@ -8,14 +8,16 @@ import silence.simsool.lucent.general.models.abstracts.Mod;
 import silence.simsool.lucent.general.models.interfaces.annotations.ModConfig;
 import silence.simsool.lucentclient.utils.LucentClientUtils;
 
-@ModConfig.CategoryPriority(name = "General", priority = 1000)
 @ModConfig.CategoryPriority(name = "Targets", priority = 900)
 public class HUDCullingMod extends Mod {
 
 	public HUDCullingMod() {
 		super(
 				"lucent.config.lucentclient.hudcullingmod.general.name", "lucent.config.lucentclient.hudcullingmod.general.description",
-				LucentCategory.PERFORMANCE, "culling, hud, performance", LucentClientUtils.getModIcon("entity_culling"));
+				LucentCategory.PERFORMANCE,
+				"hud, culling, performance, optimize",
+				LucentClientUtils.getModIcon("entity_culling")
+		);
 	}
 
 	public static boolean isEnabled() {

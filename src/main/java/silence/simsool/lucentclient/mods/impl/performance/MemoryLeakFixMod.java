@@ -14,7 +14,7 @@ public class MemoryLeakFixMod extends Mod {
 		super(
 				"lucent.config.lucentclient.memoryleakfixmod.general.name", "lucent.config.lucentclient.memoryleakfixmod.general.description",
 				LucentCategory.PERFORMANCE,
-				"optimize",
+				"memory, leak, fix, performance, optimize",
 				LucentClientUtils.getModIcon("memoryleak_fix")
 		);
 	}

@@ -9,13 +9,14 @@ import net.minecraft.client.DeltaTracker;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.GuiGraphics;
 import silence.simsool.lucentclient.mods.impl.hud.PotionEffectsMod;
+import silence.simsool.lucentclient.mods.impl.hud.VanillaHUDMod;
 
 @Mixin(Gui.class)
 public class MixinGuiPotionEffects {
 
 	@Inject(method = "renderEffects", at = @At("HEAD"), cancellable = true)
 	private void onRenderEffects(GuiGraphics guiGraphics, DeltaTracker deltaTracker, CallbackInfo ci) {
-		if (PotionEffectsMod.isEnabled()) {
+		if (PotionEffectsMod.isEnabled() || (VanillaHUDMod.isEnabled() && !VanillaHUDMod.PotionEffects)) {
 			ci.cancel(); // Hide vanilla potion effects
 		}
 	}

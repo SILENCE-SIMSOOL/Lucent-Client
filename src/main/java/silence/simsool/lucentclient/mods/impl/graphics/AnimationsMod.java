@@ -12,7 +12,6 @@ import silence.simsool.lucent.general.models.interfaces.annotations.ModConfig;
 import silence.simsool.lucent.general.models.interfaces.annotations.ModConfigExtra;
 import silence.simsool.lucentclient.utils.LucentClientUtils;
 
-@ModConfig.CategoryPriority(name = "General", priority = 1000)
 @ModConfig.CategoryPriority(name = "Entity", priority = 900)
 @ModConfig.CategoryPriority(name = "Item", priority = 800)
 @ModConfig.CategoryPriority(name = "Overlay", priority = 700)
@@ -22,7 +21,7 @@ public class AnimationsMod extends Mod {
 		super(
 				"lucent.config.lucentclient.animationsmod.general.name", "lucent.config.lucentclient.animationsmod.general.description",
 				LucentCategory.GRAPHICS,
-				"equip, damage, hit, haste, camera, potion, particle, item, scale, swing, fire, shield",
+				"animation, equip, damage, hit, haste, camera, potion, particle, item, scale, swing, fire, shield",
 				LucentClientUtils.getModIcon("animations")
 		);
 	}
@@ -80,7 +79,6 @@ public class AnimationsMod extends Mod {
 		type = ConfigType.SLIDER,
 		name = "lucent.config.lucentclient.animationsmod.property.swingspeed.name",
 		description = "lucent.config.lucentclient.animationsmod.property.swingspeed.description",
-		category = "General",
 		min = 1,
 		max = 16,
 		step = 1,
@@ -103,6 +101,14 @@ public class AnimationsMod extends Mod {
 		priority = 980
 	)
 	public static boolean DisableCameraPotionParticles = true;
+
+	@ModConfig(
+		type = ConfigType.SWITCH,
+		name = "lucent.config.lucentclient.animationsmod.property.disableuseanimation.name",
+		description = "lucent.config.lucentclient.animationsmod.property.disableuseanimation.description",
+		priority = 975
+	)
+	public static boolean DisableUseAnimation = false;
 
 //	@ModConfig(
 //		type = ConfigType.SWITCH,

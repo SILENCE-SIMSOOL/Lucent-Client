@@ -16,7 +16,7 @@ public class PlayerModelMod extends Mod {
 		super(
 				"lucent.config.lucentclient.playermodelmod.general.name", "lucent.config.lucentclient.playermodelmod.general.description",
 				LucentCategory.GRAPHICS,
-				"armor",
+				"player, model, armor",
 				LucentClientUtils.getModIcon("player_model")
 		);
 	}

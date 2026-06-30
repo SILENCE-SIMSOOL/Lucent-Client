@@ -11,7 +11,7 @@ public class BetterF5Mod extends Mod {
 		super(
 				"lucent.config.lucentclient.betterf5mod.general.name", "lucent.config.lucentclient.betterf5mod.general.description",
 				LucentCategory.UTILITY,
-				"f5, better, camera, perspective",
+				"better, f5, camera, perspective",
 				LucentClientUtils.getModIcon("betterf5")
 		);
 	}

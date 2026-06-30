@@ -7,7 +7,6 @@ import silence.simsool.lucent.general.enums.ConfigType;
 import silence.simsool.lucent.general.models.abstracts.Mod;
 import silence.simsool.lucent.general.models.interfaces.annotations.ModConfig;
 import silence.simsool.lucentclient.utils.LucentClientUtils;
-@ModConfig.CategoryPriority(name = "General", priority = 1000)
 @ModConfig.CategoryPriority(name = "Text Style", priority = 500)
 @ModConfig.CategoryPriority(name = "Background", priority = 100)
 public class FPSMod extends Mod {
@@ -16,7 +15,7 @@ public class FPSMod extends Mod {
 		super(
 				"lucent.config.lucentclient.fpsmod.general.name", "lucent.config.lucentclient.fpsmod.general.description",
 				LucentCategory.HUB,
-				"frames",
+				"fps, frames",
 				LucentClientUtils.getModIcon("fps")
 		);
 	}

@@ -12,7 +12,7 @@ public class HideFallingBlockMod extends Mod {
 		super(
 				"lucent.config.lucentclient.hidefallingblockmod.general.name", "lucent.config.lucentclient.hidefallingblockmod.general.description",
 				LucentCategory.GRAPHICS,
-				"sand, gravel",
+				"hide, falling, block, sand, gravel",
 				LucentClientUtils.getModIcon("hidefallingblock")
 		);
 	}

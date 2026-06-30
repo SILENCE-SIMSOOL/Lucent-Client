@@ -25,7 +25,7 @@ public class BlockOverlayMod extends Mod {
 		super(
 				"lucent.config.lucentclient.blockoverlaymod.general.name", "lucent.config.lucentclient.blockoverlaymod.general.description",
 				LucentCategory.GRAPHICS,
-				"",
+				"block, overlay, outline",
 				LucentClientUtils.getModIcon("block_overlay")
 		);
 	}

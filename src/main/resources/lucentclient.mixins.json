@@ -32,6 +32,7 @@
 		"mixins.MixinLivingEntity",
 		"mixins.MixinLivingEntityRenderer",
 		"mixins.MixinLocalPlayer",
+		"mixins.MixinMinecraft",
 		"mixins.MixinMouseHandler",
 		"mixins.MixinScreenEffectRenderer",
 		"mixins.network.misc.MixinServerEntity",

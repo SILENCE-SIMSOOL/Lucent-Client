@@ -9,7 +9,6 @@ import silence.simsool.lucent.general.models.abstracts.Mod;
 import silence.simsool.lucent.general.models.interfaces.annotations.ModConfig;
 import silence.simsool.lucentclient.utils.LucentClientUtils;
 
-@ModConfig.CategoryPriority(name = "General", priority = 1000)
 @ModConfig.CategoryPriority(name = "Background", priority = 900)
 public class NametagsMod extends Mod {
 
@@ -17,7 +16,7 @@ public class NametagsMod extends Mod {
 		super(
 				"lucent.config.lucentclient.nametagsmod.general.name", "lucent.config.lucentclient.nametagsmod.general.description",
 				LucentCategory.GRAPHICS,
-				"",
+				"name, tag",
 				LucentClientUtils.getModIcon("nametags")
 		);
 	}

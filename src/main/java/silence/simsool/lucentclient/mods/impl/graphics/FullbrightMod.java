@@ -14,7 +14,7 @@ public class FullbrightMod extends Mod {
 		super(
 				"lucent.config.lucentclient.fullbrightmod.general.name", "lucent.config.lucentclient.fullbrightmod.general.description",
 				LucentCategory.GRAPHICS,
-				"light, gamma",
+				"full, bright, light, gamma",
 				LucentClientUtils.getModIcon("fullbright")
 		);
 	}

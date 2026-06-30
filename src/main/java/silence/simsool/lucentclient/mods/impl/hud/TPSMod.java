@@ -8,7 +8,6 @@ import silence.simsool.lucent.general.models.abstracts.Mod;
 import silence.simsool.lucent.general.models.interfaces.annotations.ModConfig;
 import silence.simsool.lucentclient.utils.LucentClientUtils;
 
-@ModConfig.CategoryPriority(name = "General", priority = 1000)
 @ModConfig.CategoryPriority(name = "Text Style", priority = 500)
 @ModConfig.CategoryPriority(name = "Background", priority = 100)
 public class TPSMod extends Mod {
@@ -17,7 +16,7 @@ public class TPSMod extends Mod {
 		super(
 				"lucent.config.lucentclient.tpsmod.general.name", "lucent.config.lucentclient.tpsmod.general.description",
 				LucentCategory.HUB,
-				"tps, ticks",
+				"tps, tick, server",
 				LucentClientUtils.getModIcon("tps")
 		);
 	}

@@ -14,7 +14,7 @@ public class HurtCamMod extends Mod {
 		super(
 				"lucent.config.lucentclient.hurtcammod.general.name", "lucent.config.lucentclient.hurtcammod.general.description",
 				LucentCategory.GRAPHICS,
-				"hurt, camera, shake",
+				"hurt, cam, camera, shake",
 				LucentClientUtils.getModIcon("hurtcam")
 		);
 	}

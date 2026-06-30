@@ -1,5 +1,4 @@
 {
-	"lucent.chat.lucentclient.chattingmod.copied": "Chat has been copied!",
 	"lucent.config.lucentclient.alwayssprintmod.general.description": "מאפשר לך להחליף את מצב הריצה שלך.",
 	"lucent.config.lucentclient.alwayssprintmod.general.name": "ריצה תמידית",
 	"lucent.config.lucentclient.animationsmod.general.description": "משנה את מראה מודל התצוגה בגוף ראשון.",
@@ -10,6 +9,8 @@
 	"lucent.config.lucentclient.animationsmod.property.customhitcolor.name": "Custom Hit Color",
 	"lucent.config.lucentclient.animationsmod.property.disablecamerapotionparticles.description": "מסתיר חלקיקי שיקויים מהתצוגה שלך.",
 	"lucent.config.lucentclient.animationsmod.property.disablecamerapotionparticles.name": "ביטול חלקיקי שיקוי במצלמה",
+	"lucent.config.lucentclient.animationsmod.property.disableuseanimation.description": "Disables the arm swing animation when using items.",
+	"lucent.config.lucentclient.animationsmod.property.disableuseanimation.name": "Disable Use Animation",
 	"lucent.config.lucentclient.animationsmod.property.fireheight.description": "התאם את היסט הגובה של שכבת האש.",
 	"lucent.config.lucentclient.animationsmod.property.fireheight.name": "גובה אש",
 	"lucent.config.lucentclient.animationsmod.property.fireoverlay.description": "הפעל/בטל את תצוגת שכבת האש על המסך שלך.",
@@ -82,6 +83,7 @@
 	"lucent.config.lucentclient.chattingmod.property.chattextshadow.name": "צל טקסט צ'אט",
 	"lucent.config.lucentclient.chattingmod.property.copykey.description": "מקש קיצור להעתקת הודעת הצ'אט שמתחת לסמן העכבר.",
 	"lucent.config.lucentclient.chattingmod.property.copykey.name": "מקש העתקה",
+	"lucent.chat.lucentclient.chattingmod.copied": "Chat has been copied!",
 	"lucent.config.lucentclient.coordinatesmod.general.description": "מציג את קואורדינטות העולם הנוכחיות שלך ומידע על המיקום.",
 	"lucent.config.lucentclient.coordinatesmod.general.name": "קואורדינטות",
 	"lucent.config.lucentclient.coordinatesmod.property.backgroundcolor.description": "קובע את צבע תיבת הרקע המוצגת על המסך.",

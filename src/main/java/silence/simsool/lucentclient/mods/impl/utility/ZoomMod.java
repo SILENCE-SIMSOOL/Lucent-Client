@@ -19,7 +19,7 @@ public class ZoomMod extends Mod {
 		super(
 				"lucent.config.lucentclient.zoommod.general.name", "lucent.config.lucentclient.zoommod.general.description",
 				LucentCategory.UTILITY,
-				"",
+				"zoom",
 				LucentClientUtils.getModIcon("zoom")
 		);
 	}
@@ -50,6 +50,14 @@ public class ZoomMod extends Mod {
 		category = "Keybind"
 	)
 	public static KeyBind ZoomKey = KeyBind.ofKey(GLFW.GLFW_KEY_C, 0);
+
+	@ModConfig(
+		type = ConfigType.SLIDER,
+		name = "lucent.config.lucentclient.zoommod.property.zoomsensitivity.name",
+		description = "lucent.config.lucentclient.zoommod.property.zoomsensitivity.description",
+		min = 0.1f, max = 1.0f, step = 0.05f
+	)
+	public static float ZoomSensitivity = 0.65f;
 
 	private static float scrollFactor = 1.0f;
 

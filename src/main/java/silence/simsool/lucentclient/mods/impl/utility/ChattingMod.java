@@ -85,7 +85,7 @@ public class ChattingMod extends Mod {
 			GuiMessage msg = chat.getMessageAt(mouseX, mouseY);
 			if (msg != null) {
 				String plainText = UChat.cleanColor(msg.content().getString());
-				UDesktop.setClipboardString(plainText);
+				UDesktop.setClipboard(plainText);
 				UChat.chat("§a" + L10n.translate("lucent.chat.lucentclient.chattingmod.copied"));
 				return true;
 			}

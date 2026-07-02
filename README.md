@@ -1,7 +1,25 @@
-# LucentClient
+<h3 align="center">
+	<img src="https://raw.githubusercontent.com/SILENCE-SIMSOOL/Lucent-Client/main/docs/icon.png" alt="Lucent Icon" width="128" height="128" />
+</h3>
 
-A Fabric-based Minecraft client mod built on the Lucent library.  
-Provides various QoL improvements across graphics, HUD, performance, and utility categories.
+<h1 align="center">Lucent Client</h1>
+
+<p align="center">
+	A Fabric-based Minecraft client mod built on the Lucent library.  
+    Provides various QoL improvements across graphics, HUD, performance, and utility categories.
+</p>
+
+<p align="center">
+	<a href="https://github.com/SILENCE-SIMSOOL/Lucent-Client/releases" target="_blank">
+		<img alt="release" src="https://img.shields.io/github/v/release/SILENCE-SIMSOOL/Lucent-Client?color=E0E0E0&style=flat-square" />
+	</a>
+	<a href="https://github.com/SILENCE-SIMSOOL/Lucent-Client/releases" target="_blank">
+		<img alt="downloads" src="https://img.shields.io/github/downloads/SILENCE-SIMSOOL/Lucent-Client/total?color=8b4db6&style=flat-square" />
+	</a>
+	<a href="https://discord.gg/2Zt8HDksJs" target="_blank">
+		<img alt="discord" src="https://img.shields.io/discord/1312525891225784421?color=5865F2&label=discord&style=flat-square" />
+	</a>
+</p>
 
 ---
 
@@ -54,6 +72,7 @@ Provides various QoL improvements across graphics, HUD, performance, and utility
 | Module | Description |
 |---|---|
 | **Always Sprint** | Keeps the player sprinting automatically. |
+| **Better F5** | Disables the front-facing third-person view, allowing you to quickly toggle between first-person and back-facing third-person view. |
 | **Chatting** | Enhances the chat: custom background color, right-click to copy messages, and toggleable text shadow. |
 | **Scrollable Tooltips** | Allows scrolling through tooltips that are taller than the screen. |
 | **TNT Timer** | Renders the remaining fuse time above each primed TNT entity in the world. |

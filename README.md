@@ -54,6 +54,7 @@ Provides various QoL improvements across graphics, HUD, performance, and utility
 | Module | Description |
 |---|---|
 | **Always Sprint** | Keeps the player sprinting automatically. |
+| **Better F5** | Disables the front-facing third-person view, allowing you to quickly toggle between first-person and back-facing third-person view. |
 | **Chatting** | Enhances the chat: custom background color, right-click to copy messages, and toggleable text shadow. |
 | **Scrollable Tooltips** | Allows scrolling through tooltips that are taller than the screen. |
 | **TNT Timer** | Renders the remaining fuse time above each primed TNT entity in the world. |

@@ -82,6 +82,5 @@
 
 ## Credits
 
-- [FerriteCore](https://github.com/malte0811/FerriteCore)
-- [Krypton](https://github.com/astei/krypton)
-
+- [FerriteCore](https://github.com/malte0811/FerriteCore) for MemoryLeak Fix
+- [Krypton](https://github.com/astei/krypton) for Network Fix

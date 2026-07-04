@@ -22,7 +22,7 @@ import silence.simsool.lucentclient.mods.impl.hud.TPSMod;
 import silence.simsool.lucentclient.mods.impl.hud.VanillaHUDMod;
 import silence.simsool.lucentclient.mods.impl.performance.EntityCullingMod;
 import silence.simsool.lucentclient.mods.impl.performance.HUDCullingMod;
-import silence.simsool.lucentclient.mods.impl.performance.MemoryLeakFixMod;
+import silence.simsool.lucentclient.mods.impl.performance.memory.MemoryLeakFixMod;
 import silence.simsool.lucentclient.mods.impl.performance.network.NetworkFixMod;
 import silence.simsool.lucentclient.mods.impl.utility.AlwaysSprintMod;
 import silence.simsool.lucentclient.mods.impl.utility.BetterF5Mod;

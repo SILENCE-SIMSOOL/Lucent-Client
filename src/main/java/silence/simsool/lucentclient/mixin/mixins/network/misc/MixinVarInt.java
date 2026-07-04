@@ -12,7 +12,7 @@ import silence.simsool.lucentclient.mods.impl.performance.network.utils.VarIntUt
 public class MixinVarInt {
 
 	/**
-	 * @author SILENCE
+	 * @author SimSool (ported from Andrew Steinborn/Krypton)
 	 * @reason Optimized VarInt size calculation.
 	 */
 	@Overwrite
@@ -28,7 +28,7 @@ public class MixinVarInt {
 	}
 
 	/**
-	 * @author Lucent
+	 * @author SimSool (ported from Andrew Steinborn/Krypton)
 	 * @reason Optimized VarInt writing using bitwise operations.
 	 */
 	@Overwrite

@@ -1,4 +1,4 @@
-package silence.simsool.lucentclient.ducks;
+package silence.simsool.lucentclient.ducks.memoryleak;
 
 import net.minecraft.world.phys.shapes.VoxelShape;
 

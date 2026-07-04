@@ -64,4 +64,36 @@ public class NetworkFixMod extends Mod {
 	)
 	public static boolean FastFrameDecoding = true;
 
+	@ModConfig(
+		type = ConfigType.SWITCH,
+		name = "lucent.config.lucentclient.networkfixmod.property.nettymemoryoptimize.name",
+		description = "lucent.config.lucentclient.networkfixmod.property.nettymemoryoptimize.description",
+		category = "Options"
+	)
+	public static boolean NettyMemoryOptimize = true;
+
+	@ModConfig(
+		type = ConfigType.SWITCH,
+		name = "lucent.config.lucentclient.networkfixmod.property.leakdetectionoptimize.name",
+		description = "lucent.config.lucentclient.networkfixmod.property.leakdetectionoptimize.description",
+		category = "Options"
+	)
+	public static boolean LeakDetectionOptimize = true;
+
+	@ModConfig(
+		type = ConfigType.SWITCH,
+		name = "lucent.config.lucentclient.networkfixmod.property.fastvarintprepender.name",
+		description = "lucent.config.lucentclient.networkfixmod.property.fastvarintprepender.description",
+		category = "Options"
+	)
+	public static boolean FastVarintPrepender = true;
+
+	public static void configureNettyMemory() {
+		if (NettyMemoryOptimize) {
+			if (System.getProperty("io.netty.allocator.maxOrder") == null) {
+	            System.setProperty("io.netty.allocator.maxOrder", "9");
+	        }
+		}
+	}
+
 }

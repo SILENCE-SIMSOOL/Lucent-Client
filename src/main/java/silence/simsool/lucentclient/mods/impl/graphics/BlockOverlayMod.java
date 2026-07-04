@@ -1,7 +1,5 @@
 package silence.simsool.lucentclient.mods.impl.graphics;
 
-import silence.simsool.lucent.general.utils.LucentCategory;
-
 import static silence.simsool.lucent.Lucent.mc;
 
 import java.awt.Color;
@@ -10,10 +8,12 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.HitResult;
 import silence.simsool.lucent.Lucent;
+import silence.simsool.lucent.events.impl.LucentEvent.BlockOverlayEvent;
 import silence.simsool.lucent.events.impl.LucentEvent.RenderWorldEvent;
 import silence.simsool.lucent.general.enums.ConfigType;
 import silence.simsool.lucent.general.models.abstracts.Mod;
 import silence.simsool.lucent.general.models.interfaces.annotations.ModConfig;
+import silence.simsool.lucent.general.utils.LucentCategory;
 import silence.simsool.lucent.general.utils.render.Render3D;
 import silence.simsool.lucentclient.utils.LucentClientUtils;
 
@@ -84,6 +84,11 @@ public class BlockOverlayMod extends Mod {
 		priority = 480
 	)
 	public static float OutlineThickness = 2.0f;
+
+	@Override
+	public void onBlockOverlay(BlockOverlayEvent event) {
+		event.cancel();
+	}
 
 	@Override
 	public void onRenderWorld(RenderWorldEvent event) {

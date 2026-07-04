@@ -16,6 +16,7 @@ repositories {
 	maven { url "https://SILENCE-SIMSOOL.github.io/maven-repo/" }
 	maven { url = uri("https://api.modrinth.com/maven") }
 	maven { url = uri("https://pkgs.dev.azure.com/djtheredstoner/DevAuth/_packaging/public/maven/v1") }
+	maven { url "https://repo.papermc.io/repository/maven-public/" }
 }
 
 loom {
@@ -55,7 +56,10 @@ dependencies {
 	def lucentVersion = "${project.lucent_version}-${project.minecraft_version}-${project.lucent_library}"
 	modImplementation "com.github.SILENCE-SIMSOOL:lucent:${lucentVersion}"
 	include "com.github.SILENCE-SIMSOOL:lucent:${lucentVersion}"
-	
+
+	modImplementation ("com.velocitypowered:velocity-native:3.4.0-SNAPSHOT")
+	include ("com.velocitypowered:velocity-native:3.4.0-SNAPSHOT")
+
 	//modImplementation files("libs/SilenceUtils-1.0.0.jar")
 }
 

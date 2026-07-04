@@ -16,7 +16,7 @@ import silence.simsool.lucentclient.mods.impl.performance.network.NetworkFixMod;
 public class MixinUtf8String {
 
 	/**
-	 * @author SILENCE
+	 * @author SimSool (ported from Andrew Steinborn/Krypton)
 	 * @reason Optimized UTF-8 writing for network performance.
 	 */
 	@Overwrite

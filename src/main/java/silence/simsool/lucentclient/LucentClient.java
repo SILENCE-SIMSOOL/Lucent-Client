@@ -13,15 +13,20 @@ import silence.simsool.lucentclient.handler.ServerHandler;
 import silence.simsool.lucentclient.huds.HUDRegister;
 import silence.simsool.lucentclient.init.Keybinds;
 import silence.simsool.lucentclient.mods.LucentClientModRegister;
+import silence.simsool.lucentclient.mods.impl.performance.network.NetworkFixMod;
 import silence.simsool.lucentclient.utils.LucentClientUtils;
 
 public class LucentClient implements ClientModInitializer {
 
 	public static final String ID = "lucentclient";
 	public static final String NAME = "Lucent Client";
-	public static final String VERSION = "1.0.13";
+	public static final String VERSION = "1.1.14";
 
 	public static final String PREFIX = "§b[§fLucent Client§b] ";
+
+	static {
+		NetworkFixMod.configureNettyMemory();
+	}
 
 	@Override
 	public void onInitializeClient() {

@@ -10,6 +10,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.HitResult;
 import silence.simsool.lucent.Lucent;
+import silence.simsool.lucent.events.impl.LucentEvent.BlockOverlayEvent;
 import silence.simsool.lucent.events.impl.LucentEvent.RenderWorldEvent;
 import silence.simsool.lucent.general.enums.ConfigType;
 import silence.simsool.lucent.general.models.abstracts.Mod;
@@ -84,6 +85,11 @@ public class BlockOverlayMod extends Mod {
 		priority = 480
 	)
 	public static float OutlineThickness = 2.0f;
+
+	@Override
+	public void onBlockOverlay(BlockOverlayEvent event) {
+		event.cancel();
+	}
 
 	@Override
 	public void onRenderWorld(RenderWorldEvent event) {

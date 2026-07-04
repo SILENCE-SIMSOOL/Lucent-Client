@@ -1,11 +1,9 @@
 package silence.simsool.lucentclient.mods.impl.performance.network;
 
-import silence.simsool.lucent.general.utils.LucentCategory;
-
-import silence.simsool.lucent.Lucent;
 import silence.simsool.lucent.general.enums.ConfigType;
 import silence.simsool.lucent.general.models.abstracts.Mod;
 import silence.simsool.lucent.general.models.interfaces.annotations.ModConfig;
+import silence.simsool.lucent.general.utils.LucentCategory;
 import silence.simsool.lucentclient.utils.LucentClientUtils;
 
 public class NetworkFixMod extends Mod {
@@ -20,7 +18,7 @@ public class NetworkFixMod extends Mod {
 	}
 
 	public static boolean isEnabled() {
-		return Lucent.config.isModuleEnabled(NetworkFixMod.class);
+		return true; // Lucent.config.isModuleEnabled(MemoryLeakFixMod.class);
 	}
 
 	@ModConfig(
@@ -63,5 +61,37 @@ public class NetworkFixMod extends Mod {
 		category = "Options"
 	)
 	public static boolean FastFrameDecoding = true;
+
+	@ModConfig(
+		type = ConfigType.SWITCH,
+		name = "lucent.config.lucentclient.networkfixmod.property.nettymemoryoptimize.name",
+		description = "lucent.config.lucentclient.networkfixmod.property.nettymemoryoptimize.description",
+		category = "Options"
+	)
+	public static boolean NettyMemoryOptimize = true;
+
+	@ModConfig(
+		type = ConfigType.SWITCH,
+		name = "lucent.config.lucentclient.networkfixmod.property.leakdetectionoptimize.name",
+		description = "lucent.config.lucentclient.networkfixmod.property.leakdetectionoptimize.description",
+		category = "Options"
+	)
+	public static boolean LeakDetectionOptimize = true;
+
+	@ModConfig(
+		type = ConfigType.SWITCH,
+		name = "lucent.config.lucentclient.networkfixmod.property.fastvarintprepender.name",
+		description = "lucent.config.lucentclient.networkfixmod.property.fastvarintprepender.description",
+		category = "Options"
+	)
+	public static boolean FastVarintPrepender = true;
+
+	public static void configureNettyMemory() {
+		if (NettyMemoryOptimize) {
+			if (System.getProperty("io.netty.allocator.maxOrder") == null) {
+	            System.setProperty("io.netty.allocator.maxOrder", "9");
+	        }
+		}
+	}
 
 }

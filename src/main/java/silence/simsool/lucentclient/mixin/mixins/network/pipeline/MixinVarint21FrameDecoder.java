@@ -20,7 +20,7 @@ import silence.simsool.lucentclient.mods.impl.performance.network.utils.WellKnow
 public class MixinVarint21FrameDecoder {
 
 	/**
-	 * @author SILENCE
+	 * @author SimSool (ported from Andrew Steinborn/Krypton)
 	 * @reason Highly optimized packet frame decoding.
 	 */
 	@Overwrite

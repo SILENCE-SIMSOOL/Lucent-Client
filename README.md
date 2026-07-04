@@ -77,3 +77,11 @@
 | **Scrollable Tooltips** | Allows scrolling through tooltips that are taller than the screen. |
 | **TNT Timer** | Renders the remaining fuse time above each primed TNT entity in the world. |
 | **Zoom** | Zooms in while a keybind is held. Supports smooth zoom transition and scroll-to-adjust zoom level. |
+
+---
+
+## Credits
+
+- [FerriteCore](https://github.com/malte0811/FerriteCore)
+- [Krypton](https://github.com/astei/krypton)
+

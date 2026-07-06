@@ -1,6 +1,5 @@
 package silence.simsool.lucentclient.mods.impl.performance.memory;
 
-import silence.simsool.lucent.Lucent;
 import silence.simsool.lucent.general.enums.ConfigType;
 import silence.simsool.lucent.general.models.abstracts.Mod;
 import silence.simsool.lucent.general.models.interfaces.annotations.ModConfig;
@@ -20,7 +19,7 @@ public class MemoryLeakFixMod extends Mod {
 	}
 
 	public static boolean isEnabled() {
-		return Lucent.config.isModuleEnabled(MemoryLeakFixMod.class);
+		return true; // return Lucent.config.isModuleEnabled(MemoryLeakFixMod.class);
 	}
 
 	@ModConfig(

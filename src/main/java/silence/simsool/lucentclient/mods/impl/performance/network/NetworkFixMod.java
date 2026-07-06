@@ -1,11 +1,9 @@
 package silence.simsool.lucentclient.mods.impl.performance.network;
 
-import silence.simsool.lucent.general.utils.LucentCategory;
-
-import silence.simsool.lucent.Lucent;
 import silence.simsool.lucent.general.enums.ConfigType;
 import silence.simsool.lucent.general.models.abstracts.Mod;
 import silence.simsool.lucent.general.models.interfaces.annotations.ModConfig;
+import silence.simsool.lucent.general.utils.LucentCategory;
 import silence.simsool.lucentclient.utils.LucentClientUtils;
 
 public class NetworkFixMod extends Mod {
@@ -20,7 +18,7 @@ public class NetworkFixMod extends Mod {
 	}
 
 	public static boolean isEnabled() {
-		return Lucent.config.isModuleEnabled(NetworkFixMod.class);
+		return true; // return Lucent.config.isModuleEnabled(NetworkFixMod.class);
 	}
 
 	@ModConfig(

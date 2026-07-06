@@ -27,6 +27,7 @@ import silence.simsool.lucentclient.mods.impl.performance.network.NetworkFixMod;
 import silence.simsool.lucentclient.mods.impl.utility.AlwaysSprintMod;
 import silence.simsool.lucentclient.mods.impl.utility.BetterF5Mod;
 import silence.simsool.lucentclient.mods.impl.utility.ChattingMod;
+import silence.simsool.lucentclient.mods.impl.utility.LegacySkinFix;
 import silence.simsool.lucentclient.mods.impl.utility.TntTimerMod;
 import silence.simsool.lucentclient.mods.impl.utility.ZoomMod;
 import silence.simsool.lucentclient.mods.impl.utility.scrollabletooltips.ScrollableTooltipsMod;
@@ -72,7 +73,8 @@ public class LucentClientModRegister {
 			new TntTimerMod(),
 			new AlwaysSprintMod(),
 			new ZoomMod(),
-			new ChattingMod()
+			new ChattingMod(),
+			new LegacySkinFix()
 
 		).forEach(config::register);
 

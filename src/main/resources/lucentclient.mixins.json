@@ -49,6 +49,7 @@
 		"mixins.MixinMouseHandler",
 		"mixins.MixinOptions",
 		"mixins.MixinScreenEffectRenderer",
+		"mixins.MixinYggdrasilSignatureIgnore",
 		"mixins.network.misc.MixinServerEntity",
 		"mixins.network.misc.MixinUtf8String",
 		"mixins.network.misc.MixinVarInt",

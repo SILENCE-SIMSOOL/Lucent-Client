@@ -57,6 +57,12 @@
 		"mixins.network.pipeline.MixinLegacyQueryHandler",
 		"mixins.network.pipeline.MixinVarint21FrameDecoder",
 		"mixins.network.pipeline.pretender.MixinConnection",
+		"mixins.packmanager.MixinClientCommonPacketListenerImpl",
+		"mixins.packmanager.MixinFallbackResourceManager",
+		"mixins.packmanager.MixinGuiGraphicsExtractor",
+		"mixins.packmanager.MixinPackPosition",
+		"mixins.packmanager.MixinResourcePackProfile",
+		"mixins.packmanager.MixinResourcePackSendS2CPacket",
 		"mixins.scrollabletooltips.MixinGuiGraphics_ScrollableTooltips",
 		"mixins.scrollabletooltips.MixinMouse_ScrollableTooltips",
 		"mixins.scrollabletooltips.MixinScreen_ScrollableTooltips"

@@ -402,5 +402,17 @@
 	"lucent.config.lucentclient.zoommod.property.zoomkey.description": "用于执行画面镜头的缩放放大功能的快捷按键。",
 	"lucent.config.lucentclient.zoommod.property.zoomkey.name": "缩放按键",
 	"lucent.config.lucentclient.zoommod.property.zoomsensitivity.description": "Sets the mouse sensitivity multiplier when zoomed. (Default: 0.8)",
-	"lucent.config.lucentclient.zoommod.property.zoomsensitivity.name": "Zoom Sensitivity Ratio"
+	"lucent.config.lucentclient.zoommod.property.zoomsensitivity.name": "Zoom Sensitivity Ratio",
+	"lucent.config.lucentclient.packmanagermod.property.revertitem.name": "还原物品",
+	"lucent.config.lucentclient.packmanagermod.property.revertitem.description": "还原被覆盖 Durability 的 Skyblock 物品贴图和头部皮肤。",
+	"lucent.config.lucentclient.packmanagermod.general.name": "资源包管理器",
+	"lucent.config.lucentclient.packmanagermod.general.description": "管理服务器资源包设置和 Skyblock 物品恢复。",
+	"lucent.config.lucentclient.packmanagermod.property.serverunlocker.name": "解锁服务器包",
+	"lucent.config.lucentclient.packmanagermod.property.serverunlocker.description": "解锁服务器资源包的固定位置，允许重新排序。",
+	"lucent.config.lucentclient.packmanagermod.property.disablepackoverride.name": "禁用资源包覆盖",
+	"lucent.config.lucentclient.packmanagermod.property.disablepackoverride.description": "阻止服务器资源包覆盖原版资源（字体除外）。",
+	"lucent.config.lucentclient.packmanagermod.property.blockpackdownload.name": "阻止资源包下载",
+	"lucent.config.lucentclient.packmanagermod.property.blockpackdownload.description": "阻止下载服务器资源包，同时向服务器伪装加载已完成。",
+	"lucent.config.lucentclient.packmanagermod.property.revertitem.name": "还原物品",
+	"lucent.config.lucentclient.packmanagermod.property.revertitem.description": "还原被覆盖 Durability 的 Skyblock 物品贴图和头部皮肤。"
 }

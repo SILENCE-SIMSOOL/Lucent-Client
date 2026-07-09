@@ -402,5 +402,17 @@
 	"lucent.config.lucentclient.zoommod.property.zoomkey.description": "ズームインを行うために使用するキー。",
 	"lucent.config.lucentclient.zoommod.property.zoomkey.name": "ズームキー",
 	"lucent.config.lucentclient.zoommod.property.zoomsensitivity.description": "Sets the mouse sensitivity multiplier when zoomed. (Default: 0.8)",
-	"lucent.config.lucentclient.zoommod.property.zoomsensitivity.name": "Zoom Sensitivity Ratio"
+	"lucent.config.lucentclient.zoommod.property.zoomsensitivity.name": "Zoom Sensitivity Ratio",
+	"lucent.config.lucentclient.packmanagermod.property.revertitem.name": "アイテム復元",
+	"lucent.config.lucentclient.packmanagermod.property.revertitem.description": "Skyblockアイテムの上書きされたテクスチャと頭のスキンを元に戻します。",
+	"lucent.config.lucentclient.packmanagermod.general.name": "パックマネージャー",
+	"lucent.config.lucentclient.packmanagermod.general.description": "サーバーリソースパックの設定とSkyblockアイテムの復元を管理します。",
+	"lucent.config.lucentclient.packmanagermod.property.serverunlocker.name": "サーバーパック解除",
+	"lucent.config.lucentclient.packmanagermod.property.serverunlocker.description": "サーバーリソースパックの固定位置を解除し、並び替えできるようにします。",
+	"lucent.config.lucentclient.packmanagermod.property.disablepackoverride.name": "パック上書き無効化",
+	"lucent.config.lucentclient.packmanagermod.property.disablepackoverride.description": "サーバーリソースパックがバニラリソース(フォントを除く)を上書きするのを防ぎます。",
+	"lucent.config.lucentclient.packmanagermod.property.blockpackdownload.name": "パックダウンロード遮断",
+	"lucent.config.lucentclient.packmanagermod.property.blockpackdownload.description": "サーバーリソースパックのダウンロードをブロックし、サーバーには読み込み完了を偽装します。",
+	"lucent.config.lucentclient.packmanagermod.property.revertitem.name": "アイテム復元",
+	"lucent.config.lucentclient.packmanagermod.property.revertitem.description": "Skyblockアイテムの上書きされたテクスチャと頭のスキンを元に戻します。"
 }

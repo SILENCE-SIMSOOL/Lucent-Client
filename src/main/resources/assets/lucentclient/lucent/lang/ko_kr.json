@@ -402,5 +402,17 @@
 	"lucent.config.lucentclient.zoommod.property.zoomkey.description": "화면을 줌하는 데 사용될 키입니다.",
 	"lucent.config.lucentclient.zoommod.property.zoomkey.name": "줌 키",
 	"lucent.config.lucentclient.zoommod.property.zoomsensitivity.description": "줌 상태일 때 마우스 감도의 배율을 설정합니다. (기본값: 0.8)",
-	"lucent.config.lucentclient.zoommod.property.zoomsensitivity.name": "줌 감도"
+	"lucent.config.lucentclient.zoommod.property.zoomsensitivity.name": "줌 감도",
+	"lucent.config.lucentclient.packmanagermod.property.revertitem.name": "아이템 복원",
+	"lucent.config.lucentclient.packmanagermod.property.revertitem.description": "스카이블럭 아이템의 외관 및 머리 스킨을 기존 상태로 복원합니다.",
+	"lucent.config.lucentclient.packmanagermod.general.name": "팩 매니저",
+	"lucent.config.lucentclient.packmanagermod.general.description": "서버 리소스 팩 및 스카이블럭 아이템 복원 관련 설정을 관리합니다.",
+	"lucent.config.lucentclient.packmanagermod.property.serverunlocker.name": "서버 팩 해제",
+	"lucent.config.lucentclient.packmanagermod.property.serverunlocker.description": "서버 리소스 팩의 고정 위치를 해제하고 정렬할 수 있게 합니다.",
+	"lucent.config.lucentclient.packmanagermod.property.disablepackoverride.name": "팩 덮어쓰기 비활성화",
+	"lucent.config.lucentclient.packmanagermod.property.disablepackoverride.description": "서버 리소스 팩이 바닐라 리소스(폰트 제외)를 덮어쓰는 것을 차단합니다.",
+	"lucent.config.lucentclient.packmanagermod.property.blockpackdownload.name": "팩 다운로드 차단",
+	"lucent.config.lucentclient.packmanagermod.property.blockpackdownload.description": "서버 리소스 팩 다운로드를 차단하고 서버에 완료 신호를 보냅니다.",
+	"lucent.config.lucentclient.packmanagermod.property.revertitem.name": "아이템 복원",
+	"lucent.config.lucentclient.packmanagermod.property.revertitem.description": "스카이블럭 아이템의 외관 및 머리 스킨을 기존 상태로 복원합니다."
 }

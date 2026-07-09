@@ -402,5 +402,17 @@
 	"lucent.config.lucentclient.zoommod.property.zoomkey.description": "Зажмите эту клавишу для приближения камеры.",
 	"lucent.config.lucentclient.zoommod.property.zoomkey.name": "Клавиша зума",
 	"lucent.config.lucentclient.zoommod.property.zoomsensitivity.description": "Sets the mouse sensitivity multiplier when zoomed. (Default: 0.8)",
-	"lucent.config.lucentclient.zoommod.property.zoomsensitivity.name": "Zoom Sensitivity Ratio"
+	"lucent.config.lucentclient.zoommod.property.zoomsensitivity.name": "Zoom Sensitivity Ratio",
+	"lucent.config.lucentclient.packmanagermod.property.revertitem.name": "Revert Item",
+	"lucent.config.lucentclient.packmanagermod.property.revertitem.description": "Reverts overridden textures and skull skins for Skyblock items.",
+	"lucent.config.lucentclient.packmanagermod.general.name": "Pack Manager",
+	"lucent.config.lucentclient.packmanagermod.general.description": "Manages server resource pack settings and Skyblock item recovery.",
+	"lucent.config.lucentclient.packmanagermod.property.serverunlocker.name": "Server Unlocker",
+	"lucent.config.lucentclient.packmanagermod.property.serverunlocker.description": "Unlocks the fixed position of server resource packs, allowing reordering.",
+	"lucent.config.lucentclient.packmanagermod.property.disablepackoverride.name": "Disable Pack Override",
+	"lucent.config.lucentclient.packmanagermod.property.disablepackoverride.description": "Prevents server resource packs from overriding vanilla resources (except fonts).",
+	"lucent.config.lucentclient.packmanagermod.property.blockpackdownload.name": "Block Pack Download",
+	"lucent.config.lucentclient.packmanagermod.property.blockpackdownload.description": "Blocks downloading of server resource packs while spoofing completion to the server.",
+	"lucent.config.lucentclient.packmanagermod.property.revertitem.name": "Revert Item",
+	"lucent.config.lucentclient.packmanagermod.property.revertitem.description": "Reverts overridden textures and skull skins for Skyblock items."
 }

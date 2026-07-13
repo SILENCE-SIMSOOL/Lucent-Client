@@ -4,9 +4,7 @@
 	"version": "${version}",
 	"name": "Lucent Client",
 	"description": "A collection of essential and lightweight mods built with Lucent.",
-	"authors": [
-		"SimSool"
-	],
+	"authors": ["SimSool"],
 	"contact": {
 		"homepage": "",
 		"sources": ""

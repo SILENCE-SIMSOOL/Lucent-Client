@@ -23,6 +23,9 @@
 
 ---
 
+## 📖 Getting Started
+Open the config screen using the `/lucent` command or by pressing the `Right-Shift` key.  
+
 ## Modules
 
 ### 🎨 Graphics

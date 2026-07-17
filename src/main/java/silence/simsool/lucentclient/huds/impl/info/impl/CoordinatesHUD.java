@@ -18,6 +18,39 @@ import silence.simsool.lucentclient.mods.impl.hud.CoordinatesMod;
 
 public class CoordinatesHUD extends LucentHUD {
 
+	private long lastCacheTime = 0L;
+	private String cachedBiome = "Unknown";
+	private String cachedChunkStats = "0/0";
+
+	private void updateCacheIfNeeded() {
+		long now = System.currentTimeMillis();
+		if (now - lastCacheTime >= 1000L) {
+			lastCacheTime = now;
+			
+			cachedBiome = mc.level.getBiome(mc.player.blockPosition())
+				.unwrapKey()
+				.map(key -> {
+					String path = key.identifier().getPath();
+					String name = path.replace('_', ' ');
+					if (name.length() > 0) return name.substring(0, 1).toUpperCase() + name.substring(1);
+					return name;
+				})
+				.orElse("Unknown");
+
+			cachedChunkStats = queryChunkStats();
+		}
+	}
+
+	private String queryChunkStats() {
+		if (mc.levelExtractor == null) return "0/0";
+		String debug = mc.levelExtractor.sectionStatistics();
+		if (debug != null && debug.startsWith("C: ")) {
+			String[] parts = debug.substring(3).split(" ");
+			if (parts.length > 0) return parts[0];
+		}
+		return "0/0";
+	}
+
 	public CoordinatesHUD() {
 		super("lucentclient_coordinates", CoordinatesMod.class, 0.00625f, 0.011111111f, 1.0f, Align.LEFT);
 	}
@@ -97,6 +130,9 @@ public class CoordinatesHUD extends LucentHUD {
 	}
 
 	private List<String> getLines(boolean preview) {
+		if (!preview) {
+			updateCacheIfNeeded();
+		}
 		List<String> lines = new ArrayList<>();
 		BlockPos pos = preview ? new BlockPos(121, 78, -242) : (mc.player != null ? mc.player.blockPosition() : BlockPos.ZERO);
 		
@@ -140,13 +176,7 @@ public class CoordinatesHUD extends LucentHUD {
 	}
 
 	private String getChunkStats() {
-		if (mc.levelExtractor == null) return "0/0";
-		String debug = mc.levelExtractor.sectionStatistics();
-		if (debug != null && debug.startsWith("C: ")) {
-			String[] parts = debug.substring(3).split(" ");
-			if (parts.length > 0) return parts[0];
-		}
-		return "0/0";
+		return cachedChunkStats;
 	}
 
 	private String getShortDirection() {
@@ -165,18 +195,7 @@ public class CoordinatesHUD extends LucentHUD {
 	}
 
 	private String getBiomeName() {
-		if (mc.level == null || mc.player == null) return "Unknown";
-
-		return (mc.level.getBiome(mc.player.blockPosition())
-			.unwrapKey()
-			.map(key -> {
-				String path = key.identifier().getPath();
-				String name = path.replace('_', ' ');
-				if (name.length() > 0) return name.substring(0, 1).toUpperCase() + name.substring(1);
-				return name;
-			})
-			.orElse("Unknown")
-		);
+		return cachedBiome;
 	}
 
 }

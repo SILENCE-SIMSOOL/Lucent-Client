@@ -28,6 +28,7 @@ import silence.simsool.lucentclient.mods.impl.utility.AlwaysSprintMod;
 import silence.simsool.lucentclient.mods.impl.utility.BetterF5Mod;
 import silence.simsool.lucentclient.mods.impl.utility.ChattingMod;
 import silence.simsool.lucentclient.mods.impl.utility.LegacySkinFixMod;
+import silence.simsool.lucentclient.mods.impl.utility.ShortcutMod;
 import silence.simsool.lucentclient.mods.impl.utility.TntTimerMod;
 import silence.simsool.lucentclient.mods.impl.utility.ZoomMod;
 import silence.simsool.lucentclient.mods.impl.utility.packmanager.PackManagerMod;
@@ -76,7 +77,8 @@ public class LucentClientModRegister {
 			new ZoomMod(),
 			new ChattingMod(),
 			new LegacySkinFixMod(),
-			new PackManagerMod()
+			new PackManagerMod(),
+			new ShortcutMod()
 
 		).forEach(config::register);
 

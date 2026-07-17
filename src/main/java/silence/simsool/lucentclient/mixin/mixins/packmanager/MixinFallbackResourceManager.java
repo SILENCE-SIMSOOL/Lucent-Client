@@ -12,8 +12,8 @@ import org.spongepowered.asm.mixin.injection.invoke.arg.Args;
 import net.minecraft.resources.Identifier;
 import net.minecraft.server.packs.PackResources;
 import net.minecraft.server.packs.resources.FallbackResourceManager;
-import silence.simsool.lucentclient.mods.impl.utility.FilteredPackResources;
 import silence.simsool.lucentclient.mods.impl.utility.packmanager.PackManagerMod;
+import silence.simsool.lucentclient.mods.impl.utility.packmanager.utils.FilteredPackResources;
 
 @Mixin(FallbackResourceManager.class)
 public class MixinFallbackResourceManager {

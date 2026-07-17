@@ -9,6 +9,7 @@ import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.function.Predicate;
 
 import net.fabricmc.fabric.api.client.rendering.v1.level.LevelRenderEvents;
+import silence.simsool.lucentclient.hooks.EntityRendererHook;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.level.ClipContext;
 import net.minecraft.world.phys.AABB;
@@ -80,6 +81,7 @@ public class EntityCullingMod extends Mod {
 		LevelRenderEvents.START_MAIN.register(context -> {
 			lastCulledEntities = culledEntities;
 			culledEntities = 0;
+			EntityRendererHook.frameRaycastCount = 0;
 		});
 	}
 

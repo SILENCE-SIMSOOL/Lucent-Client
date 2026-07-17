@@ -1,4 +1,4 @@
-package silence.simsool.lucentclient.mods.impl.utility;
+package silence.simsool.lucentclient.mods.impl.utility.packmanager.utils;
 
 import java.io.InputStream;
 import java.util.Set;

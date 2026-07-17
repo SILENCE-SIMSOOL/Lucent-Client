@@ -23,6 +23,8 @@ import silence.simsool.lucentclient.utils.LucentClientUtils;
 
 public class EntityRendererHook {
 
+	public static int frameRaycastCount = 0;
+
 	public static void onShouldRender(Entity entity, Frustum frustum, double x, double y, double z, CallbackInfoReturnable<Boolean> cir) {
 
 		if (HideFallingBlockMod.isEnabled()) {
@@ -97,9 +99,19 @@ public class EntityRendererHook {
 					else return;
 				}
 
+				if (frameRaycastCount >= 10) {
+					if (state.lastCheckTick != 0 && !state.visible) {
+						EntityCullingMod.culledEntities++;
+						cir.setReturnValue(false);
+						return;
+					}
+					else return;
+				}
+
 				Vec3 camPos = UWorld.getCameraPos();
 				AABB box = entity.getBoundingBox().inflate(0.05);
 
+				frameRaycastCount++;
 				state.visible = EntityCullingMod.isVisibleOptimized(camPos, box, cameraEntity, distSq);
 				state.lastCheckTick = currentTick;
 

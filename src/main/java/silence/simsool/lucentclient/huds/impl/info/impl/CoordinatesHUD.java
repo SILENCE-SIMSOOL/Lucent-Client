@@ -18,6 +18,36 @@ import silence.simsool.lucentclient.mods.impl.hud.CoordinatesMod;
 
 public class CoordinatesHUD extends LucentHUD {
 
+	private long lastCacheTime = 0L;
+	private String cachedBiome = "Unknown";
+	private String cachedChunkStats = "0/0";
+
+	private void updateCacheIfNeeded() {
+		long now = System.currentTimeMillis();
+		if (now - lastCacheTime >= 1000L) {
+			lastCacheTime = now;
+			
+			cachedBiome = mc.level.getBiome(mc.player.blockPosition())
+				.unwrapKey()
+				.map(key -> {
+					String path = key.identifier().getPath();
+					String name = path.replace('_', ' ');
+					if (name.length() > 0) return name.substring(0, 1).toUpperCase() + name.substring(1);
+					return name;
+				})
+				.orElse("Unknown");
+
+			cachedChunkStats = queryChunkStats();
+		}
+	}
+
+	private String queryChunkStats() {
+		if (mc.levelRenderer == null) return "0/0";
+		int rendered = mc.levelRenderer.countRenderedSections();
+		int total = (int) mc.levelRenderer.getTotalSections();
+		return String.format("%d/%d", rendered, total);
+	}
+
 	public CoordinatesHUD() {
 		super("lucentclient_coordinates", CoordinatesMod.class, 0.00625f, 0.011111111f, 1.0f, Align.LEFT);
 	}
@@ -97,6 +127,9 @@ public class CoordinatesHUD extends LucentHUD {
 	}
 
 	private List<String> getLines(boolean preview) {
+		if (!preview) {
+			updateCacheIfNeeded();
+		}
 		List<String> lines = new ArrayList<>();
 		BlockPos pos = preview ? new BlockPos(121, 78, -242) : (mc.player != null ? mc.player.blockPosition() : BlockPos.ZERO);
 		
@@ -140,10 +173,7 @@ public class CoordinatesHUD extends LucentHUD {
 	}
 
 	private String getChunkStats() {
-		if (mc.levelRenderer == null) return "0/0";
-		int rendered = mc.levelRenderer.countRenderedSections();
-		int total = (int) mc.levelRenderer.getTotalSections();
-		return String.format("%d/%d", rendered, total);
+		return cachedChunkStats;
 	}
 
 	private String getShortDirection() {
@@ -162,18 +192,7 @@ public class CoordinatesHUD extends LucentHUD {
 	}
 
 	private String getBiomeName() {
-		if (mc.level == null || mc.player == null) return "Unknown";
-
-		return (mc.level.getBiome(mc.player.blockPosition())
-			.unwrapKey()
-			.map(key -> {
-				String path = key.identifier().getPath();
-				String name = path.replace('_', ' ');
-				if (name.length() > 0) return name.substring(0, 1).toUpperCase() + name.substring(1);
-				return name;
-			})
-			.orElse("Unknown")
-		);
+		return cachedBiome;
 	}
 
 }

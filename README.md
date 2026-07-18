@@ -23,6 +23,8 @@
 
 ---
 
+https://github.com/user-attachments/assets/9ebc8fb0-e609-423b-866f-94de7b5b71bd
+
 ## 📖 Getting Started
 Open the config screen using the `/lucent` command or by pressing the `Right-Shift` key.  
 
@@ -85,6 +87,5 @@ Open the config screen using the `/lucent` command or by pressing the `Right-Shi
 
 ## Credits
 
-- [FerriteCore](https://github.com/malte0811/FerriteCore)
-- [Krypton](https://github.com/astei/krypton)
-
+- [FerriteCore](https://github.com/malte0811/FerriteCore) for MemoryLeak Fix
+- [Krypton](https://github.com/astei/krypton) for Network Fix

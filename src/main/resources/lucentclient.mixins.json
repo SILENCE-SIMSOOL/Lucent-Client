@@ -37,6 +37,7 @@
 		"mixins.MixinGui",
 		"mixins.MixinGuiAttackIndicator",
 		"mixins.MixinGuiPotionEffects",
+		"mixins.MixinEffectsInInventory",
 		"mixins.MixinItemInHandRenderer",
 		"mixins.MixinLevel",
 		"mixins.MixinLevelRenderer",

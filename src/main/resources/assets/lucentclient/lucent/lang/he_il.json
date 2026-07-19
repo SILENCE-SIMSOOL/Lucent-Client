@@ -247,6 +247,8 @@
 	"lucent.config.lucentclient.nametagsmod.property.customnametags.name": "תגי שם מותאמים אישית",
 	"lucent.config.lucentclient.nametagsmod.property.showbackground.description": "האם לצייר רקע מאחורי תג השם.",
 	"lucent.config.lucentclient.nametagsmod.property.showbackground.name": "הצגת רקע",
+	"lucent.config.lucentclient.nametagsmod.property.showselfnametag.description": "מציג את תג השם שלך במבט גוף שלישי.",
+	"lucent.config.lucentclient.nametagsmod.property.showselfnametag.name": "הצג תג שם עצמי",
 	"lucent.config.lucentclient.nametagsmod.property.textshadow.description": "מרנדר צל מתחת לטקסט של תג השם.",
 	"lucent.config.lucentclient.nametagsmod.property.textshadow.name": "צל טקסט",
 	"lucent.config.lucentclient.networkfixmod.general.description": "מבצע אופטימיזציה להגדרות הרשת להפחתת לאגים ושיפור יציבות החיבור.",

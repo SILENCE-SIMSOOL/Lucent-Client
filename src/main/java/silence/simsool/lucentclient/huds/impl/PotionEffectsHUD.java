@@ -46,12 +46,13 @@ public class PotionEffectsHUD extends LucentHUD {
 
 	@Override
 	public void draw(GuiGraphicsExtractor guiGraphics) {
-		if (isEditHudOpen || UDisplay.isDebugScreen()) return;
+		if (isEditHudOpen || UDisplay.isDebugScreen() || !PotionEffectsMod.ShowHUD) return;
 		render(guiGraphics, false);
 	}
 
 	@Override
 	public void preview(GuiGraphicsExtractor guiGraphics) {
+		if (!PotionEffectsMod.ShowHUD) return;
 		render(guiGraphics, true);
 	}
 

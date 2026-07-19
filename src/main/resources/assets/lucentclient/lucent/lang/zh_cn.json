@@ -247,6 +247,8 @@
 	"lucent.config.lucentclient.nametagsmod.property.customnametags.name": "自定义姓名标签",
 	"lucent.config.lucentclient.nametagsmod.property.showbackground.description": "开启后为头顶的名字字样渲染一层深灰色半透明矩形底框背景。",
 	"lucent.config.lucentclient.nametagsmod.property.showbackground.name": "显示底框背景",
+	"lucent.config.lucentclient.nametagsmod.property.showselfnametag.description": "在第三人称视角下显示你自己的姓名标签。",
+	"lucent.config.lucentclient.nametagsmod.property.showselfnametag.name": "显示自身姓名标签",
 	"lucent.config.lucentclient.nametagsmod.property.textshadow.description": "在玩家名字标签字样的下方加上一层半透明黑色文字投影。",
 	"lucent.config.lucentclient.nametagsmod.property.textshadow.name": "文本阴影",
 	"lucent.config.lucentclient.networkfixmod.general.description": "优化游戏的底层网络收发设定，降低延迟并提升网络连接稳定性。",

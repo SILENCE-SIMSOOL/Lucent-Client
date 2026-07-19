@@ -25,6 +25,14 @@ public class PotionEffectsMod extends Mod {
 
 	@ModConfig(
 		type = ConfigType.SWITCH,
+		name = "lucent.config.lucentclient.potioneffectsmod.property.showhud.name",
+		description = "lucent.config.lucentclient.potioneffectsmod.property.showhud.description",
+		priority = 3
+	)
+	public static boolean ShowHUD = true;
+
+	@ModConfig(
+		type = ConfigType.SWITCH,
 		name = "lucent.config.lucentclient.potioneffectsmod.property.showicons.name",
 		description = "lucent.config.lucentclient.potioneffectsmod.property.showicons.description",
 		priority = 2
@@ -38,5 +46,13 @@ public class PotionEffectsMod extends Mod {
 		priority = 1
 	)
 	public static boolean ShowDuration = true;
+
+	@ModConfig(
+		type = ConfigType.SWITCH,
+		name = "lucent.config.lucentclient.potioneffectsmod.property.showinventoryeffects.name",
+		description = "lucent.config.lucentclient.potioneffectsmod.property.showinventoryeffects.description",
+		priority = 0
+	)
+	public static boolean ShowInventoryEffects = true;
 
 }

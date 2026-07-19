@@ -40,6 +40,15 @@ public class NametagsMod extends Mod {
 
 	@ModConfig(
 		type = ConfigType.SWITCH,
+		name = "lucent.config.lucentclient.nametagsmod.property.showselfnametag.name",
+		description = "lucent.config.lucentclient.nametagsmod.property.showselfnametag.description",
+		parent = "CustomNametags",
+		priority = 980
+	)
+	public static boolean ShowSelfNametag = false;
+
+	@ModConfig(
+		type = ConfigType.SWITCH,
 		name = "lucent.config.lucentclient.nametagsmod.property.showbackground.name",
 		description = "lucent.config.lucentclient.nametagsmod.property.showbackground.description",
 		category = "Background",

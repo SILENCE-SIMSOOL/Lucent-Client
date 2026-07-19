@@ -247,6 +247,8 @@
 	"lucent.config.lucentclient.nametagsmod.property.customnametags.name": "カスタムネームタグ",
 	"lucent.config.lucentclient.nametagsmod.property.showbackground.description": "ネームタグの背後に半透明の背景ボックスを描画するかどうかを設定します。",
 	"lucent.config.lucentclient.nametagsmod.property.showbackground.name": "背景ボックス表示",
+	"lucent.config.lucentclient.nametagsmod.property.showselfnametag.description": "三人称視点の時に自分のネームタグを表示します。",
+	"lucent.config.lucentclient.nametagsmod.property.showselfnametag.name": "自分のネームタグを表示",
 	"lucent.config.lucentclient.nametagsmod.property.textshadow.description": "プレイヤーネームタグのテキストの下に影を描画します。",
 	"lucent.config.lucentclient.nametagsmod.property.textshadow.name": "文字の影",
 	"lucent.config.lucentclient.networkfixmod.general.description": "遅延を低減しネットワークの安定性を高めるため、通信設定を最適化します。",

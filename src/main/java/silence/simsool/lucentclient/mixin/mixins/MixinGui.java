@@ -17,19 +17,19 @@ public class MixinGui {
 
 	@Inject(method = "renderArmor", at = @At("HEAD"), cancellable = true)
 	private static void onRenderArmor(GuiGraphics guiGraphics, Player player, int i, int j, int k, int l, CallbackInfo ci) {
-		if (!VanillaHUDMod.ArmorBar) ci.cancel();
+		if (VanillaHUDMod.isEnabled() && !VanillaHUDMod.ArmorBar) ci.cancel();
 	}
 
 	@Inject(method = "renderHearts", at = @At("HEAD"), cancellable = true)
 	private void onRenderHearts(GuiGraphics guiGraphics, Player player, int i, int j, int k, int l, float f, int m, int n, int o, boolean bl, CallbackInfo ci) {
-		if (!VanillaHUDMod.HealthBar) {
+		if (VanillaHUDMod.isEnabled() && !VanillaHUDMod.HealthBar) {
 			ci.cancel();
 		}
 	}
 
 	@Inject(method = "renderFood", at = @At("HEAD"), cancellable = true)
 	private void onRenderFood(GuiGraphics guiGraphics, Player player, int i, int j, CallbackInfo ci) {
-		if (!VanillaHUDMod.HungerBar) {
+		if (VanillaHUDMod.isEnabled() && !VanillaHUDMod.HungerBar) {
 			ci.cancel();
 		}
 	}

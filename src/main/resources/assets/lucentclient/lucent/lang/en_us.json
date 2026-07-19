@@ -247,6 +247,8 @@
 	"lucent.config.lucentclient.nametagsmod.property.customnametags.name": "Custom Nametags",
 	"lucent.config.lucentclient.nametagsmod.property.showbackground.description": "Whether to draw a background behind the nametag.",
 	"lucent.config.lucentclient.nametagsmod.property.showbackground.name": "Show Background",
+	"lucent.config.lucentclient.nametagsmod.property.showselfnametag.description": "Renders your own nametag in third-person view.",
+	"lucent.config.lucentclient.nametagsmod.property.showselfnametag.name": "Show Self Nametag",
 	"lucent.config.lucentclient.nametagsmod.property.textshadow.description": "Renders shadow under the nametag text.",
 	"lucent.config.lucentclient.nametagsmod.property.textshadow.name": "Text Shadow",
 	"lucent.config.lucentclient.networkfixmod.general.description": "Optimizes network settings to reduce lag and improve connection stability.",

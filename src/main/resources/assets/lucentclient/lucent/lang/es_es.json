@@ -247,6 +247,8 @@
 	"lucent.config.lucentclient.nametagsmod.property.customnametags.name": "Etiquetas de nombre personalizadas",
 	"lucent.config.lucentclient.nametagsmod.property.showbackground.description": "Si se dibuja un fondo detrás de la etiqueta de nombre.",
 	"lucent.config.lucentclient.nametagsmod.property.showbackground.name": "Mostrar fondo",
+	"lucent.config.lucentclient.nametagsmod.property.showselfnametag.description": "Muestra tu propia etiqueta de nombre en la vista de tercera persona.",
+	"lucent.config.lucentclient.nametagsmod.property.showselfnametag.name": "Mostrar mi etiqueta de nombre",
 	"lucent.config.lucentclient.nametagsmod.property.textshadow.description": "Muestra una sombra bajo el texto de la etiqueta de nombre.",
 	"lucent.config.lucentclient.nametagsmod.property.textshadow.name": "Sombra de texto",
 	"lucent.config.lucentclient.networkfixmod.general.description": "Optimiza los ajustes de red para reducir el lag y mejorar la estabilidad.",

@@ -247,6 +247,8 @@
 	"lucent.config.lucentclient.nametagsmod.property.customnametags.name": "Свои никнеймы",
 	"lucent.config.lucentclient.nametagsmod.property.showbackground.description": "Указывает, нужно ли рисовать серую подложку позади никнеймов игроков.",
 	"lucent.config.lucentclient.nametagsmod.property.showbackground.name": "Показать фон",
+	"lucent.config.lucentclient.nametagsmod.property.showselfnametag.description": "Отображает ваш собственный никнейм в режиме от третьего лица.",
+	"lucent.config.lucentclient.nametagsmod.property.showselfnametag.name": "Показывать свой никнейм",
 	"lucent.config.lucentclient.nametagsmod.property.textshadow.description": "Отрисовывает тень под текстом никнеймов игроков.",
 	"lucent.config.lucentclient.nametagsmod.property.textshadow.name": "Тень текста",
 	"lucent.config.lucentclient.networkfixmod.general.description": "Оптимизирует сетевые буферы для уменьшения задержек и повышения стабильности сети.",

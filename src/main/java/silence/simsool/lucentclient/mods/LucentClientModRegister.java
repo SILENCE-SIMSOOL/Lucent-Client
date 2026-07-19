@@ -9,6 +9,7 @@ import silence.simsool.lucentclient.mods.impl.graphics.DeathAnimationMod;
 import silence.simsool.lucentclient.mods.impl.graphics.FullbrightMod;
 import silence.simsool.lucentclient.mods.impl.graphics.HideFallingBlockMod;
 import silence.simsool.lucentclient.mods.impl.graphics.HurtCamMod;
+import silence.simsool.lucentclient.mods.impl.graphics.NametagsMod;
 import silence.simsool.lucentclient.mods.impl.graphics.ParticlesMod;
 import silence.simsool.lucentclient.mods.impl.graphics.TimeChangerMod;
 import silence.simsool.lucentclient.mods.impl.hud.ArmorStatusMod;
@@ -47,7 +48,7 @@ public class LucentClientModRegister {
 			new FullbrightMod(),
 			new HideFallingBlockMod(),
 			new HurtCamMod(),
-			//new NametagsMod(),
+			new NametagsMod(),
 			new ParticlesMod(),
 			//new PlayerModelMod(),
 			new TimeChangerMod(),

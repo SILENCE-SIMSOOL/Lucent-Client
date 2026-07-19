@@ -247,6 +247,8 @@
 	"lucent.config.lucentclient.nametagsmod.property.customnametags.name": "커스텀 이름표",
 	"lucent.config.lucentclient.nametagsmod.property.showbackground.description": "이름표 뒤에 배경을 그릴지 여부입니다.",
 	"lucent.config.lucentclient.nametagsmod.property.showbackground.name": "배경 표시",
+	"lucent.config.lucentclient.nametagsmod.property.showselfnametag.description": "3인칭 시점에서 자신의 이름표를 렌더링합니다.",
+	"lucent.config.lucentclient.nametagsmod.property.showselfnametag.name": "자신 이름표 표시",
 	"lucent.config.lucentclient.nametagsmod.property.textshadow.description": "이름표 텍스트 밑에 그림자를 렌더링합니다.",
 	"lucent.config.lucentclient.nametagsmod.property.textshadow.name": "텍스트 그림자",
 	"lucent.config.lucentclient.networkfixmod.general.description": "지연 시간을 줄이고 연결 안정성을 높이기 위해 네트워크 설정을 최적화합니다.",

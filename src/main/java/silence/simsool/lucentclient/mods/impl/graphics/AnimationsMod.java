@@ -79,9 +79,7 @@ public class AnimationsMod extends Mod {
 		type = ConfigType.SLIDER,
 		name = "lucent.config.lucentclient.animationsmod.property.swingspeed.name",
 		description = "lucent.config.lucentclient.animationsmod.property.swingspeed.description",
-		min = 1,
-		max = 16,
-		step = 1,
+		min = 1, max = 16, step = 1,
 		priority = 990
 	)
 	public static int SwingSpeed = 8;
@@ -124,7 +122,7 @@ public class AnimationsMod extends Mod {
 		name = "lucent.config.lucentclient.animationsmod.property.itemscale.name",
 		description = "lucent.config.lucentclient.animationsmod.property.itemscale.description",
 		category = "Item",
-		min = 0.1, max = 2.0, step = 0.05,
+		min = 0.1, max = 2.0, step = 0.01,
 		align = Align.RIGHT,
 		priority = 790
 	)
@@ -135,7 +133,7 @@ public class AnimationsMod extends Mod {
 		name = "lucent.config.lucentclient.animationsmod.property.helditemx.name",
 		description = "lucent.config.lucentclient.animationsmod.property.helditemx.description",
 		category = "Item",
-		min = -2.0, max = 2.0, step = 0.05,
+		min = -2.0, max = 2.0, step = 0.01,
 		align = Align.RIGHT,
 		priority = 780
 	)
@@ -146,7 +144,7 @@ public class AnimationsMod extends Mod {
 		name = "lucent.config.lucentclient.animationsmod.property.helditemy.name",
 		description = "lucent.config.lucentclient.animationsmod.property.helditemy.description",
 		category = "Item",
-		min = -2.0, max = 2.0, step = 0.05,
+		min = -2.0, max = 2.0, step = 0.01,
 		align = Align.RIGHT,
 		priority = 770
 	)
@@ -157,7 +155,7 @@ public class AnimationsMod extends Mod {
 		name = "lucent.config.lucentclient.animationsmod.property.helditemz.name",
 		description = "lucent.config.lucentclient.animationsmod.property.helditemz.description",
 		category = "Item",
-		min = -2.0, max = 2.0, step = 0.05,
+		min = -2.0, max = 2.0, step = 0.01,
 		align = Align.RIGHT,
 		priority = 760
 	)
@@ -211,9 +209,7 @@ public class AnimationsMod extends Mod {
 		description = "lucent.config.lucentclient.animationsmod.property.fireheight.description",
 		category = "Overlay",
 		parent = "FireOverlay",
-		min = 0.0,
-		max = 1.0,
-		step = 0.01,
+		min = 0.0, max = 1.0, step = 0.01,
 		priority = 690
 	)
 	public static double FireHeight = 0.5;
@@ -223,9 +219,7 @@ public class AnimationsMod extends Mod {
 		name = "lucent.config.lucentclient.animationsmod.property.shieldheight.name",
 		description = "lucent.config.lucentclient.animationsmod.property.shieldheight.description",
 		category = "Shield",
-		min = -0.5,
-		max = 0.5,
-		step = 0.1
+		min = -0.5, max = 0.5, step = 0.1
 	)
 	public static float ShieldHeight = 0.0f;
 

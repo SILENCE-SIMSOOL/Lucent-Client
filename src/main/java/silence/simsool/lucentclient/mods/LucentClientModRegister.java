@@ -26,6 +26,7 @@ import silence.simsool.lucentclient.mods.impl.performance.HUDCullingMod;
 import silence.simsool.lucentclient.mods.impl.performance.memory.MemoryLeakFixMod;
 import silence.simsool.lucentclient.mods.impl.performance.network.NetworkFixMod;
 import silence.simsool.lucentclient.mods.impl.utility.AlwaysSprintMod;
+import silence.simsool.lucentclient.mods.impl.utility.AutoUpdateMod;
 import silence.simsool.lucentclient.mods.impl.utility.BetterF5Mod;
 import silence.simsool.lucentclient.mods.impl.utility.ChattingMod;
 import silence.simsool.lucentclient.mods.impl.utility.LegacySkinFixMod;
@@ -79,7 +80,8 @@ public class LucentClientModRegister {
 			new ChattingMod(),
 			new LegacySkinFixMod(),
 			new PackManagerMod(),
-			new ShortcutMod()
+			new ShortcutMod(),
+			new AutoUpdateMod()
 
 		).forEach(config::register);
 

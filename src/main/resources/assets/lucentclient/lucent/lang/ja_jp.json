@@ -35,6 +35,8 @@
 	"lucent.config.lucentclient.animationsmod.property.hitcolor.name": "被ダメージカラー",
 	"lucent.config.lucentclient.animationsmod.property.ignorehaste.description": "急迫(採掘速度上昇)ステータスによる腕の振りの加速効果を無視します。",
 	"lucent.config.lucentclient.animationsmod.property.ignorehaste.name": "急迫効果無視",
+	"lucent.config.lucentclient.animationsmod.property.nohandsway.description": "視点移動時の手の揺れを無効化します。",
+	"lucent.config.lucentclient.animationsmod.property.nohandsway.name": "手の揺れ防止",
 	"lucent.config.lucentclient.animationsmod.property.itemscale.description": "装備しているアイテムの大きさを変更する倍率。",
 	"lucent.config.lucentclient.animationsmod.property.itemscale.name": "アイテムのスケール",
 	"lucent.config.lucentclient.animationsmod.property.noequipreset.description": "Prevents equip change animation from playing when switching to the same item.",

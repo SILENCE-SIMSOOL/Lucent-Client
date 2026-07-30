@@ -30,6 +30,16 @@ public class PotionEffectsHUD extends LucentHUD {
 	}
 
 	@Override
+	public boolean isEnabled() {
+		return super.isEnabled() && PotionEffectsMod.ShowHUD;
+	}
+
+	@Override
+	public void disable() {
+		PotionEffectsMod.ShowHUD = false;
+	}
+
+	@Override
 	public float getPreviewWidth() {
 		List<String> lines = getLines(true);
 		float maxW = 50;

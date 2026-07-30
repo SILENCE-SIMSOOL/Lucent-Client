@@ -19,7 +19,7 @@ public class TPSHUD extends AbstractInfoHUD {
 	@Override
 	protected String getValue(boolean preview) {
 		if (preview) return "20.0";
-		return ServerHandler.getTextTPS();
+		return ServerHandler.getTextAverageTPS();
 	}
 
 	@Override

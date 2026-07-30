@@ -4,6 +4,13 @@ import silence.simsool.lucent.general.utils.LucentCategory;
 
 import java.awt.Color;
 
+import com.mojang.blaze3d.vertex.PoseStack;
+import com.mojang.math.Axis;
+
+import net.minecraft.client.player.LocalPlayer;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffectUtil;
+import net.minecraft.world.effect.MobEffects;
 import silence.simsool.lucent.Lucent;
 import silence.simsool.lucent.general.enums.Align;
 import silence.simsool.lucent.general.enums.ConfigType;
@@ -86,6 +93,22 @@ public class AnimationsMod extends Mod {
 
 	@ModConfig(
 		type = ConfigType.SWITCH,
+		name = "lucent.config.lucentclient.animationsmod.property.inplaceswing.name",
+		description = "lucent.config.lucentclient.animationsmod.property.inplaceswing.description",
+		priority = 988
+	)
+	public static boolean InPlaceSwing = false;
+
+	@ModConfig(
+		type = ConfigType.SWITCH,
+		name = "lucent.config.lucentclient.animationsmod.property.nohandsway.name",
+		description = "lucent.config.lucentclient.animationsmod.property.nohandsway.description",
+		priority = 986
+	)
+	public static boolean NoHandSway = false;
+
+	@ModConfig(
+		type = ConfigType.SWITCH,
 		name = "lucent.config.lucentclient.animationsmod.property.ignorehaste.name",
 		description = "lucent.config.lucentclient.animationsmod.property.ignorehaste.description",
 		priority = 985
@@ -117,6 +140,24 @@ public class AnimationsMod extends Mod {
 //	)
 //	public static boolean FlatItem = false;
 
+	@ModConfig(
+		type = ConfigType.SWITCH,
+		name = "lucent.config.lucentclient.animationsmod.property.changeemptyhand.name",
+		description = "lucent.config.lucentclient.animationsmod.property.changeemptyhand.description",
+		category = "Item",
+		priority = 795
+	)
+	public static boolean ChangeEmptyHand = true;
+
+	@ModConfig(
+		type = ConfigType.SWITCH,
+		name = "lucent.config.lucentclient.animationsmod.property.changeholdingmap.name",
+		description = "lucent.config.lucentclient.animationsmod.property.changeholdingmap.description",
+		category = "Item",
+		priority = 794
+	)
+	public static boolean ChangeHoldingMap = true;
+
 	@ModConfigExtra(
 		type = ConfigType.SLIDER,
 		name = "lucent.config.lucentclient.animationsmod.property.itemscale.name",
@@ -133,7 +174,7 @@ public class AnimationsMod extends Mod {
 		name = "lucent.config.lucentclient.animationsmod.property.helditemx.name",
 		description = "lucent.config.lucentclient.animationsmod.property.helditemx.description",
 		category = "Item",
-		min = -2.0, max = 2.0, step = 0.01,
+		min = -1.0, max = 1.0, step = 0.01,
 		align = Align.RIGHT,
 		priority = 780
 	)
@@ -144,7 +185,7 @@ public class AnimationsMod extends Mod {
 		name = "lucent.config.lucentclient.animationsmod.property.helditemy.name",
 		description = "lucent.config.lucentclient.animationsmod.property.helditemy.description",
 		category = "Item",
-		min = -2.0, max = 2.0, step = 0.01,
+		min = -1.0, max = 1.0, step = 0.01,
 		align = Align.RIGHT,
 		priority = 770
 	)
@@ -155,7 +196,7 @@ public class AnimationsMod extends Mod {
 		name = "lucent.config.lucentclient.animationsmod.property.helditemz.name",
 		description = "lucent.config.lucentclient.animationsmod.property.helditemz.description",
 		category = "Item",
-		min = -2.0, max = 2.0, step = 0.01,
+		min = -1.0, max = 1.0, step = 0.01,
 		align = Align.RIGHT,
 		priority = 760
 	)
@@ -222,5 +263,106 @@ public class AnimationsMod extends Mod {
 		min = -0.5, max = 0.5, step = 0.1
 	)
 	public static float ShieldHeight = 0.0f;
+
+	private static boolean swinging = false;
+	private static int swingTimeTick = 0;
+	private static float attackAnim = 0.0f;
+	private static float prevAttackAnim = 0.0f;
+
+	@Override
+	public void onWorldLoad() {
+		resetSwing();
+	}
+
+	public static void resetSwing() {
+		swinging = false;
+		swingTimeTick = 0;
+		attackAnim = 0.0f;
+		prevAttackAnim = 0.0f;
+	}
+
+	public static int getCurrentSwingDuration() {
+		LocalPlayer player = Lucent.mc.player;
+		if (IgnoreHaste || player == null) return 6;
+		if (MobEffectUtil.hasDigSpeed(player)) {
+			return 6 - (1 + MobEffectUtil.getDigSpeedAmplification(player));
+		} else {
+			MobEffectInstance fatigue = player.getEffect(MobEffects.MINING_FATIGUE);
+			int amp = (fatigue != null) ? fatigue.getAmplifier() : -1;
+			return 6 + (1 + amp) * 2;
+		}
+	}
+
+	public static double getSwingTime() {
+		double speed = Math.pow(2.0, (SwingSpeed - 8) / 4.0);
+		return swingTimeTick * speed;
+	}
+
+	public static void onSwing() {
+		if (!isEnabled()) return;
+		int total = getCurrentSwingDuration();
+		if (swinging && swingTimeTick >= 0 && getSwingTime() < total / 2.0) return;
+		swingTimeTick = -1;
+		swinging = true;
+	}
+
+	public static void onUpdateSwingTime() {
+		if (!isEnabled()) return;
+
+		prevAttackAnim = attackAnim;
+		int total = getCurrentSwingDuration();
+
+		if (swinging) {
+			swingTimeTick++;
+			if (getSwingTime() >= total) {
+				swingTimeTick = 0;
+				swinging = false;
+			}
+		} else {
+			swingTimeTick = 0;
+		}
+
+		attackAnim = (float) (getSwingTime() / (double) total);
+	}
+
+	public static float getSwingAnimation(float partialTick) {
+		if (!isEnabled()) return 0.0f;
+		float d = attackAnim - prevAttackAnim;
+		if (d < 0.0f) d += 1.0f;
+		return prevAttackAnim + d * partialTick;
+	}
+
+	public static void applyTransformations(PoseStack poseStack) {
+		if (!isEnabled()) return;
+
+		float pitch = (float) HeldItemPitch;
+		float yaw = (float) HeldItemYaw;
+		float roll = (float) HeldItemRoll;
+
+		if (pitch != 0.0f) poseStack.mulPose(Axis.XP.rotationDegrees(pitch));
+		if (yaw != 0.0f) poseStack.mulPose(Axis.YP.rotationDegrees(yaw));
+		if (roll != 0.0f) poseStack.mulPose(Axis.ZP.rotationDegrees(roll));
+
+		float transX = (float) HeldItemX;
+		float transY = (float) HeldItemY;
+		float transZ = (float) HeldItemZ;
+
+		if (transX != 0.0f || transY != 0.0f || transZ != 0.0f) {
+			poseStack.translate(transX, transY, transZ);
+		}
+	}
+
+	public static float getItemScale() {
+		if (!isEnabled()) return 1.0f;
+		float scale = (float) ItemScale;
+		if (scale <= 0.01f) return 1.0f;
+		return scale;
+	}
+
+	public static void applyScale(PoseStack poseStack) {
+		if (!isEnabled()) return;
+		float scale = getItemScale();
+		if (scale != 1.0f) poseStack.scale(scale, scale, scale);
+	}
 
 }

@@ -49,6 +49,8 @@
 		"mixins.MixinMinecraft",
 		"mixins.MixinMouseHandler",
 		"mixins.MixinOptions",
+		"mixins.MixinPanoramaRenderer",
+		"mixins.MixinTitleScreen",
 		"mixins.MixinScreenEffectRenderer",
 		"mixins.MixinYggdrasilSignatureIgnore",
 		"mixins.network.misc.MixinServerEntity",

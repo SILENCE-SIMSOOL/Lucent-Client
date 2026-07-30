@@ -30,6 +30,16 @@ public class PotionEffectsHUD extends LucentHUD {
 	}
 
 	@Override
+	public boolean isEnabled() {
+		return super.isEnabled() && PotionEffectsMod.ShowHUD;
+	}
+
+	@Override
+	public void disable() {
+		PotionEffectsMod.ShowHUD = false;
+	}
+
+	@Override
 	public float getPreviewWidth() {
 		List<String> lines = getLines(true);
 		float maxW = 50;
@@ -46,13 +56,12 @@ public class PotionEffectsHUD extends LucentHUD {
 
 	@Override
 	public void draw(GuiGraphicsExtractor guiGraphics) {
-		if (isEditHudOpen || UDisplay.isDebugScreen() || !PotionEffectsMod.ShowHUD) return;
+		if (isEditHudOpen || UDisplay.isDebugScreen()) return;
 		render(guiGraphics, false);
 	}
 
 	@Override
 	public void preview(GuiGraphicsExtractor guiGraphics) {
-		if (!PotionEffectsMod.ShowHUD) return;
 		render(guiGraphics, true);
 	}
 

@@ -1,7 +1,5 @@
 package silence.simsool.lucentclient.mods.impl.performance;
 
-import static silence.simsool.lucent.Lucent.mc;
-
 import java.util.List;
 import java.util.Map;
 import java.util.WeakHashMap;
@@ -9,17 +7,18 @@ import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.function.Predicate;
 
 import net.fabricmc.fabric.api.client.rendering.v1.world.WorldRenderEvents;
-import silence.simsool.lucentclient.hooks.EntityRendererHook;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.level.ClipContext;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
 import silence.simsool.lucent.Lucent;
+import static silence.simsool.lucent.Lucent.mc;
 import silence.simsool.lucent.general.enums.ConfigType;
 import silence.simsool.lucent.general.models.abstracts.Mod;
 import silence.simsool.lucent.general.models.interfaces.annotations.ModConfig;
 import silence.simsool.lucent.general.utils.LucentCategory;
+import silence.simsool.lucentclient.hooks.EntityRendererHook;
 import silence.simsool.lucentclient.utils.LucentClientUtils;
 
 public class EntityCullingMod extends Mod {

@@ -9,6 +9,7 @@
 	"mixins": [],
 	"client": [
 		"accessors.ChatComponentAccessor",
+		"accessors.MinecraftAccessor",
 		"accessors.KeyBindAccessor",
 		"accessors.memoryleak.ArrayVSAccess",
 		"accessors.memoryleak.BitSetDVSAccess",

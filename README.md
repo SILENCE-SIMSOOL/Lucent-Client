@@ -25,6 +25,8 @@
 
 https://github.com/user-attachments/assets/9ebc8fb0-e609-423b-866f-94de7b5b71bd
 
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/360d47cf-7fd6-4c79-b9d9-32e3441451a6" />
+
 ## 📖 Getting Started
 Open the config screen using the `/lucent` command or by pressing the `Right-Shift` key.  
 

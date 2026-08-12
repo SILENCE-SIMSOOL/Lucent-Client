@@ -434,5 +434,9 @@
 	"lucent.config.lucentclient.packmanagermod.property.blockpackdownload.name": "パックダウンロード遮断",
 	"lucent.config.lucentclient.packmanagermod.property.blockpackdownload.description": "サーバーリソースパックのダウンロードをブロックし、サーバーには読み込み完了を偽装します。",
 	"lucent.config.lucentclient.packmanagermod.property.revertitem.name": "アイテム復元",
-	"lucent.config.lucentclient.packmanagermod.property.revertitem.description": "Skyblockアイテムの上書きされたテクスチャと頭のスキンを元に戻します。"
+	"lucent.config.lucentclient.packmanagermod.property.revertitem.description": "Skyblockアイテムの上書きされたテクスチャと頭のスキンを元に戻します。",
+	"lucent.config.lucentclient.loadingscreenmod.general.name": "ワールドローディング画面",
+	"lucent.config.lucentclient.loadingscreenmod.general.description": "ワールドローディング画面の設定を変更します。",
+	"lucent.config.lucentclient.loadingscreenmod.property.hideworldloadingscreen.name": "ワールドローディング画面を非表示",
+	"lucent.config.lucentclient.loadingscreenmod.property.hideworldloadingscreen.description": "ワールドに入るときにローディング画面を非表示にします。"
 }

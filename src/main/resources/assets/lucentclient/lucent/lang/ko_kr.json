@@ -445,6 +445,9 @@
 	"lucent.config.lucentclient.packmanagermod.property.disablepackoverride.description": "서버 리소스 팩이 바닐라 리소스(폰트 제외)를 덮어쓰는 것을 차단합니다.",
 	"lucent.config.lucentclient.packmanagermod.property.blockpackdownload.name": "팩 다운로드 차단",
 	"lucent.config.lucentclient.packmanagermod.property.blockpackdownload.description": "서버 리소스 팩 다운로드를 차단하고 서버에 완료 신호를 보냅니다.",
-	"lucent.config.lucentclient.packmanagermod.property.revertitem.name": "아이템 복원",
-	"lucent.config.lucentclient.packmanagermod.property.revertitem.description": "스카이블럭 아이템의 외관 및 머리 스킨을 기존 상태로 복원합니다."
+	"lucent.config.lucentclient.packmanagermod.property.revertitem.description": "스카이블럭 아이템의 변경된 텍스처 및 머리 스킨을 원본으로 복원합니다.",
+	"lucent.config.lucentclient.loadingscreenmod.general.name": "월드 로딩 화면",
+	"lucent.config.lucentclient.loadingscreenmod.general.description": "월드 로딩 화면 설정을 변경합니다.",
+	"lucent.config.lucentclient.loadingscreenmod.property.hideworldloadingscreen.name": "월드 로딩 화면 숨기기",
+	"lucent.config.lucentclient.loadingscreenmod.property.hideworldloadingscreen.description": "월드에 진입할 때 로딩 화면을 숨깁니다."
 }

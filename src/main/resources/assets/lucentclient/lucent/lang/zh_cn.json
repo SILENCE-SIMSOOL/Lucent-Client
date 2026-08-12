@@ -438,5 +438,9 @@
 	"lucent.config.lucentclient.packmanagermod.property.blockpackdownload.name": "阻止资源包下载",
 	"lucent.config.lucentclient.packmanagermod.property.blockpackdownload.description": "阻止下载服务器资源包，同时向服务器伪装加载已完成。",
 	"lucent.config.lucentclient.packmanagermod.property.revertitem.name": "还原物品",
-	"lucent.config.lucentclient.packmanagermod.property.revertitem.description": "还原被覆盖 Durability 的 Skyblock 物品贴图和头部皮肤。"
+	"lucent.config.lucentclient.packmanagermod.property.revertitem.description": "还原被覆盖 Durability 的 Skyblock 物品贴图和头部皮肤。",
+	"lucent.config.lucentclient.loadingscreenmod.general.name": "世界加载界面",
+	"lucent.config.lucentclient.loadingscreenmod.general.description": "自定义世界加载界面 behavior。",
+	"lucent.config.lucentclient.loadingscreenmod.property.hideworldloadingscreen.name": "隐藏世界加载界面",
+	"lucent.config.lucentclient.loadingscreenmod.property.hideworldloadingscreen.description": "在进入世界时隐藏加载界面。"
 }

@@ -435,5 +435,9 @@
 	"lucent.config.lucentclient.packmanagermod.property.blockpackdownload.name": "Block Pack Download",
 	"lucent.config.lucentclient.packmanagermod.property.blockpackdownload.description": "Blocks downloading of server resource packs while spoofing completion to the server.",
 	"lucent.config.lucentclient.packmanagermod.property.revertitem.name": "Revert Item",
-	"lucent.config.lucentclient.packmanagermod.property.revertitem.description": "Reverts overridden textures and skull skins for Skyblock items."
+	"lucent.config.lucentclient.packmanagermod.property.revertitem.description": "Reverts overridden textures and skull skins for Skyblock items.",
+	"lucent.config.lucentclient.loadingscreenmod.general.name": "מסך טעינת עולם",
+	"lucent.config.lucentclient.loadingscreenmod.general.description": "התאם אישית את התנהגות מסך טעינת העולם.",
+	"lucent.config.lucentclient.loadingscreenmod.property.hideworldloadingscreen.name": "הסתר מסך טעינת עולם",
+	"lucent.config.lucentclient.loadingscreenmod.property.hideworldloadingscreen.description": "מסתיר את מסך הטעינה בעת הצטרפות לעולם."
 }

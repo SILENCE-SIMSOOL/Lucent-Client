@@ -11,6 +11,7 @@ import silence.simsool.lucentclient.mods.impl.graphics.HideFallingBlockMod;
 import silence.simsool.lucentclient.mods.impl.graphics.HurtCamMod;
 import silence.simsool.lucentclient.mods.impl.graphics.NametagsMod;
 import silence.simsool.lucentclient.mods.impl.graphics.ParticlesMod;
+import silence.simsool.lucentclient.mods.impl.graphics.LoadingScreenMod;
 import silence.simsool.lucentclient.mods.impl.graphics.TimeChangerMod;
 import silence.simsool.lucentclient.mods.impl.hud.ArmorStatusMod;
 import silence.simsool.lucentclient.mods.impl.hud.CPSMod;
@@ -53,6 +54,7 @@ public class LucentClientModRegister {
 			new ParticlesMod(),
 			//new PlayerModelMod(),
 			new TimeChangerMod(),
+			new LoadingScreenMod(),
 
 			// HUD
 			new ArmorStatusMod(),

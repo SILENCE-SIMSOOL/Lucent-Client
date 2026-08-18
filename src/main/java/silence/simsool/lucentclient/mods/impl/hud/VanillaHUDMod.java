@@ -71,7 +71,7 @@ public class VanillaHUDMod extends Mod {
 		name = "lucent.config.lucentclient.vanillahudmod.property.bossbarshadow.name",
 		description = "lucent.config.lucentclient.vanillahudmod.property.bossbarshadow.description",
 		category = "Bars",
-		parent = "bossBar",
+		parent = "BossBar",
 		priority = 960
 	)
 	public static boolean BossBarShadow = true;
@@ -98,7 +98,7 @@ public class VanillaHUDMod extends Mod {
 		name = "lucent.config.lucentclient.vanillahudmod.property.scoreboardshadow.name",
 		description = "lucent.config.lucentclient.vanillahudmod.property.scoreboardshadow.description",
 		category = "Scoreboard",
-		parent = "scoreboard",
+		parent = "Scoreboard",
 		priority = 900
 	)
 	public static boolean ScoreboardShadow = true;
@@ -108,7 +108,7 @@ public class VanillaHUDMod extends Mod {
 		name = "lucent.config.lucentclient.vanillahudmod.property.scoreboardtitlecolor.name",
 		description = "lucent.config.lucentclient.vanillahudmod.property.scoreboardtitlecolor.description",
 		category = "Scoreboard",
-		parent = "scoreboard",
+		parent = "Scoreboard",
 		priority = 800
 	)
 	public static Color ScoreboardTitleColor = new Color(0, 0, 0, 80);
@@ -118,7 +118,7 @@ public class VanillaHUDMod extends Mod {
 		name = "lucent.config.lucentclient.vanillahudmod.property.scoreboardcontentcolor.name",
 		description = "lucent.config.lucentclient.vanillahudmod.property.scoreboardcontentcolor.description",
 		category = "Scoreboard",
-		parent = "scoreboard",
+		parent = "Scoreboard",
 		priority = 700
 	)
 	public static Color ScoreboardContentColor = new Color(0, 0, 0, 60);

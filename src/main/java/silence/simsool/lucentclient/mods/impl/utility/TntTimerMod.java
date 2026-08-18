@@ -6,6 +6,7 @@ import static silence.simsool.lucent.Lucent.mc;
 
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.item.PrimedTnt;
+import net.minecraft.world.phys.Vec3;
 import silence.simsool.lucent.Lucent;
 import silence.simsool.lucent.events.impl.LucentEvent.RenderWorldEvent;
 import silence.simsool.lucent.general.enums.ConfigType;
@@ -56,7 +57,10 @@ public class TntTimerMod extends Mod {
 				int ticks = tnt.getFuse();
 				double time = ticks / 20.0;
 				String text = String.format("%.2fs", time);
-				Render3D.drawText(text, entity.getPosition(event.partialTick).add(0, 1.44f, 0), 1.0f, true);
+				Vec3 pos = entity.getPosition(event.partialTick).add(0, 1.44f, 0);
+//				if (ShowBackground) Render3D.drawBackgroundText(text, pos, 1.0f, -1, 0x80000000, true, TextShadow);
+//				else Render3D.drawText(text, pos, 1.0f, -1, true, TextShadow);
+				Render3D.drawText(text, pos, 1.0f, -1, true, TextShadow);
 			}
 		}
 	}

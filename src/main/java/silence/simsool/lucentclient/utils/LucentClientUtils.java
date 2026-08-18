@@ -10,12 +10,23 @@ public class LucentClientUtils {
 	public static boolean loadedKrypton = false;
 	public static boolean loadedFerritecore = false;
 	public static boolean loadedEntityCulling = false;
+	private static Method isInDungeonMethod = null;
 
 	public static void initLoadedMods() {
 		loadedSilenceUtils = FabricLoader.getInstance().isModLoaded("silenceutils");
 		loadedKrypton = FabricLoader.getInstance().isModLoaded("krypton");
 		loadedFerritecore = FabricLoader.getInstance().isModLoaded("ferritecore");
 		loadedEntityCulling = FabricLoader.getInstance().isModLoaded("entityculling");
+
+		if (loadedSilenceUtils) {
+			try {
+				Class<?> utilsClass = Class.forName("silence.simsool.silenceutils.utils.Utils");
+				isInDungeonMethod = utilsClass.getMethod("isInDungeon");
+			} catch (Exception e) {
+				loadedSilenceUtils = false;
+				isInDungeonMethod = null;
+			}
+		}
 	}
 
 	public static String getModIcon(String modName) {
@@ -23,13 +34,10 @@ public class LucentClientUtils {
 	}
 
 	public static boolean checkInDungeon() {
-		if (loadedSilenceUtils) {
+		if (loadedSilenceUtils && isInDungeonMethod != null) {
 			try {
-				Class<?> utilsClass = Class.forName("silence.simsool.silenceutils.utils.Utils");
-				Method isInDungeonMethod = utilsClass.getMethod("isInDungeon");
 				return (boolean) isInDungeonMethod.invoke(null);
 			} catch (Exception e) {
-				loadedSilenceUtils = false;
 				return false;
 			}
 		}

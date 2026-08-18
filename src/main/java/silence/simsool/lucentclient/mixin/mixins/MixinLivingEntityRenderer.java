@@ -16,7 +16,7 @@ public abstract class MixinLivingEntityRenderer {
 
 	@Inject(method = "shouldShowName(Lnet/minecraft/world/entity/LivingEntity;D)Z", at = @At("HEAD"), cancellable = true)
 	private void viewOwnLabel(LivingEntity entity, double distanceSq, CallbackInfoReturnable<Boolean> cir) {
-		if (NametagsMod.CustomNametags && NametagsMod.ShowSelfNametag) {
+		if (NametagsMod.isEnabled() && NametagsMod.CustomNametags && NametagsMod.ShowSelfNametag) {
 			if (mc.player != null && entity == mc.player) {
 				boolean isThirdPerson = !mc.options.getCameraType().isFirstPerson();
 				boolean isVisibleToPlayer = !entity.isInvisibleTo(mc.player);

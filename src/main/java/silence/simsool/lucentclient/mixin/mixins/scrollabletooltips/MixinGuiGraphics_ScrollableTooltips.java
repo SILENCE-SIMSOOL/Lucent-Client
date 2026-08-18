@@ -31,6 +31,7 @@ public abstract class MixinGuiGraphics_ScrollableTooltips {
 
 	@Inject(method = "renderTooltip", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/screens/inventory/tooltip/ClientTooltipPositioner;positionTooltip(IIIIII)Lorg/joml/Vector2ic;"))
 	public void applyTracker(Font font, List<ClientTooltipComponent> lines, int xo, int yo, ClientTooltipPositioner positioner, @Nullable Identifier style, CallbackInfo ci) {
+		if (!ScrollableTooltipsMod.isEnabled()) return;
 		ScrollTracker.unlock();
 		ScrollTracker.update();
 		ScrollTracker.setItem(lines);
@@ -38,7 +39,7 @@ public abstract class MixinGuiGraphics_ScrollableTooltips {
 
 	@Inject(method = "renderTooltip", at = @At(value = "INVOKE", target = "Lorg/joml/Matrix3x2fStack;pushMatrix()Lorg/joml/Matrix3x2fStack;"))
 	private void editXY(Font font, List<ClientTooltipComponent> lines, int xo, int yo, ClientTooltipPositioner positioner, @Nullable Identifier style, CallbackInfo info, @Local(ordinal = 2) LocalIntRef x, @Local(ordinal = 3) LocalIntRef y) {
-		if (!ScrollableTooltipsMod.MatrixMode) {
+		if (ScrollableTooltipsMod.isEnabled() && !ScrollableTooltipsMod.MatrixMode) {
 			x.set(x.get() + ScrollTracker.getXOffset());
 			y.set(y.get() + ScrollTracker.getYOffset());
 
@@ -54,7 +55,7 @@ public abstract class MixinGuiGraphics_ScrollableTooltips {
 
 	@Inject(method = "renderTooltip", at = @At("HEAD"))
 	private void headMatrices(Font font, List<ClientTooltipComponent> lines, int xo, int yo, ClientTooltipPositioner positioner, @Nullable Identifier style, CallbackInfo info) {
-		if (ScrollableTooltipsMod.MatrixMode) {
+		if (ScrollableTooltipsMod.isEnabled() && ScrollableTooltipsMod.MatrixMode) {
 			this.pose.pushMatrix();
 			this.pose.translate(ScrollTracker.getXOffset(), ScrollTracker.getYOffset());
 		}
@@ -62,7 +63,7 @@ public abstract class MixinGuiGraphics_ScrollableTooltips {
 
 	@Inject(method = "renderTooltip", at = @At("TAIL"))
 	private void tailMatrices(Font font, List<ClientTooltipComponent> lines, int xo, int yo, ClientTooltipPositioner positioner, @Nullable Identifier style, CallbackInfo info) {
-		if (ScrollableTooltipsMod.MatrixMode) this.pose.popMatrix();
+		if (ScrollableTooltipsMod.isEnabled() && ScrollableTooltipsMod.MatrixMode) this.pose.popMatrix();
 	}
 
 }

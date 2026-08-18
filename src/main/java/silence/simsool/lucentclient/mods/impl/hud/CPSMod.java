@@ -86,24 +86,32 @@ public class CPSMod extends Mod {
 
 	@Override
 	public void onLeftClickPost(LucentEvent.LeftClickPostEvent event) {
-		leftClicks.add(System.currentTimeMillis());
+		synchronized (leftClicks) {
+			leftClicks.add(System.currentTimeMillis());
+		}
 	}
 
 	@Override
 	public void onRightClickPost(LucentEvent.RightClickPostEvent event) {
-		rightClicks.add(System.currentTimeMillis());
+		synchronized (rightClicks) {
+			rightClicks.add(System.currentTimeMillis());
+		}
 	}
 
-	public static synchronized int getLeftCPS() {
+	public static int getLeftCPS() {
 		long now = System.currentTimeMillis();
-		leftClicks.removeIf(timestamp -> now - timestamp > 1000);
-		return leftClicks.size();
+		synchronized (leftClicks) {
+			leftClicks.removeIf(timestamp -> now - timestamp > 1000);
+			return leftClicks.size();
+		}
 	}
 
-	public static synchronized int getRightCPS() {
+	public static int getRightCPS() {
 		long now = System.currentTimeMillis();
-		rightClicks.removeIf(timestamp -> now - timestamp > 1000);
-		return rightClicks.size();
+		synchronized (rightClicks) {
+			rightClicks.removeIf(timestamp -> now - timestamp > 1000);
+			return rightClicks.size();
+		}
 	}
 
 }

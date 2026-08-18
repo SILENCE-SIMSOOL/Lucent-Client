@@ -60,7 +60,7 @@ dependencies {
 	modImplementation ("com.velocitypowered:velocity-native:3.4.0-SNAPSHOT")
 	include ("com.velocitypowered:velocity-native:3.4.0-SNAPSHOT")
 
-	//modImplementation files("libs/SilenceUtils-1.0.0.jar")
+	//modImplementation files("libs/SilenceUtils-1.0.0")
 }
 
 processResources {

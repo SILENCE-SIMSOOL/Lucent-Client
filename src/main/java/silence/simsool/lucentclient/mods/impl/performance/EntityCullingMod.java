@@ -95,35 +95,31 @@ public class EntityCullingMod extends Mod {
 		double cz = (box.minZ + box.maxZ) * 0.5;
 
 		// 1. 가장 확률이 높은 중심점 검사 (보이면 즉시 탈출)
-		if (fastClip(camPos, new Vec3(cx, cy, cz), cameraEntity)) return true;
+		if (fastClip(camPos, cx, cy, cz, cameraEntity)) return true;
 
 		double top = box.maxY - 0.05;
 
 		// 2. 32블럭 이상 먼 거리는 중심과 상단만 검사 (극한의 최적화)
 		if (distSq > FAR_DIST_SQ) {
-			return fastClip(camPos, new Vec3(cx, top, cz), cameraEntity);
+			return fastClip(camPos, cx, top, cz, cameraEntity);
 		}
 
-		// 3. 근/중거리 엔티티는 상/하/좌/우 4개 추가 검사 (총 5포인트)
+		// 3. 근/중거리 엔티티는 상/하/좌/우 4개 추가 검사 (총 5포인트, 배열 생성 없이 즉시 탈출)
+		if (fastClip(camPos, cx, top, cz, cameraEntity)) return true;
+
 		double bot = box.minY + 0.05;
+		if (fastClip(camPos, cx, bot, cz, cameraEntity)) return true;
+
 		double ex = (box.maxX - box.minX) * 0.35;
 		double ez = (box.maxZ - box.minZ) * 0.35;
+		if (fastClip(camPos, cx - ex, cy, cz - ez, cameraEntity)) return true;
+		if (fastClip(camPos, cx + ex, cy, cz + ez, cameraEntity)) return true;
 
-		Vec3[] pts = {
-			new Vec3(cx, top, cz),           // 상
-			new Vec3(cx, bot, cz),           // 하
-			new Vec3(cx - ex, cy, cz - ez),  // 좌 대각
-			new Vec3(cx + ex, cy, cz + ez)   // 우 대각
-		};
-
-		for (Vec3 end : pts) {
-			if (fastClip(camPos, end, cameraEntity)) return true;
-		}
 		return false;
 	}
 
-	private static boolean fastClip(Vec3 start, Vec3 end, Entity cameraEntity) {
-		ClipContext ctx = new ClipContext(start, end, ClipContext.Block.VISUAL, ClipContext.Fluid.NONE, cameraEntity);
+	private static boolean fastClip(Vec3 start, double x, double y, double z, Entity cameraEntity) {
+		ClipContext ctx = new ClipContext(start, new Vec3(x, y, z), ClipContext.Block.VISUAL, ClipContext.Fluid.NONE, cameraEntity);
 		return mc.level.clip(ctx).getType() == HitResult.Type.MISS;
 	}
 

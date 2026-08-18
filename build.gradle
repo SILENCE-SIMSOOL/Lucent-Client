@@ -59,7 +59,7 @@ dependencies {
 	implementation ("com.velocitypowered:velocity-native:3.4.0-SNAPSHOT")
 	include ("com.velocitypowered:velocity-native:3.4.0-SNAPSHOT")
 
-	//implementation files("libs/SilenceUtils-1.0.0.jar")
+	//implementation files("libs/SilenceUtils-3.0.11-mc26.2.jar")
 }
 
 processResources {

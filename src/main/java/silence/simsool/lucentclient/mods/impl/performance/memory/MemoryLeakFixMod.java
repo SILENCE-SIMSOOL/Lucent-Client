@@ -5,7 +5,6 @@ import silence.simsool.lucent.general.models.abstracts.Mod;
 import silence.simsool.lucent.general.models.interfaces.annotations.ModConfig;
 import silence.simsool.lucent.general.utils.LucentCategory;
 import silence.simsool.lucentclient.ducks.IPlatform;
-import silence.simsool.lucentclient.utils.LucentClientUtils;
 
 public class MemoryLeakFixMod extends Mod {
 
@@ -14,7 +13,7 @@ public class MemoryLeakFixMod extends Mod {
 				"lucent.config.lucentclient.memoryleakfixmod.general.name", "lucent.config.lucentclient.memoryleakfixmod.general.description",
 				LucentCategory.PERFORMANCE,
 				"memory, leak, fix, performance, optimize",
-				LucentClientUtils.getModIcon("memoryleak_fix")
+				"\uE322"
 		);
 	}
 

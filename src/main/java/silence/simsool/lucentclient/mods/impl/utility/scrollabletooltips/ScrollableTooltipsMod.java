@@ -1,7 +1,5 @@
 package silence.simsool.lucentclient.mods.impl.utility.scrollabletooltips;
 
-import silence.simsool.lucent.general.utils.LucentCategory;
-
 import org.lwjgl.glfw.GLFW;
 
 import net.minecraft.client.gui.screens.Screen;
@@ -12,8 +10,8 @@ import silence.simsool.lucent.general.enums.ConfigType;
 import silence.simsool.lucent.general.models.abstracts.Mod;
 import silence.simsool.lucent.general.models.data.KeyBind;
 import silence.simsool.lucent.general.models.interfaces.annotations.ModConfig;
+import silence.simsool.lucent.general.utils.LucentCategory;
 import silence.simsool.lucent.general.utils.useful.UScreen;
-import silence.simsool.lucentclient.utils.LucentClientUtils;
 
 @ModConfig.CategoryPriority(name = "Matrix", priority = 500)
 @ModConfig.CategoryPriority(name = "Invert", priority = 250)
@@ -25,7 +23,7 @@ public class ScrollableTooltipsMod extends Mod {
 				"lucent.config.lucentclient.scrollabletooltipsmod.general.name", "lucent.config.lucentclient.scrollabletooltipsmod.general.description",
 				LucentCategory.UTILITY,
 				"scroll, tooltip, item",
-				LucentClientUtils.getModIcon("scrollable_tooltips")
+				"\uEB53"
 		);
 	}
 

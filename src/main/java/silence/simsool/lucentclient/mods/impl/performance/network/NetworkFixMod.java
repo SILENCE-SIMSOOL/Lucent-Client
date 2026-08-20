@@ -4,7 +4,6 @@ import silence.simsool.lucent.general.enums.ConfigType;
 import silence.simsool.lucent.general.models.abstracts.Mod;
 import silence.simsool.lucent.general.models.interfaces.annotations.ModConfig;
 import silence.simsool.lucent.general.utils.LucentCategory;
-import silence.simsool.lucentclient.utils.LucentClientUtils;
 
 public class NetworkFixMod extends Mod {
 
@@ -13,7 +12,7 @@ public class NetworkFixMod extends Mod {
 				"lucent.config.lucentclient.networkfixmod.general.name", "lucent.config.lucentclient.networkfixmod.general.description",
 				LucentCategory.PERFORMANCE,
 				"network, fix, optimize, internet",
-				LucentClientUtils.getModIcon("network_fix")
+				"\uE640"
 		);
 	}
 

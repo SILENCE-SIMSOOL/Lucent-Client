@@ -1,12 +1,10 @@
 package silence.simsool.lucentclient.mods.impl.graphics;
 
-import silence.simsool.lucent.general.utils.LucentCategory;
-
 import silence.simsool.lucent.Lucent;
 import silence.simsool.lucent.general.enums.ConfigType;
 import silence.simsool.lucent.general.models.abstracts.Mod;
 import silence.simsool.lucent.general.models.interfaces.annotations.ModConfig;
-import silence.simsool.lucentclient.utils.LucentClientUtils;
+import silence.simsool.lucent.general.utils.LucentCategory;
 
 public class TimeChangerMod extends Mod {
 
@@ -15,7 +13,7 @@ public class TimeChangerMod extends Mod {
 				"lucent.config.lucentclient.timechangermod.general.name", "lucent.config.lucentclient.timechangermod.general.description",
 				LucentCategory.GRAPHICS,
 				"time, changer, day, night",
-				LucentClientUtils.getModIcon("time_changer")
+				"\uEF44"
 		);
 	}
 

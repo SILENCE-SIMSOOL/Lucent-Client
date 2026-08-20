@@ -1,5 +1,7 @@
 package silence.simsool.lucentclient.mixin.mixins;
 
+import static silence.simsool.lucent.Lucent.mc;
+
 import java.util.List;
 
 import org.spongepowered.asm.mixin.Mixin;
@@ -10,11 +12,11 @@ import net.minecraft.client.gui.components.DebugScreenOverlay;
 import silence.simsool.lucentclient.mods.impl.performance.EntityCullingMod;
 
 @Mixin(DebugScreenOverlay.class)
-public class MixinDebugScreenOverlay {
+public abstract class MixinDebugScreenOverlay {
 
 	@ModifyVariable(method = "render", at = @At(value = "STORE"), ordinal = 0)
 	private List<String> onRenderDebugScreen(List<String> list) {
-		if (EntityCullingMod.isEnabled() && EntityCullingMod.ShowDebugInfo) {
+		if (EntityCullingMod.isEnabled() && EntityCullingMod.ShowDebugInfo && mc.debugEntries.isOverlayVisible() && mc.level != null) {
 			//list.add("[Lucent] Occlusion Culled Entities: " + EntityCullingMod.lastCulledEntities);
 			list.addFirst(EntityCullingMod.getCulledEntitiesInfo());
 		}

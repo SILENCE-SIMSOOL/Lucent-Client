@@ -1,12 +1,10 @@
 package silence.simsool.lucentclient.mods.impl.hud;
 
-import silence.simsool.lucent.general.utils.LucentCategory;
-
 import silence.simsool.lucent.Lucent;
 import silence.simsool.lucent.general.enums.ConfigType;
 import silence.simsool.lucent.general.models.abstracts.Mod;
 import silence.simsool.lucent.general.models.interfaces.annotations.ModConfig;
-import silence.simsool.lucentclient.utils.LucentClientUtils;
+import silence.simsool.lucent.general.utils.LucentCategory;
 
 public class KeystrokesMod extends Mod {
 
@@ -15,7 +13,7 @@ public class KeystrokesMod extends Mod {
 				"lucent.config.lucentclient.keystrokesmod.general.name", "lucent.config.lucentclient.keystrokesmod.general.description",
 				LucentCategory.HUB,
 				"key, stroke, keyboard, mouse, click",
-				LucentClientUtils.getModIcon("keystrokes")
+				"\uE312"
 		);
 	}
 

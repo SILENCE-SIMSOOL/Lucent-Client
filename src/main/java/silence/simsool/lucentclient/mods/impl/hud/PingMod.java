@@ -1,7 +1,5 @@
 package silence.simsool.lucentclient.mods.impl.hud;
 
-import silence.simsool.lucent.general.utils.LucentCategory;
-
 import static silence.simsool.lucent.Lucent.mc;
 
 import net.minecraft.client.multiplayer.ClientPacketListener;
@@ -11,7 +9,7 @@ import silence.simsool.lucent.Lucent;
 import silence.simsool.lucent.general.enums.ConfigType;
 import silence.simsool.lucent.general.models.abstracts.Mod;
 import silence.simsool.lucent.general.models.interfaces.annotations.ModConfig;
-import silence.simsool.lucentclient.utils.LucentClientUtils;
+import silence.simsool.lucent.general.utils.LucentCategory;
 
 @ModConfig.CategoryPriority(name = "Text Style", priority = 500)
 @ModConfig.CategoryPriority(name = "Background", priority = 100)
@@ -22,7 +20,7 @@ public class PingMod extends Mod {
 				"lucent.config.lucentclient.pingmod.general.name", "lucent.config.lucentclient.pingmod.general.description",
 				LucentCategory.HUB,
 				"ping, latency, server",
-				LucentClientUtils.getModIcon("ping")
+				"\uE202"
 		);
 	}
 

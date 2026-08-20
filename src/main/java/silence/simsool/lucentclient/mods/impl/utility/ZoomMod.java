@@ -1,7 +1,5 @@
 package silence.simsool.lucentclient.mods.impl.utility;
 
-import silence.simsool.lucent.general.utils.LucentCategory;
-
 import org.lwjgl.glfw.GLFW;
 
 import net.minecraft.util.Mth;
@@ -10,8 +8,8 @@ import silence.simsool.lucent.general.enums.ConfigType;
 import silence.simsool.lucent.general.models.abstracts.Mod;
 import silence.simsool.lucent.general.models.data.KeyBind;
 import silence.simsool.lucent.general.models.interfaces.annotations.ModConfig;
+import silence.simsool.lucent.general.utils.LucentCategory;
 import silence.simsool.lucent.general.utils.useful.UScreen;
-import silence.simsool.lucentclient.utils.LucentClientUtils;
 
 public class ZoomMod extends Mod {
 
@@ -20,7 +18,7 @@ public class ZoomMod extends Mod {
 				"lucent.config.lucentclient.zoommod.general.name", "lucent.config.lucentclient.zoommod.general.description",
 				LucentCategory.UTILITY,
 				"zoom",
-				LucentClientUtils.getModIcon("zoom")
+				"\uE8B6"
 		);
 	}
 

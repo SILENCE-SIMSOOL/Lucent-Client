@@ -1,7 +1,5 @@
 package silence.simsool.lucentclient.mods.impl.hud;
 
-import silence.simsool.lucent.general.utils.LucentCategory;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,7 +8,7 @@ import silence.simsool.lucent.events.impl.LucentEvent;
 import silence.simsool.lucent.general.enums.ConfigType;
 import silence.simsool.lucent.general.models.abstracts.Mod;
 import silence.simsool.lucent.general.models.interfaces.annotations.ModConfig;
-import silence.simsool.lucentclient.utils.LucentClientUtils;
+import silence.simsool.lucent.general.utils.LucentCategory;
 
 @ModConfig.CategoryPriority(name = "Text Style", priority = 500)
 @ModConfig.CategoryPriority(name = "Background", priority = 100)
@@ -21,7 +19,7 @@ public class CPSMod extends Mod {
 				"lucent.config.lucentclient.cpsmod.general.name", "lucent.config.lucentclient.cpsmod.general.description",
 				LucentCategory.HUB,
 				"cps, click",
-				LucentClientUtils.getModIcon("cps")
+				"\uE323"
 		);
 	}
 

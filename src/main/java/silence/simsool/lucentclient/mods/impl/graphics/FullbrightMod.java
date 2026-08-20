@@ -1,12 +1,10 @@
 package silence.simsool.lucentclient.mods.impl.graphics;
 
-import silence.simsool.lucent.general.utils.LucentCategory;
-
 import silence.simsool.lucent.Lucent;
 import silence.simsool.lucent.general.enums.ConfigType;
 import silence.simsool.lucent.general.models.abstracts.Mod;
 import silence.simsool.lucent.general.models.interfaces.annotations.ModConfig;
-import silence.simsool.lucentclient.utils.LucentClientUtils;
+import silence.simsool.lucent.general.utils.LucentCategory;
 
 public class FullbrightMod extends Mod {
 
@@ -15,7 +13,7 @@ public class FullbrightMod extends Mod {
 				"lucent.config.lucentclient.fullbrightmod.general.name", "lucent.config.lucentclient.fullbrightmod.general.description",
 				LucentCategory.GRAPHICS,
 				"full, bright, light, gamma",
-				LucentClientUtils.getModIcon("fullbright")
+				"\uE90F"
 		);
 	}
 

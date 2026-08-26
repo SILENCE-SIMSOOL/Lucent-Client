@@ -13,7 +13,8 @@ public class AutoUpdateMod extends Mod {
 				"Auto Update", "Automatically check for updates and update Lucent Client.",
 				LucentCategory.UTILITY,
 				"auto, update, latest",
-				null
+				null,
+				true
 		);
 	}
 

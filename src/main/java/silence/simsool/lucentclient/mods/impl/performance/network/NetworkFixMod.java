@@ -12,7 +12,8 @@ public class NetworkFixMod extends Mod {
 				"lucent.config.lucentclient.networkfixmod.general.name", "lucent.config.lucentclient.networkfixmod.general.description",
 				LucentCategory.PERFORMANCE,
 				"network, fix, optimize, internet",
-				"\uE640"
+				"\uE640",
+				true
 		);
 	}
 

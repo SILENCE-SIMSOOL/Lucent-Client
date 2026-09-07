@@ -131,6 +131,14 @@ public class AnimationsMod extends Mod {
 	)
 	public static boolean DisableEntityClickAnimation = false;
 
+	@ModConfig(
+		type = ConfigType.SWITCH,
+		name = "lucent.config.lucentclient.animationsmod.property.hidenausea.name",
+		description = "lucent.config.lucentclient.animationsmod.property.hidenausea.description",
+		priority = 970
+	)
+	public static boolean HideNausea = true;
+
 //	@ModConfig(
 //		type = ConfigType.SWITCH,
 //		name = "Flat Item",

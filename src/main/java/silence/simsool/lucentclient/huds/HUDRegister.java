@@ -5,6 +5,7 @@ import java.util.Arrays;
 import silence.simsool.lucent.hud.HUDManager;
 import silence.simsool.lucentclient.huds.impl.ArmorStatusHUD;
 import silence.simsool.lucentclient.huds.impl.KeystrokesHUD;
+import silence.simsool.lucentclient.huds.impl.PerformanceHUD;
 import silence.simsool.lucentclient.huds.impl.PotionEffectsHUD;
 import silence.simsool.lucentclient.huds.impl.info.impl.CPSHUD;
 import silence.simsool.lucentclient.huds.impl.info.impl.CoordinatesHUD;
@@ -18,6 +19,7 @@ public class HUDRegister {
 
 		Arrays.asList(
 
+			new PerformanceHUD(),
 			new FPSHUD(),
 			new CPSHUD(),
 			new TPSHUD(),

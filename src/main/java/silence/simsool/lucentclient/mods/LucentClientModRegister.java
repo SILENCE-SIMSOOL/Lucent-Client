@@ -18,6 +18,7 @@ import silence.simsool.lucentclient.mods.impl.hud.CPSMod;
 import silence.simsool.lucentclient.mods.impl.hud.CoordinatesMod;
 import silence.simsool.lucentclient.mods.impl.hud.FPSMod;
 import silence.simsool.lucentclient.mods.impl.hud.KeystrokesMod;
+import silence.simsool.lucentclient.mods.impl.hud.PerformanceMod;
 import silence.simsool.lucentclient.mods.impl.hud.PingMod;
 import silence.simsool.lucentclient.mods.impl.hud.PotionEffectsMod;
 import silence.simsool.lucentclient.mods.impl.hud.TPSMod;
@@ -58,6 +59,7 @@ public class LucentClientModRegister {
 
 			// HUD
 			new ArmorStatusMod(),
+			new PerformanceMod(),
 			new FPSMod(),
 			new CPSMod(),
 			new TPSMod(),

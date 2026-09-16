@@ -64,7 +64,7 @@ public class AutoUpdater {
 	}
 
 	public static void checkAndUpdate() {
-		if (!AutoUpdateMod.autoUpdate) {
+		if (!AutoUpdateMod.AutoUpdate) {
 			Lucent.LOG.info("LucentClient Auto update is disabled.");
 			return;
 		}
@@ -152,6 +152,7 @@ public class AutoUpdater {
 	public static volatile boolean isDownloading = false;
 	public static volatile int progress = 0;
 	public static volatile String statusText = "";
+	public static boolean nextUpdate = false;
 
 	private static void downloadAndApply(AssetInfo asset) {
 		try {
@@ -207,6 +208,8 @@ public class AutoUpdater {
 			isDownloading = false;
 			statusText = "Download complete!";
 			progress = 100;
+
+			nextUpdate = true;
 
 			UChat.chat(LucentClient.PREFIX + " §aUpdate completed! §e(" + asset.assetName + ") §fPlease restart Minecraft to apply.");
 			Lucent.LOG.info("Downloaded updated LucentClient jar: " + targetFile.getFileName());

@@ -64,8 +64,8 @@ public class PerformanceHUD extends LucentHUD {
 
 	@Override
 	public float getPreviewWidth() {
-		LucentFont labelFont = Fonts.PRETENDARD != null ? Fonts.PRETENDARD : Fonts.PRETENDARD_MEDIUM;
-		LucentFont valueFont = Fonts.PRETENDARD_SEMIBOLD != null ? Fonts.PRETENDARD_SEMIBOLD : labelFont;
+		LucentFont labelFont = Fonts.PRETENDARD_MEDIUM;
+		LucentFont valueFont = Fonts.PRETENDARD_SEMIBOLD;
 
 		List<Entry> entries = getActiveEntries(true);
 		float labelFs = 14f;

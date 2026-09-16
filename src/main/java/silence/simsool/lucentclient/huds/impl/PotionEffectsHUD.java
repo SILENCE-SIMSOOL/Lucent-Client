@@ -15,7 +15,7 @@ import silence.simsool.lucent.general.models.abstracts.LucentHUD;
 import silence.simsool.lucent.general.utils.useful.UDisplay;
 import silence.simsool.lucent.general.utils.useful.UText;
 import silence.simsool.lucent.ui.utils.UIColors;
-import silence.simsool.lucent.ui.utils.nvg.NVGRenderer;
+import silence.simsool.lucent.ui.utils.skija.SkijaRenderer;
 import silence.simsool.lucentclient.mods.impl.hud.PotionEffectsMod;
 
 public class PotionEffectsHUD extends LucentHUD {
@@ -44,14 +44,14 @@ public class PotionEffectsHUD extends LucentHUD {
 		List<String> lines = getLines(true);
 		float maxW = 50;
 		for (String line : lines) maxW = Math.max(maxW, mc.font.width(line));
-		return maxW * ((float) UDisplay.getGuiScale() / NVGRenderer.getStandardGuiScale());
+		return maxW * ((float) UDisplay.getGuiScale() / SkijaRenderer.getStandardGuiScale());
 	}
 
 	@Override
 	public float getPreviewHeight() {
 		List<String> lines = getLines(true);
 		float h = lines.isEmpty() ? 10 : lines.size() * 10;
-		return h * ((float) UDisplay.getGuiScale() / NVGRenderer.getStandardGuiScale());
+		return h * ((float) UDisplay.getGuiScale() / SkijaRenderer.getStandardGuiScale());
 	}
 
 	@Override

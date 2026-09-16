@@ -13,8 +13,8 @@ import silence.simsool.lucent.general.utils.L10n;
 import silence.simsool.lucent.general.utils.useful.UDisplay;
 import silence.simsool.lucent.ui.font.LucentFont;
 import silence.simsool.lucent.ui.utils.UColor;
-import silence.simsool.lucent.ui.utils.nvg.Fonts;
-import silence.simsool.lucent.ui.utils.nvg.NVGRenderer;
+import silence.simsool.lucent.ui.utils.skija.Fonts;
+import silence.simsool.lucent.ui.utils.skija.SkijaRenderer;
 import silence.simsool.lucentclient.handler.ServerHandler;
 import silence.simsool.lucentclient.mods.impl.hud.PerformanceMod;
 
@@ -26,7 +26,7 @@ public class PerformanceHUD extends LucentHUD {
 
 	@Override
 	public RenderType getRenderType() {
-		return RenderType.NANOVG;
+		return RenderType.SKIJA;
 	}
 
 	private record Entry(String label, String value) {}
@@ -48,13 +48,13 @@ public class PerformanceHUD extends LucentHUD {
 
 	private float calculateContentWidth(List<Entry> entries, LucentFont labelFont, LucentFont valueFont, float labelFs, float valueFs, float scale) {
 		if (entries.isEmpty()) return 0f;
-		float sepWidth = NVGRenderer.textWidth("  |  ", labelFont, labelFs);
+		float sepWidth = SkijaRenderer.textWidth("  |  ", labelFont, labelFs);
 		float valuePad = 3f * scale;
 		float total = 0f;
 		for (int i = 0; i < entries.size(); i++) {
 			Entry e = entries.get(i);
-			total += NVGRenderer.textWidth(e.label + " ", labelFont, labelFs) + valuePad;
-			total += NVGRenderer.textWidth(e.value, valueFont, valueFs) + valuePad;
+			total += SkijaRenderer.textWidth(e.label + " ", labelFont, labelFs) + valuePad;
+			total += SkijaRenderer.textWidth(e.value, valueFont, valueFs) + valuePad;
 			if (i < entries.size() - 1) {
 				total += sepWidth;
 			}
@@ -64,8 +64,8 @@ public class PerformanceHUD extends LucentHUD {
 
 	@Override
 	public float getPreviewWidth() {
-		LucentFont labelFont = Fonts.PRETENDARD != null ? Fonts.PRETENDARD : Fonts.PRETENDARD_MEDIUM;
-		LucentFont valueFont = Fonts.PRETENDARD_SEMIBOLD != null ? Fonts.PRETENDARD_SEMIBOLD : labelFont;
+		LucentFont labelFont = Fonts.PRETENDARD;
+		LucentFont valueFont = Fonts.PRETENDARD_SEMIBOLD;
 
 		List<Entry> entries = getActiveEntries(true);
 		float labelFs = 14f;
@@ -97,7 +97,7 @@ public class PerformanceHUD extends LucentHUD {
 	}
 
 	private void render(boolean preview) {
-		LucentFont labelFont = Fonts.PRETENDARD_MEDIUM;
+		LucentFont labelFont = Fonts.PRETENDARD;
 		LucentFont valueFont = Fonts.PRETENDARD_EXTRABOLD;
 
 		List<Entry> entries = getActiveEntries(preview); if (entries.isEmpty()) return;
@@ -106,7 +106,7 @@ public class PerformanceHUD extends LucentHUD {
 		float ry = getRenderY();
 		float labelFs = 14f * scale;
 		float valueFs = 14f * scale;
-		float sepWidth = NVGRenderer.textWidth("  |  ", labelFont, labelFs);
+		float sepWidth = SkijaRenderer.textWidth("  |  ", labelFont, labelFs);
 
 		float contentW = calculateContentWidth(entries, labelFont, valueFont, labelFs, valueFs, scale);
 		float totalW = contentW + (PerformanceMod.ShowBackground ? 12f * scale : 0f);
@@ -114,7 +114,7 @@ public class PerformanceHUD extends LucentHUD {
 		float totalH = (PerformanceMod.ShowBackground ? 20f * scale : maxFs);
 
 		if (PerformanceMod.ShowBackground) {
-			NVGRenderer.rect(rx, ry - 1, totalW, totalH, PerformanceMod.BackgroundColor, 4f * scale);
+			SkijaRenderer.rect(rx, ry - 1, totalW, totalH, PerformanceMod.BackgroundColor, 4f * scale);
 		}
 
 		float currentX = rx + (PerformanceMod.ShowBackground ? 6f * scale : 0f);
@@ -131,21 +131,21 @@ public class PerformanceHUD extends LucentHUD {
 			// Draw label
 			String labelStr = e.label + " ";
 			float labelY = ry + (totalH - labelFs) / 2f;
-			if (shadow) NVGRenderer.textShadow(labelStr, currentX, labelY, labelFont, color, labelFs);
-			else NVGRenderer.text(labelStr, currentX, labelY, labelFont, color, labelFs);
-			currentX += NVGRenderer.textWidth(labelStr, labelFont, labelFs) + valuePad;
+			if (shadow) SkijaRenderer.textShadow(labelStr, currentX, labelY, labelFont, color, labelFs);
+			else SkijaRenderer.text(labelStr, currentX, labelY, labelFont, color, labelFs);
+			currentX += SkijaRenderer.textWidth(labelStr, labelFont, labelFs) + valuePad;
 
 			// Draw value
 			float valueY = ry + (totalH - valueFs) / 2f;
-			if (shadow) NVGRenderer.textShadow(e.value, currentX, valueY, valueFont, color, valueFs);
-			else NVGRenderer.text(e.value, currentX, valueY, valueFont, color, valueFs);
-			currentX += NVGRenderer.textWidth(e.value, valueFont, valueFs) + valuePad;
+			if (shadow) SkijaRenderer.textShadow(e.value, currentX, valueY, valueFont, color, valueFs);
+			else SkijaRenderer.text(e.value, currentX, valueY, valueFont, color, valueFs);
+			currentX += SkijaRenderer.textWidth(e.value, valueFont, valueFs) + valuePad;
 
 			// Draw separator
 			if (i < entries.size() - 1) {
 				float sepY = ry + (totalH - labelFs) / 2f;
-				if (shadow) NVGRenderer.textShadow("  |  ", currentX, sepY, labelFont, lineColor, labelFs);
-				else NVGRenderer.text("  |  ", currentX, sepY, labelFont, lineColor, labelFs);
+				if (shadow) SkijaRenderer.textShadow("  |  ", currentX, sepY, labelFont, lineColor, labelFs);
+				else SkijaRenderer.text("  |  ", currentX, sepY, labelFont, lineColor, labelFs);
 				currentX += sepWidth;
 			}
 		}

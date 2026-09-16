@@ -10,7 +10,7 @@ import silence.simsool.lucent.general.enums.RenderType;
 import silence.simsool.lucent.general.models.abstracts.LucentHUD;
 import silence.simsool.lucent.general.models.abstracts.Mod;
 import silence.simsool.lucent.general.utils.useful.UDisplay;
-import silence.simsool.lucent.ui.utils.nvg.NVGRenderer;
+import silence.simsool.lucent.ui.utils.skija.SkijaRenderer;
 
 public abstract class AbstractInfoHUD extends LucentHUD {
 
@@ -60,14 +60,14 @@ public abstract class AbstractInfoHUD extends LucentHUD {
 		String text = getFormattedText(true);
 		float w = mc.font.width(text);
 		if (isShowBackground()) w += 8;
-		return w * ((float) UDisplay.getGuiScale() / NVGRenderer.getStandardGuiScale());
+		return w * ((float) UDisplay.getGuiScale() / SkijaRenderer.getStandardGuiScale());
 	}
 
 	@Override
 	public float getPreviewHeight() {
 		float h = 9;
 		if (isShowBackground()) h = 18;
-		return h * ((float) UDisplay.getGuiScale() / NVGRenderer.getStandardGuiScale());
+		return h * ((float) UDisplay.getGuiScale() / SkijaRenderer.getStandardGuiScale());
 	}
 
 	@Override

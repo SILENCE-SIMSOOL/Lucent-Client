@@ -12,7 +12,7 @@ import silence.simsool.lucent.general.enums.Align;
 import silence.simsool.lucent.general.enums.RenderType;
 import silence.simsool.lucent.general.models.abstracts.LucentHUD;
 import silence.simsool.lucent.general.utils.useful.UDisplay;
-import silence.simsool.lucent.ui.utils.nvg.NVGRenderer;
+import silence.simsool.lucent.ui.utils.skija.SkijaRenderer;
 import silence.simsool.lucentclient.mods.impl.hud.ArmorStatusMod;
 
 public class ArmorStatusHUD extends LucentHUD {
@@ -28,7 +28,7 @@ public class ArmorStatusHUD extends LucentHUD {
 
 	@Override
 	public float getPreviewWidth() {
-		return 16 * ((float) UDisplay.getGuiScale() / NVGRenderer.getStandardGuiScale());
+		return 16 * ((float) UDisplay.getGuiScale() / SkijaRenderer.getStandardGuiScale());
 	}
 
 	@Override
@@ -40,7 +40,7 @@ public class ArmorStatusHUD extends LucentHUD {
 		if (ArmorStatusMod.DisplayBoots) activeSlots++;
 		if (ArmorStatusMod.DisplayMainHand) activeSlots++;
 		if (ArmorStatusMod.DisplayOffHand) activeSlots++;
-		return 18 * activeSlots * ((float) UDisplay.getGuiScale() / NVGRenderer.getStandardGuiScale());
+		return 18 * activeSlots * ((float) UDisplay.getGuiScale() / SkijaRenderer.getStandardGuiScale());
 	}
 
 	@Override

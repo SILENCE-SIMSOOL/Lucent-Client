@@ -13,7 +13,7 @@ import silence.simsool.lucent.general.enums.Align;
 import silence.simsool.lucent.general.enums.RenderType;
 import silence.simsool.lucent.general.models.abstracts.LucentHUD;
 import silence.simsool.lucent.general.utils.useful.UDisplay;
-import silence.simsool.lucent.ui.utils.nvg.NVGRenderer;
+import silence.simsool.lucent.ui.utils.skija.SkijaRenderer;
 import silence.simsool.lucentclient.mods.impl.hud.CoordinatesMod;
 
 public class CoordinatesHUD extends LucentHUD {
@@ -66,7 +66,7 @@ public class CoordinatesHUD extends LucentHUD {
 		float maxW = 0;
 		for (String line : lines) maxW = Math.max(maxW, mc.font.width(line));
 		if (CoordinatesMod.ShowBackground) maxW += 8;
-		return maxW * ((float) UDisplay.getGuiScale() / NVGRenderer.getStandardGuiScale());
+		return maxW * ((float) UDisplay.getGuiScale() / SkijaRenderer.getStandardGuiScale());
 	}
 
 	@Override
@@ -74,7 +74,7 @@ public class CoordinatesHUD extends LucentHUD {
 		List<String> lines = getLines(true);
 		float h = lines.size() * 10;
 		if (CoordinatesMod.ShowBackground) h = lines.size() * 9 + 9;
-		return h * ((float) UDisplay.getGuiScale() / NVGRenderer.getStandardGuiScale());
+		return h * ((float) UDisplay.getGuiScale() / SkijaRenderer.getStandardGuiScale());
 	}
 
 	@Override

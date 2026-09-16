@@ -10,13 +10,12 @@ import net.minecraft.client.gui.screens.options.OptionsScreen;
 import net.minecraft.client.gui.screens.worldselection.SelectWorldScreen;
 import net.minecraft.client.renderer.RenderPipelines;
 import net.minecraft.resources.Identifier;
-
 import silence.simsool.lucent.general.utils.useful.UDisplay;
 import silence.simsool.lucent.general.utils.useful.UMouse;
 import silence.simsool.lucent.general.utils.useful.UScreen;
 import silence.simsool.lucent.ui.font.LucentFont;
-import silence.simsool.lucent.ui.utils.nvg.Fonts;
-import silence.simsool.lucent.ui.utils.nvg.NVGRenderer;
+import silence.simsool.lucent.ui.utils.skija.Fonts;
+import silence.simsool.lucent.ui.utils.skija.SkijaRenderer;
 import silence.simsool.lucentclient.LucentClient;
 
 public class TitleScreenHook {
@@ -34,12 +33,12 @@ public class TitleScreenHook {
 	}
 
 	public static void renderNanoVGGUI(Screen screen, float titleUiScale) {
-		NVGRenderer.push();
+		SkijaRenderer.push();
 
-		float standardScale = NVGRenderer.getStandardGuiScale();
+		float standardScale = SkijaRenderer.getStandardGuiScale();
 		if (standardScale <= 0.01f) standardScale = 1.0f;
 		float nvgScale = standardScale * titleUiScale;
-		NVGRenderer.scale(nvgScale, nvgScale);
+		SkijaRenderer.scale(nvgScale, nvgScale);
 
 		float screenW = (float) UDisplay.getScreenWidth() / standardScale;
 		float screenH = (float) UDisplay.getScreenHeight() / standardScale;
@@ -64,15 +63,15 @@ public class TitleScreenHook {
 		drawNanoVGButton(screen, canvasW / 2.0f - btnW / 2.0f + halfW + gap, startY + (btnH + gap) * 2, halfW, btnH, "Quit Game", 18.0f, titleUiScale);
 
 		// 3. Bottom-Left Version Info
-		NVGRenderer.text("LucentClient v" + LucentClient.VERSION, 20, canvasH - 24.0f, Fonts.PRETENDARD, 0x88FFFFFF, 16.0f);
+		SkijaRenderer.text("LucentClient v" + LucentClient.VERSION, 20, canvasH - 24.0f, Fonts.PRETENDARD, 0x88FFFFFF, 16.0f);
 
-		NVGRenderer.pop();
+		SkijaRenderer.pop();
 	}
 
 	public static boolean handleMouseClick(Screen screen, float titleUiScale, int button) {
 		if (button != 0) return false;
 
-		float standardScale = NVGRenderer.getStandardGuiScale();
+		float standardScale = SkijaRenderer.getStandardGuiScale();
 		if (standardScale <= 0.01f) standardScale = 1.0f;
 		float screenH = (float) UDisplay.getScreenHeight() / standardScale;
 		float canvasH = screenH / titleUiScale;
@@ -119,9 +118,9 @@ public class TitleScreenHook {
 	}
 
 	private static void drawDirectCenterText(String text, float centerX, float y, LucentFont font, int color, float fontSize) {
-		float width = NVGRenderer.textWidth(text, font, fontSize);
+		float width = SkijaRenderer.textWidth(text, font, fontSize);
 		float drawX = centerX - (width / 2.0f);
-		NVGRenderer.text(text, drawX, y, font, color, fontSize);
+		SkijaRenderer.text(text, drawX, y, font, color, fontSize);
 	}
 
 	private static void drawNanoVGButton(Screen screen, float x, float y, float w, float h, String text, float fontSize, float titleUiScale) {
@@ -131,8 +130,8 @@ public class TitleScreenHook {
 		int border = hover ? 0x99FFFFFF : 0x33FFFFFF;
 		int textColor = hover ? 0xFFFFFFFF : 0xDDCCCCCC;
 
-		NVGRenderer.rect(x, y, w, h, bg, 8.0f);
-		NVGRenderer.outlineRect(x, y, w, h, 1.0f, border, 8.0f);
+		SkijaRenderer.rect(x, y, w, h, bg, 8.0f);
+		SkijaRenderer.outlineRect(x, y, w, h, 1.0f, border, 8.0f);
 		drawDirectCenterText(text, x + w / 2.0f, y + (h - fontSize) / 2.0f + 2.0f, Fonts.PRETENDARD_MEDIUM, textColor, fontSize);
 	}
 

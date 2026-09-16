@@ -17,10 +17,8 @@ import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.gui.screens.TitleScreen;
 import net.minecraft.client.input.MouseButtonEvent;
 import net.minecraft.network.chat.Component;
-
 import silence.simsool.lucent.general.utils.useful.UDisplay;
-import silence.simsool.lucent.ui.utils.nvg.NVGPIPRenderer;
-import silence.simsool.lucent.ui.utils.nvg.NVGRenderer;
+import silence.simsool.lucent.ui.utils.skija.SkijaRenderer;
 import silence.simsool.lucentclient.hooks.TitleScreenHook;
 
 @Mixin(TitleScreen.class)
@@ -44,7 +42,7 @@ public abstract class MixinTitleScreen extends Screen {
 	}
 
 	private void calculateUiScale() {
-		float standardScale = NVGRenderer.getStandardGuiScale();
+		float standardScale = SkijaRenderer.getStandardGuiScale();
 		if (standardScale <= 0.01f) standardScale = 1.0f;
 
 		float screenW = (float) UDisplay.getScreenWidth() / standardScale;
@@ -85,7 +83,7 @@ public abstract class MixinTitleScreen extends Screen {
 	private void onExtractRenderStateTail(GuiGraphicsExtractor graphics, int mouseX, int mouseY, float partialTick, CallbackInfo ci) {
 		calculateUiScale();
 		TitleScreenHook.renderLogo(graphics, this.width, this.height);
-		NVGPIPRenderer.draw(graphics, 0, 0, this.width, this.height, () -> TitleScreenHook.renderNanoVGGUI(this, this.titleUiScale));
+		SkijaRenderer.draw(graphics, 0, 0, this.width, this.height, () -> TitleScreenHook.renderNanoVGGUI(this, this.titleUiScale));
 	}
 
 	@Inject(method = "mouseClicked", at = @At("HEAD"), cancellable = true)

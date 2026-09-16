@@ -9,7 +9,7 @@ import silence.simsool.lucent.general.models.abstracts.LucentHUD;
 import silence.simsool.lucent.general.utils.useful.UDisplay;
 import silence.simsool.lucent.general.utils.useful.UText;
 import silence.simsool.lucent.ui.utils.UIColors;
-import silence.simsool.lucent.ui.utils.nvg.NVGRenderer;
+import silence.simsool.lucent.ui.utils.skija.SkijaRenderer;
 import silence.simsool.lucentclient.mods.impl.hud.KeystrokesMod;
 
 public class KeystrokesHUD extends LucentHUD {
@@ -25,12 +25,12 @@ public class KeystrokesHUD extends LucentHUD {
 
 	@Override
 	public float getPreviewWidth() {
-		return 64 * ((float) UDisplay.getGuiScale() / NVGRenderer.getStandardGuiScale());
+		return 64 * ((float) UDisplay.getGuiScale() / SkijaRenderer.getStandardGuiScale());
 	}
 
 	@Override
 	public float getPreviewHeight() {
-		return 64 * ((float) UDisplay.getGuiScale() / NVGRenderer.getStandardGuiScale());
+		return 64 * ((float) UDisplay.getGuiScale() / SkijaRenderer.getStandardGuiScale());
 	}
 
 	@Override

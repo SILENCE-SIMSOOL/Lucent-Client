@@ -33,6 +33,7 @@
 		"mixins.MixinBossHealthOverlay",
 		"mixins.MixinCamera",
 		"mixins.MixinClientPacketListener",
+		"mixins.MixinCullableEntity",
 		"mixins.MixinDebugScreenOverlay",
 		"mixins.MixinEffectsInInventory",
 		"mixins.MixinEntityRenderer",

@@ -30,6 +30,7 @@
 		"mixins.memoryleak.threaddetect.MixinPalettedContainer",
 		"mixins.MixinBossHealthOverlay",
 		"mixins.MixinClientPacketListener",
+		"mixins.MixinCullableEntity",
 		"mixins.MixinDebugScreenOverlay",
 		"mixins.MixinEntityRenderer",
 		"mixins.MixinGameRenderer",

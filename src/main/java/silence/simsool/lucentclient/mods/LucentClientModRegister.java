@@ -24,6 +24,7 @@ import silence.simsool.lucentclient.mods.impl.hud.PotionEffectsMod;
 import silence.simsool.lucentclient.mods.impl.hud.TPSMod;
 import silence.simsool.lucentclient.mods.impl.hud.VanillaHUDMod;
 import silence.simsool.lucentclient.mods.impl.performance.EntityCullingMod;
+import silence.simsool.lucentclient.mods.impl.performance.FastRenderMod;
 import silence.simsool.lucentclient.mods.impl.performance.HUDCullingMod;
 import silence.simsool.lucentclient.mods.impl.performance.memory.MemoryLeakFixMod;
 import silence.simsool.lucentclient.mods.impl.performance.network.NetworkFixMod;
@@ -71,6 +72,7 @@ public class LucentClientModRegister {
 
 			// Performance
 			new EntityCullingMod(),
+			new FastRenderMod(),
 			new HUDCullingMod(),
 			new MemoryLeakFixMod(),
 			new NetworkFixMod(),

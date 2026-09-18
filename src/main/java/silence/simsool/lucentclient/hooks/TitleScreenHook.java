@@ -17,6 +17,7 @@ import silence.simsool.lucent.ui.font.LucentFont;
 import silence.simsool.lucent.ui.utils.nvg.Fonts;
 import silence.simsool.lucent.ui.utils.nvg.NVGRenderer;
 import silence.simsool.lucentclient.LucentClient;
+import silence.simsool.lucentclient.account.ui.AccountDropdownWidget;
 
 public class TitleScreenHook {
 
@@ -65,10 +66,17 @@ public class TitleScreenHook {
 		// 3. Bottom-Left Version Info
 		NVGRenderer.text("LucentClient v" + LucentClient.VERSION, 20, canvasH - 24.0f, Fonts.PRETENDARD, 0x88FFFFFF, 16.0f);
 
+		// 4. Top-Left Account Switcher
+		AccountDropdownWidget.render(titleUiScale);
+
 		NVGRenderer.pop();
 	}
 
 	public static boolean handleMouseClick(Screen screen, float titleUiScale, int button) {
+		if (AccountDropdownWidget.handleMouseClick(titleUiScale, button)) {
+			return true;
+		}
+
 		if (button != 0) return false;
 
 		float standardScale = NVGRenderer.getStandardGuiScale();

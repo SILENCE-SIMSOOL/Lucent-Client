@@ -3,23 +3,23 @@ package silence.simsool.lucentclient.mods.impl.performance;
 import static silence.simsool.lucent.Lucent.mc;
 
 import java.util.List;
-import java.util.Map;
-import java.util.WeakHashMap;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.function.Predicate;
 
 import net.fabricmc.fabric.api.client.rendering.v1.level.LevelRenderEvents;
-import silence.simsool.lucentclient.hooks.EntityRendererHook;
 import net.minecraft.world.entity.Entity;
-import net.minecraft.world.level.ClipContext;
-import net.minecraft.world.phys.AABB;
-import net.minecraft.world.phys.HitResult;
+import net.minecraft.world.entity.item.ItemEntity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.phys.Vec3;
 import silence.simsool.lucent.Lucent;
 import silence.simsool.lucent.general.enums.ConfigType;
 import silence.simsool.lucent.general.models.abstracts.Mod;
 import silence.simsool.lucent.general.models.interfaces.annotations.ModConfig;
 import silence.simsool.lucent.general.utils.LucentCategory;
+import silence.simsool.lucent.general.utils.useful.UWorld;
+import silence.simsool.lucentclient.mods.impl.performance.culling.CullTask;
+import silence.simsool.lucentclient.mods.impl.performance.culling.CullingDataProvider;
+import silence.simsool.lucentclient.mods.impl.performance.culling.OcclusionCullingInstance;
 import silence.simsool.lucentclient.utils.LucentClientUtils;
 
 public class EntityCullingMod extends Mod {
@@ -60,6 +60,13 @@ public class EntityCullingMod extends Mod {
 
 	@ModConfig(
 		type = ConfigType.SWITCH,
+		name = "lucent.config.lucentclient.entitycullingmod.property.rendernametagsthroughwalls.name",
+		description = "lucent.config.lucentclient.entitycullingmod.property.rendernametagsthroughwalls.description"
+	)
+	public static boolean RenderNametagsThroughWalls = false;
+
+	@ModConfig(
+		type = ConfigType.SWITCH,
 		name = "lucent.config.lucentclient.entitycullingmod.property.showdebuginfo.name",
 		description = "lucent.config.lucentclient.entitycullingmod.property.showdebuginfo.description",
 		category = "Debug"
@@ -67,60 +74,54 @@ public class EntityCullingMod extends Mod {
 	public static boolean ShowDebugInfo = true;
 
 	public static final List<Predicate<Entity>> IGNORE_FILTERS = new CopyOnWriteArrayList<>();
-	public static final Map<Entity, VisibilityState> visibilityCache = new WeakHashMap<>();
 	public static int culledEntities = 0;
 	public static int lastCulledEntities = 0;
-	public static final double FAR_DIST_SQ = 1024.0;
 
-	public static class VisibilityState {
-		public boolean visible = true;
-		public long lastCheckTick = 0;
+	private static final CullTask cullTask;
+	private static final Thread cullThread;
+
+	static {
+		CullingDataProvider provider = new CullingDataProvider();
+		OcclusionCullingInstance culling = new OcclusionCullingInstance(128, provider);
+		cullTask = new CullTask(culling);
+		cullThread = new Thread(cullTask, "Lucent-CullThread");
+		cullThread.setDaemon(true);
+		cullThread.setUncaughtExceptionHandler((thread, ex) -> ex.printStackTrace());
+		cullThread.start();
 	}
 
 	{
 		LevelRenderEvents.START_MAIN.register(context -> {
 			lastCulledEntities = culledEntities;
-			culledEntities = 0;
-			EntityRendererHook.frameRaycastCount = 0;
+			if (isEnabled() && mc.level != null && mc.player != null) {
+				Vec3 camPos = UWorld.getCameraPos();
+				cullTask.populateAndSwap(mc.level.entitiesForRendering(), camPos);
+			}
 		});
+	}
+
+	public static boolean shouldCheckEntity(Entity entity) {
+		boolean shouldCull;
+		if (entity instanceof Player) {
+			shouldCull = CullPlayers && !LucentClientUtils.checkInDungeon();
+		} else if (entity instanceof ItemEntity) {
+			shouldCull = CullDroppedItems;
+		} else {
+			shouldCull = CullEntities;
+		}
+
+		if (shouldCull) {
+			for (Predicate<Entity> filter : IGNORE_FILTERS) {
+				if (filter.test(entity)) {
+					return false;
+				}
+			}
+		}
+		return shouldCull;
 	}
 
 	public static String getCulledEntitiesInfo() {
 		return "Culled Entities: " + lastCulledEntities;
-	}
-
-	public static boolean isVisibleOptimized(Vec3 camPos, AABB box, Entity cameraEntity, double distSq) {
-		double cx = (box.minX + box.maxX) * 0.5;
-		double cy = (box.minY + box.maxY) * 0.5;
-		double cz = (box.minZ + box.maxZ) * 0.5;
-
-		// 1. 가장 확률이 높은 중심점 검사 (보이면 즉시 탈출)
-		if (fastClip(camPos, cx, cy, cz, cameraEntity)) return true;
-
-		double top = box.maxY - 0.05;
-
-		// 2. 32블럭 이상 먼 거리는 중심과 상단만 검사 (극한의 최적화)
-		if (distSq > FAR_DIST_SQ) {
-			return fastClip(camPos, cx, top, cz, cameraEntity);
-		}
-
-		// 3. 근/중거리 엔티티는 상/하/좌/우 4개 추가 검사 (총 5포인트, 배열 생성 없이 즉시 탈출)
-		if (fastClip(camPos, cx, top, cz, cameraEntity)) return true;
-
-		double bot = box.minY + 0.05;
-		if (fastClip(camPos, cx, bot, cz, cameraEntity)) return true;
-
-		double ex = (box.maxX - box.minX) * 0.35;
-		double ez = (box.maxZ - box.minZ) * 0.35;
-		if (fastClip(camPos, cx - ex, cy, cz - ez, cameraEntity)) return true;
-		if (fastClip(camPos, cx + ex, cy, cz + ez, cameraEntity)) return true;
-
-		return false;
-	}
-
-	private static boolean fastClip(Vec3 start, double x, double y, double z, Entity cameraEntity) {
-		ClipContext ctx = new ClipContext(start, new Vec3(x, y, z), ClipContext.Block.VISUAL, ClipContext.Fluid.NONE, cameraEntity);
-		return mc.level.clip(ctx).getType() == HitResult.Type.MISS;
 	}
 
 }

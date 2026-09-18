@@ -21,7 +21,7 @@ public class LucentClient implements ClientModInitializer {
 
 	public static final String ID = "lucentclient";
 	public static final String NAME = "Lucent Client";
-	public static final String VERSION = "1.1.10";
+	public static final String VERSION = "1.2.0";
 
 	public static final String PREFIX = "§b[§fLucent Client§b] ";
 
@@ -57,8 +57,7 @@ public class LucentClient implements ClientModInitializer {
 		});
 
 		LucentEvent.SERVER_JOIN_EVENT.register(() -> {
-			if (LucentClientUtils.loadedKrypton || LucentClientUtils.loadedFerritecore
-					|| LucentClientUtils.loadedEntityCulling) {
+			if (LucentClientUtils.loadedKrypton || LucentClientUtils.loadedFerritecore || LucentClientUtils.loadedEntityCulling) {
 				StringBuilder sb = new StringBuilder();
 				sb.append("\n§bLucent Client §fcomes with several advanced optimization features built in.\n\n");
 				sb.append("§7The following mods provide features already included in §bLucent Client, §7resulting in §funnecessary resource usage §7and §fredundant processing§7.\n\n");

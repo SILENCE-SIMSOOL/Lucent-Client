@@ -76,6 +76,8 @@ public class EntityCullingMod extends Mod {
 	public static final List<Predicate<Entity>> IGNORE_FILTERS = new CopyOnWriteArrayList<>();
 	public static int culledEntities = 0;
 	public static int lastCulledEntities = 0;
+	public static int actualCulledEntitiesCurrentFrame = 0;
+	public static int lastActualCulledEntities = 0;
 
 	private static final CullTask cullTask;
 	private static final Thread cullThread;
@@ -93,9 +95,11 @@ public class EntityCullingMod extends Mod {
 	{
 		LevelRenderEvents.START_MAIN.register(context -> {
 			lastCulledEntities = culledEntities;
+			lastActualCulledEntities = actualCulledEntitiesCurrentFrame;
+			actualCulledEntitiesCurrentFrame = 0;
 			if (isEnabled() && mc.level != null && mc.player != null) {
 				Vec3 camPos = UWorld.getCameraPos();
-				cullTask.populateAndSwap(mc.level.entitiesForRendering(), camPos);
+				cullTask.tryPopulateAndSwap(mc.level.entitiesForRendering(), camPos);
 			}
 		});
 	}
@@ -121,7 +125,7 @@ public class EntityCullingMod extends Mod {
 	}
 
 	public static String getCulledEntitiesInfo() {
-		return "Culled Entities: " + lastCulledEntities;
+		return "Culled: " + lastActualCulledEntities + " (Frustum) / " + lastCulledEntities + " (Total)";
 	}
 
 }

@@ -30,6 +30,7 @@ public class PerformanceHUD extends LucentHUD {
 	}
 
 	private record Entry(String label, String value) {}
+	private record MeasuredEntry(String label, String value, float labelW, float valueW) {}
 
 	private List<Entry> getActiveEntries(boolean preview) {
 		List<Entry> entries = new ArrayList<>();
@@ -100,15 +101,28 @@ public class PerformanceHUD extends LucentHUD {
 		LucentFont labelFont = Fonts.PRETENDARD;
 		LucentFont valueFont = Fonts.PRETENDARD_EXTRABOLD;
 
-		List<Entry> entries = getActiveEntries(preview); if (entries.isEmpty()) return;
+		List<Entry> rawEntries = getActiveEntries(preview); if (rawEntries.isEmpty()) return;
 
 		float rx = getRenderX();
 		float ry = getRenderY();
 		float labelFs = 14f * scale;
 		float valueFs = 14f * scale;
 		float sepWidth = SkijaRenderer.textWidth("  |  ", labelFont, labelFs);
+		float valuePad = 3f * scale;
 
-		float contentW = calculateContentWidth(entries, labelFont, valueFont, labelFs, valueFs, scale);
+		List<MeasuredEntry> entries = new ArrayList<>(rawEntries.size());
+		float contentW = 0f;
+		for (int i = 0; i < rawEntries.size(); i++) {
+			Entry e = rawEntries.get(i);
+			float lw = SkijaRenderer.textWidth(e.label + " ", labelFont, labelFs);
+			float vw = SkijaRenderer.textWidth(e.value, valueFont, valueFs);
+			entries.add(new MeasuredEntry(e.label, e.value, lw, vw));
+			contentW += lw + valuePad + vw + valuePad;
+			if (i < rawEntries.size() - 1) {
+				contentW += sepWidth;
+			}
+		}
+
 		float totalW = contentW + (PerformanceMod.ShowBackground ? 12f * scale : 0f);
 		float maxFs = Math.max(labelFs, valueFs);
 		float totalH = (PerformanceMod.ShowBackground ? 20f * scale : maxFs);
@@ -123,23 +137,21 @@ public class PerformanceHUD extends LucentHUD {
 		int lineColor = UColor.withAlpha(color, 225);
 		boolean shadow = PerformanceMod.TextShadow;
 
-		float valuePad = 3f * scale;
-
 		for (int i = 0; i < entries.size(); i++) {
-			Entry e = entries.get(i);
+			MeasuredEntry e = entries.get(i);
 
 			// Draw label
 			String labelStr = e.label + " ";
 			float labelY = ry + (totalH - labelFs) / 2f;
 			if (shadow) SkijaRenderer.textShadow(labelStr, currentX, labelY, labelFont, color, labelFs);
 			else SkijaRenderer.text(labelStr, currentX, labelY, labelFont, color, labelFs);
-			currentX += SkijaRenderer.textWidth(labelStr, labelFont, labelFs) + valuePad;
+			currentX += e.labelW + valuePad;
 
 			// Draw value
 			float valueY = ry + (totalH - valueFs) / 2f;
 			if (shadow) SkijaRenderer.textShadow(e.value, currentX, valueY, valueFont, color, valueFs);
 			else SkijaRenderer.text(e.value, currentX, valueY, valueFont, color, valueFs);
-			currentX += SkijaRenderer.textWidth(e.value, valueFont, valueFs) + valuePad;
+			currentX += e.valueW + valuePad;
 
 			// Draw separator
 			if (i < entries.size() - 1) {

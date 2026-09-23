@@ -18,6 +18,7 @@ import silence.simsool.lucent.ui.utils.nvg.Fonts;
 import silence.simsool.lucent.ui.utils.nvg.NVGRenderer;
 import silence.simsool.lucentclient.LucentClient;
 import silence.simsool.lucentclient.account.ui.AccountDropdownWidget;
+import silence.simsool.lucentclient.utils.LucentClientUtils;
 
 public class TitleScreenHook {
 
@@ -58,10 +59,17 @@ public class TitleScreenHook {
 		int gap = 10;
 		int halfW = (btnW - gap) / 2;
 
-		drawNanoVGButton(screen, canvasW / 2.0f - btnW / 2.0f, startY, btnW, btnH, "Singleplayer", 18.0f, titleUiScale);
-		drawNanoVGButton(screen, canvasW / 2.0f - btnW / 2.0f, startY + btnH + gap, btnW, btnH, "Multiplayer", 18.0f, titleUiScale);
-		drawNanoVGButton(screen, canvasW / 2.0f - btnW / 2.0f, startY + (btnH + gap) * 2, halfW, btnH, "Options", 18.0f, titleUiScale);
-		drawNanoVGButton(screen, canvasW / 2.0f - btnW / 2.0f + halfW + gap, startY + (btnH + gap) * 2, halfW, btnH, "Quit Game", 18.0f, titleUiScale);
+		float currentY = startY;
+		drawNanoVGButton(screen, canvasW / 2.0f - btnW / 2.0f, currentY, btnW, btnH, "Singleplayer", 18.0f, titleUiScale);
+		currentY += btnH + gap;
+		drawNanoVGButton(screen, canvasW / 2.0f - btnW / 2.0f, currentY, btnW, btnH, "Multiplayer", 18.0f, titleUiScale);
+		currentY += btnH + gap;
+		if (LucentClientUtils.loadedFlashback) {
+			drawNanoVGButton(screen, canvasW / 2.0f - btnW / 2.0f, currentY, btnW, btnH, "Replays", 18.0f, titleUiScale);
+			currentY += btnH + gap;
+		}
+		drawNanoVGButton(screen, canvasW / 2.0f - btnW / 2.0f, currentY, halfW, btnH, "Options", 18.0f, titleUiScale);
+		drawNanoVGButton(screen, canvasW / 2.0f - btnW / 2.0f + halfW + gap, currentY, halfW, btnH, "Quit Game", 18.0f, titleUiScale);
 
 		// 3. Bottom-Left Version Info
 		NVGRenderer.text("LucentClient v" + LucentClient.VERSION, 20, canvasH - 24.0f, Fonts.PRETENDARD, 0x88FFFFFF, 16.0f);
@@ -89,29 +97,40 @@ public class TitleScreenHook {
 		float logoY = canvasH / 2.0f - 140.0f;
 		int btnW = 340;
 		int btnH = 46;
-		float startY = logoY + 130.0f;
+		float startY = logoY + 132.0f;
 		int gap = 10;
 		int halfW = (btnW - gap) / 2;
 
-		if (isHovered(canvasW / 2.0f - btnW / 2.0f, startY, btnW, btnH, titleUiScale)) {
+		float currentY = startY;
+		if (isHovered(canvasW / 2.0f - btnW / 2.0f, currentY, btnW, btnH, titleUiScale)) {
 			UScreen.setScreen((Screen) new SelectWorldScreen(screen));
 			return true;
 		}
+		currentY += btnH + gap;
 
-		if (isHovered(canvasW / 2.0f - btnW / 2.0f, startY + btnH + gap, btnW, btnH, titleUiScale)) {
+		if (isHovered(canvasW / 2.0f - btnW / 2.0f, currentY, btnW, btnH, titleUiScale)) {
 			Screen nextScreen = (Screen) (mc.options.skipMultiplayerWarning
 				? new JoinMultiplayerScreen(screen)
 				: new SafetyScreen(screen));
 			UScreen.setScreen(nextScreen);
 			return true;
 		}
+		currentY += btnH + gap;
 
-		if (isHovered(canvasW / 2.0f - btnW / 2.0f, startY + (btnH + gap) * 2, halfW, btnH, titleUiScale)) {
+		if (LucentClientUtils.loadedFlashback) {
+			if (isHovered(canvasW / 2.0f - btnW / 2.0f, currentY, btnW, btnH, titleUiScale)) {
+				LucentClientUtils.openFlashbackReplays(screen);
+				return true;
+			}
+			currentY += btnH + gap;
+		}
+
+		if (isHovered(canvasW / 2.0f - btnW / 2.0f, currentY, halfW, btnH, titleUiScale)) {
 			UScreen.setScreen((Screen) new OptionsScreen(screen, mc.options));
 			return true;
 		}
 
-		if (isHovered(canvasW / 2.0f - btnW / 2.0f + halfW + gap, startY + (btnH + gap) * 2, halfW, btnH, titleUiScale)) {
+		if (isHovered(canvasW / 2.0f - btnW / 2.0f + halfW + gap, currentY, halfW, btnH, titleUiScale)) {
 			if (mc != null) mc.stop();
 			return true;
 		}

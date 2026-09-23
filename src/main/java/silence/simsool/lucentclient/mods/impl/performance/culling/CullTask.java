@@ -12,20 +12,23 @@ import net.minecraft.world.phys.Vec3;
 import silence.simsool.lucentclient.mods.impl.performance.EntityCullingMod;
 import silence.simsool.lucentclient.mods.impl.performance.culling.util.Vec3d;
 
+import java.util.concurrent.atomic.AtomicBoolean;
+
 public class CullTask implements Runnable {
 
 	private final OcclusionCullingInstance culling;
 	private volatile boolean running = true;
 	public volatile boolean requestCull = false;
+	private final AtomicBoolean isProcessing = new AtomicBoolean(false);
 
 	private final Vec3d lastCameraPos = new Vec3d(0, 0, 0);
 	private final Vec3d aabbMin = new Vec3d(0, 0, 0);
 	private final Vec3d aabbMax = new Vec3d(0, 0, 0);
 
-	private final List<Cullable> snapshotA = new ArrayList<>(256);
-	private final List<Cullable> snapshotB = new ArrayList<>(256);
-	private volatile List<Cullable> activeSnapshot = Collections.emptyList();
-	private boolean useBufferA = true;
+	private final List<Cullable> bufferA = new ArrayList<>(256);
+	private final List<Cullable> bufferB = new ArrayList<>(256);
+	private List<Cullable> writeBuffer = bufferA;
+	private volatile List<Cullable> readBuffer = Collections.emptyList();
 
 	private volatile Vec3 cameraMC = new Vec3(0, 0, 0);
 
@@ -33,22 +36,32 @@ public class CullTask implements Runnable {
 		this.culling = culling;
 	}
 
-	public synchronized void populateAndSwap(Iterable<Entity> entities, Vec3 camPos) {
-		List<Cullable> target = this.useBufferA ? this.snapshotA : this.snapshotB;
-		target.clear();
+	public synchronized boolean tryPopulateAndSwap(Iterable<Entity> entities, Vec3 camPos) {
+		if (this.isProcessing.get()) {
+			return false;
+		}
 
+		this.writeBuffer.clear();
 		for (Entity entity : entities) {
 			if (entity instanceof Cullable cullable) {
 				cullable.setCullingBox(entity.getBoundingBox());
 				cullable.setDistanceSq(entity.distanceToSqr(camPos));
-				target.add(cullable);
+				this.writeBuffer.add(cullable);
 			}
 		}
 
-		this.activeSnapshot = target;
-		this.useBufferA = !this.useBufferA;
+		List<Cullable> ready = this.writeBuffer;
+		this.writeBuffer = (this.writeBuffer == this.bufferA) ? this.bufferB : this.bufferA;
+		this.readBuffer = ready;
+
 		this.cameraMC = camPos;
 		this.requestCull = true;
+		this.isProcessing.set(true);
+		return true;
+	}
+
+	public synchronized void populateAndSwap(Iterable<Entity> entities, Vec3 camPos) {
+		tryPopulateAndSwap(entities, camPos);
 	}
 
 	public void stop() {
@@ -62,26 +75,31 @@ public class CullTask implements Runnable {
 				Thread.sleep(10);
 
 				if (!EntityCullingMod.isEnabled() || mc.level == null || mc.player == null) {
+					this.isProcessing.set(false);
+					continue;
+				}
+
+				if (!this.isProcessing.get() && !this.requestCull) {
 					continue;
 				}
 
 				Vec3 cam = this.cameraMC;
-				if (this.requestCull || cam.x != this.lastCameraPos.x || cam.y != this.lastCameraPos.y || cam.z != this.lastCameraPos.z) {
-					this.requestCull = false;
-					this.lastCameraPos.set(cam.x, cam.y, cam.z);
+				this.requestCull = false;
+				this.lastCameraPos.set(cam.x, cam.y, cam.z);
 
-					this.culling.resetCache();
-					cullEntities(cam, this.lastCameraPos);
-				}
+				this.culling.resetCache();
+				cullEntities(cam, this.lastCameraPos);
 			} catch (InterruptedException ignored) {
 				break;
 			} catch (Exception ignored) {
+			} finally {
+				this.isProcessing.set(false);
 			}
 		}
 	}
 
 	private void cullEntities(Vec3 cameraMC, Vec3d camera) {
-		List<Cullable> list = this.activeSnapshot;
+		List<Cullable> list = this.readBuffer;
 		if (list.isEmpty()) {
 			return;
 		}

@@ -46,6 +46,9 @@ public class EntityRendererHook {
 					return;
 				}
 				cir.setReturnValue(false);
+				if (frustum != null && frustum.isVisible(entity.getBoundingBox())) {
+					EntityCullingMod.actualCulledEntitiesCurrentFrame++;
+				}
 				return;
 			}
 		}

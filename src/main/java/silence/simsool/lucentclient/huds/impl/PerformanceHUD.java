@@ -32,6 +32,17 @@ public class PerformanceHUD extends LucentHUD {
 	private record Entry(String label, String value) {}
 	private record MeasuredEntry(String label, String value, float labelW, float valueW) {}
 
+	@Override
+	public Object getRenderCacheKey() {
+		return List.of(
+				getActiveEntries(false), x, y, scale, alignment,
+				UDisplay.getWidth(), UDisplay.getHeight(), SkijaRenderer.getStandardGuiScale(),
+				isEditHudOpen, UDisplay.isDebugScreen(),
+				PerformanceMod.ShowBackground, PerformanceMod.BackgroundColor,
+				PerformanceMod.TextColor, PerformanceMod.TextShadow
+		);
+	}
+
 	private List<Entry> getActiveEntries(boolean preview) {
 		List<Entry> entries = new ArrayList<>();
 		if (PerformanceMod.ShowFPS) {

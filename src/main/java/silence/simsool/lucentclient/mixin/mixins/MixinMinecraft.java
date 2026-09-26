@@ -24,7 +24,7 @@ public abstract class MixinMinecraft {
 
 	@Inject(method = "createTitle", at = @At("HEAD"), cancellable = true)
 	private void onCreateTitle(CallbackInfoReturnable<String> cir) {
-		cir.setReturnValue("Lucent Client - mc" + LucentClient.MC_VERSION);
+		cir.setReturnValue("Lucent Client - mc" + LucentClient.MC_VERSION + " (v" + LucentClient.VERSION + ")");
 	}
 
 }

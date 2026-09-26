@@ -2,18 +2,19 @@ package silence.simsool.lucentclient.account;
 
 import static silence.simsool.lucent.Lucent.mc;
 
-import java.lang.invoke.MethodHandles;
-import java.lang.invoke.VarHandle;
-import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
-import net.minecraft.client.Minecraft;
+import com.mojang.authlib.GameProfile;
+import com.mojang.authlib.minecraft.UserApiService;
+import com.mojang.authlib.yggdrasil.ProfileResult;
+
 import net.minecraft.client.User;
-import sun.misc.Unsafe;
+import net.minecraft.client.multiplayer.ProfileKeyPairManager;
+import silence.simsool.lucentclient.mixin.accessors.MinecraftAccessor;
 
 public class AccountManager {
 
@@ -147,7 +148,7 @@ public class AccountManager {
 	}
 
 	private void applySession(Account account) {
-		if (mc == null) return;
+		if (mc == null || account == null) return;
 		try {
 			User newUser = new User(
 				account.getUsername(),
@@ -157,22 +158,18 @@ public class AccountManager {
 				Optional.empty()
 			);
 
-			// Safely update non-static final field using Unsafe to prevent IllegalAccessError on Java 21+
-			Field unsafeField = Unsafe.class.getDeclaredField("theUnsafe");
-			unsafeField.setAccessible(true);
+			MinecraftAccessor accessor = (MinecraftAccessor) mc;
+			accessor.setUser(newUser);
 
-			Field targetField = null;
-			for (Field f : Minecraft.class.getDeclaredFields()) {
-				if (f.getType() == User.class) {
-					targetField = f;
-					break;
+			GameProfile profile = new GameProfile(account.getId(), account.getUsername());
+			accessor.setProfileFuture(CompletableFuture.completedFuture(new ProfileResult(profile)));
+
+			try {
+				UserApiService userApiService = accessor.getUserApiService();
+				if (userApiService != null && mc.gameDirectory != null) {
+					accessor.setProfileKeyPairManager(ProfileKeyPairManager.create(userApiService, newUser, mc.gameDirectory.toPath()));
 				}
-			}
-			if (targetField != null) {
-				MethodHandles.Lookup lookup = MethodHandles.privateLookupIn(Minecraft.class, MethodHandles.lookup());
-				VarHandle handle = lookup.unreflectVarHandle(targetField);
-				handle.set(mc, newUser);
-			}
+			} catch (Throwable ignored) {}
 		} catch (Throwable ignored) {}
 	}
 

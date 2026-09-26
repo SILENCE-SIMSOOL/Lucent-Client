@@ -1,5 +1,6 @@
 package silence.simsool.lucentclient.mods.impl.performance.culling;
 
+import net.minecraft.core.BlockPos;
 import net.minecraft.world.phys.AABB;
 
 public interface Cullable {
@@ -15,5 +16,21 @@ public interface Cullable {
 	double getDistanceSq();
 
 	void setDistanceSq(double distSq);
+
+	boolean isForcedVisible();
+
+	void setTimeout();
+
+	boolean isOutOfCamera();
+
+	void setOutOfCamera(boolean outOfCamera);
+
+	boolean isShouldEntityAppearGlowing();
+
+	void setShouldEntityAppearGlowing(boolean glowing);
+
+	BlockPos getCullingBlockPos();
+
+	void setCullingBlockPos(BlockPos pos);
 
 }

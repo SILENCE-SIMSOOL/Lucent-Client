@@ -41,7 +41,10 @@ public class EntityRendererHook {
 		}
 
 		if (EntityCullingMod.isEnabled()) {
-			if (entity instanceof Cullable cullable && cullable.isCulled()) {
+			if (frustum != null) {
+				EntityCullingMod.frustum = frustum;
+			}
+			if (entity instanceof Cullable cullable && cullable.isCulled() && !cullable.isForcedVisible()) {
 				if (EntityCullingMod.RenderNametagsThroughWalls && entity.shouldShowName()) {
 					return;
 				}

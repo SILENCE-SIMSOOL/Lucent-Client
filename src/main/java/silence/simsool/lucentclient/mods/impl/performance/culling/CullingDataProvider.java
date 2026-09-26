@@ -4,7 +4,9 @@ import static silence.simsool.lucent.Lucent.mc;
 
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.block.LeavesBlock;
 import net.minecraft.world.level.block.state.BlockState;
+import silence.simsool.lucentclient.mods.impl.performance.EntityCullingMod;
 
 public class CullingDataProvider implements DataProvider {
 
@@ -32,18 +34,19 @@ public class CullingDataProvider implements DataProvider {
 
 	@Override
 	public boolean isOpaqueFullCube(int x, int y, int z) {
-		if (this.level == null || !this.lastChunkLoaded) {
-			return false;
-		}
-		if (x < -30000000 || x > 30000000 || z < -30000000 || z > 30000000) {
-			return false;
-		}
-		if (y < this.level.getMinY() || y >= this.level.getMaxY()) {
+		if (
+				this.level == null || !this.lastChunkLoaded ||
+				x < -30000000 || x > 30000000 || z < -30000000 || z > 30000000 ||
+				y < this.level.getMinY() || y >= this.level.getMaxY()
+		) {
 			return false;
 		}
 
 		this.mutablePos.set(x, y, z);
 		BlockState state = this.level.getBlockState(this.mutablePos);
+		if (EntityCullingMod.SolidLeaves && state.getBlock() instanceof LeavesBlock) {
+			return true;
+		}
 		return state.isSolidRender();
 	}
 

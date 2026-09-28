@@ -18,7 +18,7 @@ import silence.simsool.lucent.ui.utils.skija.Fonts;
 import silence.simsool.lucent.ui.utils.skija.SkijaRenderer;
 import silence.simsool.lucentclient.LucentClient;
 import silence.simsool.lucentclient.account.ui.AccountDropdownWidget;
-import silence.simsool.lucentclient.utils.LucentClientUtils;
+import silence.simsool.lucentclient.ui.TitleBottomBarWidget;
 
 public class TitleScreenHook {
 
@@ -64,10 +64,6 @@ public class TitleScreenHook {
 		currentY += btnH + gap;
 		drawNanoVGButton(screen, canvasW / 2.0f - btnW / 2.0f, currentY, btnW, btnH, "Multiplayer", 18.0f, titleUiScale);
 		currentY += btnH + gap;
-		if (LucentClientUtils.loadedFlashback) {
-			drawNanoVGButton(screen, canvasW / 2.0f - btnW / 2.0f, currentY, btnW, btnH, "Replays", 18.0f, titleUiScale);
-			currentY += btnH + gap;
-		}
 		drawNanoVGButton(screen, canvasW / 2.0f - btnW / 2.0f, currentY, halfW, btnH, "Options", 18.0f, titleUiScale);
 		drawNanoVGButton(screen, canvasW / 2.0f - btnW / 2.0f + halfW + gap, currentY, halfW, btnH, "Quit Game", 18.0f, titleUiScale);
 
@@ -77,6 +73,9 @@ public class TitleScreenHook {
 		// 4. Top-Left Account Switcher
 		AccountDropdownWidget.render(titleUiScale);
 
+		// 5. Bottom Underbar Buttons (Mod Settings, Preference, Homepage, Discord, Replay)
+		TitleBottomBarWidget.render(screen, canvasW, canvasH, titleUiScale);
+
 		SkijaRenderer.pop();
 	}
 
@@ -85,14 +84,18 @@ public class TitleScreenHook {
 			return true;
 		}
 
-		if (button != 0) return false;
-
 		float standardScale = SkijaRenderer.getStandardGuiScale();
 		if (standardScale <= 0.01f) standardScale = 1.0f;
 		float screenH = (float) UDisplay.getScreenHeight() / standardScale;
 		float canvasH = screenH / titleUiScale;
 		float screenW = (float) UDisplay.getScreenWidth() / standardScale;
 		float canvasW = screenW / titleUiScale;
+
+		if (TitleBottomBarWidget.handleMouseClick(screen, canvasW, canvasH, titleUiScale, button)) {
+			return true;
+		}
+
+		if (button != 0) return false;
 
 		float logoY = canvasH / 2.0f - 140.0f;
 		int btnW = 340;
@@ -116,14 +119,6 @@ public class TitleScreenHook {
 			return true;
 		}
 		currentY += btnH + gap;
-
-		if (LucentClientUtils.loadedFlashback) {
-			if (isHovered(canvasW / 2.0f - btnW / 2.0f, currentY, btnW, btnH, titleUiScale)) {
-				LucentClientUtils.openFlashbackReplays(screen);
-				return true;
-			}
-			currentY += btnH + gap;
-		}
 
 		if (isHovered(canvasW / 2.0f - btnW / 2.0f, currentY, halfW, btnH, titleUiScale)) {
 			UScreen.setScreen((Screen) new OptionsScreen(screen, mc.options, false));

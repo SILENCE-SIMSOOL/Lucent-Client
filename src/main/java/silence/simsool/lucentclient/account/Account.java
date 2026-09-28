@@ -9,6 +9,7 @@ public class Account {
 	private String accessToken;
 	private String refreshToken;
 	private long expiresAt;
+	private boolean loginFailed;
 
 	public Account(UUID id, String username, String accessToken, String refreshToken, long expiresAt) {
 		this.id = id;
@@ -56,6 +57,14 @@ public class Account {
 
 	public boolean isExpired() {
 		return System.currentTimeMillis() >= expiresAt - 60000L;
+	}
+
+	public boolean isLoginFailed() {
+		return loginFailed || (isExpired() && (refreshToken == null || refreshToken.isEmpty()));
+	}
+
+	public void setLoginFailed(boolean loginFailed) {
+		this.loginFailed = loginFailed;
 	}
 
 }

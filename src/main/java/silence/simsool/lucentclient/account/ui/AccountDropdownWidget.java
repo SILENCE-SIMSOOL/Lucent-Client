@@ -28,6 +28,7 @@ public class AccountDropdownWidget {
 		float my = UMouse.getNvgScaledY(titleUiScale);
 
 		// 1. Main Header Box
+		boolean allFailed = manager.areAllAccountsFailed();
 		boolean headerHover = isPointInside(mx, my, WIDGET_X, WIDGET_Y, WIDGET_WIDTH, HEADER_HEIGHT);
 		int headerBg = headerHover ? 0xEE181B23 : 0xDD14161E;
 
@@ -36,13 +37,19 @@ public class AccountDropdownWidget {
 		// Avatar & Name
 		String currentName = activeAccount != null ? activeAccount.getUsername() : "Guest";
 		AccountAvatarManager.renderAvatar(activeAccount != null ? activeAccount.getId() : null, currentName, WIDGET_X + 8.0f, WIDGET_Y + 8.0f, 28.0f, 6.0f);
-		NVGRenderer.text(currentName, WIDGET_X + 42.0f, WIDGET_Y + 16.0f, Fonts.PRETENDARD_MEDIUM, 0xFFFFFFFF, 14.0f);
+		int currentNameColor = (activeAccount != null && activeAccount.isLoginFailed()) ? 0xFFFF7070 : 0xFFFFFFFF;
+		NVGRenderer.text(currentName, WIDGET_X + 42.0f, WIDGET_Y + 16.0f, Fonts.PRETENDARD_MEDIUM, currentNameColor, 14.0f);
 
 		// Chevron Arrow
 		float arrowCenterX = WIDGET_X + WIDGET_WIDTH - 18.0f;
 		float arrowCenterY = WIDGET_Y + HEADER_HEIGHT / 2.0f;
 		int arrowColor = headerHover ? 0xFFFFFFFF : 0xBB8F96A6;
 		drawChevron(arrowCenterX, arrowCenterY, open, arrowColor);
+
+		// Warning indicator on account switch button if all accounts failed
+		if (allFailed) {
+			drawWarningBadge(arrowCenterX - 18.0f, arrowCenterY, 0xFFFF453A);
+		}
 
 		// 2. Dropdown Menu
 		if (open) {
@@ -57,6 +64,7 @@ public class AccountDropdownWidget {
 			// Accounts List
 			for (Account acc : accounts) {
 				boolean isActive = activeAccount != null && acc.getId().equals(activeAccount.getId());
+				boolean isFailed = acc.isLoginFailed();
 				boolean itemHover = isPointInside(mx, my, WIDGET_X + 6.0f, curY, WIDGET_WIDTH - 12.0f, ITEM_HEIGHT);
 
 				if (itemHover) {
@@ -67,12 +75,24 @@ public class AccountDropdownWidget {
 
 				// Account Avatar & Name
 				AccountAvatarManager.renderAvatar(acc.getId(), acc.getUsername(), WIDGET_X + 12.0f, curY + 7.0f, 26.0f, 6.0f);
-				int nameColor = isActive ? 0xFFFFFFFF : (itemHover ? 0xFFF0F2F8 : 0xCCD0D5E0);
+				int nameColor;
+				if (isFailed) {
+					nameColor = 0xFFFF7070;
+				} else if (isActive) {
+					nameColor = 0xFFFFFFFF;
+				} else {
+					nameColor = itemHover ? 0xFFF0F2F8 : 0xCCD0D5E0;
+				}
 				NVGRenderer.text(acc.getUsername(), WIDGET_X + 42.0f, curY + 14.0f, Fonts.PRETENDARD, nameColor, 14.0f);
+
+				// Warning badge for failed login accounts (Select box warning)
+				if (isFailed) {
+					drawWarningBadge(WIDGET_X + WIDGET_WIDTH - 36.0f, curY + ITEM_HEIGHT / 2.0f, 0xFFFF453A);
+				}
 
 				// Active Checkmark or Delete button on hover
 				if (isActive) {
-					drawCheckmark(WIDGET_X + WIDGET_WIDTH - 20.0f, curY + ITEM_HEIGHT / 2.0f, 0xFF5C8FFF);
+					drawCheckmark(WIDGET_X + WIDGET_WIDTH - 20.0f, curY + ITEM_HEIGHT / 2.0f, isFailed ? 0xFFFF6060 : 0xFF5C8FFF);
 				} else if (itemHover && accounts.size() > 1) {
 					// Delete button (X)
 					boolean deleteHover = isPointInside(mx, my, WIDGET_X + WIDGET_WIDTH - 28.0f, curY + 10.0f, 20.0f, 20.0f);
@@ -185,6 +205,12 @@ public class AccountDropdownWidget {
 		float s = 3.5f;
 		NVGRenderer.line(cx - s, cy - s, cx + s, cy + s, 1.6f, color);
 		NVGRenderer.line(cx - s, cy + s, cx + s, cy - s, 1.6f, color);
+	}
+
+	private static void drawWarningBadge(float cx, float cy, int color) {
+		NVGRenderer.circle(cx, cy, 6.5f, color);
+		NVGRenderer.line(cx, cy - 3.2f, cx, cy + 0.5f, 1.5f, 0xFFFFFFFF);
+		NVGRenderer.line(cx, cy + 2.2f, cx, cy + 3.2f, 1.5f, 0xFFFFFFFF);
 	}
 
 	private static boolean isPointInside(float px, float py, float x, float y, float w, float h) {

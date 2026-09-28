@@ -1,18 +1,14 @@
 package silence.simsool.lucentclient.account;
 
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
 import java.security.MessageDigest;
 import java.security.SecureRandom;
 import java.util.ArrayList;
-import java.util.Base64;
 import java.util.List;
 import java.util.UUID;
-import java.util.concurrent.TimeUnit;
 
 import javax.crypto.Cipher;
 import javax.crypto.SecretKey;
@@ -23,6 +19,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 import silence.simsool.lucent.general.utils.OSUtils;
+import silence.simsool.lucentclient.utils.AccountUtils;
 
 public class AccountStorage {
 
@@ -112,10 +109,10 @@ public class AccountStorage {
 			return cachedKey;
 		}
 
-		String hwidBase64 = getHwidBase64();
+		String hwid = AccountUtils.getHWID();
 		try {
 			MessageDigest digest = MessageDigest.getInstance("SHA-256");
-			byte[] keyBytes = digest.digest(hwidBase64.getBytes(StandardCharsets.UTF_8));
+			byte[] keyBytes = digest.digest(hwid.getBytes(StandardCharsets.UTF_8));
 			cachedKey = new SecretKeySpec(keyBytes, "AES");
 			return cachedKey;
 		} catch (Exception e) {
@@ -123,43 +120,6 @@ public class AccountStorage {
 			cachedKey = new SecretKeySpec(fallback, "AES");
 			return cachedKey;
 		}
-	}
-
-	public static String getHwidBase64() {
-		String cpuId = "";
-		String mbUuid = "";
-
-		try {
-			Process process = new ProcessBuilder(
-				"powershell", "-NoProfile", "-Command",
-				"$c = (Get-CimInstance Win32_Processor).ProcessorId; $m = (Get-CimInstance Win32_ComputerSystemProduct).UUID; \"$c|$m\""
-			).redirectErrorStream(true).start();
-
-			try (BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream(), StandardCharsets.UTF_8))) {
-				String line;
-				while ((line = reader.readLine()) != null) {
-					line = line.trim();
-					if (line.contains("|")) {
-						String[] parts = line.split("\\|", 2);
-						cpuId = parts[0].trim();
-						if (parts.length > 1) {
-							mbUuid = parts[1].trim();
-						}
-						break;
-					}
-				}
-			}
-			process.waitFor(3, TimeUnit.SECONDS);
-		} catch (Exception ignored) {
-		}
-
-		if (cpuId.isEmpty() && mbUuid.isEmpty()) {
-			cpuId = System.getenv("PROCESSOR_IDENTIFIER") != null ? System.getenv("PROCESSOR_IDENTIFIER") : "GENERIC_CPU";
-			mbUuid = System.getProperty("user.name", "GENERIC_USER");
-		}
-
-		String combined = cpuId + "#" + mbUuid;
-		return Base64.getEncoder().encodeToString(combined.getBytes(StandardCharsets.UTF_8));
 	}
 
 }

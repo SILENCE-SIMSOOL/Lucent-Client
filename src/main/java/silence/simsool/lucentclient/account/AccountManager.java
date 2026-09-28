@@ -45,20 +45,122 @@ public class AccountManager {
 					}
 				}
 			}
-			if (activeAccount == null && !accounts.isEmpty()) {
-				activeAccount = accounts.get(0);
+		}
+
+		User launcherUser = (mc != null) ? mc.getUser() : null;
+		Account launcherAccount = null;
+		if (launcherUser != null && launcherUser.getProfileId() != null) {
+			for (Account acc : accounts) {
+				if (acc.getId().equals(launcherUser.getProfileId()) || acc.getUsername().equalsIgnoreCase(launcherUser.getName())) {
+					launcherAccount = acc;
+					break;
+				}
+			}
+
+			if (launcherAccount != null) {
+				launcherAccount.setAccessToken(launcherUser.getAccessToken());
+				launcherAccount.setUsername(launcherUser.getName());
+				launcherAccount.setLoginFailed(false);
+				if (launcherAccount.isExpired()) {
+					launcherAccount.setExpiresAt(System.currentTimeMillis() + 86400000L);
+				}
+			} else {
+				launcherAccount = new Account(launcherUser.getProfileId(), launcherUser.getName(), launcherUser.getAccessToken(), "", Long.MAX_VALUE);
+				launcherAccount.setLoginFailed(false);
+				accounts.add(launcherAccount);
 			}
 		}
 
 		if (activeAccount == null) {
-			if (mc != null && mc.getUser() != null) {
-				User user = mc.getUser();
-				Account initial = new Account(user.getProfileId(), user.getName(), user.getAccessToken(), "", Long.MAX_VALUE);
-				accounts.add(initial);
-				activeAccount = initial;
-				save();
+			activeAccount = launcherAccount != null ? launcherAccount : (!accounts.isEmpty() ? accounts.get(0) : null);
+		}
+
+		if (activeAccount != null && activeAccount.isLoginFailed()) {
+			Account validAccount = findFirstValidAccount();
+			if (validAccount != null) {
+				activeAccount = validAccount;
 			}
-		} else applySession(activeAccount);
+		}
+
+		if (activeAccount != null) {
+			applySession(activeAccount);
+			refreshAccountIfNeeded(activeAccount);
+		}
+
+		validateAndRefreshAccountsAsync();
+		save();
+	}
+
+	public synchronized Account findFirstValidAccount() {
+		for (Account acc : accounts) {
+			if (!acc.isLoginFailed()) {
+				return acc;
+			}
+		}
+		return null;
+	}
+
+	public synchronized boolean areAllAccountsFailed() {
+		if (accounts.isEmpty()) return true;
+		for (Account acc : accounts) {
+			if (!acc.isLoginFailed()) return false;
+		}
+		return true;
+	}
+
+	private void refreshAccountIfNeeded(Account account) {
+		if (account == null) return;
+		if (account.isExpired()) {
+			if (account.getRefreshToken() != null && !account.getRefreshToken().isEmpty()) {
+				CompletableFuture.runAsync(() -> {
+					try {
+						MicrosoftAuthService.refresh(account);
+						account.setLoginFailed(false);
+						synchronized (AccountManager.this) {
+							if (activeAccount != null && activeAccount.getId().equals(account.getId())) {
+								applySession(account);
+							}
+						}
+						save();
+					} catch (Exception e) {
+						account.setLoginFailed(true);
+						save();
+						synchronized (AccountManager.this) {
+							if (activeAccount != null && activeAccount.getId().equals(account.getId())) {
+								Account valid = findFirstValidAccount();
+								if (valid != null && !valid.getId().equals(account.getId())) {
+									switchAccount(valid);
+								}
+							}
+						}
+					}
+				});
+			} else {
+				account.setLoginFailed(true);
+			}
+		}
+	}
+
+	private void validateAndRefreshAccountsAsync() {
+		CompletableFuture.runAsync(() -> {
+			for (Account acc : new ArrayList<>(accounts)) {
+				if (acc == activeAccount) continue;
+				if (acc.isExpired()) {
+					if (acc.getRefreshToken() != null && !acc.getRefreshToken().isEmpty()) {
+						try {
+							MicrosoftAuthService.refresh(acc);
+							acc.setLoginFailed(false);
+							save();
+						} catch (Exception e) {
+							acc.setLoginFailed(true);
+							save();
+						}
+					} else {
+						acc.setLoginFailed(true);
+					}
+				}
+			}
+		});
 	}
 
 	public synchronized void save() {
@@ -82,18 +184,29 @@ public class AccountManager {
 		applySession(account);
 		save();
 
-		if (account.isExpired() && account.getRefreshToken() != null && !account.getRefreshToken().isEmpty()) {
-			CompletableFuture.runAsync(() -> {
-				try {
-					MicrosoftAuthService.refresh(account);
-					applySession(account);
-					save();
-				} catch (Exception ignored) {}
-			});
+		if (account.getRefreshToken() != null && !account.getRefreshToken().isEmpty()) {
+			if (account.isExpired() || account.isLoginFailed()) {
+				CompletableFuture.runAsync(() -> {
+					try {
+						MicrosoftAuthService.refresh(account);
+						account.setLoginFailed(false);
+						synchronized (AccountManager.this) {
+							if (activeAccount != null && activeAccount.getId().equals(account.getId())) {
+								applySession(account);
+							}
+						}
+						save();
+					} catch (Exception ignored) {
+						account.setLoginFailed(true);
+						save();
+					}
+				});
+			}
 		}
 	}
 
 	public synchronized void addAccount(Account account) {
+		account.setLoginFailed(false);
 		accounts.removeIf(a -> a.getId().equals(account.getId()));
 		accounts.add(account);
 		switchAccount(account);

@@ -29,7 +29,6 @@ loom {
 
 	runConfigs.named("client") {
 		ideConfigGenerated = true
-		vmArg "-Xmx3072M"
 		property "devauth.enabled", "true"
 		property "devauth.account", "main"
 	}

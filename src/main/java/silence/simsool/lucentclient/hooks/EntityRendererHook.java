@@ -14,7 +14,7 @@ import silence.simsool.lucentclient.mods.impl.performance.culling.Cullable;
 
 public class EntityRendererHook {
 
-	public static void onShouldRender(Entity entity, Frustum frustum, double x, double y, double z, CallbackInfoReturnable<Boolean> cir) {
+	public static void onShouldRender(Entity entity, Frustum frustum, double x, double y, double z, float partialTick, CallbackInfoReturnable<Boolean> cir) {
 
 		if (HideFallingBlockMod.isEnabled()) {
 			if (entity instanceof FallingBlockEntity) {
@@ -55,7 +55,5 @@ public class EntityRendererHook {
 				return;
 			}
 		}
-
 	}
-
 }

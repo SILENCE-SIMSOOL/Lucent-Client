@@ -4,7 +4,7 @@ import static silence.simsool.lucent.Lucent.mc;
 
 import java.awt.Color;
 
-import org.lwjgl.glfw.GLFW;
+import com.mojang.blaze3d.platform.InputConstants;
 
 import net.minecraft.client.multiplayer.chat.GuiMessage;
 import silence.simsool.lucent.Lucent;
@@ -67,7 +67,7 @@ public class ChattingMod extends Mod {
 		description = "lucent.config.lucentclient.chattingmod.property.copykey.description",
 		priority = 70
 	)
-	public static KeyBind CopyKey = KeyBind.ofMouse(GLFW.GLFW_MOUSE_BUTTON_RIGHT, 0);
+	public static KeyBind CopyKey = KeyBind.ofMouse(KeyBind.MOUSE_RIGHT, 0);
 
 	@ModConfig(
 		type = ConfigType.SWITCH,

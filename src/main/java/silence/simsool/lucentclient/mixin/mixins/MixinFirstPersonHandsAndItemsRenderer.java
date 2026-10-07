@@ -67,7 +67,7 @@ public class MixinFirstPersonHandsAndItemsRenderer {
 
 	@Inject(
 		method = "renderMapHand",
-		at = @At("HEAD")
+		at = @At(value = "INVOKE", target = "Lcom/mojang/blaze3d/vertex/PoseStack;pushPose()V", shift = At.Shift.AFTER)
 	)
 	private void onRenderMapHand(PoseStack poseStack, SubmitNodeCollector submitNodeCollector, int i, HumanoidArm humanoidArm, PlayerRenderState playerRenderState, CallbackInfo ci) {
 		if (!AnimationsMod.isEnabled()) return;

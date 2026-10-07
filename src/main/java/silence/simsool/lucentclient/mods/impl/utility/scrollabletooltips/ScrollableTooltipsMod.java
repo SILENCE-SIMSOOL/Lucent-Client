@@ -109,7 +109,7 @@ public class ScrollableTooltipsMod extends Mod {
 		description = "lucent.config.lucentclient.scrollabletooltipsmod.property.reset.description",
 		category = "Keybind"
 	)
-	public static KeyBind reset = KeyBind.ofKey(InputConstants.UNKNOWN.getValue(), 0);
+	public static KeyBind reset = KeyBind.none();
 
 	@ModConfig(
 		type = ConfigType.KEYBIND,

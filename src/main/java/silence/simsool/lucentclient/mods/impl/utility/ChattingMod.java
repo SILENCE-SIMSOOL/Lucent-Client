@@ -67,7 +67,7 @@ public class ChattingMod extends Mod {
 		description = "lucent.config.lucentclient.chattingmod.property.copykey.description",
 		priority = 70
 	)
-	public static KeyBind CopyKey = KeyBind.ofMouse(InputConstants.MOUSE_BUTTON_RIGHT, 0);
+	public static KeyBind CopyKey = KeyBind.ofMouse(KeyBind.MOUSE_RIGHT, 0);
 
 	@ModConfig(
 		type = ConfigType.SWITCH,

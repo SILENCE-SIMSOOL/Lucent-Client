@@ -10,7 +10,7 @@ import java.util.concurrent.CompletableFuture;
 
 import com.mojang.authlib.GameProfile;
 import com.mojang.authlib.minecraft.UserApiService;
-import com.mojang.authlib.yggdrasil.ProfileResult;
+import com.mojang.authlib.services.ProfileResult;
 
 import net.minecraft.client.User;
 import net.minecraft.client.multiplayer.ProfileKeyPairManager;

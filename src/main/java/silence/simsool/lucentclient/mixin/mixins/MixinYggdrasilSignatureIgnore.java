@@ -6,11 +6,11 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import com.mojang.authlib.properties.Property;
-import com.mojang.authlib.yggdrasil.YggdrasilServicesKeyInfo;
+import com.mojang.authlib.services.MinecraftServicesKeyInfo;
 
 import silence.simsool.lucentclient.mods.impl.utility.LegacySkinFixMod;
 
-@Mixin(value = YggdrasilServicesKeyInfo.class, remap = false)
+@Mixin(value = MinecraftServicesKeyInfo.class, remap = false)
 public class MixinYggdrasilSignatureIgnore {
 
 	@Inject(method = "validateProperty", at = @At("HEAD"), cancellable = true, remap = false)

@@ -1,6 +1,6 @@
 package silence.simsool.lucentclient.mods.impl.utility.scrollabletooltips;
 
-import org.lwjgl.glfw.GLFW;
+import com.mojang.blaze3d.platform.InputConstants;
 
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
@@ -93,7 +93,7 @@ public class ScrollableTooltipsMod extends Mod {
 		description = "lucent.config.lucentclient.scrollabletooltipsmod.property.moveup.description",
 		category = "Keybind"
 	)
-	public static KeyBind moveUp = KeyBind.ofKey(GLFW.GLFW_KEY_UP, 0);
+	public static KeyBind moveUp = KeyBind.ofKey(InputConstants.KEY_UP, 0);
 
 	@ModConfig(
 		type = ConfigType.KEYBIND,
@@ -101,7 +101,7 @@ public class ScrollableTooltipsMod extends Mod {
 		description = "lucent.config.lucentclient.scrollabletooltipsmod.property.movedown.description",
 		category = "Keybind"
 	)
-	public static KeyBind moveDown = KeyBind.ofKey(GLFW.GLFW_KEY_DOWN, 0);
+	public static KeyBind moveDown = KeyBind.ofKey(InputConstants.KEY_DOWN, 0);
 
 	@ModConfig(
 		type = ConfigType.KEYBIND,
@@ -109,7 +109,7 @@ public class ScrollableTooltipsMod extends Mod {
 		description = "lucent.config.lucentclient.scrollabletooltipsmod.property.reset.description",
 		category = "Keybind"
 	)
-	public static KeyBind reset = KeyBind.ofKey(GLFW.GLFW_KEY_UNKNOWN, 0);
+	public static KeyBind reset = KeyBind.ofKey(InputConstants.UNKNOWN.getValue(), 0);
 
 	@ModConfig(
 		type = ConfigType.KEYBIND,
@@ -117,7 +117,7 @@ public class ScrollableTooltipsMod extends Mod {
 		description = "lucent.config.lucentclient.scrollabletooltipsmod.property.horizontal.description",
 		category = "Keybind"
 	)
-	public static KeyBind horizontal = KeyBind.ofKey(GLFW.GLFW_KEY_LEFT_SHIFT, 0);
+	public static KeyBind horizontal = KeyBind.ofKey(InputConstants.KEY_LSHIFT, 0);
 
 	public static boolean shouldExecute() {
 		Screen screen = UScreen.getScreen();

@@ -121,7 +121,7 @@ public class TitleScreenHook {
 		currentY += btnH + gap;
 
 		if (isHovered(canvasW / 2.0f - btnW / 2.0f, currentY, halfW, btnH, titleUiScale)) {
-			UScreen.setScreen((Screen) new OptionsScreen(screen, mc.options, false));
+			UScreen.setScreen((Screen) new OptionsScreen(screen, mc.options));
 			return true;
 		}
 

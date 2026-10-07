@@ -3,15 +3,12 @@ package silence.simsool.lucentclient.mods.impl.utility.scrollabletooltips.utils;
 import java.util.List;
 
 import org.apache.commons.lang3.mutable.MutableDouble;
-import org.lwjgl.glfw.GLFW;
 
 import com.mojang.blaze3d.platform.InputConstants;
-import com.mojang.blaze3d.platform.Window;
 
 import net.minecraft.client.gui.screens.inventory.tooltip.ClientTextTooltip;
 import net.minecraft.client.gui.screens.inventory.tooltip.ClientTooltipComponent;
 import net.minecraft.util.Mth;
-import silence.simsool.lucent.general.utils.useful.UDisplay;
 import silence.simsool.lucentclient.mixin.accessors.OrderedTextTooltipComponentAccessor;
 import silence.simsool.lucentclient.mods.impl.utility.scrollabletooltips.ScrollableTooltipsMod;
 
@@ -38,21 +35,19 @@ public class ScrollTracker {
 		currentXOffset += (trueXOffset - currentXOffset) * smoothnessModifier;
 		currentYOffset += (trueYOffset - currentYOffset) * smoothnessModifier;
 
-		Window window = UDisplay.getWindow();
-
 		if (ScrollableTooltipsMod.UseWASD) {
-			if (InputConstants.isKeyDown(window, GLFW.GLFW_KEY_W)) ScrollTracker.scrollUp(scrollSizeKeyboard);
-			else if (InputConstants.isKeyDown(window, GLFW.GLFW_KEY_S)) ScrollTracker.scrollDown(scrollSizeKeyboard);
-			if (InputConstants.isKeyDown(window, GLFW.GLFW_KEY_A)) ScrollTracker.scrollLeft(scrollSizeKeyboard);
-			else if (InputConstants.isKeyDown(window, GLFW.GLFW_KEY_D)) ScrollTracker.scrollRight(scrollSizeKeyboard);
+			if (InputConstants.isKeyDown(InputConstants.KEY_W)) ScrollTracker.scrollUp(scrollSizeKeyboard);
+			else if (InputConstants.isKeyDown(InputConstants.KEY_S)) ScrollTracker.scrollDown(scrollSizeKeyboard);
+			if (InputConstants.isKeyDown(InputConstants.KEY_A)) ScrollTracker.scrollLeft(scrollSizeKeyboard);
+			else if (InputConstants.isKeyDown(InputConstants.KEY_D)) ScrollTracker.scrollRight(scrollSizeKeyboard);
 		}
 
 		if (ScrollableTooltipsMod.moveUp.isKeyDown()) {
-			if (ScrollableTooltipsMod.horizontal.isKeyDown() || (ScrollableTooltipsMod.UseLShift && InputConstants.isKeyDown(window, GLFW.GLFW_KEY_LEFT_SHIFT))) ScrollTracker.scrollLeft(scrollSizeKeyboard);
+			if (ScrollableTooltipsMod.horizontal.isKeyDown() || (ScrollableTooltipsMod.UseLShift && InputConstants.isKeyDown(InputConstants.KEY_LSHIFT))) ScrollTracker.scrollLeft(scrollSizeKeyboard);
 			else ScrollTracker.scrollUp(scrollSizeKeyboard);
 		}
 		else if (ScrollableTooltipsMod.moveDown.isKeyDown()) {
-			if (ScrollableTooltipsMod.horizontal.isKeyDown() || (ScrollableTooltipsMod.UseLShift && InputConstants.isKeyDown(window, GLFW.GLFW_KEY_LEFT_SHIFT))) ScrollTracker.scrollRight(scrollSizeKeyboard);
+			if (ScrollableTooltipsMod.horizontal.isKeyDown() || (ScrollableTooltipsMod.UseLShift && InputConstants.isKeyDown(InputConstants.KEY_LSHIFT))) ScrollTracker.scrollRight(scrollSizeKeyboard);
 			else ScrollTracker.scrollDown(scrollSizeKeyboard);
 		}
 		else if (ScrollableTooltipsMod.reset.isKeyDown()) ScrollTracker.reset();

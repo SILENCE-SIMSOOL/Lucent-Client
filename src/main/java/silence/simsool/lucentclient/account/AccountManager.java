@@ -21,6 +21,7 @@ public class AccountManager {
 	private static final AccountManager INSTANCE = new AccountManager();
 	private final List<Account> accounts = new ArrayList<>();
 	private Account activeAccount;
+	private Account launcherAccount;
 	private String statusMessage = null;
 	private boolean loggingIn = false;
 
@@ -48,7 +49,7 @@ public class AccountManager {
 		}
 
 		User launcherUser = (mc != null) ? mc.getUser() : null;
-		Account launcherAccount = null;
+		launcherAccount = null;
 		if (launcherUser != null && launcherUser.getProfileId() != null) {
 			for (Account acc : accounts) {
 				if (acc.getId().equals(launcherUser.getProfileId()) || acc.getUsername().equalsIgnoreCase(launcherUser.getName())) {
@@ -274,15 +275,30 @@ public class AccountManager {
 			MinecraftAccessor accessor = (MinecraftAccessor) mc;
 			accessor.setUser(newUser);
 
-			GameProfile profile = new GameProfile(account.getId(), account.getUsername());
-			accessor.setProfileFuture(CompletableFuture.completedFuture(new ProfileResult(profile)));
+			CompletableFuture<ProfileResult> profileFuture = CompletableFuture.supplyAsync(() -> {
+				try {
+					if (mc.services() != null && mc.services().sessionService() != null) {
+						ProfileResult result = mc.services().sessionService().fetchProfile(account.getId(), true);
+						if (result != null) return result;
+					}
+				} catch (Throwable ignored) {}
+				return new ProfileResult(new GameProfile(account.getId(), account.getUsername()));
+			});
+			accessor.setProfileFuture(profileFuture);
 
 			try {
 				UserApiService userApiService = accessor.getUserApiService();
-				if (userApiService != null && mc.gameDirectory != null) {
+				boolean isLauncherUser = (launcherAccount != null && launcherAccount.getId().equals(account.getId()));
+				if (isLauncherUser && userApiService != null && mc.gameDirectory != null) {
 					accessor.setProfileKeyPairManager(ProfileKeyPairManager.create(userApiService, newUser, mc.gameDirectory.toPath()));
+				} else {
+					accessor.setProfileKeyPairManager(ProfileKeyPairManager.EMPTY_KEY_MANAGER);
 				}
-			} catch (Throwable ignored) {}
+			} catch (Throwable ignored) {
+				try {
+					accessor.setProfileKeyPairManager(ProfileKeyPairManager.EMPTY_KEY_MANAGER);
+				} catch (Throwable ignored2) {}
+			}
 		} catch (Throwable ignored) {}
 	}
 

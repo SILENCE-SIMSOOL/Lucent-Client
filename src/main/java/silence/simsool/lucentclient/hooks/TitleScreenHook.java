@@ -20,6 +20,8 @@ import silence.simsool.lucentclient.LucentClient;
 import silence.simsool.lucentclient.account.ui.AccountDropdownWidget;
 import silence.simsool.lucentclient.ui.TitleBottomBarWidget;
 
+import org.joml.Matrix3x2fStack;
+
 public class TitleScreenHook {
 
 	private static final Identifier LOGO_LOCATION = Identifier.parse("lucentclient:textures/logo.png");
@@ -29,9 +31,18 @@ public class TitleScreenHook {
 	public static void renderLogo(GuiGraphicsExtractor graphics, int width, int height) {
 		LOGO_SIZE = 120;
 		LOGO_OFFSET_Y = -104f;
-		int logoX = width / 2 - LOGO_SIZE / 2;
-		int logoY = (int) (height / 2.0f + LOGO_OFFSET_Y);
+		float currentGuiScale = mc != null && mc.getWindow() != null ? (float) mc.getWindow().getGuiScale() : 2.0f;
+		if (currentGuiScale <= 0.01f) currentGuiScale = 2.0f;
+		float factor = 2.0f / currentGuiScale;
+
+		Matrix3x2fStack pose = graphics.pose();
+		pose.pushMatrix();
+		pose.translate(width / 2.0f, height / 2.0f);
+		pose.scale(factor, factor);
+		int logoX = -LOGO_SIZE / 2;
+		int logoY = (int) LOGO_OFFSET_Y;
 		graphics.blit(RenderPipelines.GUI_TEXTURED, LOGO_LOCATION, logoX, logoY, 0.0F, 0.0F, LOGO_SIZE, LOGO_SIZE, LOGO_SIZE, LOGO_SIZE);
+		pose.popMatrix();
 	}
 
 	public static void renderNanoVGGUI(Screen screen, float titleUiScale) {

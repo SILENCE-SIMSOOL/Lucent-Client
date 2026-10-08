@@ -4,8 +4,6 @@ import static silence.simsool.lucent.Lucent.mc;
 
 import java.awt.Color;
 
-import com.mojang.blaze3d.platform.InputConstants;
-
 import net.minecraft.client.multiplayer.chat.GuiMessage;
 import silence.simsool.lucent.Lucent;
 import silence.simsool.lucent.general.enums.ConfigType;

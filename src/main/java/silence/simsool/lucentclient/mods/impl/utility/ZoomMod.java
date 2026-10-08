@@ -1,6 +1,6 @@
 package silence.simsool.lucentclient.mods.impl.utility;
 
-import com.mojang.blaze3d.platform.InputConstants;
+import org.lwjgl.glfw.GLFW;
 
 import net.minecraft.util.Mth;
 import silence.simsool.lucent.Lucent;
@@ -47,7 +47,7 @@ public class ZoomMod extends Mod {
 		description = "lucent.config.lucentclient.zoommod.property.zoomkey.description",
 		category = "Keybind"
 	)
-	public static KeyBind ZoomKey = KeyBind.ofKey(InputConstants.KEY_C, 0);
+	public static KeyBind ZoomKey = KeyBind.ofKey(GLFW.GLFW_KEY_C, 0);
 
 	@ModConfig(
 		type = ConfigType.SLIDER,

@@ -17,7 +17,7 @@ public class MixinChatScreen_Chatting {
 	@Inject(method = "mouseClicked", at = @At("HEAD"), cancellable = true)
 	private void onMouseClicked(MouseButtonEvent event, boolean isDoubleClick, CallbackInfoReturnable<Boolean> cir) {
 		if (ChattingMod.isEnabled() && ChattingMod.ChatCopy) {
-			if (ChattingMod.CopyKey.isMouse() && UMouse.getButton(event) == ChattingMod.CopyKey.mouseButton) {
+			if (ChattingMod.CopyKey.isMouse() && event.button() == ChattingMod.CopyKey.mouseButton) {
 				if (ChattingMod.copyAt(event.x(), event.y())) {
 					cir.setReturnValue(true);
 				}

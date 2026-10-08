@@ -1,5 +1,6 @@
 package silence.simsool.lucentclient.mixin.mixins.scrollabletooltips;
 
+import org.lwjgl.glfw.GLFW;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
@@ -9,6 +10,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import com.mojang.blaze3d.platform.InputConstants;
 
 import net.minecraft.client.MouseHandler;
+import silence.simsool.lucent.general.utils.useful.UDisplay;
 import silence.simsool.lucentclient.mods.impl.utility.scrollabletooltips.ScrollableTooltipsMod;
 import silence.simsool.lucentclient.mods.impl.utility.scrollabletooltips.utils.ScrollTracker;
 
@@ -19,7 +21,7 @@ public class MixinMouse_ScrollableTooltips {
 	private void trackWheel(long window, double horizontal, double vertical, CallbackInfo info) {
 		if (ScrollableTooltipsMod.isEnabled() && !ScrollTracker.isLocked()) {
 			if (ScrollableTooltipsMod.shouldExecute()) {
-				boolean isHorizontal = ScrollableTooltipsMod.horizontal.isKeyDown() || (ScrollableTooltipsMod.UseLShift && InputConstants.isKeyDown(InputConstants.KEY_LSHIFT));
+				boolean isHorizontal = ScrollableTooltipsMod.horizontal.isKeyDown() || (ScrollableTooltipsMod.UseLShift && InputConstants.isKeyDown(UDisplay.getWindow(), GLFW.GLFW_KEY_LEFT_SHIFT));
 
 				if (isHorizontal) scrollX(vertical);
 				else scrollY(vertical);

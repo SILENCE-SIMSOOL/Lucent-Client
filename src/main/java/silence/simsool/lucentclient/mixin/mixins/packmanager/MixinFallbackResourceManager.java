@@ -1,5 +1,7 @@
 package silence.simsool.lucentclient.mixin.mixins.packmanager;
 
+import java.util.function.Predicate;
+
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -20,7 +22,7 @@ public class MixinFallbackResourceManager {
 	@Final
 	private String namespace;
 
-	@ModifyArgs(method = { "pushFilterOnly", "push(Lnet/minecraft/server/packs/PackResources;)V", "push(Lnet/minecraft/server/packs/PackResources;Lnet/minecraft/server/packs/PackResources$Filter;)V" }, at = @At(value = "INVOKE", target = "Lnet/minecraft/server/packs/resources/FallbackResourceManager;pushInternal(Ljava/lang/String;Lnet/minecraft/server/packs/PackResources;Lnet/minecraft/server/packs/PackResources$Filter;)V"))
+	@ModifyArgs(method = { "pushFilterOnly", "push(Lnet/minecraft/server/packs/PackResources;)V", "push(Lnet/minecraft/server/packs/PackResources;Ljava/util/function/Predicate;)V" }, at = @At(value = "INVOKE", target = "Lnet/minecraft/server/packs/resources/FallbackResourceManager;pushInternal(Ljava/lang/String;Lnet/minecraft/server/packs/PackResources;Ljava/util/function/Predicate;)V"))
 	private void filterHypixelPack(Args args) {
 		if (PackManagerMod.isEnabled() && PackManagerMod.DisablePackOverride) {
 			if (!Identifier.DEFAULT_NAMESPACE.equals(namespace)) return;
@@ -29,7 +31,8 @@ public class MixinFallbackResourceManager {
 
 			PackResources pack = args.get(1);
 			if (pack != null) args.set(1, new FilteredPackResources(pack));
-			else args.set(2, (PackResources.Filter) id -> false);
+			else args.set(2, (Predicate<Identifier>) id -> false);
 		}
 	}
+
 }

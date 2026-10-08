@@ -30,7 +30,7 @@ public class AccountDropdownWidget {
 		// 1. Main Header Box
 		boolean allFailed = manager.areAllAccountsFailed();
 		boolean headerHover = isPointInside(mx, my, WIDGET_X, WIDGET_Y, WIDGET_WIDTH, HEADER_HEIGHT);
-		int headerBg = headerHover ? 0xEE181B23 : 0xDD14161E;
+		int headerBg = headerHover ? 0xD5181B23 : 0xCC14161E;
 
 		SkijaRenderer.rect(WIDGET_X, WIDGET_Y, WIDGET_WIDTH, HEADER_HEIGHT, headerBg, CORNER_RADIUS);
 
@@ -57,7 +57,7 @@ public class AccountDropdownWidget {
 			int totalItems = accounts.size() + 1; // accounts + add button
 			float dropdownHeight = 8.0f + totalItems * ITEM_HEIGHT + 8.0f;
 
-			SkijaRenderer.rect(WIDGET_X, dropdownY, WIDGET_WIDTH, dropdownHeight, 0xF5111319, 12.0f);
+			SkijaRenderer.rect(WIDGET_X, dropdownY, WIDGET_WIDTH, dropdownHeight, 0xCC111319, 12.0f);
 
 			float curY = dropdownY + 8.0f;
 

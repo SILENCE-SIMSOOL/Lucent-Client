@@ -18,7 +18,6 @@ import net.minecraft.client.gui.screens.TitleScreen;
 import net.minecraft.client.input.MouseButtonEvent;
 import net.minecraft.network.chat.Component;
 import silence.simsool.lucent.general.utils.useful.UDisplay;
-import silence.simsool.lucent.general.utils.useful.UMouse;
 import silence.simsool.lucent.ui.utils.skija.SkijaRenderer;
 import silence.simsool.lucentclient.hooks.TitleScreenHook;
 
@@ -90,7 +89,7 @@ public abstract class MixinTitleScreen extends Screen {
 	@Inject(method = "mouseClicked", at = @At("HEAD"), cancellable = true)
 	private void onMouseClickedHead(MouseButtonEvent event, boolean isDoubleClick, CallbackInfoReturnable<Boolean> cir) {
 		calculateUiScale();
-		if (TitleScreenHook.handleMouseClick(this, this.titleUiScale, UMouse.getButton(event))) {
+		if (TitleScreenHook.handleMouseClick(this, this.titleUiScale, event.button())) {
 			cir.setReturnValue(true);
 		}
 	}

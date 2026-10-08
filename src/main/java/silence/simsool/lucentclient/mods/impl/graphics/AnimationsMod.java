@@ -347,9 +347,9 @@ public class AnimationsMod extends Mod {
 		float yaw = (float) HeldItemYaw;
 		float roll = (float) HeldItemRoll;
 
-		if (pitch != 0.0f) poseStack.rotateDegrees(Axis.XP, pitch);
-		if (yaw != 0.0f) poseStack.rotateDegrees(Axis.YP, yaw);
-		if (roll != 0.0f) poseStack.rotateDegrees(Axis.ZP, roll);
+		if (pitch != 0.0f) poseStack.mulPose(Axis.XP.rotationDegrees(pitch));
+		if (yaw != 0.0f) poseStack.mulPose(Axis.YP.rotationDegrees(yaw));
+		if (roll != 0.0f) poseStack.mulPose(Axis.ZP.rotationDegrees(roll));
 
 		float transX = (float) HeldItemX;
 		float transY = (float) HeldItemY;

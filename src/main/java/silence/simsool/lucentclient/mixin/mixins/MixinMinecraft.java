@@ -15,12 +15,11 @@ import silence.simsool.lucentclient.mods.impl.graphics.AnimationsMod;
 @Mixin(Minecraft.class)
 public abstract class MixinMinecraft {
 
-	@Redirect(method = "startUseItem", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/player/LocalPlayer;swing(Lnet/minecraft/world/InteractionHand;Lnet/minecraft/world/item/component/SwingAnimation;Z)Z", ordinal = 0))
-	private boolean redirectSwing(LocalPlayer player, InteractionHand hand, net.minecraft.world.item.component.SwingAnimation animation, boolean flag) {
+	@Redirect(method = "startUseItem", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/player/LocalPlayer;swing(Lnet/minecraft/world/InteractionHand;)V", ordinal = 0))
+	private void redirectSwing(LocalPlayer player, InteractionHand hand) {
 		if (!(AnimationsMod.isEnabled() && AnimationsMod.DisableEntityClickAnimation)) {
-			return player.swing(hand, animation, flag);
+			player.swing(hand);
 		}
-		return false;
 	}
 
 	@Inject(method = "createTitle", at = @At("HEAD"), cancellable = true)

@@ -15,7 +15,8 @@ import silence.simsool.lucentclient.hooks.EntityRendererHook;
 public abstract class MixinEntityRenderer<T extends Entity> {
 
 	@Inject(method = "shouldRender", at = @At("HEAD"), cancellable = true)
-	private void onShouldRender(T entity, Frustum frustum, double x, double y, double z, float partialTick, CallbackInfoReturnable<Boolean> cir) {
-		EntityRendererHook.onShouldRender(entity, frustum, x, y, z, partialTick, cir);
+	private void onShouldRender(T entity, Frustum frustum, double x, double y, double z, CallbackInfoReturnable<Boolean> cir) {
+		EntityRendererHook.onShouldRender(entity, frustum, x, y, z, cir);
 	}
+
 }

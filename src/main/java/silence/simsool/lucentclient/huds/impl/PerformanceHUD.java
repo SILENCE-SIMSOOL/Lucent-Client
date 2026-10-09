@@ -31,6 +31,15 @@ public class PerformanceHUD extends LucentHUD {
 
 	private record Entry(String label, String value) {}
 
+	@Override
+	public Object getRenderCacheKey() {
+		return List.of(
+				getActiveEntries(false),
+				PerformanceMod.ShowBackground, PerformanceMod.BackgroundColor,
+				PerformanceMod.TextColor, PerformanceMod.TextShadow
+		);
+	}
+
 	private List<Entry> getActiveEntries(boolean preview) {
 		List<Entry> entries = new ArrayList<>();
 		if (PerformanceMod.ShowFPS) {
@@ -150,5 +159,4 @@ public class PerformanceHUD extends LucentHUD {
 			}
 		}
 	}
-
 }

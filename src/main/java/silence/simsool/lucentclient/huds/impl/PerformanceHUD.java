@@ -35,9 +35,7 @@ public class PerformanceHUD extends LucentHUD {
 	@Override
 	public Object getRenderCacheKey() {
 		return List.of(
-				getActiveEntries(false), x, y, scale, alignment,
-				UDisplay.getWidth(), UDisplay.getHeight(), SkijaRenderer.getStandardGuiScale(),
-				isEditHudOpen, UDisplay.isDebugScreen(),
+				getActiveEntries(false),
 				PerformanceMod.ShowBackground, PerformanceMod.BackgroundColor,
 				PerformanceMod.TextColor, PerformanceMod.TextShadow
 		);
@@ -173,5 +171,4 @@ public class PerformanceHUD extends LucentHUD {
 			}
 		}
 	}
-
 }

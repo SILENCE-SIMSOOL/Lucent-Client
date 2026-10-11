@@ -89,5 +89,5 @@ Open the config screen using the `/lucent` command or by pressing the `Right-Shi
 
 ## Credits
 
-This project includes or draws inspiration from various open-source projects.  
+This project includes or draws inspiration from various open source projects.  
 For the full list of acknowledgments, see [Credits](docs/CREDITS.md).

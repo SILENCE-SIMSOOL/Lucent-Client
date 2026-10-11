@@ -1,5 +1,6 @@
 package silence.simsool.lucentclient.mods.impl.utility.packmanager.utils;
 
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.Set;
 
@@ -46,7 +47,7 @@ public class FilteredPackResources implements PackResources {
 	}
 
 	@Override
-	public <T> T getMetadataSection(MetadataSectionType<T> type) throws java.io.IOException {
+	public <T> T getMetadataSection(MetadataSectionType<T> type) throws IOException {
 		return delegate.getMetadataSection(type);
 	}
 

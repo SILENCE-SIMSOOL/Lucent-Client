@@ -1,0 +1,72 @@
+package silence.simsool.lucentclient.features.asyncparticles.core.particle.tick;
+
+import silence.simsool.lucentclient.features.asyncparticles.addon.LightCachedParticleAddon;
+import silence.simsool.lucentclient.features.asyncparticles.addon.ParticleAddon;
+import silence.simsool.lucentclient.features.asyncparticles.addon.ParticleGroupAddition;
+import silence.simsool.lucentclient.features.asyncparticles.util.Utils;
+import it.unimi.dsi.fastutil.HashCommon;
+import net.minecraft.client.particle.Particle;
+import net.minecraft.client.particle.ParticleGroup;
+
+import java.util.Spliterator;
+import java.util.concurrent.ForkJoinTask;
+import java.util.concurrent.RecursiveAction;
+
+@SuppressWarnings("serial")
+public class TickParticleRecursiveAction<T extends Particle> extends RecursiveAction {
+	private static final int MAX_DEPTH = (int) Math.round(Math.log(HashCommon.nextPowerOfTwo(AsyncTickBehavior.THREADS)) / Math.log(2)) + 2;
+	private final ParticleGroup<?> group;
+	private final Spliterator<T> spliterator;
+	private final int depth;
+	private final boolean isGpu;
+
+	private TickParticleRecursiveAction(ParticleGroup<?> group, Spliterator<T> spliterator, int depth, boolean isGpu) {
+		this.group = group;
+		this.spliterator = spliterator;
+		this.depth = depth;
+		this.isGpu = isGpu;
+	}
+
+	public static <T extends Particle> void execute(ParticleGroup<?> group, Spliterator<T> spliterator, boolean isGpu) {
+		new TickParticleRecursiveAction<>(group, spliterator, 0, isGpu).compute();
+	}
+
+	@Override
+	public void compute() {
+		Spliterator<T> sub;
+		if (spliterator.estimateSize() > 192 && depth < MAX_DEPTH && (sub = spliterator.trySplit()) != null) {
+			ForkJoinTask<Void> left = new TickParticleRecursiveAction<>(group, sub, depth + 1, isGpu).fork();
+			ForkJoinTask<Void> right = new TickParticleRecursiveAction<>(group, spliterator, depth + 1, isGpu).fork();
+			left.join();
+			right.join();
+		} else {
+			spliterator.forEachRemaining(particle -> {
+				if (!particle.isAlive()) {
+					// This is to be compatible with e.g. Figura mod
+					// Trust JIT
+					Utils.DUMMY_ITERATOR.remove();
+					return;
+				}
+				ParticleAddon particleAddon = (ParticleAddon) particle;
+				boolean isSyncParticle = ((ParticleGroupAddition) group).asyncparticles$isSyncParticle(particle);
+				// Skip the first tick after the particle is added to the queue.
+				// GPU particles don't skip the first tick, but skip the first refresh.
+				// skip the first refresh will fix black destruction gpu particles.
+				boolean shouldTick = !isSyncParticle && (!particleAddon.asyncparticles$isTicked() || isGpu);
+				if (shouldTick) {
+					try {
+						group.tickParticle(particle);
+					} catch (Throwable t) {
+						if (AsyncTickBehavior.getInstance().getExceptionHandler().onTickParticleException(particle, t)) {
+							return;
+						}
+					}
+					particleAddon.asyncparticles$setTicked();
+				}
+				if (!isSyncParticle) {
+					((LightCachedParticleAddon) particle).asyncparticles$tickLightCache();
+				}
+			});
+		}
+	}
+}

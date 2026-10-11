@@ -9,6 +9,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.world.InteractionHand;
+import net.minecraft.world.item.component.SwingAnimation;
 import silence.simsool.lucentclient.LucentClient;
 import silence.simsool.lucentclient.mods.impl.graphics.AnimationsMod;
 
@@ -16,7 +17,7 @@ import silence.simsool.lucentclient.mods.impl.graphics.AnimationsMod;
 public abstract class MixinMinecraft {
 
 	@Redirect(method = "startUseItem", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/player/LocalPlayer;swing(Lnet/minecraft/world/InteractionHand;Lnet/minecraft/world/item/component/SwingAnimation;Z)Z", ordinal = 0))
-	private boolean redirectSwing(LocalPlayer player, InteractionHand hand, net.minecraft.world.item.component.SwingAnimation animation, boolean flag) {
+	private boolean redirectSwing(LocalPlayer player, InteractionHand hand, SwingAnimation animation, boolean flag) {
 		if (!(AnimationsMod.isEnabled() && AnimationsMod.DisableEntityClickAnimation)) {
 			return player.swing(hand, animation, flag);
 		}

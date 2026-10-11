@@ -4,7 +4,9 @@
 	"version": "${version}",
 	"name": "Lucent Client",
 	"description": "A collection of essential and lightweight mods built with Lucent.",
-	"authors": ["SimSool"],
+	"authors": [
+		"SimSool"
+	],
 	"contact": {
 		"homepage": "",
 		"sources": ""
@@ -13,9 +15,14 @@
 	"icon": "icon.png",
 	"environment": "client",
 	"mixins": [
-		"lucentclient.mixins.json"
+		"lucentclient.mixins.json",
+		"asyncparticles-common.mixins.json",
+		"asyncparticles.target-modifier.mixins.json"
 	],
 	"entrypoints": {
+		"preLaunch": [
+			"silence.simsool.lucentclient.asynclogger.AsyncLoggerBootstrap"
+		],
 		"client": [
 			"silence.simsool.lucentclient.LucentClient"
 		]
@@ -26,5 +33,6 @@
 		"java": ">=25",
 		"fabric-api": "*",
 		"lucent": ">=1.4.6"
-	}
+	},
+	"accessWidener": "lucentclient.accesswidener"
 }

@@ -1,0 +1,11 @@
+package silence.simsool.lucentclient.features.asyncparticles.addon;
+
+import net.minecraft.client.particle.SingleQuadParticle;
+
+import java.util.Queue;
+
+public interface GpuParticleGroup extends ParticleGroupAddition, AsyncTickableParticleGroup {
+	Queue<SingleQuadParticle> asyncparticles$getGpuParticles();
+
+	void asyncparticles$removeDeadGpuParticles();
+}

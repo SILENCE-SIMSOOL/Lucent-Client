@@ -1,5 +1,5 @@
 # Credits
-Special thanks to the developers and contributors of the following open source projects.
+Special thanks to the developers and contributors of the following open source projects.  
 Their work has helped improve the performance, functionality, and overall experience of this project.
 
 ## Open Source Projects

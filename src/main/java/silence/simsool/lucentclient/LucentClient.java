@@ -12,6 +12,7 @@ import silence.simsool.lucentclient.commands.BasicCommand;
 import silence.simsool.lucentclient.handler.ServerHandler;
 import silence.simsool.lucentclient.huds.HUDRegister;
 import silence.simsool.lucentclient.init.Keybinds;
+import silence.simsool.lucentclient.asynclogger.AsyncLoggerBootstrap;
 import silence.simsool.lucentclient.mods.LucentClientModRegister;
 import silence.simsool.lucentclient.mods.impl.performance.network.NetworkFixMod;
 import silence.simsool.lucentclient.updater.AutoUpdater;
@@ -21,7 +22,7 @@ public class LucentClient implements ClientModInitializer {
 
 	public static final String ID = "lucentclient";
 	public static final String NAME = "Lucent Client";
-	public static final String VERSION = "1.2.9";
+	public static final String VERSION = "1.2.10";
 
 	public static final String PREFIX = "§b[§fLucent Client§b] ";
 
@@ -31,6 +32,7 @@ public class LucentClient implements ClientModInitializer {
 	public static int MAX_CHAT_HISTORY = 1024; //32767;
 
 	static {
+		AsyncLoggerBootstrap.init();
 		NetworkFixMod.configureNettyMemory();
 	}
 

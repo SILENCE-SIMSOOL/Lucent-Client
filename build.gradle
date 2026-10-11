@@ -17,9 +17,12 @@ repositories {
 	maven { url = uri("https://api.modrinth.com/maven") }
 	maven { url = uri("https://pkgs.dev.azure.com/djtheredstoner/DevAuth/_packaging/public/maven/v1") }
 	maven { url "https://repo.papermc.io/repository/maven-public/" }
+	maven { url = "https://maven.bawnorton.com/releases" }
 }
 
 loom {
+	accessWidenerPath = file("src/main/resources/lucentclient.accesswidener")
+
 	mods {
 		"lucentclient" {
 			sourceSet sourceSets.main
@@ -60,7 +63,24 @@ dependencies {
 	modImplementation ("com.velocitypowered:velocity-native:3.4.0-SNAPSHOT")
 	include ("com.velocitypowered:velocity-native:3.4.0-SNAPSHOT")
 
-	//modImplementation files("libs/SilenceUtils-1.0.0")
+	implementation "com.lmax:disruptor:4.0.0"
+	include "com.lmax:disruptor:4.0.0"
+
+	include(implementation(annotationProcessor("com.github.bawnorton.mixinsquared:mixinsquared-fabric:0.3.7-beta.3")))
+
+	fileTree(dir: 'libs', include: ['*.jar']).each { file ->
+		def baseName = file.name.take(file.name.lastIndexOf('.'))
+		def dashIndex = baseName.indexOf('-')
+		if (dashIndex > 0) {
+			def modName = baseName.substring(0, dashIndex)
+			def modVer = baseName.substring(dashIndex + 1)
+			modImplementation name: modName, version: modVer
+			include name: modName, version: modVer
+		} else {
+			modImplementation name: baseName
+			include name: baseName
+		}
+	}
 }
 
 processResources {

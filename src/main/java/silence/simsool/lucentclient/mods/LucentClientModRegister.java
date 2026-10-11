@@ -4,8 +4,11 @@ import java.util.Arrays;
 
 import silence.simsool.lucent.config.ModManager;
 import silence.simsool.lucentclient.mods.impl.graphics.AnimationsMod;
+import silence.simsool.lucentclient.mods.impl.graphics.BetterNightVisionMod;
 import silence.simsool.lucentclient.mods.impl.graphics.BlockOverlayMod;
+import silence.simsool.lucentclient.mods.impl.graphics.ColorSaturationMod;
 import silence.simsool.lucentclient.mods.impl.graphics.DeathAnimationMod;
+import silence.simsool.lucentclient.mods.impl.graphics.DropItemMod;
 import silence.simsool.lucentclient.mods.impl.graphics.FullbrightMod;
 import silence.simsool.lucentclient.mods.impl.graphics.HideFallingBlockMod;
 import silence.simsool.lucentclient.mods.impl.graphics.HurtCamMod;
@@ -31,6 +34,7 @@ import silence.simsool.lucentclient.mods.impl.performance.network.NetworkFixMod;
 import silence.simsool.lucentclient.mods.impl.utility.AlwaysSprintMod;
 import silence.simsool.lucentclient.mods.impl.utility.AutoUpdateMod;
 import silence.simsool.lucentclient.mods.impl.utility.BetterF5Mod;
+import silence.simsool.lucentclient.mods.impl.utility.BetterScreensMod;
 import silence.simsool.lucentclient.mods.impl.utility.ChattingMod;
 import silence.simsool.lucentclient.mods.impl.utility.LegacySkinFixMod;
 import silence.simsool.lucentclient.mods.impl.utility.ShortcutMod;
@@ -47,8 +51,11 @@ public class LucentClientModRegister {
 
 			// Graphics
 			new AnimationsMod(),
+			new BetterNightVisionMod(),
 			new BlockOverlayMod(),
+			new ColorSaturationMod(),
 			new DeathAnimationMod(),
+			new DropItemMod(),
 			new FullbrightMod(),
 			new HideFallingBlockMod(),
 			new HurtCamMod(),
@@ -79,6 +86,7 @@ public class LucentClientModRegister {
 
 			// Utility
 			new BetterF5Mod(),
+			new BetterScreensMod(),
 			new ScrollableTooltipsMod(),
 			new TntTimerMod(),
 			new AlwaysSprintMod(),

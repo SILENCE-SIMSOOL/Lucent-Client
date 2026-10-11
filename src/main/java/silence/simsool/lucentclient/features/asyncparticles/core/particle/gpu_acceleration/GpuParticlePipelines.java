@@ -1,0 +1,162 @@
+package silence.simsool.lucentclient.features.asyncparticles.core.particle.gpu_acceleration;
+
+import com.mojang.blaze3d.opengl.GlConst;
+import com.mojang.blaze3d.opengl.GlStateManager;
+import com.mojang.blaze3d.pipeline.RenderPipeline;
+import com.mojang.blaze3d.vertex.DefaultVertexFormat;
+import com.mojang.blaze3d.vertex.VertexFormat;
+import com.mojang.blaze3d.vertex.VertexFormatElement;
+import silence.simsool.lucentclient.features.asyncparticles.compat.ModListHelper;
+import silence.simsool.lucentclient.features.asyncparticles.core.backend.Backends;
+import silence.simsool.lucentclient.features.asyncparticles.core.particle.gpu_acceleration.opengl.ParticleVertexBuffer;
+import it.unimi.dsi.fastutil.ints.IntList;
+import it.unimi.dsi.fastutil.objects.Reference2ReferenceOpenHashMap;
+import org.lwjgl.opengl.ARBVertexAttribBinding;
+
+import java.util.List;
+import java.util.Map;
+
+public class GpuParticlePipelines {
+	public static final VertexFormatElement IDENTITY_COLOR = new VertexFormatElement(1, 0, VertexFormatElement.Type.FLOAT, VertexFormatElement.Usage.GENERIC, 4);
+	public static final VertexFormatElement IDENTITY_UV2 = new VertexFormatElement(4, 0, VertexFormatElement.Type.INT, VertexFormatElement.Usage.UV, 2);
+	public static final VertexFormat RAW_PARTICLE = VertexFormat.builder()
+		.add("oPosition", VertexFormatElement.POSITION)
+		.add("Position", VertexFormatElement.POSITION)
+		.add("Sizes", VertexFormatElement.UV0)
+		.add("oUV0", VertexFormatElement.UV0)
+		.add("UV0", VertexFormatElement.UV0)
+		.add("oColor", VertexFormatElement.COLOR)
+		.add("Color", VertexFormatElement.COLOR)
+		.add("Light", VertexFormatElement.UV2)
+		.add("Rolls", VertexFormatElement.UV0)
+		.build();
+	public static final VertexFormat IDENTITY_PARTICLE;
+
+	static {
+		VertexFormat.Builder add = VertexFormat.builder()
+			.add("Position", VertexFormatElement.POSITION) // 3 floats
+			.add("UV0", VertexFormatElement.UV0) // 2 floats
+			.add("Color", IDENTITY_COLOR) // 4 floats
+			.add("UV2", IDENTITY_UV2); // 2 ints
+		VertexFormat format = add.build();
+		IDENTITY_PARTICLE = new IdentityParticleVertexFormat(format.getElements(),
+			format.getElementAttributeNames(),
+			add.offsets,
+			format.getVertexSize());
+	}
+
+	private static final Map<RenderPipeline, RenderPipeline> pipelines = new Reference2ReferenceOpenHashMap<>();
+
+	public static RenderPipeline of(RenderPipeline original, boolean translucent) {
+		if (original.getVertexFormat() != DefaultVertexFormat.PARTICLE) {
+			throw new IllegalArgumentException("Invalid vertex format");
+		}
+		return pipelines.computeIfAbsent(original, original1 -> {
+			RenderPipeline pipeline = new RenderPipeline(
+				original1.getLocation(),
+				original1.getVertexShader(),
+				original1.getFragmentShader(),
+				original1.getShaderDefines(),
+				original1.getSamplers(),
+				original1.getUniforms(),
+				original1.getBlendFunction(),
+				original1.getDepthTestFunction(),
+				original1.getPolygonMode(),
+				original1.isCull(),
+				original1.isWriteColor(),
+				original1.isWriteAlpha(),
+				original1.isWriteDepth(),
+				original1.getColorLogic(),
+				IDENTITY_PARTICLE,
+				original1.getVertexFormatMode(),
+				original1.getDepthBiasScaleFactor(),
+				original1.getDepthBiasConstant(),
+				original1.getSortKey());
+			if (ModListHelper.IRIS_LOADED) {
+				try {
+					Class<?> irisApiClass = Class.forName("net.irisshaders.iris.api.v0.IrisApi");
+					Object instance = irisApiClass.getMethod("getInstance").invoke(null);
+					Class<?> irisProgramClass = Class.forName("net.irisshaders.iris.api.v0.IrisProgram");
+					Object program = irisProgramClass.getField(translucent ? "PARTICLES_TRANSLUCENT" : "PARTICLES").get(null);
+					irisApiClass.getMethod("assignPipeline", RenderPipeline.class, irisProgramClass).invoke(instance, pipeline, program);
+				} catch (Throwable ignored) {}
+			}
+			if (ModListHelper.VULKAN_MOD_LOADED) {
+				// vulkanmod disabled
+			}
+			return pipeline;
+		});
+	}
+
+	public static void glBindAttr(VertexFormat format, ParticleVertexBuffer buffer) {
+		buffer.bind();
+		if (Backends.gl.vertexAttribBinding()) {
+			List<VertexFormatElement> elements = format.getElements();
+			for (int i = 0, offset = 0; i < elements.size(); i++) {
+				VertexFormatElement element = elements.get(i);
+				GlStateManager._enableVertexAttribArray(i);
+				switch (element.usage()) {
+					case POSITION, GENERIC, UV -> {
+						if (element.type() == VertexFormatElement.Type.FLOAT) {
+							ARBVertexAttribBinding.glVertexAttribFormat(
+								i, element.count(), GlConst.toGl(element.type()), false, offset);
+						} else {
+							ARBVertexAttribBinding.glVertexAttribIFormat(
+								i, element.count(), GlConst.toGl(element.type()), offset);
+						}
+					}
+					case NORMAL, COLOR -> ARBVertexAttribBinding.glVertexAttribFormat(
+						i, element.count(), GlConst.toGl(element.type()), true, offset);
+				}
+				ARBVertexAttribBinding.glVertexAttribBinding(i, 0);
+				offset += element.byteSize();
+			}
+			ARBVertexAttribBinding.glBindVertexBuffer(0, buffer.vbo, 0L, format.getVertexSize());
+		} else {
+			int vertexSize = format.getVertexSize();
+			List<VertexFormatElement> elements = format.getElements();
+			for (int i = 0, offset = 0; i < elements.size(); i++) {
+				VertexFormatElement element = elements.get(i);
+				GlStateManager._enableVertexAttribArray(i);
+
+				switch (element.usage()) {
+					case POSITION, GENERIC, UV -> {
+						if (element.type() == VertexFormatElement.Type.FLOAT) {
+							GlStateManager._vertexAttribPointer(
+								i, element.count(), GlConst.toGl(element.type()), false, vertexSize, offset);
+						} else {
+							GlStateManager._vertexAttribIPointer(
+								i, element.count(), GlConst.toGl(element.type()), vertexSize, offset);
+						}
+					}
+					case NORMAL, COLOR -> GlStateManager._vertexAttribPointer(
+						i, element.count(), GlConst.toGl(element.type()), true, vertexSize, offset);
+				}
+				offset += element.byteSize();
+			}
+		}
+		ParticleVertexBuffer.unbind();
+	}
+
+	private static class IdentityParticleVertexFormat extends VertexFormat {
+		private final int identityColorOffset;
+		private final int identityUv2Offset;
+
+		private IdentityParticleVertexFormat(List<VertexFormatElement> elements, List<String> names, IntList offsets, int vertexSize) {
+			super(elements, names, offsets, vertexSize);
+			identityColorOffset = offsets.getInt(elements.indexOf(IDENTITY_COLOR));
+			identityUv2Offset = offsets.getInt(elements.indexOf(IDENTITY_UV2));
+		}
+
+		@Override
+		public int getOffset(VertexFormatElement element) {
+			if (element == IDENTITY_COLOR) {
+				return identityColorOffset;
+			}
+			if (element == IDENTITY_UV2) {
+				return identityUv2Offset;
+			}
+			return super.getOffset(element);
+		}
+	}
+}

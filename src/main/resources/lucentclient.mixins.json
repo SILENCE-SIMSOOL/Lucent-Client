@@ -6,6 +6,9 @@
 	"injectors": {
 		"defaultRequire": 1
 	},
+	"mixinextras": {
+		"minVersion": "0.5.4"
+	},
 	"mixins": [],
 	"client": [
 		"accessors.ChatComponentAccessor",
@@ -75,6 +78,27 @@
 		"mixins.packmanager.MixinResourcePackSendS2CPacket",
 		"mixins.scrollabletooltips.MixinGuiGraphics_ScrollableTooltips",
 		"mixins.scrollabletooltips.MixinMouse_ScrollableTooltips",
-		"mixins.scrollabletooltips.MixinScreen_ScrollableTooltips"
+		"mixins.scrollabletooltips.MixinScreen_ScrollableTooltips",
+		"mixins.blackbarconcealer.MixinPlayerSkin",
+		"mixins.blackbarconcealer.MixinSkinTextureDownloader",
+		"mixins.MixinOverlayTexture",
+		"mixins.MixinEquipmentLayerRenderer",
+		"mixins.dropitem.MixinItemClusterRenderState",
+		"mixins.dropitem.MixinItemEntityRenderer",
+		"mixins.betterscreens.MixinRecipeBookComponent",
+		"mixins.centeredcrosshair.MixinGuiGraphics",
+		"mixins.centeredcrosshair.MixinGui",
+		"mixins.betterselection.MixinEditBox",
+		"mixins.universalshortcuts.MixinKeyEvent",
+		"mixins.universalshortcuts.MixinKeyboardHandler",
+		"mixins.cullfewerleaves.MixinLeavesBlock",
+		"mixins.cullfewerleaves.MixinMangroveRootsBlock",
+		"mixins.cullfewerleaves.MixinPowderSnowBlock",
+		"mixins.cullfewerleaves.MixinAbstractBlockRenderContext",
+		"mixins.controlling.AccessAbstractSelectionList",
+		"mixins.controlling.AccessInputConstantsKey",
+		"mixins.controlling.AccessKeyBindsScreen",
+		"mixins.controlling.AccessKeyMapping",
+		"mixins.controlling.MixinMinecraftControlling"
 	]
 }

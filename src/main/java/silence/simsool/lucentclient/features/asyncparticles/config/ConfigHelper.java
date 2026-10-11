@@ -1,0 +1,114 @@
+package silence.simsool.lucentclient.features.asyncparticles.config;
+
+import silence.simsool.lucentclient.features.asyncparticles.core.Diagnostic;
+
+import java.util.List;
+import java.util.Objects;
+
+import static silence.simsool.lucentclient.features.asyncparticles.config.AsyncParticlesConfig.*;
+
+public class ConfigHelper {
+	public static boolean isAsyncAnimateTick() {
+		return tick$asyncAnimateTick && !Diagnostic.isTemporaryDisableAnimationTick();
+	}
+
+	public static boolean particleLightCache() {
+		return particle$particleLightCache;
+	}
+
+	public static boolean suppressCME() {
+		return tick$suppressCME;
+	}
+
+	public static boolean isAsyncParticleTick() {
+		return tick$particleAsyncMode != ParticleAsyncMode.DISABLE && !Diagnostic.isTemporaryDisableAsyncParticleTick();
+	}
+
+	public static boolean isSplitParticleTick() {
+		return tick$particleAsyncMode == ParticleAsyncMode.SPLIT;
+	}
+
+	public static int getParticleLimit() {
+		return particle$particleLimit;
+	}
+
+	public static int getTickFailurePerSecondThreshold() {
+		return tick$failPerSecLimit;
+	}
+
+	public static boolean isCullUnderwaterParticleType() {
+		return particle$cullUnderwaterParticleType;
+	}
+
+	public static boolean isTickWeatherAsync() {
+		return tick$tickWeatherAsync && !Diagnostic.isTemporaryDisableAsyncRainTick();
+	}
+
+	public static boolean isDeferredTextureTick() {
+		return tick$deferredTextureTick;
+	}
+
+	public static List<? extends Class<?>> getSyncAnimationClassesTick() {
+		return tick$syncAnimationClasses
+			.stream()
+			.map(className -> {
+				try {
+					return Class.forName(className);
+				} catch (ClassNotFoundException e) {
+					return null;
+				}
+			})
+			.filter(Objects::nonNull)
+			.toList();
+	}
+
+	public static List<? extends Class<?>> getSyncParticleClassesTick() {
+		return tick$syncParticleClasses
+			.stream()
+			.map(className -> {
+				try {
+					return Class.forName(className);
+				} catch (ClassNotFoundException e) {
+					return null;
+				}
+			})
+			.filter(Objects::nonNull)
+			.toList();
+	}
+
+	public static boolean isGpuParticles() {
+		return rendering$gpuAcceleration;
+	}
+
+	public static boolean isParallelQueueRemoval() {
+		return particle$parallelQueueRemoval;
+	}
+
+	public static boolean isParallelQueueEviction() {
+		return particle$parallelQueueEviction;
+	}
+
+	public static boolean isAppendNewParticlesToRenderer() {
+		return rendering$appendNewParticlesToRenderer;
+	}
+
+	public static boolean isGpuOnlyAsyncParticleTick() {
+		return tick$gpuOnlyAsyncParticleTick || Diagnostic.isTemporaryGpuOnlyAsyncParticleTick();
+	}
+
+	public static boolean mobileCompatMultiDraw() {
+		return mobile$multiDrawWorkaround;
+	}
+
+	public static ComputeExecutionStage getComputeExecutionStage() {
+		return rendering$computeExecutionStage;
+	}
+
+	public static boolean isTickRendererOnMainThread() {
+		return rendering$tickRendererOnMainThread;
+	}
+
+	public static ParticleCleanupStrategy getParticleCleanupStrategy() {
+		return particle$cleanupStrategy;
+	}
+}

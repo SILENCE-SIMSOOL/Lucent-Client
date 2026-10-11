@@ -1,0 +1,12 @@
+{
+	"required": true,
+	"minVersion": "0.8",
+	"mixinextras": {
+		"minVersion": "0.5.0"
+	},
+	"compatibilityLevel": "JAVA_21",
+	"package": "silence.simsool.lucentclient.mixin.mixins.asyncparticles",
+	"plugin": "silence.simsool.lucentclient.features.asyncparticles.coremod.mixin_extension.class_adjuster.ClassAdjusterMixinPlugin",
+	"priority": 0,
+	"client": []
+}

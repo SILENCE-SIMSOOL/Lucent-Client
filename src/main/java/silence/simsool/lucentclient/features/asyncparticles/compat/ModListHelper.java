@@ -1,0 +1,144 @@
+package silence.simsool.lucentclient.features.asyncparticles.compat;
+
+import static silence.simsool.lucentclient.features.asyncparticles.Platform.PLATFORM;
+
+public class ModListHelper {
+	public static final boolean IS_FORGE = PLATFORM.isForge();
+	public static final boolean IS_CLIENT = PLATFORM.isClient();
+	public static final boolean DEV_ENV = PLATFORM.isDevelopmentEnvironment();
+	public static final boolean FABRIC_API_LOADED = isModLoaded("fabric-api") || isModLoaded("fabric_api");
+	public static final boolean CONNECTORMOD_LOADED = isModLoaded("connectormod");
+	/* Valkyrien Skies */
+	public static final boolean VS_LOADED = isModLoaded("valkyrienskies");
+	public static final boolean FABRIC_VS_LOADED = isFabricModLoaded("valkyrienskies");
+	public static final boolean FORGE_VS_LOADED = isForgeModLoaded("valkyrienskies");
+	/* Sodium */
+	public static final boolean SODIUM_LOADED = isModLoaded("sodium");
+	public static final boolean FABRIC_SODIUM_LOADED = isFabricModLoaded("sodium");
+	public static final boolean FORGE_SODIUM_LOADED = isForgeModLoaded("sodium");
+	public static final boolean FORGE_EMBEDDIUM_LOADED = isForgeModLoaded("embeddium");
+	/* Sodium Extra */
+	public static final boolean SODIUM_EXTRA_LOADED = isModLoaded("sodium-extra") || isModLoaded("sodium_extra");
+	/* IRIS */
+	// What the hell of compatibility is this!
+	public static final boolean IRIS_LOADED = isModLoaded("iris");
+	public static final boolean FABRIC_IRIS_LOADED = isFabricModLoaded("iris");
+	/* Dummmmmmy */
+	public static final boolean DUMMMMMMY_LOADED = isModLoaded("dummmmmmy");
+	/* Effectual */
+	public static final boolean FABRIC_EFFECTUAL_LOADED = isFabricModLoaded("effectual");
+	/* Flerovium */
+	public static final boolean FORGE_FLEROVIUM_LOADED = isForgeModLoaded("flerovium");
+	/* Effective */
+	public static final boolean FORGE_EFFECTIVE_LOADED = isForgeModLoaded("effective");
+	public static final boolean FABRIC_EFFECTIVE_LOADED = isFabricModLoaded("effective");
+	/* Particle Rain */
+	public static final boolean PARTICLERAIN_LOADED = isModLoaded("particlerain");
+	public static final boolean FABRIC_PARTICLERAIN_LOADED = isFabricModLoaded("particlerain");
+	public static final boolean FORGE_PRETTY_RAIN_LOADED = isForgeModLoaded("particlerain") &&
+														   versionCheck("particlerain", null, "1.999999");
+	public static final boolean FORGE_PARTICLERAIN_LOADED = isForgeModLoaded("particlerain") &&
+														   versionCheck("particlerain", "3.999999", null);
+	/* Flywheel */
+	public static final boolean FLYWHEEL_LOADED = isModLoaded("flywheel");
+	/* Create */
+	public static final boolean CREATE_LOADED = isModLoaded("create");
+	public static final boolean FABRIC_CREATE_LOADED = isFabricModLoaded("create");
+	public static final boolean FORGE_CREATE_LOADED = isForgeModLoaded("create");
+	/* Tombstone */
+	public static final boolean TOMBSTONE_LOADED = isModLoaded("tombstone");
+	/* Hexcasting */
+	public static final boolean HEXCASTING_LOADED = isModLoaded("hexcasting");
+	/* Enhanced Block Entities */
+//	public static final boolean ENHANCEDBLOCKENTITIES_LOADED = isModLoaded("enhancedblockentities");
+	/* Particular */
+	public static final boolean FABRIC_PARTICULAR_LOADED = isFabricModLoaded("particular");
+	public static final boolean FORGE_PARTICULAR_LOADED = isForgeModLoaded("particular");
+	/* Particle Core */
+	public static final boolean PARTICLE_CORE_LOADED = isModLoaded("particle_core");
+	/* Physics Mod */
+	public static final boolean PHYSICSMOD_LOADED = isModLoaded("physicsmod");
+	/* A Good Place */
+	public static final boolean A_GOOD_PLACE_LOADED = isModLoaded("a_good_place");
+	/* Modern UI */
+	public static final boolean MODERN_UI_LOADED = isModLoaded("modernui");
+	/* Subtle Effects */
+	public static final boolean SUBTLE_EFFECTS_LOADED = isModLoaded("subtle_effects");
+	public static final boolean FABRIC_SUBTLE_EFFECTS_LOADED = isFabricModLoaded("subtle_effects");
+	public static final boolean FORGE_SUBTLE_EFFECTS_LOADED = isForgeModLoaded("subtle_effects");
+	public static final boolean IS_SUBTLE_EFFECTS_LATER_THAN_1_12 = SUBTLE_EFFECTS_LOADED && versionCheck("subtle_effects", "1.12.0", null);
+	/* What Are They Up To */
+	public static final boolean WATUT_LOADED = isModLoaded("watut");
+	/* Simple Weather */
+	public static final boolean FORGE_SIMPLE_WEATHER_LOADED = isForgeModLoaded("simple_weather");
+	/* Vulkan Mod */
+	public static final boolean VULKAN_MOD_LOADED = isModLoaded("vulkanmod");
+	/* Beryl */
+	public static final boolean BERYL_LOADED = isModLoaded("beryl");
+	/* Lodestone */
+	public static final boolean LODESTONE_LOADED = isModLoaded("lodestone");
+	/* Cloth Config */
+	public static final boolean CLOTH_CONFIG_LOADED = isModLoaded("cloth_config") || isModLoaded("cloth-config");
+	/* Photon Editor */
+	public static final boolean PHOTON_EDITOR_LOADED = isModLoaded("photon");
+	/* Fluffy Fur */
+	public static final boolean FLUFFY_FUR_LOADED = isModLoaded("fluffy_fur");
+	public static final boolean FORGE_FLUFFY_FUR_LOADED = isForgeModLoaded("fluffy_fur");
+	/* Wizards Reborn */
+	public static final boolean FORGE_WIZARDS_REBORN_LOADED = isForgeModLoaded("wizards_reborn");
+	/* Porting Lib Base */
+	public static final boolean FABRIC_PORTING_LIB_BASE_LOADED = isFabricModLoaded("porting_lib_base");
+	/* Coo Particles API */
+	public static final boolean FABRIC_COO_PARTICLES_API_LOADED = isModLoaded("cooparticlesapi");
+	/* Immediately Fast */
+	public static final boolean IMMEDIATELY_FAST_LOADED = isModLoaded("immediatelyfast");
+	/* More Culling */
+	public static final boolean MORE_CULLING_LOADED = isModLoaded("moreculling");
+	/* Make Bubbles Pop */
+	public static final boolean MAKE_BUBBLES_POP_LOADED = isModLoaded("make_bubbles_pop");
+	/* Figura */
+	public static final boolean FIGURA_LOADED = isModLoaded("figura");
+	/* Axiom */
+	public static final boolean AXIOM_LOADED = isModLoaded("axiom");
+	/* CosyCritters */
+	public static final boolean COSYCRITTERS_LOADED = isModLoaded("cosycritters");
+	/* Async */
+	public static final boolean ASYNC_LOADED = isModLoaded("async");
+	/* Particle Tweaks */
+	public static final boolean PARTICLE_TWEAKS_LOADED = isModLoaded("particletweaks");
+	/* Ruok */
+	public static final boolean RUOK_LOADED = isModLoaded("ruok");
+
+	public static boolean isModLoaded(String modId) {
+		return PLATFORM.isModLoaded(modId);
+	}
+
+	public static boolean versionCheck(String modId, String minInclusive, String maxExclusive) {
+		return PLATFORM.versionCheck(modId, minInclusive, maxExclusive);
+	}
+
+	public static String versionToString(String modId) {
+		return PLATFORM.versionToString(modId);
+	}
+
+	public static boolean isForgeModLoaded(String modId) {
+		return PLATFORM.isForgeModLoaded(modId);
+	}
+
+	public static boolean isFabricModLoaded(String modId) {
+		return PLATFORM.isFabricModLoaded(modId);
+	}
+
+	public static boolean classExists(String className) {
+		return ModListHelper.class.getClassLoader().getResource(className.replace(".", "/") + ".class") != null;
+	}
+
+	public static boolean loadClass(String className) {
+		try {
+			Class.forName(className);
+			return true;
+		} catch (Throwable e) {
+			return false;
+		}
+	}
+}

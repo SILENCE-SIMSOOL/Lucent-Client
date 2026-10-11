@@ -4,18 +4,26 @@
 	"version": "${version}",
 	"name": "Lucent Client",
 	"description": "A collection of essential and lightweight mods built with Lucent.",
-	"authors": ["SimSool"],
+	"authors": [
+		"SimSool"
+	],
 	"contact": {
 		"homepage": "",
 		"sources": ""
 	},
 	"license": "SILENCE LICENSE 1.0",
 	"icon": "icon.png",
+	"accessWidener": "lucentclient.accesswidener",
 	"environment": "client",
 	"mixins": [
-		"lucentclient.mixins.json"
+		"lucentclient.mixins.json",
+		"asyncparticles-common.mixins.json",
+		"asyncparticles.target-modifier.mixins.json"
 	],
 	"entrypoints": {
+		"preLaunch": [
+			"silence.simsool.lucentclient.asynclogger.AsyncLoggerBootstrap"
+		],
 		"client": [
 			"silence.simsool.lucentclient.LucentClient"
 		]

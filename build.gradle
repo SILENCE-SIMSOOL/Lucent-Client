@@ -78,7 +78,24 @@ dependencies {
 	}
 }
 
+def particleShaderResources = layout.buildDirectory.dir('generated/particleShaders')
+def compileSpirv = tasks.register('compileSpirv', JavaExec) {
+	def compilerSource = file('gradle/CompileParticleShader.java')
+	def shaderSource = file('src/main/resources/assets/asyncparticles/particle_gpu_acceleration/vk_particle_compute.comp')
+	def shaderOutput = particleShaderResources.map { it.file('assets/asyncparticles/particle_gpu_acceleration/vk_particle_compute.spv') }
+	inputs.files(compilerSource, shaderSource)
+	outputs.dir(particleShaderResources)
+	classpath = configurations.runtimeClasspath
+	mainClass = compilerSource.absolutePath
+	javaLauncher = javaToolchains.launcherFor {
+		languageVersion = JavaLanguageVersion.of(25)
+	}
+	jvmArgs '--enable-native-access=ALL-UNNAMED'
+	args shaderSource.absolutePath, shaderOutput.get().asFile.absolutePath
+}
+
 processResources {
+	from(compileSpirv)
 	inputs.property "version", project.mod_version
 
 	filesMatching("fabric.mod.json") {

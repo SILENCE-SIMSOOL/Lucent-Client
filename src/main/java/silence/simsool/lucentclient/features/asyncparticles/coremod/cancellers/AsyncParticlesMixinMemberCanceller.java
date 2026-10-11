@@ -1,0 +1,42 @@
+package silence.simsool.lucentclient.features.asyncparticles.coremod.cancellers;
+
+import silence.simsool.lucentclient.features.asyncparticles.coremod.mixin_extension.member_canceller.MixinMemberCanceller;
+
+import java.util.List;
+
+public class AsyncParticlesMixinMemberCanceller implements MixinMemberCanceller {
+	@Override
+	public boolean preCancel(List<String> targetClassNames, String mixinClassName) {
+		return switch (mixinClassName) {
+			case "einstein.subtle_effects.mixin.client.particle.ParticleEngineMixin",
+			     "io.github.fabricators_of_create.porting_lib.mixin.client.ParticleEngineMixin",
+			     "net.diebuddies.mixins.weather.MixinParticleEngine",
+			     "me.fzzyhmstrs.particle_core.mixins.ParticleManagerAsyncMixin",
+			     "team.teampotato.ruok.mixin.minecraft.ParticleManagerMixin",
+			     "team.teampotato.ruok.mixin.minecraft.particle.ParticleManagerMixin" -> true;
+			default -> false;
+		};
+	}
+
+	@Override
+	public boolean shouldCancelMethod(List<String> targetClassNames, String mixinClassName, List<String> targetMethodDescs, String mixinMethodName, String mixinMethodDesc) {
+		return switch (mixinClassName) {
+			case "einstein.subtle_effects.mixin.client.particle.ParticleEngineMixin" ->
+				"shouldRenderParticle".equals(mixinMethodName);
+			case "io.github.fabricators_of_create.porting_lib.mixin.client.ParticleEngineMixin" ->
+				"addCustomRenderTypes".equals(mixinMethodName);
+			case "net.diebuddies.mixins.weather.MixinParticleEngine" ->
+				"tick".equals(mixinMethodName);
+			case "me.fzzyhmstrs.particle_core.mixins.ParticleManagerAsyncMixin" ->
+				"particle_core_synchronizeParticleAdds".equals(mixinMethodName);
+			case "team.teampotato.ruok.mixin.minecraft.ParticleManagerMixin" -> "tick".equals(mixinMethodName);
+			case "team.teampotato.ruok.mixin.minecraft.particle.ParticleManagerMixin" -> "tick".equals(mixinMethodName);
+			default -> false;
+		};
+	}
+
+	@Override
+	public boolean shouldCancelField(List<String> targetClassNames, String mixinClassName, String mixinFieldName, String mixinFieldDesc) {
+		return false;
+	}
+}

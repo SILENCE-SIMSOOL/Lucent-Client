@@ -1,0 +1,126 @@
+
+package silence.simsool.lucentclient.mixin.mixins.asyncparticles.core.particle.tick;
+
+import silence.simsool.lucentclient.features.asyncparticles.addon.AsyncTickableParticleGroup;
+import silence.simsool.lucentclient.features.asyncparticles.addon.ParticleAddon;
+import silence.simsool.lucentclient.features.asyncparticles.addon.ParticleEngineAddon;
+import silence.simsool.lucentclient.features.asyncparticles.addon.ParticleGroupAddition;
+import silence.simsool.lucentclient.features.asyncparticles.config.ConfigHelper;
+import silence.simsool.lucentclient.features.asyncparticles.core.particle.TaskHelper;
+import silence.simsool.lucentclient.features.asyncparticles.core.particle.gpu_acceleration.GpuParticleBehavior;
+import silence.simsool.lucentclient.features.asyncparticles.core.particle.tick.AsyncTickBehavior;
+import net.minecraft.client.particle.*;
+import net.minecraft.core.particles.ParticleLimit;
+import net.minecraft.util.profiling.Profiler;
+import org.spongepowered.asm.mixin.*;
+
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Queue;
+import java.util.function.BiConsumer;
+import java.util.function.Consumer;
+
+@Mixin(value = ParticleEngine.class, priority = 500)
+public abstract class MixinParticleEngine implements ParticleEngineAddon {
+	@Shadow
+	@Final
+	private Queue<TrackingEmitter> trackingEmitters;
+
+	@Shadow
+	@Final
+	private Queue<Particle> particlesToAdd;
+
+	@Shadow
+	@Final
+	public Map<ParticleRenderType, ParticleGroup<?>> particles;
+
+	@Shadow
+	protected abstract ParticleGroup<?> createParticleGroup(ParticleRenderType type);
+
+	@Shadow
+	protected abstract void updateCount(ParticleLimit limit, int change);
+
+	/**
+	 * @author Harvey_Husky
+	 * @reason Too many changes, need to rewrite the entire method.
+	 */
+	@Overwrite
+	public void tick() {
+		// Keep local var table as they were
+		Particle particle;
+		AsyncTickBehavior tickBehavior = AsyncTickBehavior.getInstance();
+		boolean tickAsync = ConfigHelper.isAsyncParticleTick() && tickBehavior.isParticlePhase();
+		boolean asyncAll = tickAsync && !ConfigHelper.isGpuOnlyAsyncParticleTick();
+		if (asyncAll) {
+			TaskHelper taskHelper = tickBehavior.getTickTaskManager();
+			asyncparticles$forEach(this.particles, (renderType, group) -> {
+				if (group.isEmpty()) {
+					return;
+				}
+				Profiler.get().push(renderType.name());
+				if (((ParticleGroupAddition) group).asyncparticles$canTickAsync()) {
+					((AsyncTickableParticleGroup) group).asyncparticles$tickSyncParticles(false);
+					taskHelper.addTask(() -> ((ParticleGroupAddition) group).asyncparticles$tickParticles(false));
+				} else {
+					group.tickParticles();
+				}
+				Profiler.get().pop();
+			});
+			taskHelper.groupTasks(true);
+		} else {
+			// forEach is an inject point (eg. ParticleCore)
+			this.particles.forEach((type, group) -> {
+				Profiler.get().push(type.name());
+				group.tickParticles();
+				Profiler.get().pop();
+			});
+		}
+		if (!this.trackingEmitters.isEmpty()) {
+			for (TrackingEmitter trackingEmitter : this.trackingEmitters) {
+				trackingEmitter.tick();
+				// clear in AsyncTickBehavior
+			}
+			if (!tickAsync) {
+				tickBehavior.doEmittersRemoveIf(trackingEmitters);
+			}
+		}
+
+		if (!particlesToAdd.isEmpty()) {
+			//noinspection ForLoopReplaceableByForEach
+			for (Iterator<Particle> iterator = particlesToAdd.iterator(); iterator.hasNext(); ) {
+				particle = iterator.next();
+				ParticleGroup<?> group = this.particles.computeIfAbsent(particle.getGroup(), type -> {
+					ParticleGroup<?> particleGroup = createParticleGroup(type);
+					if (asyncAll && ((ParticleGroupAddition) particleGroup).asyncparticles$canTickAsync()) {
+						AsyncTickBehavior.getInstance().getTickTaskManager()
+							.addTask(() -> ((ParticleGroupAddition) particleGroup).asyncparticles$tickParticles(false));
+					}
+					return particleGroup;
+				});
+				if (!group.add(particle)) {
+					particle.getParticleLimit().ifPresent(options -> this.updateCount(options, -1));
+				} else if (tickAsync
+					&& ((ParticleGroupAddition) group).asyncparticles$canTickAsync()
+//					&& ConfigHelper.isAsyncTickParticle() // tested in asyncparticles$canTickAsync()
+					&& tickBehavior.shouldSync(((ParticleAddon) particle).asyncparticles$getRealClass())) {
+					if (GpuParticleBehavior.getInstance().canRenderFast(particle)) {
+						((AsyncTickableParticleGroup) group).asyncparticles$addSyncGpuParticle(particle);
+					} else if (asyncAll) {
+						((AsyncTickableParticleGroup) group).asyncparticles$addSyncParticle(particle);
+					}
+				}
+			}
+			particlesToAdd.clear();
+		}
+	}
+
+	@Unique
+	private static <K, V> void asyncparticles$forEach(Map<K, V> i, BiConsumer<K, V> f) {
+		i.forEach(f);
+	}
+
+	@Unique
+	private static <E> void asyncparticles$forEach(Iterable<E> i, Consumer<E> f) {
+		i.forEach(f);
+	}
+}

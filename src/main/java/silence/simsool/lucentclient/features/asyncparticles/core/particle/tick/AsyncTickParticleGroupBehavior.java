@@ -1,0 +1,38 @@
+package silence.simsool.lucentclient.features.asyncparticles.core.particle.tick;
+
+import silence.simsool.lucentclient.features.asyncparticles.addon.AsyncTickableParticleGroup;
+import silence.simsool.lucentclient.features.asyncparticles.compat.Mappings;
+import it.unimi.dsi.fastutil.objects.Reference2BooleanOpenHashMap;
+import it.unimi.dsi.fastutil.objects.ReferenceArrayList;
+import net.minecraft.client.particle.ParticleGroup;
+
+import java.util.List;
+import java.util.function.Predicate;
+
+@SuppressWarnings("rawtypes")
+public class AsyncTickParticleGroupBehavior {
+	public static final String TICK_PARTICLES_METHOD;
+	private static final List<Class<ParticleGroup>> ASYNC_TICKABLE_PARTICLE_GROUP_CLASSES;
+	private final static Reference2BooleanOpenHashMap<Class<? extends ParticleGroup>> CAN_TICK_PARTICLES_ASYNC =
+		new Reference2BooleanOpenHashMap<>();
+
+	static {
+		ASYNC_TICKABLE_PARTICLE_GROUP_CLASSES = new ReferenceArrayList<>(List.of(ParticleGroup.class));
+		TICK_PARTICLES_METHOD = Mappings.getTickParticlesMethod();
+	}
+
+	public static boolean canTickAsync(ParticleGroup<?> particleGroup) {
+		return CAN_TICK_PARTICLES_ASYNC.computeIfAbsent(particleGroup.getClass(), (Predicate<Class<? extends ParticleGroup>>)
+			k -> {
+				if (!(AsyncTickableParticleGroup.class.isAssignableFrom(k))) {
+					return false;
+				}
+				try {
+					Class<?> declaringClass = k.getMethod(TICK_PARTICLES_METHOD).getDeclaringClass();
+					return ASYNC_TICKABLE_PARTICLE_GROUP_CLASSES.contains(declaringClass);
+				} catch (NoSuchMethodException e) {
+					return false;
+				}
+			});
+	}
+}

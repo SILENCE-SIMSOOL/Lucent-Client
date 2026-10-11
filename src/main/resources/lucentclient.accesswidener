@@ -1,0 +1,34 @@
+accessWidener	v1	official
+accessible method net/minecraft/client/particle/SingleQuadParticle getLayer ()Lnet/minecraft/client/particle/SingleQuadParticle$Layer;
+accessible method net/minecraft/util/Util onThreadException (Ljava/lang/Thread;Ljava/lang/Throwable;)V
+accessible method net/minecraft/client/particle/ParticleEngine updateCount (Lnet/minecraft/core/particles/ParticleLimit;I)V
+accessible field net/minecraft/client/particle/ParticleEngine particles Ljava/util/Map;
+accessible field net/minecraft/client/particle/ParticleEngine trackingEmitters Ljava/util/Queue;
+accessible field net/minecraft/client/particle/ParticleEngine particlesToAdd Ljava/util/Queue;
+accessible method net/minecraft/client/particle/ParticleGroup tickParticle (Lnet/minecraft/client/particle/Particle;)V
+mutable field net/minecraft/world/level/chunk/ChunkAccess blockEntities Ljava/util/Map;
+mutable field net/minecraft/world/level/chunk/ChunkAccess pendingBlockEntities Ljava/util/Map;
+mutable field net/minecraft/world/level/Level random Lnet/minecraft/util/RandomSource;
+accessible field net/minecraft/client/sounds/SoundEngine loaded Z
+accessible field net/minecraft/util/thread/BlockableEventLoop pendingRunnables Ljava/util/Queue;
+mutable field net/minecraft/client/particle/ParticleGroup particles Ljava/util/Queue;
+accessible class net/minecraft/client/renderer/feature/QuadParticleFeatureRenderer$PreparedGroup
+accessible field net/minecraft/client/renderer/culling/Frustum intersection Lorg/joml/FrustumIntersection;
+accessible field net/minecraft/client/particle/ParticleGroup particles Ljava/util/Queue;
+accessible class net/minecraft/client/particle/FireworkParticles$SparkParticle
+accessible method net/minecraft/client/gui/screens/Screen addRenderableWidget (Lnet/minecraft/client/gui/components/events/GuiEventListener;)Lnet/minecraft/client/gui/components/events/GuiEventListener;
+accessible class com/mojang/blaze3d/pipeline/RenderPipeline
+accessible method com/mojang/blaze3d/pipeline/RenderPipeline <init> (Lnet/minecraft/resources/Identifier;Lnet/minecraft/resources/Identifier;Lnet/minecraft/resources/Identifier;Lnet/minecraft/client/renderer/ShaderDefines;Ljava/util/List;[Lcom/mojang/blaze3d/pipeline/ColorTargetState;Lcom/mojang/blaze3d/pipeline/DepthStencilState;Lcom/mojang/blaze3d/platform/PolygonMode;Z[Lcom/mojang/blaze3d/vertex/VertexFormat;Lcom/mojang/blaze3d/PrimitiveTopology;I)V
+accessible field com/mojang/blaze3d/systems/GpuDevice backend Lcom/mojang/blaze3d/systems/GpuDeviceBackend;
+accessible class com/mojang/blaze3d/opengl/GlDevice
+accessible class com/mojang/blaze3d/opengl/GlCommandEncoder
+accessible field com/mojang/blaze3d/opengl/GlBuffer MEMORY_POOL Lcom/mojang/jtracy/MemoryPool;
+accessible field com/mojang/blaze3d/opengl/GlBuffer handle I
+mutable field com/mojang/blaze3d/opengl/GlBuffer handle I
+accessible field com/mojang/blaze3d/buffers/GpuBuffer size J
+mutable field com/mojang/blaze3d/buffers/GpuBuffer size J
+accessible field com/mojang/blaze3d/vulkan/VulkanGpuBuffer$Direct vmaAllocation J
+accessible field com/mojang/blaze3d/vulkan/VulkanGpuBuffer$Direct mappingRefCount I
+accessible field com/mojang/blaze3d/vulkan/VulkanCommandEncoder currentSubmitIndex J
+accessible method com/mojang/blaze3d/vulkan/VulkanCommandEncoder awaitSubmitCompletion (JJ)Z
+accessible method com/mojang/blaze3d/vulkan/VulkanCommandEncoder commandBuffer ()Lorg/lwjgl/vulkan/VkCommandBuffer;

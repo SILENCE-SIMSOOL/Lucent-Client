@@ -1,0 +1,49 @@
+package silence.simsool.lucentclient.mixin.mixins.asyncparticles.core.particle;
+
+import silence.simsool.lucentclient.features.asyncparticles.addon.ParticleEngineAddon;
+import silence.simsool.lucentclient.features.asyncparticles.core.particle.ParticleHelper;
+import silence.simsool.lucentclient.features.asyncparticles.core.particle.tick.TrackedParticleCountsMap;
+import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap;
+import net.minecraft.client.particle.*;
+import net.minecraft.core.particles.ParticleLimit;
+import org.spongepowered.asm.mixin.Final;
+import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Mutable;
+import org.spongepowered.asm.mixin.Shadow;
+import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+
+import java.util.Map;
+import java.util.Queue;
+
+@Mixin(ParticleEngine.class)
+public class MixinParticleEngine implements ParticleEngineAddon {
+	@Mutable
+	@Shadow
+	@Final
+	private Object2IntOpenHashMap<ParticleLimit> trackedParticleCounts;
+	@Mutable
+	@Final
+	@Shadow
+	private Queue<Particle> particlesToAdd;
+	@Mutable
+	@Final
+	@Shadow
+	private Queue<TrackingEmitter> trackingEmitters;
+	@Shadow
+	@Final
+	public Map<ParticleRenderType, ParticleGroup<?>> particles;
+
+	@Inject(order = 1500, method = "<init>", at = @At(value = "RETURN"))
+	public void initTail(CallbackInfo ci) {
+		trackedParticleCounts = new TrackedParticleCountsMap();
+		particlesToAdd = ParticleHelper.newBusyWaitParticleQueue(1024);
+		trackingEmitters = ParticleHelper.newBusyWaitParticleQueue(256);
+	}
+
+	@Inject(method = "clearParticles", at = @At("HEAD"))
+	public void clearParticles(CallbackInfo ci) {
+		ParticleHelper.onClearParticles();
+	}
+}

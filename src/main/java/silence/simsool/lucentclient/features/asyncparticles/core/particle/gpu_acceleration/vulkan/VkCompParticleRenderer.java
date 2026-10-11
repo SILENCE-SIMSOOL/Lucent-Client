@@ -169,7 +169,7 @@ public class VkCompParticleRenderer implements IParticleRenderer {
 	private byte[] loadSpirv() {
 		try (InputStream is = getClass().getResourceAsStream("/assets/asyncparticles/particle_gpu_acceleration/vk_particle_compute.spv")) {
 			if (is == null) {
-				throw new RuntimeException("particle_compute.spv not found — compile .comp with: glslc -fshader-stage=compute vk_particle_compute.comp -o particle_compute.spv --target-env=vulkan1.0");
+				throw new RuntimeException("vk_particle_compute.spv not found; compile with: glslc -fshader-stage=compute vk_particle_compute.comp -o vk_particle_compute.spv --target-env=vulkan1.0");
 			}
 			return is.readAllBytes();
 		} catch (Exception e) {

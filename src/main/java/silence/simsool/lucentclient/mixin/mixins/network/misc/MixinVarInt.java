@@ -6,7 +6,7 @@ import org.spongepowered.asm.mixin.Overwrite;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.network.VarInt;
 import silence.simsool.lucentclient.mods.impl.performance.network.NetworkFixMod;
-import silence.simsool.lucentclient.mods.impl.performance.network.utils.VarIntUtil;
+import silence.simsool.lucentclient.mods.impl.performance.network.utils.NetworkVarIntUtils;
 
 @Mixin(VarInt.class)
 public class MixinVarInt {
@@ -18,7 +18,7 @@ public class MixinVarInt {
 	@Overwrite
 	public static int getByteSize(int v) {
 		if (NetworkFixMod.isEnabled() && NetworkFixMod.FastVarInt) {
-			return VarIntUtil.getVarIntLength(v);
+			return NetworkVarIntUtils.getVarIntLength(v);
 		}
 		// Vanilla fallback
 		for (int i = 1; i < 5; ++i) {

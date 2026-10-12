@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "id": "gnetum",
+  "name": "Gnetum",
+  "version": "10.0.0-LucentJIJ",
+  "authors": ["decce"],
+  "contributors": ["AlanChrisa", "Wyvest"],
+  "contact": {
+    "sources": "https://github.com/decce6/Gnetum/"
+  },
+  "description": "Minecraft mod that distributes HUD updates over multiple frames to improve performance.",
+  "license": "LGPL-3.0-only",
+  "entrypoints": {
+    "client": [
+      "me.decce.gnetum.platform.fabric.FabricEntrypoint"
+    ],
+    "sodium:config_api_user": [
+      "me.decce.gnetum.compat.sodium.SodiumEntrypoint"
+    ]
+  },
+  "mixins": [
+    "gnetum.mixins.json",
+    "gnetum.fabric.mixins.json"
+  ],
+  "depends": {
+    "minecraft": "=1.21.11",
+    "fabricloader": ">=0.16.0"
+  }
+}

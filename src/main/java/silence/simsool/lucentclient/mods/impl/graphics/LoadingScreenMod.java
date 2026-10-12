@@ -9,6 +9,8 @@ import silence.simsool.lucentclient.utils.LucentClientUtils;
 
 public class LoadingScreenMod extends Mod {
 
+	public static boolean initialJoin = true;
+
 	public LoadingScreenMod() {
 		super(
 				"lucent.config.lucentclient.loadingscreenmod.general.name",
@@ -30,4 +32,10 @@ public class LoadingScreenMod extends Mod {
 	)
 	public static boolean HideWorldLoadingScreen = true;
 
+	@ModConfig(
+		type = ConfigType.SWITCH,
+		name = "lucent.config.lucentclient.loadingscreenmod.property.fastresourcepackloading.name",
+		description = "lucent.config.lucentclient.loadingscreenmod.property.fastresourcepackloading.description"
+	)
+	public static boolean FastResourcePackLoading = true;
 }

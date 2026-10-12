@@ -4,6 +4,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.Redirect;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import net.minecraft.client.Minecraft;
@@ -12,6 +13,7 @@ import net.minecraft.world.InteractionHand;
 import net.minecraft.world.item.component.SwingAnimation;
 import silence.simsool.lucentclient.LucentClient;
 import silence.simsool.lucentclient.mods.impl.graphics.AnimationsMod;
+import silence.simsool.lucentclient.mods.impl.graphics.LoadingScreenMod;
 
 @Mixin(Minecraft.class)
 public abstract class MixinMinecraft {
@@ -29,4 +31,8 @@ public abstract class MixinMinecraft {
 		cir.setReturnValue("Lucent Client - mc" + LucentClient.MC_VERSION + " (v" + LucentClient.VERSION + ")");
 	}
 
+	@Inject(method = "disconnect(Lnet/minecraft/client/gui/screens/Screen;ZZ)V", at = @At("HEAD"))
+	private void onDisconnect(CallbackInfo ci) {
+		LoadingScreenMod.initialJoin = true;
+	}
 }

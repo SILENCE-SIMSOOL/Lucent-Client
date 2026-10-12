@@ -13,9 +13,11 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import com.llamalad7.mixinextras.expression.Definition;
 import com.llamalad7.mixinextras.expression.Expression;
 
+import net.minecraft.client.KeyMapping;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.MouseHandler;
 import silence.simsool.lucentclient.features.betterscreens.ScreenMouseHook;
+import silence.simsool.lucentclient.mods.impl.graphics.LoadingScreenMod;
 import silence.simsool.lucentclient.mods.impl.utility.ChattingMod;
 import silence.simsool.lucentclient.mods.impl.utility.ZoomMod;
 
@@ -33,6 +35,17 @@ public class MixinMouseHandler {
 	private double accumulatedDX;
 	@Shadow
 	private double accumulatedDY;
+	@Shadow
+	private boolean mouseGrabbed;
+
+	@Inject(method = "grabMouse", at = @At("HEAD"))
+	private void onGrabMouse(CallbackInfo ci) {
+		if (this.minecraft.isWindowActive()) {
+			if (!this.mouseGrabbed && LoadingScreenMod.isEnabled()) {
+				KeyMapping.setAll();
+			}
+		}
+	}
 
 	@Inject(method = "onScroll", at = @At("HEAD"), cancellable = true)
 	private void onScroll(long handle, double xoffset, double yoffset, CallbackInfo ci) {

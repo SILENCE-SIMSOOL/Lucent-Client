@@ -13,7 +13,13 @@ base {
 repositories {
 	mavenLocal()
 	mavenCentral()
-	flatDir { dirs "libs", file("${projectDir}/../../Lucent/26.3/build/libs") }
+	flatDir {
+		def libDirs = [file("libs"), file("${projectDir}/../../Lucent/26.3/build/libs")]
+		if (file("libs").exists()) {
+			file("libs").eachDirRecurse { libDirs << it }
+		}
+		dirs libDirs.unique()
+	}
 	maven { url "https://SILENCE-SIMSOOL.github.io/maven-repo/" }
 	maven { url = uri("https://api.modrinth.com/maven") }
 	maven { url = uri("https://pkgs.dev.azure.com/djtheredstoner/DevAuth/_packaging/public/maven/v1") }
@@ -64,12 +70,12 @@ dependencies {
 
 	include(implementation(annotationProcessor("com.github.bawnorton.mixinsquared:mixinsquared-fabric:0.3.7-beta.3")))
 
-	fileTree(dir: 'libs', include: ['*.jar']).each { file ->
+	fileTree(dir: 'libs', include: ['**/*.jar']).each { file ->
 		def baseName = file.name.take(file.name.lastIndexOf('.'))
-		def dashIndex = baseName.indexOf('-')
-		if (dashIndex > 0) {
-			def modName = baseName.substring(0, dashIndex)
-			def modVer = baseName.substring(dashIndex + 1)
+		def matcher = (baseName =~ /^(.+?)-(\d.*)$/)
+		if (matcher.matches()) {
+			def modName = matcher[0][1]
+			def modVer = matcher[0][2]
 			implementation name: modName, version: modVer
 			include name: modName, version: modVer
 		} else {
@@ -103,6 +109,10 @@ processResources {
 		expand "version": project.mod_version
 	}
 	
+}
+
+tasks.named('processResources') {
+	duplicatesStrategy = DuplicatesStrategy.EXCLUDE
 }
 
 tasks.withType(JavaCompile).configureEach {

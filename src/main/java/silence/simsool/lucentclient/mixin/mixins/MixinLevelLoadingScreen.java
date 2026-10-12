@@ -18,7 +18,13 @@ public class MixinLevelLoadingScreen {
 
 	@Inject(method = { "extractRenderState", "extractBackground" }, at = @At("HEAD"), cancellable = true, require = 2)
 	private void hideWorldLoadingScreen(CallbackInfo ci) {
-		if (LoadingScreenMod.isEnabled() && LoadingScreenMod.HideWorldLoadingScreen && this.loadTracker.statusView() == null) ci.cancel();
+		if (LoadingScreenMod.isEnabled() && LoadingScreenMod.HideWorldLoadingScreen && !LoadingScreenMod.initialJoin && this.loadTracker.statusView() == null) {
+			ci.cancel();
+		}
 	}
 
+	@Inject(method = "onClose", at = @At("HEAD"))
+	private void onLevelLoadingScreenClose(CallbackInfo ci) {
+		LoadingScreenMod.initialJoin = false;
+	}
 }

@@ -32,3 +32,17 @@ accessible field com/mojang/blaze3d/vulkan/VulkanGpuBuffer$Direct mappingRefCoun
 accessible field com/mojang/blaze3d/vulkan/VulkanCommandEncoder currentSubmitIndex J
 accessible method com/mojang/blaze3d/vulkan/VulkanCommandEncoder awaitSubmitCompletion (JJ)Z
 accessible method com/mojang/blaze3d/vulkan/VulkanCommandEncoder commandBuffer ()Lorg/lwjgl/vulkan/VkCommandBuffer;
+
+# fastrender
+accessible field net/minecraft/client/gui/render/GuiItemAtlas texture Lcom/mojang/blaze3d/textures/GpuTexture;
+accessible field net/minecraft/client/gui/render/GuiItemAtlas depthTexture Lcom/mojang/blaze3d/textures/GpuTexture;
+accessible field net/minecraft/client/gui/render/GuiItemAtlas allocator Lnet/minecraft/client/gui/render/DynamicAtlasAllocator;
+accessible field net/minecraft/client/gui/render/DynamicAtlasAllocator usedSlotByKey Ljava/util/Map;
+accessible field net/minecraft/client/gui/render/DynamicAtlasAllocator$Slot fresh Z
+mutable field net/minecraft/client/gui/render/DynamicAtlasAllocator$Slot fresh Z
+accessible field net/minecraft/client/renderer/rendertype/RenderType state Lnet/minecraft/client/renderer/rendertype/RenderSetup;
+accessible field net/minecraft/client/renderer/rendertype/RenderSetup textures Ljava/util/Map;
+accessible class net/minecraft/client/renderer/rendertype/RenderSetup$TextureBinding
+accessible method net/minecraft/client/renderer/rendertype/RenderSetup$TextureBinding location ()Lnet/minecraft/resources/Identifier;
+accessible method com/mojang/blaze3d/opengl/DirectStateAccess bufferSubData (IJLjava/nio/ByteBuffer;I)V
+accessible method com/mojang/blaze3d/opengl/DirectStateAccess bufferData (ILjava/nio/ByteBuffer;I)V

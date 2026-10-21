@@ -18,6 +18,7 @@ Their work has helped improve the performance, functionality, and overall experi
 - [Damage Tint](https://github.com/Polyfrost/DamageTint)
 - [Dropped Item Tweaks](https://codeberg.org/MicrocontrollersDev/DroppedItemTweaks)
 - [FerriteCore](https://github.com/malte0811/FerriteCore)
+- [ImmediatelyFast](https://github.com/RaphiMC/ImmediatelyFast)
 - [Krypton](https://github.com/astei/krypton)
 - [MemoryLeakFix](https://github.com/fxmorin/memoryLeakFix)
 - [Universal Shortcuts](https://github.com/MDLC01/universal-shortcuts-mc)

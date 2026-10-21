@@ -89,5 +89,5 @@ Open the config screen using the `/lucent` command or by pressing the `Right-Shi
 
 ## Credits
 
-- [FerriteCore](https://github.com/malte0811/FerriteCore) for MemoryLeak Fix
-- [Krypton](https://github.com/astei/krypton) for Network Fix
+This project includes or draws inspiration from various open source projects.  
+For the full list of acknowledgments, see [Credits](docs/CREDITS.md).

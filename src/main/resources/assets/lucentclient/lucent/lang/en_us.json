@@ -215,6 +215,16 @@
 	"lucent.config.lucentclient.fastrendermod.property.fasttextlookup.name": "Fast Text Lookup",
 	"lucent.config.lucentclient.fastrendermod.property.fontatlasresizing.description": "Resizes font atlas texture to 1024x1024 to reduce texture switching lag.",
 	"lucent.config.lucentclient.fastrendermod.property.fontatlasresizing.name": "Font Atlas Resizing",
+	"lucent.config.lucentclient.fastrendermod.property.enhancedbatching.description": "Improves entity and text render batching to significantly reduce draw calls.",
+	"lucent.config.lucentclient.fastrendermod.property.enhancedbatching.name": "Enhanced Batching",
+	"lucent.config.lucentclient.fastrendermod.property.mapatlasgeneration.description": "Packs map textures into an atlas to reduce draw calls when rendering maps.",
+	"lucent.config.lucentclient.fastrendermod.property.mapatlasgeneration.name": "Map Atlas Generation",
+	"lucent.config.lucentclient.fastrendermod.property.skiptextsorting.description": "Skips redundant translucency sorting on text rendering for improved performance.",
+	"lucent.config.lucentclient.fastrendermod.property.skiptextsorting.name": "Skip Text Translucency Sorting",
+	"lucent.config.lucentclient.fastrendermod.property.avoidframebufferswitching.description": "Avoids redundant framebuffer binding switches to reduce GPU overhead.",
+	"lucent.config.lucentclient.fastrendermod.property.avoidframebufferswitching.name": "Avoid Framebuffer Switching",
+	"lucent.config.lucentclient.fastrendermod.property.fixslowbufferuploadonapplegpu.description": "Mitigates slow buffer uploads on Apple Silicon GPUs.",
+	"lucent.config.lucentclient.fastrendermod.property.fixslowbufferuploadonapplegpu.name": "Fix Slow Apple GPU Upload",
 	"lucent.config.lucentclient.fpsmod.general.description": "Displays your current frames per second.",
 	"lucent.config.lucentclient.fpsmod.general.name": "FPS",
 	"lucent.config.lucentclient.fpsmod.property.backgroundcolor.description": "Sets the color of the background box displayed on the screen.",
@@ -537,5 +547,7 @@
 	"lucent.config.lucentclient.betterscreensmod.property.cursorresettimer.name": "Cursor Reset Timer (ms)",
 	"lucent.config.lucentclient.betterscreensmod.property.cursorresettimer.description": "Maximum duration in milliseconds to remember the cursor position (0 = infinite).",
 	"lucent.config.lucentclient.betterscreensmod.property.removerecipebookshift.name": "Prevent Recipe Book Shift",
-	"lucent.config.lucentclient.betterscreensmod.property.removerecipebookshift.description": "Prevents the inventory screen from shifting left when opening the recipe book."
+	"lucent.config.lucentclient.betterscreensmod.property.removerecipebookshift.description": "Prevents the inventory screen from shifting left when opening the recipe book.",
+	"lucent.config.lucentclient.vanillahudmod.property.attackindicator.name": "Attack Indicator",
+	"lucent.config.lucentclient.vanillahudmod.property.attackindicator.description": "Changes the vanilla attack indicator setting."
 }

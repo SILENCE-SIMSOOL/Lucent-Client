@@ -43,3 +43,16 @@ accessible field com/mojang/blaze3d/opengl/GlBuffer MEMORY_POOl Lcom/mojang/jtra
 accessible class com/mojang/blaze3d/opengl/GlCommandEncoder
 accessible class com/mojang/blaze3d/opengl/GlDevice
 accessible field com/mojang/blaze3d/vertex/VertexFormat$Builder offsets Lit/unimi/dsi/fastutil/ints/IntList;
+accessible class net/minecraft/client/renderer/rendertype/RenderSetup$TextureBinding
+accessible method net/minecraft/client/renderer/rendertype/RenderSetup$TextureBinding location ()Lnet/minecraft/resources/Identifier;
+accessible field net/minecraft/client/renderer/rendertype/RenderType state Lnet/minecraft/client/renderer/rendertype/RenderSetup;
+accessible field net/minecraft/client/renderer/rendertype/RenderType name Ljava/lang/String;
+accessible field net/minecraft/client/renderer/rendertype/RenderSetup textures Ljava/util/Map;
+accessible field com/mojang/blaze3d/vertex/ByteBufferBuilder pointer J
+accessible field com/mojang/blaze3d/vertex/ByteBufferBuilder capacity J
+accessible field com/mojang/blaze3d/vertex/BufferBuilder buffer Lcom/mojang/blaze3d/vertex/ByteBufferBuilder;
+mutable field net/minecraft/client/renderer/MultiBufferSource$BufferSource sharedBuffer Lcom/mojang/blaze3d/vertex/ByteBufferBuilder;
+accessible method net/minecraft/client/renderer/MultiBufferSource$BufferSource endBatch (Lnet/minecraft/client/renderer/rendertype/RenderType;Lcom/mojang/blaze3d/vertex/BufferBuilder;)V
+accessible method com/mojang/blaze3d/opengl/DirectStateAccess bufferSubData (IJLjava/nio/ByteBuffer;I)V
+accessible method com/mojang/blaze3d/opengl/DirectStateAccess bufferData (ILjava/nio/ByteBuffer;I)V
+accessible class net/minecraft/client/resources/MapTextureManager$MapInstance

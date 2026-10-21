@@ -4,7 +4,11 @@ import silence.simsool.lucent.general.utils.LucentCategory;
 
 import java.awt.Color;
 
+import net.minecraft.client.AttackIndicatorStatus;
 import silence.simsool.lucent.Lucent;
+import silence.simsool.lucent.events.impl.ConfigEvent;
+import silence.simsool.lucent.events.impl.GUIEvent;
+import silence.simsool.lucent.events.impl.LucentEvent;
 import silence.simsool.lucent.general.enums.ConfigType;
 import silence.simsool.lucent.general.models.abstracts.Mod;
 import silence.simsool.lucent.general.models.interfaces.annotations.ModConfig;
@@ -167,4 +171,48 @@ public class VanillaHUDMod extends Mod {
 	)
 	public static boolean IndicatorItemCooldowns = true;
 
+	@ModConfig(
+		type = ConfigType.SELECTOR,
+		name = "lucent.config.lucentclient.vanillahudmod.property.attackindicator.name",
+		description = "lucent.config.lucentclient.vanillahudmod.property.attackindicator.description",
+		category = "Attack Indicator",
+		options = {"Off", "Crosshair", "Hotbar"},
+		priority = 1100
+	)
+	public static String AttackIndicator = "Crosshair";
+
+	{
+		LucentEvent.INIT_FINISHED_EVENT.register(VanillaHUDMod::syncFromOptions);
+		GUIEvent.OPEN.EVENT.register(event -> syncFromOptions());
+	}
+
+	@Override
+	public void onSelectorChange(ConfigEvent.SelectorEvent event) {
+		if ("AttackIndicator".equals(event.getField().getName())) {
+			updateAttackIndicator(event.getNewValue());
+		}
+	}
+
+	private static void updateAttackIndicator(String value) {
+		if (Lucent.mc == null || Lucent.mc.options == null) return;
+		AttackIndicatorStatus status = switch (value) {
+			case "Off" -> AttackIndicatorStatus.OFF;
+			case "Hotbar" -> AttackIndicatorStatus.HOTBAR;
+			default -> AttackIndicatorStatus.CROSSHAIR;
+		};
+		if (Lucent.mc.options.attackIndicator().get() != status) {
+			Lucent.mc.options.attackIndicator().set(status);
+			Lucent.mc.options.save();
+		}
+	}
+
+	public static void syncFromOptions() {
+		if (Lucent.mc == null || Lucent.mc.options == null) return;
+		AttackIndicatorStatus status = Lucent.mc.options.attackIndicator().get();
+		AttackIndicator = switch (status) {
+			case OFF -> "Off";
+			case HOTBAR -> "Hotbar";
+			default -> "Crosshair";
+		};
+	}
 }

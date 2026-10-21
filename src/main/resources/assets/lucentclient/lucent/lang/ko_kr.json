@@ -215,6 +215,16 @@
 	"lucent.config.lucentclient.fastrendermod.property.fasttextlookup.name": "텍스트 버퍼 룩업 최적화",
 	"lucent.config.lucentclient.fastrendermod.property.fontatlasresizing.description": "폰트 아틀라스를 1024x1024로 확장하여 글리프 텍스처 스위칭 렉을 방지합니다.",
 	"lucent.config.lucentclient.fastrendermod.property.fontatlasresizing.name": "폰트 아틀라스 확장",
+	"lucent.config.lucentclient.fastrendermod.property.enhancedbatching.description": "엔티티 및 텍스트 렌더링 배치를 개선하여 드로우 콜을 대폭 줄입니다.",
+	"lucent.config.lucentclient.fastrendermod.property.enhancedbatching.name": "향상된 배치 렌더링",
+	"lucent.config.lucentclient.fastrendermod.property.mapatlasgeneration.description": "지도 텍스처들을 아틀라스로 묶어 지도 렌더링 드로우 콜을 대폭 감소시킵니다.",
+	"lucent.config.lucentclient.fastrendermod.property.mapatlasgeneration.name": "지도 아틀라스 생성",
+	"lucent.config.lucentclient.fastrendermod.property.skiptextsorting.description": "텍스트 렌더링 시 불필요한 반투명 정렬을 건너뛰어 성능을 향상시킵니다.",
+	"lucent.config.lucentclient.fastrendermod.property.skiptextsorting.name": "텍스트 투명도 정렬 건너뛰기",
+	"lucent.config.lucentclient.fastrendermod.property.avoidframebufferswitching.description": "불필요한 프레임버퍼 바인딩 전환을 방지하여 GPU 오버헤드를 줄입니다.",
+	"lucent.config.lucentclient.fastrendermod.property.avoidframebufferswitching.name": "중복 프레임버퍼 전환 방지",
+	"lucent.config.lucentclient.fastrendermod.property.fixslowbufferuploadonapplegpu.description": "Apple Silicon GPU에서 버퍼 업로드 지연 현상을 완화합니다.",
+	"lucent.config.lucentclient.fastrendermod.property.fixslowbufferuploadonapplegpu.name": "Apple GPU 버퍼 업로드 최적화",
 	"lucent.config.lucentclient.fpsmod.general.description": "현재 초당 프레임 수(FPS)를 표시합니다.",
 	"lucent.config.lucentclient.fpsmod.general.name": "FPS",
 	"lucent.config.lucentclient.fpsmod.property.backgroundcolor.description": "화면에 표시되는 배경 박스의 색상을 설정합니다.",
@@ -537,5 +547,7 @@
 	"lucent.config.lucentclient.betterscreensmod.property.cursorresettimer.name": "커서 유지 제한 시간 (ms)",
 	"lucent.config.lucentclient.betterscreensmod.property.cursorresettimer.description": "커서 위치를 기억할 최대 시간(밀리초)입니다 (0 = 무제한).",
 	"lucent.config.lucentclient.betterscreensmod.property.removerecipebookshift.name": "레시피북 화면 밀림 방지",
-	"lucent.config.lucentclient.betterscreensmod.property.removerecipebookshift.description": "레시피북을 열 때 인벤토리 화면이 좌측으로 밀려나는 현상을 방지합니다."
+	"lucent.config.lucentclient.betterscreensmod.property.removerecipebookshift.description": "레시피북을 열 때 인벤토리 화면이 좌측으로 밀려나는 현상을 방지합니다.",
+	"lucent.config.lucentclient.vanillahudmod.property.attackindicator.name": "공격 표시기",
+	"lucent.config.lucentclient.vanillahudmod.property.attackindicator.description": "바닐라 비디오 설정의 공격 표시기를 변경합니다."
 }

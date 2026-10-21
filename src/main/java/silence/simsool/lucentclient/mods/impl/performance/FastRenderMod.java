@@ -36,4 +36,39 @@ public class FastRenderMod extends Mod {
 	)
 	public static boolean FastTextLookup = true;
 
+	@ModConfig(
+		type = ConfigType.SWITCH,
+		name = "lucent.config.lucentclient.fastrendermod.property.enhancedbatching.name",
+		description = "lucent.config.lucentclient.fastrendermod.property.enhancedbatching.description"
+	)
+	public static boolean EnhancedBatching = true;
+
+	@ModConfig(
+		type = ConfigType.SWITCH,
+		name = "lucent.config.lucentclient.fastrendermod.property.mapatlasgeneration.name",
+		description = "lucent.config.lucentclient.fastrendermod.property.mapatlasgeneration.description"
+	)
+	public static boolean MapAtlasGeneration = true;
+
+	@ModConfig(
+		type = ConfigType.SWITCH,
+		name = "lucent.config.lucentclient.fastrendermod.property.skiptextsorting.name",
+		description = "lucent.config.lucentclient.fastrendermod.property.skiptextsorting.description"
+	)
+	public static boolean SkipTextTranslucencySorting = true;
+
+	@ModConfig(
+		type = ConfigType.SWITCH,
+		name = "lucent.config.lucentclient.fastrendermod.property.avoidframebufferswitching.name",
+		description = "lucent.config.lucentclient.fastrendermod.property.avoidframebufferswitching.description"
+	)
+	public static boolean AvoidRedundantFramebufferSwitching = true;
+
+	@ModConfig(
+		type = ConfigType.SWITCH,
+		name = "lucent.config.lucentclient.fastrendermod.property.fixslowbufferuploadonapplegpu.name",
+		description = "lucent.config.lucentclient.fastrendermod.property.fixslowbufferuploadonapplegpu.description"
+	)
+	public static boolean FixSlowBufferUploadOnAppleGpu = true;
+
 }

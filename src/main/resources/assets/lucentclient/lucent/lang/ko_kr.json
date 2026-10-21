@@ -225,6 +225,18 @@
 	"lucent.config.lucentclient.fastrendermod.property.fasttextlookup.name": "텍스트 버퍼 룩업 최적화",
 	"lucent.config.lucentclient.fastrendermod.property.fontatlasresizing.description": "폰트 아틀라스를 1024x1024로 확장하여 글리프 텍스처 스위칭 렉을 방지합니다.",
 	"lucent.config.lucentclient.fastrendermod.property.fontatlasresizing.name": "폰트 아틀라스 확장",
+	"lucent.config.lucentclient.fastrendermod.property.enhancedbatching.description": "렌더 타입 배칭을 최적화하여 드로우 콜을 대폭 감소시킵니다.",
+	"lucent.config.lucentclient.fastrendermod.property.enhancedbatching.name": "배칭 최적화",
+	"lucent.config.lucentclient.fastrendermod.property.skiptextsorting.description": "텍스트 렌더링 시 불필요한 반투명 정렬을 건너뜁니다.",
+	"lucent.config.lucentclient.fastrendermod.property.skiptextsorting.name": "텍스트 반투명 정렬 생략",
+	"lucent.config.lucentclient.fastrendermod.property.avoidframebufferswitching.description": "불필요한 프레임버퍼 바인딩 전환을 방지하여 성능을 향상시킵니다.",
+	"lucent.config.lucentclient.fastrendermod.property.avoidframebufferswitching.name": "프레임버퍼 중복 전환 방지",
+	"lucent.config.lucentclient.fastrendermod.property.batchanimateditemupdates.description": "애니메이션 아이템 텍스처를 전용 아틀라스에 일괄 업데이트하여 GUI 렌더링을 최적화합니다.",
+	"lucent.config.lucentclient.fastrendermod.property.batchanimateditemupdates.name": "애니메이션 아이템 일괄 업데이트",
+	"lucent.config.lucentclient.fastrendermod.property.mapatlasgeneration.description": "지도 텍스처들을 단일 아틀라스로 결합하여 지도 렌더링 드로우 콜을 줄입니다.",
+	"lucent.config.lucentclient.fastrendermod.property.mapatlasgeneration.name": "지도 아틀라스 생성",
+	"lucent.config.lucentclient.fastrendermod.property.fixslowbufferuploadonapplegpu.description": "Apple Silicon 환경의 OpenGL 드라이버 버퍼 업로드 속도를 개선합니다.",
+	"lucent.config.lucentclient.fastrendermod.property.fixslowbufferuploadonapplegpu.name": "Apple GPU 버퍼 업로드 최적화",
 	"lucent.config.lucentclient.fpsmod.general.description": "현재 초당 프레임 수(FPS)를 표시합니다.",
 	"lucent.config.lucentclient.fpsmod.general.name": "FPS",
 	"lucent.config.lucentclient.fpsmod.property.backgroundcolor.description": "화면에 표시되는 배경 박스의 색상을 설정합니다.",
@@ -537,5 +549,7 @@
 	"lucent.config.lucentclient.zoommod.property.zoomkey.name": "줌 키",
 	"lucent.config.lucentclient.zoommod.property.zoomsensitivity.description": "줌 상태일 때 마우스 감도의 배율을 설정합니다. (기본값: 0.8)",
 	"lucent.config.lucentclient.zoommod.property.zoomsensitivity.name": "줌 감도",
-	"lucent.hud.performance.ping": "지연시간"
+	"lucent.hud.performance.ping": "지연시간",
+	"lucent.config.lucentclient.vanillahudmod.property.attackindicator.name": "공격 표시기",
+	"lucent.config.lucentclient.vanillahudmod.property.attackindicator.description": "바닐라 비디오 설정의 공격 표시기를 변경합니다."
 }

@@ -32,3 +32,15 @@ accessible field com/mojang/renderpearl/backend/vulkan/VulkanGpuBuffer$Direct ma
 accessible field com/mojang/renderpearl/backend/vulkan/VulkanCommandEncoder currentSubmitIndex J
 accessible method com/mojang/renderpearl/backend/vulkan/VulkanCommandEncoder awaitSubmitCompletion (JJ)Z
 accessible method com/mojang/renderpearl/backend/vulkan/VulkanCommandEncoder commandBuffer ()Lorg/lwjgl/vulkan/VkCommandBuffer;
+
+# fastrender
+accessible field net/minecraft/client/gui/render/GuiItemAtlas texture Lcom/mojang/renderpearl/api/textures/GpuTexture;
+accessible field net/minecraft/client/gui/render/GuiItemAtlas depthTexture Lcom/mojang/renderpearl/api/textures/GpuTexture;
+accessible field net/minecraft/client/gui/render/GuiItemAtlas allocator Lnet/minecraft/client/gui/render/DynamicAtlasAllocator;
+accessible field net/minecraft/client/gui/render/DynamicAtlasAllocator usedSlotByKey Ljava/util/Map;
+accessible field net/minecraft/client/gui/render/DynamicAtlasAllocator$Slot fresh Z
+mutable field net/minecraft/client/gui/render/DynamicAtlasAllocator$Slot fresh Z
+accessible field net/minecraft/client/renderer/rendertype/RenderType state Lnet/minecraft/client/renderer/rendertype/RenderSetup;
+accessible field net/minecraft/client/renderer/rendertype/RenderSetup textures Ljava/util/Map;
+accessible class net/minecraft/client/renderer/rendertype/RenderSetup$TextureBinding
+accessible method net/minecraft/client/renderer/rendertype/RenderSetup$TextureBinding location ()Lnet/minecraft/resources/Identifier;

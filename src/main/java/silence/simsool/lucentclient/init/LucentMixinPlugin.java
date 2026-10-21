@@ -2,7 +2,7 @@ package silence.simsool.lucentclient.init;
 
 import java.util.List;
 import java.util.Set;
-
+import net.fabricmc.loader.api.FabricLoader;
 import org.objectweb.asm.tree.ClassNode;
 import org.spongepowered.asm.mixin.extensibility.IMixinConfigPlugin;
 import org.spongepowered.asm.mixin.extensibility.IMixinInfo;
@@ -19,6 +19,9 @@ public class LucentMixinPlugin implements IMixinConfigPlugin {
 
 	@Override
 	public boolean shouldApplyMixin(String targetClassName, String mixinClassName) {
+		if (mixinClassName.contains("compat.iris") && !FabricLoader.getInstance().isModLoaded("iris")) {
+			return false;
+		}
 		return true;
 	}
 

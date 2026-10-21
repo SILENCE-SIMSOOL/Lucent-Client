@@ -57,4 +57,25 @@ public class FastRenderMod extends Mod {
 	)
 	public static boolean AvoidFramebufferSwitching = true;
 
+	@ModConfig(
+		type = ConfigType.SWITCH,
+		name = "lucent.config.lucentclient.fastrendermod.property.batchanimateditemupdates.name",
+		description = "lucent.config.lucentclient.fastrendermod.property.batchanimateditemupdates.description"
+	)
+	public static boolean BatchAnimatedItemUpdates = true;
+
+	@ModConfig(
+		type = ConfigType.SWITCH,
+		name = "lucent.config.lucentclient.fastrendermod.property.mapatlasgeneration.name",
+		description = "lucent.config.lucentclient.fastrendermod.property.mapatlasgeneration.description"
+	)
+	public static boolean MapAtlasGeneration = true;
+
+	@ModConfig(
+		type = ConfigType.SWITCH,
+		name = "lucent.config.lucentclient.fastrendermod.property.fixslowbufferuploadonapplegpu.name",
+		description = "lucent.config.lucentclient.fastrendermod.property.fixslowbufferuploadonapplegpu.description"
+	)
+	public static boolean FixSlowBufferUploadOnAppleGpu = true;
+
 }

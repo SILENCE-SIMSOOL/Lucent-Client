@@ -549,5 +549,7 @@
 	"lucent.config.lucentclient.zoommod.property.zoomkey.name": "Zoom Key",
 	"lucent.config.lucentclient.zoommod.property.zoomsensitivity.description": "Sets the mouse sensitivity multiplier when zoomed. (Default: 0.8)",
 	"lucent.config.lucentclient.zoommod.property.zoomsensitivity.name": "Zoom Sensitivity Ratio",
-	"lucent.hud.performance.ping": "LAT"
+	"lucent.hud.performance.ping": "LAT",
+	"lucent.config.lucentclient.vanillahudmod.property.attackindicator.name": "Attack Indicator",
+	"lucent.config.lucentclient.vanillahudmod.property.attackindicator.description": "Changes the vanilla attack indicator setting."
 }

@@ -146,7 +146,9 @@ public class CullTask implements Runnable {
 				this.requestCull = false;
 				this.lastCameraPos.set(cam.x, cam.y, cam.z);
 
-				this.culling.resetCache();
+				if (!this.readBuffer.isEmpty() || (EntityCullingMod.CullBlockEntities && !this.blockReadBuffer.isEmpty())) {
+					this.culling.resetCache();
+				}
 				cullEntities(cam, this.lastCameraPos);
 				cullBlockEntities(cam, this.lastCameraPos);
 			} catch (InterruptedException ignored) {

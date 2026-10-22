@@ -1,5 +1,7 @@
 package silence.simsool.lucentclient.mods.impl.utility;
 
+import java.util.Locale;
+
 import silence.simsool.lucent.general.utils.LucentCategory;
 
 import static silence.simsool.lucent.Lucent.mc;
@@ -50,13 +52,26 @@ public class TntTimerMod extends Mod {
 	)
 	public static boolean TextShadow = true;
 
+	private int cachedFuse;
+	private Locale cachedFuseLocale;
+	private String cachedFuseText;
+
+	private String getFuseText(int ticks) {
+		Locale locale = Locale.getDefault(Locale.Category.FORMAT);
+		if (cachedFuseText == null || cachedFuse != ticks || !locale.equals(cachedFuseLocale)) {
+			cachedFuse = ticks;
+			cachedFuseLocale = locale;
+			cachedFuseText = String.format(locale, "%.2fs", ticks / 20.0);
+		}
+		return cachedFuseText;
+	}
+
 	@Override
 	public void onRenderWorld(RenderWorldEvent event) {
 		for (Entity entity : mc.level.entitiesForRendering()) {
 			if (entity instanceof PrimedTnt tnt) {
 				int ticks = tnt.getFuse();
-				double time = ticks / 20.0;
-				String text = String.format("%.2fs", time);
+				String text = getFuseText(ticks);
 				Vec3 pos = entity.getPosition(event.partialTick).add(0, 1.44f, 0);
 //				if (ShowBackground) Render3D.drawBackgroundText(text, pos, 1.0f, -1, 0x80000000, true, TextShadow);
 //				else Render3D.drawText(text, pos, 1.0f, -1, true, TextShadow);

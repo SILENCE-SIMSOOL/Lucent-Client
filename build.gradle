@@ -11,6 +11,7 @@ base {
 }
 
 repositories {
+	mavenLocal()
 	mavenCentral()
 	flatDir {
 		def libDirs = [file("libs")]
@@ -62,9 +63,9 @@ dependencies {
 		include "org.lwjgl:lwjgl-nanovg:${lwjglVersion}:natives-${os}"
 	}
 
-	def lucentVersion = "${project.lucent_version}-${project.minecraft_version}-${project.lucent_library}"
-	modImplementation "com.github.SILENCE-SIMSOOL:lucent:${lucentVersion}"
-	include "com.github.SILENCE-SIMSOOL:lucent:${lucentVersion}"
+	def lucentVersion = "${project.lucent_version}-mc${project.minecraft_version}"
+	modImplementation "silence.simsool.lucent:lucent:${lucentVersion}:library"
+	include "silence.simsool.lucent:lucent:${lucentVersion}:library"
 
 	modImplementation ("com.velocitypowered:velocity-native:3.4.0-SNAPSHOT")
 	include ("com.velocitypowered:velocity-native:3.4.0-SNAPSHOT")

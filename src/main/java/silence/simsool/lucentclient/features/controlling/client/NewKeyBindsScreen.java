@@ -211,7 +211,7 @@ public class NewKeyBindsScreen extends KeyBindsScreen {
 	@Override
 	public boolean keyPressed(KeyEvent event) {
 		if (!search.isFocused() && this.selectedKey == null) {
-			if (event.hasControlDown() && (event.key() == 70 || event.key() == 'f' || event.key() == 'F')) {
+			if (event.hasControlDown() && event.key() == InputConstants.KEY_F) {
 				search.setFocused(true);
 				return true;
 			}

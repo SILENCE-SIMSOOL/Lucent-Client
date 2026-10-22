@@ -8,6 +8,9 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Axis;
 
 import net.minecraft.client.player.LocalPlayer;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.entity.LivingEntity.SwingDescription;
+import net.minecraft.world.item.component.SwingAnimation;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffectUtil;
 import net.minecraft.world.effect.MobEffects;
@@ -272,6 +275,7 @@ public class AnimationsMod extends Mod {
 	)
 	public static float ShieldHeight = 0.0f;
 
+	private static SwingDescription currentSwing;
 	private static boolean swinging = false;
 	private static int swingTimeTick = 0;
 	private static float attackAnim = 0.0f;
@@ -283,6 +287,7 @@ public class AnimationsMod extends Mod {
 	}
 
 	public static void resetSwing() {
+		currentSwing = null;
 		swinging = false;
 		swingTimeTick = 0;
 		attackAnim = 0.0f;
@@ -306,10 +311,11 @@ public class AnimationsMod extends Mod {
 		return swingTimeTick * speed;
 	}
 
-	public static void onSwing() {
+	public static void onSwing(InteractionHand hand, SwingAnimation animation) {
 		if (!isEnabled()) return;
 		int total = getCurrentSwingDuration();
 		if (swinging && swingTimeTick >= 0 && getSwingTime() < total / 2.0) return;
+		currentSwing = new SwingDescription(hand, animation, total);
 		swingTimeTick = -1;
 		swinging = true;
 	}
@@ -331,6 +337,10 @@ public class AnimationsMod extends Mod {
 		}
 
 		attackAnim = (float) (getSwingTime() / (double) total);
+	}
+
+	public static SwingDescription getCurrentSwing() {
+		return (swinging || prevAttackAnim > 0.0f) ? currentSwing : null;
 	}
 
 	public static float getSwingAnimation(float partialTick) {

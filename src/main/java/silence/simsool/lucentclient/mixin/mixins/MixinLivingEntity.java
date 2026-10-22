@@ -7,6 +7,8 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import net.minecraft.client.player.LocalPlayer;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.item.component.SwingAnimation;
 import net.minecraft.core.Holder;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffects;
@@ -26,14 +28,14 @@ public abstract class MixinLivingEntity {
 	}
 
 	@Inject(method = "swing(Lnet/minecraft/world/InteractionHand;Lnet/minecraft/world/item/component/SwingAnimation;Z)Z", at = @At("HEAD"), cancellable = true)
-	private void onSwing(CallbackInfoReturnable<Boolean> cir) {
+	private void onSwing(InteractionHand hand, SwingAnimation animation, boolean broadcast, CallbackInfoReturnable<Boolean> cir) {
 		LivingEntity self = (LivingEntity) (Object) this;
 		if (self instanceof LocalPlayer) {
 			if (AnimationsMod.isEnabled() && AnimationsMod.FixSlotDrop && UScreen.isScreenOpen()) {
 				cir.setReturnValue(false);
 				return;
 			}
-			AnimationsMod.onSwing();
+			AnimationsMod.onSwing(hand, animation);
 		}
 	}
 

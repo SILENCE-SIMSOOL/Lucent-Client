@@ -11,6 +11,7 @@ import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import net.minecraft.client.player.FirstPersonHandsAndItems;
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.entity.LivingEntity.SwingDescription;
 import silence.simsool.lucentclient.mods.impl.graphics.AnimationsMod;
 
 @Mixin(FirstPersonHandsAndItems.class)
@@ -36,5 +37,13 @@ public class MixinFirstPersonHandsAndItems {
 	private float onGetItemSwapScale(LocalPlayer instance, float partialTick, Operation<Float> original) {
 		if (AnimationsMod.isEnabled() && (AnimationsMod.NoEquipReset || AnimationsMod.InPlaceSwing)) return 1.0f;
 		return original.call(instance, partialTick);
+	}
+
+	@WrapOperation(
+		method = "extractRenderState",
+		at = @At(value = "INVOKE", target = "Lnet/minecraft/client/player/LocalPlayer;getCurrentSwing()Lnet/minecraft/world/entity/LivingEntity$SwingDescription;")
+	)
+	private SwingDescription onGetCurrentSwing(LocalPlayer player, Operation<SwingDescription> original) {
+		return AnimationsMod.isEnabled() ? AnimationsMod.getCurrentSwing() : original.call(player);
 	}
 }

@@ -22,6 +22,7 @@ import net.minecraft.client.renderer.state.level.PlayerRenderState;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.HumanoidArm;
+import net.minecraft.world.entity.LivingEntity.SwingDescription;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.ShieldItem;
 import silence.simsool.lucentclient.mods.impl.graphics.AnimationsMod;
@@ -36,6 +37,14 @@ public class MixinFirstPersonHandsAndItemsRenderer {
 	private float onGetAttackAnim(AvatarRenderState instance, Operation<Float> original) {
 		if (!AnimationsMod.isEnabled()) return original.call(instance);
 		return AnimationsMod.getSwingAnimation(Minecraft.getInstance().getDeltaTracker().getGameTimeDeltaPartialTick(false));
+	}
+
+	@WrapOperation(
+		method = "submitArmWithItem",
+		at = @At(value = "FIELD", target = "Lnet/minecraft/client/renderer/entity/state/AvatarRenderState;currentSwing:Lnet/minecraft/world/entity/LivingEntity$SwingDescription;", opcode = Opcodes.GETFIELD)
+	)
+	private SwingDescription onGetCurrentSwing(AvatarRenderState state, Operation<SwingDescription> original) {
+		return AnimationsMod.isEnabled() ? AnimationsMod.getCurrentSwing() : original.call(state);
 	}
 
 	@Inject(

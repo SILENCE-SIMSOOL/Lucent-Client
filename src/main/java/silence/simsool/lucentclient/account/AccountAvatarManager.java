@@ -1,5 +1,6 @@
 package silence.simsool.lucentclient.account;
 
+import static silence.simsool.lucent.Lucent.mc;
 import java.io.ByteArrayInputStream;
 import java.net.URI;
 import java.net.http.HttpClient;
@@ -7,10 +8,14 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.nio.ByteBuffer;
 import java.time.Duration;
-import java.util.Map;
 import java.util.UUID;
-import java.util.concurrent.CompletableFuture;
+import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.TimeUnit;
+
+import com.google.common.cache.Cache;
+import com.google.common.cache.CacheBuilder;
 
 import silence.simsool.lucent.ui.utils.nvg.Fonts;
 import silence.simsool.lucent.ui.utils.nvg.Image;
@@ -18,18 +23,35 @@ import silence.simsool.lucent.ui.utils.nvg.NVGRenderer;
 
 public class AccountAvatarManager {
 
-	private static final Map<UUID, Image> AVATAR_CACHE = new ConcurrentHashMap<>();
-	private static final Map<UUID, Boolean> LOADING_SET = new ConcurrentHashMap<>();
+	private static final Cache<UUID, Image> AVATAR_CACHE = CacheBuilder.newBuilder()
+		.maximumSize(128)
+		.<UUID, Image>removalListener(notification -> {
+			Image image = notification.getValue();
+			if (image != null && mc != null) mc.execute(() -> NVGRenderer.deleteImage(image));
+		})
+		.build();
+	private static final Cache<UUID, Long> RETRY_AFTER = CacheBuilder.newBuilder()
+		.maximumSize(128)
+		.expireAfterWrite(30, TimeUnit.SECONDS)
+		.build();
+	private static final Set<UUID> LOADING_SET = ConcurrentHashMap.newKeySet();
 	private static final HttpClient HTTP_CLIENT = HttpClient.newBuilder()
 		.connectTimeout(Duration.ofSeconds(5))
 		.build();
 
 	public static Image getAvatar(UUID uuid) {
 		if (uuid == null) return null;
-		Image cached = AVATAR_CACHE.get(uuid); if (cached != null) return cached;
+		Image cached = AVATAR_CACHE.getIfPresent(uuid); if (cached != null) return cached;
 
-		if (!LOADING_SET.containsKey(uuid)) {
-			LOADING_SET.put(uuid, true);
+		Long retryAfter = RETRY_AFTER.getIfPresent(uuid);
+		if (retryAfter != null && System.nanoTime() - retryAfter < 0) return null;
+		if (LOADING_SET.add(uuid)) {
+			cached = AVATAR_CACHE.getIfPresent(uuid);
+			retryAfter = RETRY_AFTER.getIfPresent(uuid);
+			if (cached != null || (retryAfter != null && System.nanoTime() - retryAfter < 0)) {
+				LOADING_SET.remove(uuid);
+				return cached;
+			}
 			CompletableFuture.runAsync(() -> {
 				try {
 					String url = "https://minotar.net/helm/" + uuid.toString().replace("-", "") + "/64.png";
@@ -50,6 +72,9 @@ public class AccountAvatarManager {
 					}
 				} catch (Exception ignored) {
 				} finally {
+					if (AVATAR_CACHE.getIfPresent(uuid) == null) {
+						RETRY_AFTER.put(uuid, System.nanoTime() + TimeUnit.SECONDS.toNanos(30));
+					}
 					LOADING_SET.remove(uuid);
 				}
 			});

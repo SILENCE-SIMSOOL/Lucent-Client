@@ -12,6 +12,7 @@ import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
 import java.util.Locale;
 import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -22,6 +23,8 @@ import silence.simsool.lucentclient.LucentClient;
 import silence.simsool.lucentclient.mods.impl.utility.AutoUpdateMod;
 
 public class AutoUpdater {
+
+	private static final AtomicBoolean CHECKING = new AtomicBoolean();
 
 	private static final Pattern FILENAME_PATTERN = Pattern.compile(
 		"^([A-Za-z0-9_.-]+)-([0-9]+(?:\\.[0-9]+)+)-mc([A-Za-z0-9_.-]+)\\.jar$",
@@ -69,10 +72,9 @@ public class AutoUpdater {
 			return;
 		}
 
+		if (!CHECKING.compareAndSet(false, true)) return;
 		CompletableFuture.runAsync(() -> {
 			try {
-				cleanOldJars();
-
 				String mcVer = getMinecraftVersion();
 				Lucent.LOG.info("Checking updates for LucentClient (Minecraft version: " + mcVer + ", Current: " + LucentClient.VERSION + ")");
 
@@ -103,6 +105,8 @@ public class AutoUpdater {
 				}
 			} catch (Exception e) {
 				Lucent.LOG.error("Error while checking auto update: " + e.getMessage());
+			} finally {
+				CHECKING.set(false);
 			}
 		});
 	}

@@ -11,10 +11,12 @@ import java.util.Map;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 import net.minecraft.client.multiplayer.ClientLevel;
+import net.minecraft.client.multiplayer.ClientChunkCache;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.chunk.LevelChunk;
+import net.minecraft.world.level.chunk.status.ChunkStatus;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 import silence.simsool.lucentclient.mods.impl.performance.EntityCullingMod;
@@ -43,6 +45,7 @@ public class CullTask implements Runnable {
 
 	private volatile Vec3 cameraMC = new Vec3(0, 0, 0);
 	private int captureCounter = 0;
+	private ClientLevel capturedLevel;
 	private int lastPlayerChunkX = Integer.MIN_VALUE;
 	private int lastPlayerChunkZ = Integer.MIN_VALUE;
 
@@ -55,6 +58,10 @@ public class CullTask implements Runnable {
 			return false;
 		}
 
+		if (this.capturedLevel != mc.level) {
+			clearBuffers();
+			this.capturedLevel = mc.level;
+		}
 		this.writeBuffer.clear();
 		for (Entity entity : entities) {
 			if (entity instanceof Cullable cullable) {
@@ -83,19 +90,17 @@ public class CullTask implements Runnable {
 		}
 
 		this.cameraMC = camPos;
-		this.requestCull = true;
 		this.isProcessing.set(true);
+		this.requestCull = true;
 		return true;
 	}
 
 	private void populateBlockEntities(ClientLevel level, int playerChunkX, int playerChunkZ) {
 		this.blockWriteBuffer.clear();
+		ClientChunkCache chunks = level.getChunkSource();
 		for (int x = -8; x <= 8; x++) {
 			for (int z = -8; z <= 8; z++) {
-				if (!level.hasChunk(playerChunkX + x, playerChunkZ + z)) {
-					continue;
-				}
-				LevelChunk chunk = level.getChunk(playerChunkX + x, playerChunkZ + z);
+				LevelChunk chunk = chunks.getChunk(playerChunkX + x, playerChunkZ + z, ChunkStatus.FULL, false);
 				if (chunk == null) {
 					continue;
 				}
@@ -126,33 +131,55 @@ public class CullTask implements Runnable {
 		this.running = false;
 	}
 
+	private synchronized boolean takePendingCapture() {
+		if (!this.requestCull) return false;
+		this.requestCull = false;
+		return true;
+	}
+
+	private void clearBuffers() {
+		this.bufferA.clear();
+		this.bufferB.clear();
+		this.blockBufferA.clear();
+		this.blockBufferB.clear();
+		this.readBuffer = Collections.emptyList();
+		this.blockReadBuffer = Collections.emptyList();
+		this.capturedLevel = null;
+		this.captureCounter = 0;
+		this.lastPlayerChunkX = Integer.MIN_VALUE;
+		this.lastPlayerChunkZ = Integer.MIN_VALUE;
+		EntityCullingMod.culledEntities = 0;
+		EntityCullingMod.consideredBlockEntities = 0;
+	}
+
+	private synchronized void releaseIdleBuffers() {
+		if (!this.isProcessing.get() && this.capturedLevel != null
+				&& (!EntityCullingMod.isEnabled() || mc.level == null)) {
+			clearBuffers();
+		}
+	}
+
 	@Override
 	public void run() {
 		while (this.running) {
 			try {
-				int delay = Math.max(1, EntityCullingMod.SleepDelay);
-				Thread.sleep(delay);
-
-				if (!EntityCullingMod.isEnabled() || mc.level == null || mc.player == null) {
-					this.isProcessing.set(false);
-					continue;
-				}
-
-				if (!this.isProcessing.get() && !this.requestCull) {
-					continue;
-				}
-
+				Thread.sleep(Math.max(1, EntityCullingMod.SleepDelay));
+			} catch (InterruptedException ignored) {
+				break;
+			}
+			if (!takePendingCapture()) {
+				releaseIdleBuffers();
+				continue;
+			}
+			try {
+				if (!EntityCullingMod.isEnabled() || mc.level != this.capturedLevel || mc.player == null) continue;
 				Vec3 cam = this.cameraMC;
-				this.requestCull = false;
 				this.lastCameraPos.set(cam.x, cam.y, cam.z);
-
 				if (!this.readBuffer.isEmpty() || (EntityCullingMod.CullBlockEntities && !this.blockReadBuffer.isEmpty())) {
 					this.culling.resetCache();
 				}
 				cullEntities(cam, this.lastCameraPos);
 				cullBlockEntities(cam, this.lastCameraPos);
-			} catch (InterruptedException ignored) {
-				break;
 			} catch (Exception ignored) {
 			} finally {
 				this.isProcessing.set(false);

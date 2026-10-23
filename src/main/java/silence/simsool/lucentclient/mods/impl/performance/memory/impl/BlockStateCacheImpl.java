@@ -59,11 +59,14 @@ public class BlockStateCacheImpl {
 	}
 
 	public static void deduplicateCachePost(BlockBehaviour.BlockStateBase state) {
-		BlockStateCacheAccess newCache = (BlockStateCacheAccess) GET_CACHE.get().apply(state);
-		if (newCache != null) {
-			BlockStateCacheAccess oldCache = LAST_CACHE.get();
-			deduplicateCollisionShape(newCache, oldCache);
-			deduplicateFaceSturdyArray(newCache, oldCache);
+		try {
+			BlockStateCacheAccess newCache = (BlockStateCacheAccess) GET_CACHE.get().apply(state);
+			if (newCache != null) {
+				BlockStateCacheAccess oldCache = LAST_CACHE.get();
+				deduplicateCollisionShape(newCache, oldCache);
+				deduplicateFaceSturdyArray(newCache, oldCache);
+			}
+		} finally {
 			LAST_CACHE.remove();
 		}
 	}

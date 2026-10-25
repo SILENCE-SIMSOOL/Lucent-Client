@@ -32,7 +32,7 @@ public class AccountAvatarManager {
 		.build();
 	private static final Cache<UUID, Long> RETRY_AFTER = CacheBuilder.newBuilder()
 		.maximumSize(128)
-		.expireAfterWrite(30, TimeUnit.SECONDS)
+		.expireAfterWrite(Duration.ofSeconds(30))
 		.build();
 	private static final Set<UUID> LOADING_SET = ConcurrentHashMap.newKeySet();
 	private static final HttpClient HTTP_CLIENT = HttpClient.newBuilder()

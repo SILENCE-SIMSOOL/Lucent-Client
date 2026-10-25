@@ -13,6 +13,7 @@ public class IrisCompat {
 	public static Consumer<Boolean> renderWithExtendedVertexFormat;
 	public static ThreadLocal<Boolean> skipExtension;
 
+	@SuppressWarnings("unchecked")
 	public static void init() {
 		if (!FabricLoader.getInstance().isModLoaded("iris")) {
 			return;

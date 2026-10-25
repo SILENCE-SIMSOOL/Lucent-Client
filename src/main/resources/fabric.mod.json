@@ -33,6 +33,6 @@
 		"minecraft": "~1.21",
 		"java": ">=21",
 		"fabric-api": "*",
-		"lucent": ">=1.4.6"
+		"lucent": ">=1.5.17"
 	}
 }

@@ -11,7 +11,6 @@ base {
 }
 
 repositories {
-	mavenLocal()
 	mavenCentral()
 	flatDir {
 		def libDirs = [file("libs"), file("${projectDir}/../../Lucent/26.3/build/libs")]
@@ -58,9 +57,9 @@ dependencies {
 	implementation "io.github.humbleui:types:${project.types_version}"
 	include "io.github.humbleui:types:${project.types_version}"
 
-	def lucentVersion = "${project.lucent_version}-mc${project.minecraft_version}"
-	implementation "silence.simsool.lucent:lucent:${lucentVersion}:library"
-	include "silence.simsool.lucent:lucent:${lucentVersion}:library"
+	def lucentVersion = "${project.lucent_version}-${project.minecraft_version}-${project.lucent_library}"
+	implementation "com.github.SILENCE-SIMSOOL:lucent:${lucentVersion}"
+	include "com.github.SILENCE-SIMSOOL:lucent:${lucentVersion}"
 
 	implementation ("com.velocitypowered:velocity-native:3.4.0-SNAPSHOT")
 	include ("com.velocitypowered:velocity-native:3.4.0-SNAPSHOT")

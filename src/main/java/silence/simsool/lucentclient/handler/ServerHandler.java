@@ -4,6 +4,7 @@ import static silence.simsool.lucent.Lucent.mc;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import net.minecraft.network.protocol.ping.ClientboundPongResponsePacket;
 import net.minecraft.util.Mth;
 import net.minecraft.util.Util;
@@ -21,6 +22,18 @@ public class ServerHandler {
 	private static int averagePing = 0;
 	private static long lastPingCalculationTime = 0L;
 
+	private record TpsText(float value, Locale locale, String text) {}
+	private static TpsText currentTpsText;
+	private static TpsText averageTpsText;
+
+	private static TpsText formatTps(float value, TpsText cached) {
+		Locale locale = Locale.getDefault(Locale.Category.FORMAT);
+		if (cached != null && Float.floatToIntBits(cached.value) == Float.floatToIntBits(value) && cached.locale.equals(locale)) {
+			return cached;
+		}
+		return new TpsText(value, locale, String.format(locale, "%.1f", value));
+	}
+
 	public static void init() {
 		PacketEvent.RECEIVE.register(event -> {
 			if (event.packet instanceof ClientboundPongResponsePacket pong) {
@@ -36,7 +49,9 @@ public class ServerHandler {
 	}
 
 	public static String getTextTPS() {
-		return String.format("%.1f", currentTps);
+		TpsText text = formatTps(currentTps, currentTpsText);
+		currentTpsText = text;
+		return text.text;
 	}
 
 	public static float getAverageTPS() {
@@ -44,7 +59,9 @@ public class ServerHandler {
 	}
 
 	public static String getTextAverageTPS() {
-		return String.format("%.1f", averageTps);
+		TpsText text = formatTps(averageTps, averageTpsText);
+		averageTpsText = text;
+		return text.text;
 	}
 
 	public static int getPing() {

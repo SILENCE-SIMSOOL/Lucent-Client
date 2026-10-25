@@ -233,8 +233,11 @@ public final class FastPing {
 		@Override
 		public void channelRead(ChannelHandlerContext ctx, Object msg) {
 			ByteBuf in = (ByteBuf) msg;
-			cumulation.writeBytes(in);
-			in.release();
+			try {
+				cumulation.writeBytes(in);
+			} finally {
+				in.release();
+			}
 
 			while (true) {
 				cumulation.markReaderIndex();
@@ -247,6 +250,9 @@ public final class FastPing {
 
 					ByteBuf packet = cumulation.readSlice(packetLen);
 					handlePacket(ctx, packet);
+					if (ctx.isRemoved()) {
+						return;
+					}
 				} catch (IndexOutOfBoundsException e) {
 					cumulation.resetReaderIndex();
 					return;
@@ -259,6 +265,14 @@ public final class FastPing {
 			if (!future.isDone()) {
 				future.completeExceptionally(new IOException("Channel closed"));
 			}
+		}
+
+		@Override
+		public void handlerRemoved(ChannelHandlerContext ctx) {
+			if (timeout != null) {
+				timeout.cancel(false);
+			}
+			cumulation.release();
 		}
 
 		private void handlePacket(ChannelHandlerContext ctx, ByteBuf packet) {
@@ -320,9 +334,16 @@ public final class FastPing {
 
 		private ByteBuf frame(ByteBuf inner) {
 			ByteBuf out = Unpooled.buffer();
-			FSPVarIntUtils.writeVarInt(out, inner.readableBytes());
-			out.writeBytes(inner);
-			return out;
+			try {
+				FSPVarIntUtils.writeVarInt(out, inner.readableBytes());
+				out.writeBytes(inner);
+				return out;
+			} catch (RuntimeException | Error e) {
+				out.release();
+				throw e;
+			} finally {
+				inner.release();
+			}
 		}
 	}
 

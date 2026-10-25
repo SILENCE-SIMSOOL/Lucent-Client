@@ -4,6 +4,7 @@ import java.util.Hashtable;
 import java.util.concurrent.ConcurrentHashMap;
 
 import javax.naming.Context;
+import javax.naming.NamingException;
 import javax.naming.directory.Attribute;
 import javax.naming.directory.InitialDirContext;
 
@@ -25,7 +26,16 @@ public final class SrvResolver {
 		try {
 			Hashtable<String, String> env = new Hashtable<>();
 			env.put(Context.INITIAL_CONTEXT_FACTORY, "com.sun.jndi.dns.DnsContextFactory");
-			Attribute srv = new InitialDirContext(env).getAttributes("_minecraft._tcp." + host, new String[]{"SRV"}).get("SRV");
+			InitialDirContext context = new InitialDirContext(env);
+			Attribute srv;
+			try {
+				srv = context.getAttributes("_minecraft._tcp." + host, new String[]{"SRV"}).get("SRV");
+			} finally {
+				try {
+					context.close();
+				} catch (NamingException ignored) {
+				}
+			}
 
 			Resolved resolved;
 			if (srv == null) {

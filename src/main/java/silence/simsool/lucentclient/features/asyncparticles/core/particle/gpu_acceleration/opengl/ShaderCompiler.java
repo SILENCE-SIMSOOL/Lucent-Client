@@ -37,16 +37,22 @@ public class ShaderCompiler {
 		}
 
 		programId = GL20C.glCreateProgram();
-		GL20C.glAttachShader(programId, shaderId);
-		beforeLink.accept(programId);
-		GL20C.glLinkProgram(programId);
-		GL20C.glDeleteShader(shaderId);
+		try {
+			GL20C.glAttachShader(programId, shaderId);
+			beforeLink.accept(programId);
+			GL20C.glLinkProgram(programId);
 
-		int linkStatus = GL20C.glGetProgrami(programId, GlConst.GL_LINK_STATUS);
-		if (linkStatus == GlConst.GL_FALSE) {
-			String log = GL20C.glGetProgramInfoLog(programId, 1024);
-			throw new IllegalStateException("Link error: " + log);
+			int linkStatus = GL20C.glGetProgrami(programId, GlConst.GL_LINK_STATUS);
+			if (linkStatus == GlConst.GL_FALSE) {
+				String log = GL20C.glGetProgramInfoLog(programId, 1024);
+				throw new IllegalStateException("Link error: " + log);
+			}
+			return programId;
+		} catch (RuntimeException | Error e) {
+			GL20C.glDeleteProgram(programId);
+			throw e;
+		} finally {
+			GL20C.glDeleteShader(shaderId);
 		}
-		return programId;
 	}
 }

@@ -32,7 +32,7 @@
 		"minecraft": "~26.3-",
 		"java": ">=25",
 		"fabric-api": "*",
-		"lucent": ">=1.4.6"
+		"lucent": ">=1.5.17"
 	},
 	"accessWidener": "lucentclient.accesswidener"
 }

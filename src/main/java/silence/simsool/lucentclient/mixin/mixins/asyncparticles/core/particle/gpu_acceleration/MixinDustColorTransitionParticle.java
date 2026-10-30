@@ -11,6 +11,7 @@ import org.spongepowered.asm.mixin.Shadow;
 
 @Mixin(DustColorTransitionParticle.class)
 public abstract class MixinDustColorTransitionParticle extends SingleQuadParticle implements GpuParticleAddon {
+
 	protected MixinDustColorTransitionParticle(ClientLevel level, double x, double y, double z, TextureAtlasSprite sprite) {
 		super(level, x, y, z, sprite);
 	}
@@ -35,4 +36,5 @@ public abstract class MixinDustColorTransitionParticle extends SingleQuadParticl
 			(int) (gCol * 255.0f),
 			(int) (rCol * 255.0f));
 	}
+
 }

@@ -13,11 +13,12 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(LevelExtractor.class)
 public class MixinLevelExtractor {
+
 	@Inject(method = "extract", at = @At("HEAD"))
 	private void extractLevelHead(DeltaTracker deltaTracker,
-	                              Camera camera,
-	                              float deltaPartialTick,
-	                              CallbackInfo ci) {
+								  Camera camera,
+								  float deltaPartialTick,
+								  CallbackInfo ci) {
 		if (ConfigHelper.isGpuParticles()) {
 			GpuParticleBehavior.getInstance().beginFrame(deltaPartialTick);
 			if (ConfigHelper.getComputeExecutionStage() == ComputeExecutionStage.LEVEL_EXTRACTION) {
@@ -25,4 +26,5 @@ public class MixinLevelExtractor {
 			}
 		}
 	}
+
 }

@@ -19,6 +19,7 @@ import java.util.Locale;
 import java.util.Set;
 
 public class Backends {
+
 	public static GlCommands gl;
 	public static GlCommands.TransformFeedback glTf;
 	public static final GlCommands.ComputeShader glCs;
@@ -159,4 +160,5 @@ public class Backends {
 			+ "\n},\n"
 			+ device.getDeviceInfo();
 	}
+
 }

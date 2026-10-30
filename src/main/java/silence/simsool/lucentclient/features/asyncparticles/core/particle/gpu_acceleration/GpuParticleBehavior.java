@@ -27,6 +27,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.function.Predicate;
 
 public class GpuParticleBehavior {
+
 	public static final String RENDER_METHOD = Mappings.getRenderMethod();
 	public static final String RENDER_ROTATED_QUAD_METHOD_1 = Mappings.getRenderRotatedQuadMethod1();
 	public static final String RENDER_ROTATED_QUAD_METHOD_2 = Mappings.getRenderRotatedQuadMethod2();
@@ -135,8 +136,8 @@ public class GpuParticleBehavior {
 	}
 
 	private static Class<?> findDeclaringClass(Class<?> clazz,
-	                                           String methodName,
-	                                           Class<?>... parameterTypes) throws NoSuchMethodException {
+											   String methodName,
+											   Class<?>... parameterTypes) throws NoSuchMethodException {
 		while (clazz != null && clazz != Object.class) {
 			try {
 				return clazz.getDeclaredMethod(methodName, parameterTypes).getDeclaringClass();
@@ -256,4 +257,5 @@ public class GpuParticleBehavior {
 			renderer = null;
 		}
 	}
+
 }

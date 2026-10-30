@@ -4,6 +4,7 @@ package silence.simsool.lucentclient.mods.impl.performance.memory.impl.fastmap;
  * Defines the indexing strategy for a single property in a FastMap
  */
 public interface FastMapKey {
+
 	/**
 	 * @param mapIndex   The original index in the FastMap's value matrix
 	 * @param valueIndex The value to assign to this property
@@ -25,4 +26,5 @@ public interface FastMapKey {
 	int getFactorToNext();
 
 	int getIndexIn(int mapIndex);
+
 }

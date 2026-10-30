@@ -29,8 +29,10 @@ public class AccountStorage {
 	private static SecretKey cachedKey = null;
 
 	public static class StorageData {
+
 		public UUID activeAccountId;
 		public List<Account> accounts = new ArrayList<>();
+
 	}
 
 	public static StorageData load() {

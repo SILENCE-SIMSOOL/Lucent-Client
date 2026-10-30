@@ -86,6 +86,7 @@ public class SmallThreadingDetector {
 			result.waitUntilReady(role);
 			return result;
 		}
+
 	}
 
 	/**
@@ -93,6 +94,7 @@ public class SmallThreadingDetector {
 	 * SmallThreadDetectable
 	 */
 	private static class CrashingState {
+
 		final String name;
 		final SmallThreadDetectable owner;
 		Thread acquireThread;
@@ -134,10 +136,13 @@ public class SmallThreadingDetector {
 				this.wait(maxTotalTime);
 			}
 		}
+
 	}
 
 	private enum ThreadRole {
+
 		ACQUIRE, RELEASE, BYSTANDER
+
 	}
 
 }

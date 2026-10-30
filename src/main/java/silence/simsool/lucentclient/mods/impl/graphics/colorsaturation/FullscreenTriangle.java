@@ -36,4 +36,5 @@ public class FullscreenTriangle {
 		}
 		return vertexBuffer;
 	}
+
 }

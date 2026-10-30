@@ -8,8 +8,10 @@ import org.objectweb.asm.tree.ClassNode;
  * APIs may be removed or change frequently before pull requests are merged.
  */
 public interface MixinClassProvider {
+
 	/**
 	 * The class node will be renamed to a generated name.
 	 */
 	ClassNode getMixinClass();
+
 }

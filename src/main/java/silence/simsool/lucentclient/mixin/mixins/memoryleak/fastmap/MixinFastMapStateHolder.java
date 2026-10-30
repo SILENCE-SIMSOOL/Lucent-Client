@@ -20,6 +20,7 @@ import silence.simsool.lucentclient.mods.impl.performance.memory.impl.fastmap.Fa
 //Applied before other Mixins to avoid overwriting injected code
 @Mixin(value = StateHolder.class, priority = 900)
 public abstract class MixinFastMapStateHolder<O, S> implements FastMapStateHolder<S> {
+
 	@Shadow
 	@Final
 	@Mutable

@@ -12,6 +12,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(value = ClientLevel.class)
 public class MixinParticleEngine_FixBlackDestroyParticle {
+
 	@Inject(method = "addDestroyBlockEffect", order = 99, at = @At(value = "INVOKE",
 		target = "Lnet/minecraft/world/level/block/state/BlockState;getShape(Lnet/minecraft/world/level/BlockGetter;Lnet/minecraft/core/BlockPos;)Lnet/minecraft/world/phys/shapes/VoxelShape;"))
 	private void fixBlackDestroyParticle1(BlockPos pos, BlockState blockState, CallbackInfo ci) {
@@ -24,4 +25,5 @@ public class MixinParticleEngine_FixBlackDestroyParticle {
 	private void fixBlackDestroyParticle2(BlockPos pos, BlockState blockState, CallbackInfo ci) {
 		ParticleHelper.DESTRUCTION_LIGHT_CACHE.remove();
 	}
+
 }

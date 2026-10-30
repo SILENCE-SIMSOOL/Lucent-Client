@@ -38,4 +38,5 @@ public class LoadingScreenMod extends Mod {
 		description = "lucent.config.lucentclient.loadingscreenmod.property.fastresourcepackloading.description"
 	)
 	public static boolean FastResourcePackLoading = true;
+
 }

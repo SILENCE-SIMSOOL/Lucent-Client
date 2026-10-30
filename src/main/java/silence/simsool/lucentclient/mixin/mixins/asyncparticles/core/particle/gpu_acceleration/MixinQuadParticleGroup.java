@@ -19,6 +19,7 @@ import java.util.Queue;
 
 @Mixin(QuadParticleGroup.class)
 public abstract class MixinQuadParticleGroup implements GpuParticleGroup {
+
 	@Shadow
 	@Final
 	private QuadParticleRenderState particleTypeRenderState;
@@ -39,4 +40,5 @@ public abstract class MixinQuadParticleGroup implements GpuParticleGroup {
 	public void asyncparticles$removeDeadGpuParticles() {
 		AsyncTickBehavior.getInstance().doParticlesRemoveIf(asyncparticles$gpuParticles);
 	}
+
 }

@@ -26,7 +26,7 @@ public class CoordinatesHUD extends LucentHUD {
 		long now = System.currentTimeMillis();
 		if (now - lastCacheTime >= 1000L) {
 			lastCacheTime = now;
-			
+
 			cachedBiome = mc.level.getBiome(mc.player.blockPosition())
 				.unwrapKey()
 				.map(key -> {
@@ -117,10 +117,10 @@ public class CoordinatesHUD extends LucentHUD {
 			String line = lines.get(i);
 			float lineW = mc.font.width(line);
 			float lx = rx;
-			
+
 			if (alignment == Align.CENTER) lx += (maxW - lineW) * scale / 2f;
 			else if (alignment == Align.RIGHT) lx += (maxW - lineW) * scale;
-			
+
 			pose.pushMatrix();
 			pose.translate(lx, ry + i * 10 * scale);
 			pose.scale(scale, scale);
@@ -135,13 +135,13 @@ public class CoordinatesHUD extends LucentHUD {
 		}
 		List<String> lines = new ArrayList<>();
 		BlockPos pos = preview ? new BlockPos(121, 78, -242) : (mc.player != null ? mc.player.blockPosition() : BlockPos.ZERO);
-		
+
 		String xStr = "X: " + pos.getX();
 		String yStr = "Y: " + pos.getY();
 		String zStr = "Z: " + pos.getZ();
-		
+
 		String mode = CoordinatesMod.ListMode;
-		
+
 		if (mode.equals("vertical")) {
 			if (CoordinatesMod.ShowX) lines.add(xStr);
 			if (CoordinatesMod.ShowY) lines.add(yStr);
@@ -171,7 +171,7 @@ public class CoordinatesHUD extends LucentHUD {
 				if (biome != null) lines.add("Biome: " + biome);
 			}
 		}
-		
+
 		return lines;
 	}
 

@@ -7,6 +7,7 @@ import net.minecraft.network.chat.Component;
 import java.util.function.Supplier;
 
 public enum ParticleAsyncMode implements TranslatableEnum {
+
 	SEQUENTIAL(() -> Component.translatable("config.asyncparticles.enum.ParticleAsyncMode.SEQUENTIAL")
 		.withStyle(ChatFormatting.GREEN)),
 	SPLIT(() -> Component.translatable("config.asyncparticles.enum.ParticleAsyncMode.SPLIT")
@@ -23,4 +24,5 @@ public enum ParticleAsyncMode implements TranslatableEnum {
 	public Component getComponent() {
 		return componentSupplier.get();
 	}
+
 }

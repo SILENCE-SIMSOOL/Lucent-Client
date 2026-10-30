@@ -47,10 +47,6 @@ public abstract class MixinSkinTextureDownloader {
 			textureManager.register(thinIdentifier, new DynamicTexture(thinIdentifier::toString, nativeImage));
 			cir.setReturnValue(new ClientAsset.DownloadedTexture(thinIdentifier, url));
 
-			NativeImage converted = new NativeImage(nativeImage.format(), nativeImage.getWidth(), nativeImage.getHeight(), true);
-			converted.copyFrom(nativeImage);
-			convertAlexToSteve(converted);
-			textureManager.register(thiccIdentifier, new DynamicTexture(thiccIdentifier::toString, converted));
 		}
 	}
 
@@ -71,102 +67,4 @@ public abstract class MixinSkinTextureDownloader {
 		return false;
 	}
 
-	@Unique
-	private static void convertAlexToSteve(NativeImage skin) {
-		// Right hand
-		skin.copyRect(48, 16, 2, 0, 2, 4, false, false);
-		skin.copyRect(48, 16, 1, 0, 1, 4, false, false);
-		skin.copyRect(47, 16, 1, 0, 1, 4, false, false);
-
-		// Left hand
-		skin.copyRect(40, 48, 2, 0, 2, 4, false, false);
-		skin.copyRect(40, 48, 1, 0, 1, 4, false, false);
-		skin.copyRect(39, 48, 1, 0, 1, 4, false, false);
-
-		// Right shoulder
-		skin.copyRect(46, 16, 1, 0, 1, 4, false, false);
-		skin.copyRect(45, 16, 1, 0, 1, 4, false, false);
-
-		// Left shoulder
-		skin.copyRect(38, 48, 1, 0, 1, 4, false, false);
-		skin.copyRect(37, 48, 1, 0, 1, 4, false, false);
-
-		// Back side of left arm
-		skin.copyRect(52, 20, 2, 0, 2, 12, false, false);
-		skin.copyRect(52, 20, 1, 0, 1, 12, false, false);
-		skin.copyRect(51, 20, 1, 0, 1, 12, false, false);
-
-		// Right side of left arm
-		skin.copyRect(50, 20, 1, 0, 1, 12, false, false);
-		skin.copyRect(49, 20, 1, 0, 1, 12, false, false);
-		skin.copyRect(48, 20, 1, 0, 1, 12, false, false);
-		skin.copyRect(47, 20, 1, 0, 1, 12, false, false);
-
-		// Front side of left arm
-		skin.copyRect(46, 20, 1, 0, 1, 12, false, false);
-		skin.copyRect(45, 20, 1, 0, 1, 12, false, false);
-
-		// Back side of right arm
-		skin.copyRect(44, 52, 2, 0, 2, 12, false, false);
-		skin.copyRect(44, 52, 1, 0, 1, 12, false, false);
-		skin.copyRect(43, 52, 1, 0, 1, 12, false, false);
-
-		// Left side of right arm
-		skin.copyRect(42, 52, 1, 0, 1, 12, false, false);
-		skin.copyRect(41, 52, 1, 0, 1, 12, false, false);
-		skin.copyRect(40, 52, 1, 0, 1, 12, false, false);
-		skin.copyRect(39, 52, 1, 0, 1, 12, false, false);
-
-		// Front side of right arm
-		skin.copyRect(38, 52, 1, 0, 1, 12, false, false);
-		skin.copyRect(37, 52, 1, 0, 1, 12, false, false);
-
-		// Right glove
-		skin.copyRect(48, 32, 2, 0, 2, 4, false, false);
-		skin.copyRect(48, 32, 1, 0, 1, 4, false, false);
-		skin.copyRect(47, 32, 1, 0, 1, 4, false, false);
-
-		// Left glove
-		skin.copyRect(56, 48, 2, 0, 2, 4, false, false);
-		skin.copyRect(56, 48, 1, 0, 1, 4, false, false);
-		skin.copyRect(55, 48, 1, 0, 1, 4, false, false);
-
-		// Right shoulder overlay
-		skin.copyRect(46, 32, 1, 0, 1, 4, false, false);
-		skin.copyRect(45, 32, 1, 0, 1, 4, false, false);
-
-		// Left shoulder overlay
-		skin.copyRect(54, 48, 1, 0, 1, 4, false, false);
-		skin.copyRect(53, 48, 1, 0, 1, 4, false, false);
-
-		// Back side of left arm sleeve
-		skin.copyRect(52, 36, 2, 0, 2, 12, false, false);
-		skin.copyRect(52, 36, 1, 0, 1, 12, false, false);
-		skin.copyRect(51, 36, 1, 0, 1, 12, false, false);
-
-		// Right side of left arm sleeve
-		skin.copyRect(50, 36, 1, 0, 1, 12, false, false);
-		skin.copyRect(49, 36, 1, 0, 1, 12, false, false);
-		skin.copyRect(48, 36, 1, 0, 1, 12, false, false);
-		skin.copyRect(47, 36, 1, 0, 1, 12, false, false);
-
-		// Front side of left arm sleeve
-		skin.copyRect(46, 36, 1, 0, 1, 12, false, false);
-		skin.copyRect(45, 36, 1, 0, 1, 12, false, false);
-
-		// Back side of right arm sleeve
-		skin.copyRect(60, 52, 2, 0, 2, 12, false, false);
-		skin.copyRect(60, 52, 1, 0, 1, 12, false, false);
-		skin.copyRect(59, 52, 1, 0, 1, 12, false, false);
-
-		// Left side of right arm sleeve
-		skin.copyRect(58, 52, 1, 0, 1, 12, false, false);
-		skin.copyRect(57, 52, 1, 0, 1, 12, false, false);
-		skin.copyRect(56, 52, 1, 0, 1, 12, false, false);
-		skin.copyRect(55, 52, 1, 0, 1, 12, false, false);
-
-		// Front side of right arm sleeve
-		skin.copyRect(54, 52, 1, 0, 1, 12, false, false);
-		skin.copyRect(53, 52, 1, 0, 1, 12, false, false);
-	}
 }

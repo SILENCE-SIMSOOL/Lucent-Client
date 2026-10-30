@@ -11,6 +11,7 @@ import org.lwjgl.opengl.GL;
 import java.util.Set;
 
 public class DevRuntimeDebug {
+
 	public static boolean syncAllParticles = false;
 	public static TransformFeedbackGlCommand transformFeedbackGlCommand = TransformFeedbackGlCommand.AUTO;
 	public static TriState directStateAccess = TriState.DEFAULT;
@@ -49,9 +50,12 @@ public class DevRuntimeDebug {
 	}
 
 	public enum TransformFeedbackGlCommand {
+
 		AUTO,
 		GL30,
 		ARB2,
 		GL45
+
 	}
+
 }

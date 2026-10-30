@@ -30,4 +30,5 @@ public class PackManagerUtils {
 	public static String getSkyblockId(CompoundTag tag) {
 		return getNormalizedId(tag, "id");
 	}
+
 }

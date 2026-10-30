@@ -46,4 +46,5 @@ public class MixinFirstPersonHandsAndItems {
 	private SwingDescription onGetCurrentSwing(LocalPlayer player, Operation<SwingDescription> original) {
 		return AnimationsMod.isEnabled() ? AnimationsMod.getCurrentSwing() : original.call(player);
 	}
+
 }

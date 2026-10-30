@@ -7,6 +7,7 @@ import net.minecraft.network.chat.Component;
 import java.util.function.Supplier;
 
 public enum ParticleCullingMode implements TranslatableEnum {
+
 	DISABLED(() -> Component.translatable("config.asyncparticles.enum.ParticleCullingMode.DISABLED")
 		.withStyle(ChatFormatting.RED)),
 	SPHERE(() -> Component.translatable("config.asyncparticles.enum.ParticleCullingMode.SPHERE")
@@ -27,4 +28,5 @@ public enum ParticleCullingMode implements TranslatableEnum {
 	public Component getComponent() {
 		return componentSupplier.get();
 	}
+
 }

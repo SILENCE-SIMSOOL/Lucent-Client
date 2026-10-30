@@ -88,7 +88,9 @@ public class FastMap<Value> {
 	}
 
 	public interface PropertyValueGetter<Owner> {
+
 		Comparable<?> getValue(Owner state, Property<?> property);
+
 	}
 
 }

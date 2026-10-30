@@ -4,7 +4,8 @@ import com.mojang.renderpearl.api.buffers.GpuBuffer;
 import net.minecraft.client.particle.SingleQuadParticle;
 
 public record ComputeResult(GpuBuffer buffer, int totalCount, ParticleSlice[] slices, int maxCount,
-                            GpuBuffer indirectBuffer, int layerCount, int indirectCommandStride) {
+							GpuBuffer indirectBuffer, int layerCount, int indirectCommandStride) {
+
 	public static ComputeResult of(GpuBuffer buffer, int totalCount, ParticleSlice[] slices) {
 		int maxCount = 0;
 		for (ParticleSlice slice : slices) {
@@ -16,12 +17,12 @@ public record ComputeResult(GpuBuffer buffer, int totalCount, ParticleSlice[] sl
 	}
 
 	public static ComputeResult ofIndirect(GpuBuffer buffer, int totalCount, ParticleSlice[] slices,
-	                                       GpuBuffer indirectBuffer, int layerCount) {
+										   GpuBuffer indirectBuffer, int layerCount) {
 		return ofIndirect(buffer, totalCount, slices, indirectBuffer, layerCount, 20);
 	}
 
 	public static ComputeResult ofIndirect(GpuBuffer buffer, int totalCount, ParticleSlice[] slices,
-	                                       GpuBuffer indirectBuffer, int layerCount, int indirectCommandStride) {
+										   GpuBuffer indirectBuffer, int layerCount, int indirectCommandStride) {
 		int maxCount = 0;
 		for (ParticleSlice slice : slices) {
 			if (slice.count() > maxCount) {
@@ -48,6 +49,7 @@ public record ComputeResult(GpuBuffer buffer, int totalCount, ParticleSlice[] sl
 	}
 
 	public record ParticleSlice(SingleQuadParticle.Layer layer, int baseCount, int count) {
+
 		public int vertexOffset() {
 			return baseCount * 4;
 		}
@@ -63,5 +65,7 @@ public record ComputeResult(GpuBuffer buffer, int totalCount, ParticleSlice[] sl
 		public int indexOffset() {
 			return baseCount * 6;
 		}
+
 	}
+
 }

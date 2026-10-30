@@ -16,6 +16,7 @@ import net.minecraft.world.level.chunk.MissingPaletteEntryException;
 import java.util.Queue;
 
 public class ParticleHelper {
+
 	public static final ParticleThreadLocal<Integer> DESTRUCTION_LIGHT_CACHE = new ParticleThreadLocal<>(ThreadUtil::isOnMainThread);
 	public static final ParticleThreadLocal<Boolean> CULL_UNDERWATER_PARTICLE_TYPE = ParticleThreadLocal.withInitial(ThreadUtil::isOnMainThread, () -> false);
 
@@ -71,4 +72,5 @@ public class ParticleHelper {
 			addon.asyncparticles$setLight(lightColor);
 		}
 	}
+
 }

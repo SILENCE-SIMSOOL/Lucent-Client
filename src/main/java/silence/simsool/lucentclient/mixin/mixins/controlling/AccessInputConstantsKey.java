@@ -7,8 +7,10 @@ import org.spongepowered.asm.mixin.gen.Accessor;
 
 @Mixin(InputConstants.Key.class)
 public interface AccessInputConstantsKey {
+
 	@Accessor("NAME_MAP")
 	static Map<String, InputConstants.Key> lucent$getNAME_MAP() {
 		throw new AssertionError();
 	}
+
 }

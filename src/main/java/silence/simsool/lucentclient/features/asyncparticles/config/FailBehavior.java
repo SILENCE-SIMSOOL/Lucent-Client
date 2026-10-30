@@ -6,6 +6,7 @@ import net.minecraft.network.chat.Component;
 import java.util.function.Supplier;
 
 public enum FailBehavior implements TranslatableEnum {
+
 	RAISE_CRASH(() -> Component.translatable("config.asyncparticles.enum.FailBehavior.RAISE_CRASH")),
 	MARK_AS_SYNC(()-> Component.translatable("config.asyncparticles.enum.FailBehavior.MARK_AS_SYNC"));
 	private final Supplier<Component> componentSupplier;
@@ -18,4 +19,5 @@ public enum FailBehavior implements TranslatableEnum {
 	public Component getComponent() {
 		return componentSupplier.get();
 	}
+
 }

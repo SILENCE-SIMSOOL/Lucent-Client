@@ -17,6 +17,7 @@ import net.minecraft.world.phys.AABB;
 import static org.joml.Math.max;
 
 public class GameUtil {
+
 	public static final ParticleThreadLocal<BlockPos.MutableBlockPos> SHARED_POS = ParticleThreadLocal.withInitial(ThreadUtil::isOnMainThread, BlockPos.MutableBlockPos::new);
 
 	public static AABB infinityAABB() {
@@ -113,4 +114,5 @@ public class GameUtil {
 		}
 		return (i & 0xF) << 20 | (j & 0xF) << 4;
 	}
+
 }

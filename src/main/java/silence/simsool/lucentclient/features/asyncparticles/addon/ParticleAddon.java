@@ -5,6 +5,7 @@ import org.jetbrains.annotations.ApiStatus;
 
 @ApiStatus.Internal
 public interface ParticleAddon {
+
 	void asyncparticles$setTicked();
 
 	void asyncparticles$resetTicked();
@@ -21,4 +22,5 @@ public interface ParticleAddon {
 	}
 
 	byte getTickFlag();
+
 }

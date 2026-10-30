@@ -1,6 +1,7 @@
 package silence.simsool.lucentclient.features.asyncparticles.core.backend;
 
 public abstract class VkCommands {
+
 	private final boolean pushDescriptor;
 	private final boolean synchronization2;
 
@@ -30,12 +31,15 @@ public abstract class VkCommands {
 	}
 
 	public static class Vk extends VkCommands {
+
 		public Vk(boolean pushDescriptor, boolean synchronization2) {
 			super(pushDescriptor, synchronization2);
 		}
+
 	}
 
 	public static class Unsupported extends VkCommands {
+
 		public Unsupported() {
 			super(false, false);
 		}
@@ -44,5 +48,7 @@ public abstract class VkCommands {
 		public boolean isSupported() {
 			return false;
 		}
+
 	}
+
 }

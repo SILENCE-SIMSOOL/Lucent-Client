@@ -35,6 +35,7 @@ import java.util.*;
 import static silence.simsool.lucentclient.features.asyncparticles.core.particle.gpu_acceleration.GpuParticlePipelines.*;
 
 public class VkCompParticleRenderer implements IParticleRenderer {
+
 	private static final int WORKGROUP_SIZE = 64;
 	private static final int GROUP_RECORD_INTS = 3;
 	private static final int DESCRIPTOR_SET_LAYOUT_SIZE = 3;
@@ -651,6 +652,7 @@ public class VkCompParticleRenderer implements IParticleRenderer {
 	}
 
 	private final class SourceSlot {
+
 		private static final ComputeResult.ParticleSlice[] EMPTY_SLICES = new ComputeResult.ParticleSlice[0];
 		private static final int[] EMPTY_INT_ARR = new int[0];
 		private long srcBuf;
@@ -785,9 +787,11 @@ public class VkCompParticleRenderer implements IParticleRenderer {
 				lastSubmitIndex = -1L;
 			}
 		}
+
 	}
 
 	private final class SubmitSlot {
+
 		private VulkanGpuBuffer targetBuffer;
 		private long indBuf;
 		private long indMem;
@@ -953,5 +957,7 @@ public class VkCompParticleRenderer implements IParticleRenderer {
 			this.preparedSourceGeneration = source.generation;
 			this.preparedComputeResult = ComputeResult.of(this.targetBuffer, source.totalCount, source.slices);
 		}
+
 	}
+
 }

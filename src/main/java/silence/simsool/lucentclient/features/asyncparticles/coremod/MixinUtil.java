@@ -8,6 +8,7 @@ import java.util.Optional;
 import static silence.simsool.lucentclient.features.asyncparticles.compat.ModListHelper.IS_FORGE;
 
 public class MixinUtil {
+
 	public static Optional<TargetClassContextExtension> tryAs(ITargetClassContext reference) {
 		if (reference.getClass().getName().equals("org.spongepowered.asm.mixin.transformer.TargetClassContext")) {
 			return Optional.of(new TargetClassContextExtension(reference));
@@ -18,4 +19,5 @@ public class MixinUtil {
 	public static String getRefMapperName(String className, String refMapper) {
 		return IS_FORGE ? null : className.startsWith("fabric") ? "fabric-" + refMapper : refMapper;
 	}
+
 }

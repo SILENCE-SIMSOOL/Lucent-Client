@@ -10,6 +10,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import net.minecraft.client.Camera;
 import net.minecraft.client.DeltaTracker;
+import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.renderer.culling.Frustum;
 import net.minecraft.client.renderer.entity.state.AvatarRenderState;
 import net.minecraft.client.renderer.entity.state.EntityRenderState;
@@ -29,6 +30,14 @@ import silence.simsool.lucentclient.mods.impl.performance.culling.CullingHelper;
 
 @Mixin(LevelExtractor.class)
 public abstract class MixinLevelExtractor {
+
+	@Inject(method = "setLevel", at = @At("TAIL"))
+	private void onSetLevel(ClientLevel level, CallbackInfo ci) {
+		if (level == null) {
+			// No world frame follows a disconnect to consume the deferred reset.
+			mc.levelRenderer.resetLevelRenderData();
+		}
+	}
 
 	@Inject(at = @At("HEAD"), method = "extractVisibleEntities")
 	private void onExtractVisibleEntities(
@@ -107,4 +116,5 @@ public abstract class MixinLevelExtractor {
 
 		return state;
 	}
+
 }

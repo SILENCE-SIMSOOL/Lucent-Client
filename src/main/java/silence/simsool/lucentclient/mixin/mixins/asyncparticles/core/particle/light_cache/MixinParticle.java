@@ -16,6 +16,7 @@ import org.spongepowered.asm.mixin.Unique;
 
 @Mixin(Particle.class)
 public abstract class MixinParticle implements LightCachedParticleAddon {
+
 	@Shadow
 	@Final
 	protected ClientLevel level;
@@ -68,4 +69,5 @@ public abstract class MixinParticle implements LightCachedParticleAddon {
 	public int asyncparticles$getCachedLight() {
 		return LightCachedParticleAddon.decompress(asyncparticles$lightCache);
 	}
+
 }

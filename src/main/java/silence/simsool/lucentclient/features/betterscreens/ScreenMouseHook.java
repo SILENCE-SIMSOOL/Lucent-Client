@@ -8,6 +8,7 @@ import net.minecraft.client.Minecraft;
 import silence.simsool.lucentclient.mods.impl.utility.BetterScreensMod;
 
 public class ScreenMouseHook {
+
 	private static SimpleImmutableEntry<Double, Double> savedPositionedP1 = null;
 	private static SavedPosition savedPosition = null;
 
@@ -37,6 +38,7 @@ public class ScreenMouseHook {
 	}
 
 	public static class SavedPosition {
+
 		public final SimpleImmutableEntry<Double, Double> middle;
 		public final SimpleImmutableEntry<Double, Double> cursor;
 		public final TimeMark savedAt;
@@ -46,9 +48,11 @@ public class ScreenMouseHook {
 			this.cursor = cursor;
 			this.savedAt = TimeMark.now();
 		}
+
 	}
 
 	public record TimeMark(long timeMark) {
+
 		public long passedTimeMillis() {
 			return (timeMark == 0L) ? Long.MAX_VALUE : System.currentTimeMillis() - timeMark;
 		}
@@ -56,5 +60,7 @@ public class ScreenMouseHook {
 		public static TimeMark now() {
 			return new TimeMark(System.currentTimeMillis());
 		}
+
 	}
+
 }

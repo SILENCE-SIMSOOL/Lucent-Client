@@ -16,6 +16,7 @@ import java.util.function.Predicate;
  * The iteration-safe guarantees are only valid in our use cases.
  */
 public class IterationSafeEvictingQueue<E> implements Queue<E> {
+
 	public static final int MAX_CAPACITY = Integer.MIN_VALUE >>> 1;
 	protected Object[] queue;
 	protected final int maxCapacity;
@@ -166,6 +167,7 @@ public class IterationSafeEvictingQueue<E> implements Queue<E> {
 	}
 
 	private final class aSpliterator implements Spliterator<E> {
+
 		int pos;
 		int max;
 
@@ -227,6 +229,7 @@ public class IterationSafeEvictingQueue<E> implements Queue<E> {
 			this.pos = newPos;
 			return new aSpliterator(pos, newPos);
 		}
+
 	}
 
 	private Object[] resize(int newCapacity) {
@@ -260,6 +263,7 @@ public class IterationSafeEvictingQueue<E> implements Queue<E> {
 	}
 
 	private class anIterator implements Iterator<E> {
+
 		protected final Object[] a = queue;
 		protected final int mask = a.length - 1;
 		protected final int head = Math.min(mask, IterationSafeEvictingQueue.this.head);
@@ -314,6 +318,7 @@ public class IterationSafeEvictingQueue<E> implements Queue<E> {
 			cursor--;
 			curr = null;
 		}
+
 	}
 
 	@Override
@@ -663,4 +668,5 @@ public class IterationSafeEvictingQueue<E> implements Queue<E> {
 		sb.append(']');
 		return sb.toString();
 	}
+
 }

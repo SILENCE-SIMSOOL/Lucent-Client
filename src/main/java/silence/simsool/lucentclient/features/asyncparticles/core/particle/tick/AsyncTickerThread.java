@@ -7,6 +7,7 @@ import org.slf4j.Logger;
 import java.util.concurrent.ForkJoinPool;
 
 public class AsyncTickerThread extends AsyncParticleWorkerThread {
+
 	private static final Logger LOGGER = LogUtils.getLogger();
 
 	public AsyncTickerThread(ForkJoinPool forkJoinPool) {
@@ -22,4 +23,5 @@ public class AsyncTickerThread extends AsyncParticleWorkerThread {
 
 		super.onTermination(throwable);
 	}
+
 }

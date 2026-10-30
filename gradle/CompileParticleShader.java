@@ -4,6 +4,7 @@ import java.nio.file.Path;
 import org.lwjgl.util.shaderc.Shaderc;
 
 public class CompileParticleShader {
+
 	public static void main(String[] args) throws Exception {
 		Path source = Path.of(args[0]);
 		Path output = Path.of(args[1]);
@@ -40,4 +41,5 @@ public class CompileParticleShader {
 			Shaderc.shaderc_compiler_release(compiler);
 		}
 	}
+
 }

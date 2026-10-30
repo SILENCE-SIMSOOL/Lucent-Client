@@ -8,9 +8,11 @@ import org.spongepowered.asm.mixin.gen.Invoker;
 
 @Mixin(StateHolder.class)
 public interface StateHolderAccess {
+
 	@Accessor
 	Property<?>[] getPropertyKeys();
 
 	@Invoker("initializeNeighbors")
 	void callInitializeNeighbors(Object[][] neighbors);
+
 }

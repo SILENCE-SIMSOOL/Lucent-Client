@@ -53,4 +53,5 @@ public class InternalTargetTracker {
 			prevFormat = null;
 		}
 	}
+
 }

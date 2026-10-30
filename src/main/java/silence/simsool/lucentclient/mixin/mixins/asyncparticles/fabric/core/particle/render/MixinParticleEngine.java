@@ -13,6 +13,7 @@ import java.util.List;
 
 @Mixin(ParticleEngine.class)
 public class MixinParticleEngine implements ParticleEngineAddon {
+
 	@Mutable
 	@Shadow
 	@Final
@@ -29,4 +30,5 @@ public class MixinParticleEngine implements ParticleEngineAddon {
 		}
 		renderOrder.add(particleRenderType);
 	}
+
 }

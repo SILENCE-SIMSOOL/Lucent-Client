@@ -65,4 +65,5 @@ public abstract class MixinGuiGraphics_ScrollableTooltips {
 	private void tailMatrices(Font font, List<ClientTooltipComponent> lines, int xo, int yo, ClientTooltipPositioner positioner, @Nullable Identifier style, boolean focused, CallbackInfo info) {
 		if (ScrollableTooltipsMod.isEnabled() && ScrollableTooltipsMod.MatrixMode) this.pose.popMatrix();
 	}
+
 }

@@ -11,6 +11,7 @@ import org.spongepowered.asm.mixin.Mixin;
 
 @Mixin(ClientLevel.class)
 public class MixinClientLevel {
+
 	@WrapMethod(method = "tickWeatherEffects")
 	private void wrapTickRain(Operation<Void> original) {
 		if (ConfigHelper.isTickWeatherAsync()) {
@@ -19,4 +20,5 @@ public class MixinClientLevel {
 			original.call();
 		}
 	}
+
 }

@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AdjusterParticlesNoLightCache implements MixinClassAdjuster {
+
 	private static final String CLASS_NAME = "silence.simsool.lucentclient.mixin.mixins.asyncparticles.conditional.MixinParticles_LightCacheNoRefresh";
 	@Override
 	public String getMixinClassName() {
@@ -24,4 +25,5 @@ public class AdjusterParticlesNoLightCache implements MixinClassAdjuster {
 	public String getRefMapperConfig() {
 		return null;
 	}
+
 }

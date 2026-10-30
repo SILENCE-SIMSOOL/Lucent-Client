@@ -7,6 +7,7 @@ import java.util.concurrent.ForkJoinWorkerThread;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class AsyncParticleWorkerThread extends ForkJoinWorkerThread {
+
 	private static final AtomicInteger indexGenerator = new AtomicInteger(0);
 	private Object[] data = new Object[Math.max(HashCommon.nextPowerOfTwo(indexGenerator.get()), 4)];
 
@@ -36,4 +37,5 @@ public class AsyncParticleWorkerThread extends ForkJoinWorkerThread {
 		ensureIndex(index);
 		data[index] = value;
 	}
+
 }

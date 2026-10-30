@@ -67,7 +67,7 @@ public class ArmorStatusHUD extends LucentHUD {
 		else if (alignment == Align.RIGHT) rx -= getScaledWidth();
 
 		int offset = 0;
-		
+
 		// 설정값과 슬롯 매핑 순회
 		offset = renderSlot(guiGraphics, EquipmentSlot.HEAD, ArmorStatusMod.DisplayHelmet, rx, ry, offset, preview);
 		offset = renderSlot(guiGraphics, EquipmentSlot.CHEST, ArmorStatusMod.DisplayChestplate, rx, ry, offset, preview);
@@ -105,4 +105,5 @@ public class ArmorStatusHUD extends LucentHUD {
 			default -> Items.SHIELD.getDefaultInstance();
 		};
 	}
+
 }

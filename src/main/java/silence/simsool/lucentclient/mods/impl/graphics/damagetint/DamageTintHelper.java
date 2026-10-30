@@ -59,4 +59,5 @@ public class DamageTintHelper {
 		}
 		texture.upload();
 	}
+
 }

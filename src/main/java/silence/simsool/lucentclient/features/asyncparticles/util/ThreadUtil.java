@@ -5,6 +5,7 @@ import silence.simsool.lucentclient.features.asyncparticles.core.particle.tick.A
 import net.minecraft.client.Minecraft;
 
 public class ThreadUtil {
+
 	public static void assertNotParticleThread() {
 		if (isOnParticleThread()) {
 			throw new IllegalStateException("Cannot call this method from particle thread");
@@ -67,4 +68,5 @@ public class ThreadUtil {
 	public static void assertOnMainThread() {
 		RenderSystem.assertOnRenderThread();
 	}
+
 }

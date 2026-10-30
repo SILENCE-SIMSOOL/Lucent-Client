@@ -23,6 +23,7 @@ import java.util.List;
 
 @Mixin(value = ClientLevel.class, priority = 1500)
 public abstract class MixinClientLevel extends Level {
+
 	@Mutable
 	@Shadow
 	@Final
@@ -39,4 +40,5 @@ public abstract class MixinClientLevel extends Level {
 			this.random = new SingleThreadedRandomSource(RandomSupport.generateUniqueSeed());
 		}
 	}
+
 }

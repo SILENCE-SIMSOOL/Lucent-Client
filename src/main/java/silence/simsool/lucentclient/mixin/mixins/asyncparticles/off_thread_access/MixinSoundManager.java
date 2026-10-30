@@ -21,6 +21,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 // TODO: Any better way to handle this?
 @Mixin(SoundManager.class)
 public abstract class MixinSoundManager {
+
 	@Shadow
 	@Final
 	private SoundEngine soundEngine;
@@ -157,4 +158,5 @@ public abstract class MixinSoundManager {
 			ThreadUtil.enqueueClientTask(() -> this.stop(sound, source));
 		}
 	}
+
 }

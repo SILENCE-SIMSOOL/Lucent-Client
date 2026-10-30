@@ -11,6 +11,7 @@ import java.util.function.Predicate;
 
 @SuppressWarnings("rawtypes")
 public class AsyncTickParticleGroupBehavior {
+
 	public static final String TICK_PARTICLES_METHOD;
 	private static final List<Class<ParticleGroup>> ASYNC_TICKABLE_PARTICLE_GROUP_CLASSES;
 	private final static Reference2BooleanOpenHashMap<Class<? extends ParticleGroup>> CAN_TICK_PARTICLES_ASYNC =
@@ -35,4 +36,5 @@ public class AsyncTickParticleGroupBehavior {
 				}
 			});
 	}
+
 }

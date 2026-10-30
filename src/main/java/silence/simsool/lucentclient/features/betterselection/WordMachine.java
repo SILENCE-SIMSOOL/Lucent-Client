@@ -1,6 +1,7 @@
 package silence.simsool.lucentclient.features.betterselection;
 
 public enum WordMachine {
+
 	UNKNOWN,
 	NUMERIC,
 	INTEGER,
@@ -103,4 +104,5 @@ public enum WordMachine {
 			case SPECIAL, DONE -> DONE;
 		};
 	}
+
 }

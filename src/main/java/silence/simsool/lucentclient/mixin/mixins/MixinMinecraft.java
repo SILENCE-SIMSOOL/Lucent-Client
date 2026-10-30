@@ -35,4 +35,5 @@ public abstract class MixinMinecraft {
 	private void onDisconnect(CallbackInfo ci) {
 		LoadingScreenMod.initialJoin = true;
 	}
+
 }

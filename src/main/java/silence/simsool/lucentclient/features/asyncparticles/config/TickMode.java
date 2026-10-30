@@ -7,6 +7,7 @@ import net.minecraft.network.chat.Component;
 import java.util.function.Supplier;
 
 public enum TickMode implements TranslatableEnum {
+
 	SYNCHRONOUSLY(() -> Component.translatable("config.asyncparticles.enum.TickMode.SYNCHRONOUSLY")
 		.withStyle(ChatFormatting.RED)),
 	INTERRUPTIBLE(() -> Component.translatable("config.asyncparticles.enum.TickMode.INTERRUPTIBLE")
@@ -23,4 +24,5 @@ public enum TickMode implements TranslatableEnum {
 	public Component getComponent() {
 		return componentSupplier.get();
 	}
+
 }

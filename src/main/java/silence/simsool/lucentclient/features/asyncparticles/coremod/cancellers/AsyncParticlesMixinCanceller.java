@@ -6,6 +6,7 @@ import silence.simsool.lucentclient.features.asyncparticles.config.MixinConfigHe
 import java.util.List;
 
 public class AsyncParticlesMixinCanceller implements MixinCanceller {
+
 	@Override
 	public boolean shouldCancel(List<String> targetClassNames, String mixinClassName) {
 		if (mixinClassName.startsWith("net.caffeinemc.mods.lithium.mixin.collections.entity_by_type")) {
@@ -16,4 +17,5 @@ public class AsyncParticlesMixinCanceller implements MixinCanceller {
 		}
 		return false;
 	}
+
 }

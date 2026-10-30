@@ -31,6 +31,7 @@ import java.util.List;
 
 @Mixin(QuadParticleFeatureRenderer.class)
 public class MixinQuadParticleFeatureRenderer {
+
 	@Shadow
 	private static RenderPipeline getOitPipeline(OitStage stage, SingleQuadParticle.Layer layer) {
 		throw new UnsupportedOperationException("Implemented via mixin");
@@ -38,15 +39,15 @@ public class MixinQuadParticleFeatureRenderer {
 
 	@Inject(method = "executeGroup", at = @At(value = "INVOKE", target = "Lcom/mojang/renderpearl/api/commands/RenderPass;pushDebugGroup(Ljava/util/function/Supplier;)V"))
 	public void executeGroupPreDraw(FeatureFrameContext context,
-	                                @Nullable OitStage stage,
-	                                RenderPass renderPass,
-	                                int groupIndex,
-	                                List<QuadParticleFeatureRenderer.Submit> submits,
-	                                boolean strictlyOrdered,
-	                                CallbackInfo ci,
-	                                @Share("result") LocalRef<ComputeResult> resultRef,
-	                                @Share("indexBuffer") LocalRef<GpuBuffer> indexBufferRef,
-	                                @Share("indexType") LocalRef<IndexType> indexTypeRef) {
+									@Nullable OitStage stage,
+									RenderPass renderPass,
+									int groupIndex,
+									List<QuadParticleFeatureRenderer.Submit> submits,
+									boolean strictlyOrdered,
+									CallbackInfo ci,
+									@Share("result") LocalRef<ComputeResult> resultRef,
+									@Share("indexBuffer") LocalRef<GpuBuffer> indexBufferRef,
+									@Share("indexType") LocalRef<IndexType> indexTypeRef) {
 		if (!ConfigHelper.isGpuParticles()) {
 			return;
 		}
@@ -65,16 +66,16 @@ public class MixinQuadParticleFeatureRenderer {
 
 	@Inject(method = "executeGroup", at = @At(value = "INVOKE", shift = At.Shift.AFTER, target = "Lnet/minecraft/client/renderer/feature/QuadParticleFeatureRenderer;drawLayers(Lnet/minecraft/client/renderer/StagedVertexBuffer;Lnet/minecraft/client/renderer/feature/QuadParticleFeatureRenderer$PreparedGroup;Lcom/mojang/renderpearl/api/commands/RenderPass;Lnet/minecraft/client/renderer/oit/OitStage;)V"))
 	public void executeGroupPostDraw(FeatureFrameContext context,
-	                                 @Nullable OitStage stage,
-	                                 RenderPass renderPass,
-	                                 int groupIndex,
-	                                 List<QuadParticleFeatureRenderer.Submit> submits,
-	                                 boolean strictlyOrdered,
-	                                 CallbackInfo ci,
-	                                 @Local(ordinal = 0) QuadParticleFeatureRenderer.PreparedGroup group,
-	                                 @Share("result") LocalRef<ComputeResult> resultRef,
-	                                 @Share("indexBuffer") LocalRef<GpuBuffer> indexBufferRef,
-	                                 @Share("indexType") LocalRef<IndexType> indexTypeRef) {
+									 @Nullable OitStage stage,
+									 RenderPass renderPass,
+									 int groupIndex,
+									 List<QuadParticleFeatureRenderer.Submit> submits,
+									 boolean strictlyOrdered,
+									 CallbackInfo ci,
+									 @Local(ordinal = 0) QuadParticleFeatureRenderer.PreparedGroup group,
+									 @Share("result") LocalRef<ComputeResult> resultRef,
+									 @Share("indexBuffer") LocalRef<GpuBuffer> indexBufferRef,
+									 @Share("indexType") LocalRef<IndexType> indexTypeRef) {
 		ComputeResult result = resultRef.get();
 		if (result == null) {
 			return;
@@ -112,4 +113,5 @@ public class MixinQuadParticleFeatureRenderer {
 			renderPass.drawIndexed(slice.indexCount(), 1, 0, slice.vertexOffset(), 0);
 		}
 	}
+
 }

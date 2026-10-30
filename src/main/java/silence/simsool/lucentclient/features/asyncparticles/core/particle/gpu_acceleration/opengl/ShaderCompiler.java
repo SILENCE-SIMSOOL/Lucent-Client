@@ -10,6 +10,7 @@ import java.util.Objects;
 import java.util.function.IntConsumer;
 
 public class ShaderCompiler {
+
 	public static int createShaderProgram(int type, String resource) {
 		return createShaderProgram(type, resource, k -> {
 		});
@@ -55,4 +56,5 @@ public class ShaderCompiler {
 			GL20C.glDeleteShader(shaderId);
 		}
 	}
+
 }

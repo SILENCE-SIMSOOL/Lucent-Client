@@ -5,6 +5,7 @@ package silence.simsool.lucentclient.ducks.memoryleak;
  * Methods must only be called while synchronized on this object.
  */
 public interface SmallThreadDetectable {
+
 	byte UNLOCKED = 0;
 	byte LOCKED = 1;
 	byte CRASHING = 2;
@@ -12,4 +13,5 @@ public interface SmallThreadDetectable {
 	byte lucentclient$getState();
 
 	void lucentclient$setState(byte newState);
+
 }

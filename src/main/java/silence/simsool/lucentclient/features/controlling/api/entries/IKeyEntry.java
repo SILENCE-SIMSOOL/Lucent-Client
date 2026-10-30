@@ -9,6 +9,7 @@ import net.minecraft.client.input.MouseButtonEvent;
 import net.minecraft.network.chat.Component;
 
 public interface IKeyEntry {
+
 	Component categoryName();
 	KeyMapping getKey();
 	Component getName();
@@ -18,4 +19,5 @@ public interface IKeyEntry {
 	boolean mouseClicked(MouseButtonEvent event, boolean doubleClick);
 	boolean mouseReleased(MouseButtonEvent event);
 	void extractContent(GuiGraphicsExtractor graphics, int mouseX, int mouseY, boolean hovered, float partialTicks);
+
 }

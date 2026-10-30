@@ -13,6 +13,7 @@ import java.util.Set;
  * APIs may be removed or change frequently before pull requests are merged.
  */
 public class ClassAdjusterMixinPlugin implements IMixinConfigPlugin {
+
 	@Override
 	public void onLoad(String mixinPackage) {
 		MixinClassAdjusterApplication.init(mixinPackage, this);
@@ -47,4 +48,5 @@ public class ClassAdjusterMixinPlugin implements IMixinConfigPlugin {
 	public void postApply(String targetClassName, ClassNode targetClass, String mixinClassName, IMixinInfo mixinInfo) {
 		MixinClassAdjusterApplication.getInstance().postApply(targetClassName, targetClass, mixinClassName, mixinInfo);
 	}
+
 }

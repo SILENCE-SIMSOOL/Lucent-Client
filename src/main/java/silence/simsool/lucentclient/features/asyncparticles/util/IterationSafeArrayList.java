@@ -9,6 +9,7 @@ import java.util.function.Predicate;
 
 @SuppressWarnings("serial")
 public class IterationSafeArrayList<E> extends ObjectArrayList<E> {
+
 	/**
 	 * @apiNote This list does not allow the same object to be adjacent elements, which can cause issues with iteration.
 	 */
@@ -189,6 +190,7 @@ public class IterationSafeArrayList<E> extends ObjectArrayList<E> {
 	}
 
 	private class ListItr implements ObjectListIterator<E> {
+
 		private final E[] a;
 		private int size;
 		private int cursor;
@@ -288,5 +290,7 @@ public class IterationSafeArrayList<E> extends ObjectArrayList<E> {
 			--size;
 			curr = null;
 		}
+
 	}
+
 }

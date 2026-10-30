@@ -18,4 +18,5 @@ public abstract class MixinEntityRenderer<T extends Entity> {
 	private void onShouldRender(T entity, Frustum frustum, double x, double y, double z, float partialTick, CallbackInfoReturnable<Boolean> cir) {
 		EntityRendererHook.onShouldRender(entity, frustum, x, y, z, partialTick, cir);
 	}
+
 }

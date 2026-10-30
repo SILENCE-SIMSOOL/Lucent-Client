@@ -82,7 +82,7 @@ public class PotionEffectsHUD extends LucentHUD {
 
 		if (alignment == Align.CENTER) rx -= (scaledW / 2f);
 		else if (alignment == Align.RIGHT) rx -= scaledW;
-		
+
 		float lineH = 10f * scale;
 		int yOffset = 0;
 
@@ -90,10 +90,10 @@ public class PotionEffectsHUD extends LucentHUD {
 			String line = lines.get(i);
 			float lineW = mc.font.width(line);
 			float lx = rx;
-			
+
 			if (alignment == Align.CENTER) lx += (maxW - lineW) * scale / 2f;
 			else if (alignment == Align.RIGHT) lx += (maxW - lineW) * scale;
-			
+
 			UText.drawText(guiGraphics, line, lx, ry + yOffset, scale, UIColors.PURE_WHITE, true);
 			yOffset += lineH;
 		}
@@ -108,7 +108,7 @@ public class PotionEffectsHUD extends LucentHUD {
 			if (mc.player == null) return lines;
 			for (MobEffectInstance effect : mc.player.getActiveEffects()) {
 				String name = Component.translatable(effect.getEffect().value().getDescriptionId()).getString();
-				
+
 				String amplifier = "";
 				int lvl = effect.getAmplifier();
 				if (lvl >= 0 && lvl < 10) {

@@ -157,4 +157,5 @@ public class MixinFirstPersonHandsAndItemsRenderer {
 		if (AnimationsMod.isEnabled() && AnimationsMod.InPlaceSwing) return;
 		original.call(instance, f, g, h);
 	}
+
 }

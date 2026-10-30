@@ -12,7 +12,6 @@ import silence.simsool.lucentclient.mods.impl.utility.AlwaysSprintMod;
 @Mixin(LocalPlayer.class)
 public abstract class MixinLocalPlayer {
 
-
 	@Inject(method = "aiStep", at = @At("HEAD"))
 	private void onAiStep(CallbackInfo ci) {
 		if (AlwaysSprintMod.isEnabled()) {

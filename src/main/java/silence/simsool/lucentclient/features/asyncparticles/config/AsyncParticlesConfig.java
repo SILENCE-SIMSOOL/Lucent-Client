@@ -34,6 +34,7 @@ import java.util.function.Consumer;
 import static java.util.Objects.requireNonNullElse;
 
 public class AsyncParticlesConfig {
+
 	public static final int MIN_PARTICLE_LIMIT = 1024;
 	public static final int DEFAULT_PARTICLE_LIMIT = 16384;
 	public static final int MAX_PARTICLE_LIMIT = 262144;
@@ -244,6 +245,7 @@ public class AsyncParticlesConfig {
 	}
 
 	static class ConfigObj {
+
 		private ConfigObj() {
 		}
 
@@ -279,6 +281,7 @@ public class AsyncParticlesConfig {
 		}
 
 		static class Particle {
+
 			private Particle() {
 			}
 
@@ -306,9 +309,11 @@ public class AsyncParticlesConfig {
 				particleLightCache = particle$particleLightCache;
 				cullUnderwaterParticleType = particle$cullUnderwaterParticleType;
 			}
+
 		}
 
 		static class Tick {
+
 			private Tick() {
 			}
 
@@ -349,9 +354,11 @@ public class AsyncParticlesConfig {
 				syncAnimationClasses.addAll(tick$syncAnimationClasses);
 				syncParticleClasses.addAll(tick$syncParticleClasses);
 			}
+
 		}
 
 		static class Rendering {
+
 			private Rendering() {
 			}
 
@@ -374,9 +381,11 @@ public class AsyncParticlesConfig {
 				computeExecutionStage = rendering$computeExecutionStage;
 				tickRendererOnMainThread = rendering$tickRendererOnMainThread;
 			}
+
 		}
 
 		static class ValkyrienSkies {
+
 			private ValkyrienSkies() {
 			}
 
@@ -392,9 +401,11 @@ public class AsyncParticlesConfig {
 				rainEffect = valkyrienSkies$rainEffect;
 				fixParticleLights = valkyrienSkies$fixParticleLights;
 			}
+
 		}
 
 		static class Create {
+
 			private Create() {
 			}
 
@@ -410,9 +421,11 @@ public class AsyncParticlesConfig {
 				rainEffect = create$rainEffect;
 				tickRainBlockingRange = create$tickRainBlockingRange;
 			}
+
 		}
 
 		static class Mobile {
+
 			private Mobile() {
 			}
 
@@ -425,6 +438,9 @@ public class AsyncParticlesConfig {
 			private void fold() {
 				multiDrawWorkaround = mobile$multiDrawWorkaround;
 			}
+
 		}
+
 	}
+
 }

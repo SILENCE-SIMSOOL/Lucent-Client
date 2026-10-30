@@ -3,6 +3,7 @@ package silence.simsool.lucentclient.features.asyncparticles.addon;
 import net.minecraft.client.particle.SingleQuadParticle;
 
 public interface GpuParticleAddon extends LightCachedParticleAddon {
+
 	int oCOLOR_OFFSET = 48;
 	int oCOLOR_RED_OFFSET = oCOLOR_OFFSET;
 	int oCOLOR_GREEN_OFFSET = oCOLOR_OFFSET + 1;
@@ -61,4 +62,5 @@ public interface GpuParticleAddon extends LightCachedParticleAddon {
 	float asyncparticles$getGreen();
 
 	float asyncparticles$getBlue();
+
 }

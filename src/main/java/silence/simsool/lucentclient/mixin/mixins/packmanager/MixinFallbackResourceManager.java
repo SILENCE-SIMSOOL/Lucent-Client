@@ -32,4 +32,5 @@ public class MixinFallbackResourceManager {
 			else args.set(2, (PackResources.Filter) id -> false);
 		}
 	}
+
 }

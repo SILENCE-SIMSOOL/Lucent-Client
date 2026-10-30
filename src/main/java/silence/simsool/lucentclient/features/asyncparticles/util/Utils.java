@@ -5,6 +5,7 @@ import java.util.concurrent.CompletableFuture;
 import java.util.function.Consumer;
 
 public class Utils {
+
 	public static final Iterator<?> DUMMY_ITERATOR = new Iterator<>() {
 		@Override
 		public boolean hasNext() {
@@ -35,4 +36,5 @@ public class Utils {
 	public static <T> CompletableFuture<T> nullFuture() {
 		return (CompletableFuture<T>) NULL_FUTURE;
 	}
+
 }

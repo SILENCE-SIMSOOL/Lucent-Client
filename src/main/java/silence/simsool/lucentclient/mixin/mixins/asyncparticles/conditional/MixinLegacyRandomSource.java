@@ -14,6 +14,7 @@ import java.util.concurrent.atomic.AtomicLong;
 
 @Mixin(LegacyRandomSource.class)
 public class MixinLegacyRandomSource {
+
 	@Shadow
 	@Final
 	private AtomicLong seed;
@@ -35,4 +36,5 @@ public class MixinLegacyRandomSource {
 			cir.setReturnValue((int) (l >> 48 - size));
 		}
 	}
+
 }

@@ -215,4 +215,5 @@ public class VanillaHUDMod extends Mod {
 			default -> "Crosshair";
 		};
 	}
+
 }

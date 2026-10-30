@@ -30,4 +30,5 @@ public class MixinEquipmentLayerRenderer {
 		}
 		return originalOverlay;
 	}
+
 }

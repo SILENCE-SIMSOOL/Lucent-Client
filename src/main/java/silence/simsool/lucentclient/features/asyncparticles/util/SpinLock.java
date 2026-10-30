@@ -3,6 +3,7 @@ package silence.simsool.lucentclient.features.asyncparticles.util;
 import java.util.function.Supplier;
 
 public interface SpinLock {
+
 	void lock();
 
 	void unlock();
@@ -29,4 +30,5 @@ public interface SpinLock {
 			unlock();
 		}
 	}
+
 }

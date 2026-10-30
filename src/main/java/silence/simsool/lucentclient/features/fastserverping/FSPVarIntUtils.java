@@ -22,4 +22,5 @@ public class FSPVarIntUtils {
 		} while ((c & 128) != 0);
 		return n;
 	}
+
 }

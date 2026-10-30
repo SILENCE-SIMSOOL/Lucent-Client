@@ -33,4 +33,5 @@ public abstract class MixinPlayerSkin {
 	private boolean hasThiccArms() {
 		return body.texturePath().getPath().startsWith("thicc");
 	}
+
 }

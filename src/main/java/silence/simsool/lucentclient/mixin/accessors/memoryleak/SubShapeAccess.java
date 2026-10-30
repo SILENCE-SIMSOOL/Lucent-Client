@@ -7,6 +7,7 @@ import org.spongepowered.asm.mixin.gen.Accessor;
 
 @Mixin(SubShape.class)
 public interface SubShapeAccess extends DiscreteVSAccess {
+
 	@Accessor
 	DiscreteVoxelShape getParent();
 
@@ -27,4 +28,5 @@ public interface SubShapeAccess extends DiscreteVSAccess {
 
 	@Accessor
 	int getEndZ();
+
 }

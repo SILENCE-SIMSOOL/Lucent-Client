@@ -56,4 +56,5 @@ public record SubpixelPositionedTexturedQuadGuiElementRenderState(
 		ScreenRectangle screenRect = new ScreenRectangle(Math.round(x1), Math.round(y1), Math.round(x2 - x1), Math.round(y2 - y1)).transformMaxBounds(pose);
 		return scissorArea != null ? scissorArea.intersection(screenRect) : screenRect;
 	}
+
 }

@@ -11,10 +11,12 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(LevelRenderer.class)
 public class MixinLevelRenderer {
+
 	@Inject(method = "render", at = @At("HEAD"))
 	private void renderLevelHead(CallbackInfo ci) {
 		if (ConfigHelper.isGpuParticles() && ConfigHelper.getComputeExecutionStage() == ComputeExecutionStage.LEVEL_RENDERING) {
 			GpuParticleBehavior.getInstance().compute();
 		}
 	}
+
 }

@@ -300,8 +300,12 @@ public class OcclusionCullingInstance {
 				t_next_z = (start.z - z) * dimFracZ;
 			}
 
-			boolean finished = stepRay(start, x, y, z, dimFracX, dimFracY, dimFracZ, intersectCount, x_inc, y_inc, z_inc, t_next_y, t_next_x, t_next_z);
-			this.provider.cleanup();
+			boolean finished;
+			try {
+				finished = stepRay(start, x, y, z, dimFracX, dimFracY, dimFracZ, intersectCount, x_inc, y_inc, z_inc, t_next_y, t_next_x, t_next_z);
+			} finally {
+				this.provider.cleanup();
+			}
 			if (finished) {
 				cacheResult(targets[0], true);
 				return true;
@@ -390,6 +394,7 @@ public class OcclusionCullingInstance {
 	}
 
 	private enum Relative {
+
 		INSIDE, POSITIVE, NEGATIVE;
 
 		public static Relative from(int min, int max, int pos) {
@@ -400,6 +405,7 @@ public class OcclusionCullingInstance {
 			}
 			return INSIDE;
 		}
+
 	}
 
 }

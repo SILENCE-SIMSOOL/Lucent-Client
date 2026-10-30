@@ -17,6 +17,7 @@ import java.util.UUID;
 
 @Mixin(EntityGetter.class)
 public interface MixinEntityGetter {
+
 	@Inject(method = "getPlayerByUUID", at = @At("HEAD"))
 	default void injectHead(CallbackInfoReturnable<Player> cir, @Share("isClientLevel") LocalBooleanRef isClientLevel) {
 		isClientLevel.set(this instanceof ClientLevel);
@@ -38,4 +39,5 @@ public interface MixinEntityGetter {
 			throw exception;
 		}
 	}
+
 }

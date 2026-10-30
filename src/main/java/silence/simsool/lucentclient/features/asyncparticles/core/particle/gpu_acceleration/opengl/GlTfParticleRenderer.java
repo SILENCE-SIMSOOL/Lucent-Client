@@ -36,6 +36,7 @@ import static org.lwjgl.opengl.GL11C.glGetInteger;
 import static org.lwjgl.opengl.GL20C.GL_CURRENT_PROGRAM;
 
 public class GlTfParticleRenderer implements IParticleRenderer {
+
 	private static final int SOURCE_SLOT_COUNT = 3;
 
 	private final ParticleVertexBuffer[] sources = new ParticleVertexBuffer[SOURCE_SLOT_COUNT];
@@ -168,8 +169,8 @@ public class GlTfParticleRenderer implements IParticleRenderer {
 	}
 
 	private int extractAppendParticles(Vec3 prevGpuCamPos,
-	                                   List<SingleQuadParticle> pending,
-	                                   List<LayerBatch> batches) {
+									   List<SingleQuadParticle> pending,
+									   List<LayerBatch> batches) {
 		int appendCount = pending.size();
 		int vertexSize = GpuParticlePipelines.RAW_PARTICLE.getVertexSize();
 		final double cx = prevGpuCamPos.x;
@@ -598,4 +599,5 @@ public class GlTfParticleRenderer implements IParticleRenderer {
 		computeResult = null;
 		mappedBuffer = null;
 	}
+
 }

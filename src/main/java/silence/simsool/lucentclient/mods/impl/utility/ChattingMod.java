@@ -182,4 +182,5 @@ public class ChattingMod extends Mod {
 		}
 		return false;
 	}
+
 }

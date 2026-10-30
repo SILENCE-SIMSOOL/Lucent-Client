@@ -7,11 +7,13 @@ import org.jetbrains.annotations.NotNull;
 import java.util.Collection;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
+import java.util.concurrent.CancellationException;
 import java.util.concurrent.ForkJoinPool;
 import java.util.concurrent.ForkJoinTask;
 import java.util.function.Consumer;
 
 public final class TaskHelper {
+
 	private final ForkJoinPool executor;
 	private final List<Group> groups = new ReferenceArrayList<>();
 	private final List<Runnable> tasks = new ReferenceArrayList<>();
@@ -145,17 +147,38 @@ public final class TaskHelper {
 	}
 
 	public void waitForCompletion(Consumer<Exception> exceptionHandler) {
-		if (futures.isEmpty()) {
-			return;
+		try {
+			waitForTasks(futures, exceptionHandler);
+		} finally {
+			futures.clear();
 		}
-		for (ForkJoinTask<?> task : futures) {
-			try {
-				task.get();
-			} catch (InterruptedException | ExecutionException e) {
-				exceptionHandler.accept(e);
+	}
+
+	private static void waitForTasks(List<ForkJoinTask<?>> pending, Consumer<Exception> exceptionHandler) {
+		Throwable handlerFailure = null;
+		boolean interrupted = false;
+		try {
+			for (ForkJoinTask<?> task : pending) {
+				boolean done = false;
+				while (!done) {
+					try {
+						task.get();
+						done = true;
+					} catch (InterruptedException | ExecutionException | CancellationException error) {
+						if (error instanceof InterruptedException) interrupted = true;
+						else done = true;
+						try {
+							exceptionHandler.accept(error);
+						} catch (Throwable failure) {
+							if (handlerFailure == null) handlerFailure = failure;
+						}
+					}
+				}
 			}
+		} finally {
+			if (interrupted) Thread.currentThread().interrupt();
 		}
-		futures.clear();
+		if (handlerFailure != null) throw ExceptionUtil.toThrowDirectly(handlerFailure);
 	}
 
 	public ForkJoinPool executor() {
@@ -187,6 +210,7 @@ public final class TaskHelper {
 	}
 
 	private static sealed abstract class Group implements Runnable permits ParallelGroup, SequentialGroup {
+
 		protected final List<Runnable> tasks;
 		protected final Consumer<Exception> exceptionHandler;
 
@@ -208,9 +232,11 @@ public final class TaskHelper {
 				}
 			}
 		}
+
 	}
 
 	private final class ParallelGroup extends Group implements Runnable {
+
 		public ParallelGroup(List<Runnable> tasks) {
 			super(tasks);
 		}
@@ -225,17 +251,13 @@ public final class TaskHelper {
 			for (Runnable task : tasks) {
 				groupFutures.add(executor.submit(task));
 			}
-			for (ForkJoinTask<?> future : groupFutures) {
-				try {
-					future.get();
-				} catch (InterruptedException | ExecutionException e) {
-					exceptionHandler.accept(e);
-				}
-			}
+			waitForTasks(groupFutures, exceptionHandler);
 		}
+
 	}
 
 	private static final class SequentialGroup extends Group implements Runnable {
+
 		private SequentialGroup(List<Runnable> tasks) {
 			super(tasks);
 		}
@@ -248,5 +270,7 @@ public final class TaskHelper {
 		public void run() {
 			runAll();
 		}
+
 	}
+
 }

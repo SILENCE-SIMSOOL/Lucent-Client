@@ -3,6 +3,7 @@ package silence.simsool.lucentclient.features.controlling.client;
 import net.minecraft.network.chat.Component;
 
 public class DisplayableBoolean {
+
 	private boolean state;
 	private final Component whenTrue;
 	private final Component whenFalse;
@@ -37,4 +38,5 @@ public class DisplayableBoolean {
 	public Component whenFalse() {
 		return whenFalse;
 	}
+
 }

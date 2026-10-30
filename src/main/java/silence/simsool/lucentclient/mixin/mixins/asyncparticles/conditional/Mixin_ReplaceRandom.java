@@ -19,9 +19,11 @@ import org.spongepowered.asm.mixin.injection.At;
 	Font.class
 }, priority = 9000) // Will be replaced with the actual targets
 public abstract class Mixin_ReplaceRandom {
+
 	@WrapOperation(method = "*", require = 0, at = @At(value = "INVOKE",
 		target = "Lnet/minecraft/util/RandomSource;create()Lnet/minecraft/util/RandomSource;"))
 	private static RandomSource onCreateRandomSource(Operation<RandomSource> original) {
 		return new SingleThreadedRandomSource(RandomSupport.generateUniqueSeed());
 	}
+
 }

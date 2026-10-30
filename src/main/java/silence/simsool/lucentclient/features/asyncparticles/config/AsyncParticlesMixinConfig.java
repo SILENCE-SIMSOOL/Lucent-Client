@@ -15,6 +15,7 @@ import java.util.*;
 import static silence.simsool.lucentclient.features.asyncparticles.compat.ModListHelper.*;
 
 public class AsyncParticlesMixinConfig {
+
 	public static final Path MIXIN_CONFIG_FILE = Path.of("config", AsyncParticlesClient.MOD_ID, AsyncParticlesClient.MOD_ID + "-mixin.properties");
 	public static final int VERSION = 3;
 	static String COMMENTS = """
@@ -122,6 +123,7 @@ public class AsyncParticlesMixinConfig {
 	}
 
 	static class MixinConfigObj {
+
 		private MixinConfigObj() {
 		}
 
@@ -331,5 +333,7 @@ public class AsyncParticlesMixinConfig {
 			assertNotGlobal();
 			this.asyncTickableParticleGroups = asyncTickableParticleGroups;
 		}
+
 	}
+
 }

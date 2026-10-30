@@ -36,6 +36,7 @@ import java.util.*;
  * APIs may be removed or change frequently before pull requests are merged.
  */
 public class MixinClassAdjusterApplication {
+
 	static final String MIXINS_JSON = "asyncparticles.target-modifier.mixins.json";
 	static final ILogger LOGGER = MixinService.getService().getLogger("asyncparticles-class-adjuster");
 	private static MixinClassAdjusterApplication INSTANCE;
@@ -186,8 +187,8 @@ public class MixinClassAdjusterApplication {
 	}
 
 	private void applyAdjuster(IClassBytecodeProvider bytecodeProvider,
-	                           MixinClassAdjuster adjuster,
-	                           Map<String, IReferenceMapper> mappersCache) {
+							   MixinClassAdjuster adjuster,
+							   Map<String, IReferenceMapper> mappersCache) {
 		String mixinClassName = adjuster.getMixinClassName();
 		// Get the original mixin class node
 		ClassNode cNode;
@@ -464,4 +465,5 @@ public class MixinClassAdjusterApplication {
 		}
 		adjuster.postApply(targetClassName, targetClass, originalMixinClassMame, mixinInfo);
 	}
+
 }

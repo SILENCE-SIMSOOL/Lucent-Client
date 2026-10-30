@@ -17,6 +17,7 @@ import java.util.function.Supplier;
  * APIs may be removed or change frequently before pull requests are merged.
  */
 public interface MixinClassAdjuster {
+
 	/**
 	 * @return the name of the mixin class that should apply the class adjuster to
 	 */
@@ -75,4 +76,5 @@ public interface MixinClassAdjuster {
 
 	default void postApply(String targetClassName, ClassNode targetClass, String mixinClassName, IMixinInfo mixinInfo) {
 	}
+
 }

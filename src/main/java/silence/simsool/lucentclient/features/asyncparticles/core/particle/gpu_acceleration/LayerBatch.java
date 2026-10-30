@@ -3,6 +3,7 @@ package silence.simsool.lucentclient.features.asyncparticles.core.particle.gpu_a
 import net.minecraft.client.particle.SingleQuadParticle;
 
 public final class LayerBatch {
+
 	public final SingleQuadParticle.Layer layer;
 	public int tickOffset;    // particle index in source buffer
 	public int tickCount;
@@ -12,4 +13,5 @@ public final class LayerBatch {
 	public LayerBatch(SingleQuadParticle.Layer layer) {
 		this.layer = layer;
 	}
+
 }

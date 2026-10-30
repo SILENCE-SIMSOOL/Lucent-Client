@@ -1,7 +1,9 @@
 package silence.simsool.lucentclient.mods.impl.hud;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.ArrayDeque;
+import java.util.Deque;
+
+import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 
 import silence.simsool.lucent.Lucent;
 import silence.simsool.lucent.events.impl.LucentEvent;
@@ -21,6 +23,12 @@ public class CPSMod extends Mod {
 				"cps, click",
 				"\uE323"
 		);
+		ClientTickEvents.END_CLIENT_TICK.register(client -> {
+			synchronized (leftClicks) {
+				if (isEnabled()) pruneClicks(System.currentTimeMillis());
+				else leftClicks.clear();
+			}
+		});
 	}
 
 	public static boolean isEnabled() {
@@ -79,36 +87,28 @@ public class CPSMod extends Mod {
 	)
 	public static int BackgroundColor = 0x80000000;
 
-	private static final List<Long> leftClicks = new ArrayList<>();
-	private static final List<Long> rightClicks = new ArrayList<>();
+	private static final Deque<Long> leftClicks = new ArrayDeque<>();
 
 	@Override
 	public void onLeftClickPost(LucentEvent.LeftClickPostEvent event) {
 		synchronized (leftClicks) {
-			leftClicks.add(System.currentTimeMillis());
+			long now = System.currentTimeMillis();
+			pruneClicks(now);
+			leftClicks.addLast(now);
 		}
 	}
 
-	@Override
-	public void onRightClickPost(LucentEvent.RightClickPostEvent event) {
-		synchronized (rightClicks) {
-			rightClicks.add(System.currentTimeMillis());
+	private static void pruneClicks(long now) {
+		while (!leftClicks.isEmpty() && now - leftClicks.peekFirst() > 1000) {
+			leftClicks.removeFirst();
 		}
 	}
 
 	public static int getLeftCPS() {
-		long now = System.currentTimeMillis();
 		synchronized (leftClicks) {
-			leftClicks.removeIf(timestamp -> now - timestamp > 1000);
+			if (!isEnabled()) leftClicks.clear();
+			else pruneClicks(System.currentTimeMillis());
 			return leftClicks.size();
-		}
-	}
-
-	public static int getRightCPS() {
-		long now = System.currentTimeMillis();
-		synchronized (rightClicks) {
-			rightClicks.removeIf(timestamp -> now - timestamp > 1000);
-			return rightClicks.size();
 		}
 	}
 

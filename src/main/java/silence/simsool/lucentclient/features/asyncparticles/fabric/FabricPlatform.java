@@ -6,6 +6,7 @@ import silence.simsool.lucentclient.features.asyncparticles.core.fabric.GameUtil
 import net.minecraft.world.phys.AABB;
 
 public class FabricPlatform implements Platform {
+
 	public boolean isForge() {
 		return false;
 	}
@@ -44,4 +45,5 @@ public class FabricPlatform implements Platform {
 	public AABB infinityAABB() {
 		return GameUtilImpl.infinityAABB();
 	}
+
 }

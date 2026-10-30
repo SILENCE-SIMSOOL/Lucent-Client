@@ -3,6 +3,7 @@ package silence.simsool.lucentclient.features.asyncparticles.util;
 import org.jetbrains.annotations.NotNull;
 
 public class ExceptionUtil {
+
 	public static RuntimeException toThrowDirectly(@NotNull Throwable t) {
 		return toThrowDirectly0(t);
 	}
@@ -27,4 +28,5 @@ public class ExceptionUtil {
 	public static void throwAssertionError() {
 		throw new AssertionError();
 	}
+
 }

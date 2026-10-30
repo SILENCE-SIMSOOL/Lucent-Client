@@ -35,6 +35,7 @@ import silence.simsool.lucentclient.mixin.mixins.controlling.AccessAbstractSelec
 import silence.simsool.lucentclient.mixin.mixins.controlling.AccessKeyBindsScreen;
 
 public class NewKeyBindsScreen extends KeyBindsScreen {
+
 	private EditBox search;
 	private DisplayMode displayMode;
 	private SortOrder sortOrder = SortOrder.NONE;
@@ -334,4 +335,5 @@ public class NewKeyBindsScreen extends KeyBindsScreen {
 		setFocused(getKeyBindsList());
 		showFree = !showFree;
 	};
+
 }

@@ -6,6 +6,7 @@ import org.lwjgl.opengl.GL20C;
 import org.lwjgl.opengl.GL30C;
 
 public class ParticleTransformFeedbackShader {
+
 	public static final ParticleTransformFeedbackShader INSTANCE = new ParticleTransformFeedbackShader();
 	public final int programId;
 	// Uniforms
@@ -71,4 +72,5 @@ public class ParticleTransformFeedbackShader {
 		GL20C.glUniform3f(CameraUp, upX, upY, upZ);
 		GL20C.glUniform3f(PartialCameraPos, partialCameraX, partialCameraY, partialCameraZ);
 	}
+
 }

@@ -27,15 +27,16 @@ import java.util.List;
 
 @Mixin(QuadParticleFeatureRenderer.class)
 public class MixinQuadParticleFeatureRenderer {
+
 	@Inject(method = "executeGroup", at = @At(value = "INVOKE", target = "Lcom/mojang/blaze3d/systems/GpuDevice;createCommandEncoder()Lcom/mojang/blaze3d/systems/CommandEncoder;"))
 	public void executeGroupPreDraw(FeatureFrameContext context,
-	                                int groupIndex,
-	                                List<QuadParticleFeatureRenderer.Submit> submits,
-	                                boolean strictlyOrdered,
-	                                CallbackInfo ci,
-	                                @Share("result") LocalRef<ComputeResult> resultRef,
-	                                @Share("indexBuffer") LocalRef<GpuBuffer> indexBufferRef,
-	                                @Share("indexType") LocalRef<IndexType> indexTypeRef) {
+									int groupIndex,
+									List<QuadParticleFeatureRenderer.Submit> submits,
+									boolean strictlyOrdered,
+									CallbackInfo ci,
+									@Share("result") LocalRef<ComputeResult> resultRef,
+									@Share("indexBuffer") LocalRef<GpuBuffer> indexBufferRef,
+									@Share("indexType") LocalRef<IndexType> indexTypeRef) {
 		if (!ConfigHelper.isGpuParticles()) {
 			return;
 		}
@@ -54,15 +55,15 @@ public class MixinQuadParticleFeatureRenderer {
 
 	@Inject(method = "executeGroup", at = @At(value = "INVOKE", shift = At.Shift.AFTER, target = "Lnet/minecraft/client/renderer/feature/QuadParticleFeatureRenderer;drawLayers(Lnet/minecraft/client/renderer/StagedVertexBuffer;Ljava/util/Map;Lcom/mojang/blaze3d/systems/RenderPass;Lnet/minecraft/client/renderer/texture/TextureManager;)V"))
 	public void executeGroupPostDraw(FeatureFrameContext context,
-	                                 int groupIndex,
-	                                 List<QuadParticleFeatureRenderer.Submit> submits,
-	                                 boolean strictlyOrdered,
-	                                 CallbackInfo ci,
-	                                 @Local(ordinal = 0) QuadParticleFeatureRenderer.PreparedGroup group,
-	                                 @Local(ordinal = 0) RenderPass renderPass,
-	                                 @Share("result") LocalRef<ComputeResult> resultRef,
-	                                 @Share("indexBuffer") LocalRef<GpuBuffer> indexBufferRef,
-	                                 @Share("indexType") LocalRef<IndexType> indexTypeRef) {
+									 int groupIndex,
+									 List<QuadParticleFeatureRenderer.Submit> submits,
+									 boolean strictlyOrdered,
+									 CallbackInfo ci,
+									 @Local(ordinal = 0) QuadParticleFeatureRenderer.PreparedGroup group,
+									 @Local(ordinal = 0) RenderPass renderPass,
+									 @Share("result") LocalRef<ComputeResult> resultRef,
+									 @Share("indexBuffer") LocalRef<GpuBuffer> indexBufferRef,
+									 @Share("indexType") LocalRef<IndexType> indexTypeRef) {
 		ComputeResult result = resultRef.get();
 		if (result == null) {
 			return;
@@ -98,4 +99,5 @@ public class MixinQuadParticleFeatureRenderer {
 			renderPass.drawIndexed(slice.indexCount(), 1, 0, slice.vertexOffset(), 0);
 		}
 	}
+
 }

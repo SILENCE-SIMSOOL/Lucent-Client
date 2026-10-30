@@ -50,4 +50,5 @@ public class BetterScreensMod extends Mod {
 		description = "lucent.config.lucentclient.betterscreensmod.property.removerecipebookshift.description"
 	)
 	public static boolean RemoveRecipeBookShift = false;
+
 }

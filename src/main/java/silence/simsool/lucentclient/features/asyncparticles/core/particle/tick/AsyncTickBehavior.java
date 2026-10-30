@@ -41,6 +41,7 @@ import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 public class AsyncTickBehavior {
+
 	static final Logger LOGGER = LogManager.getLogger();
 	public static final ParticleThreadLocal<Phase> PHASE = ParticleThreadLocal.withInitial(ThreadUtil::isOnMainThread, () -> Phase.NONE);
 	public static final int THREADS;
@@ -396,4 +397,5 @@ public class AsyncTickBehavior {
 	public TickExceptionHandler getExceptionHandler() {
 		return exceptionHandler;
 	}
+
 }

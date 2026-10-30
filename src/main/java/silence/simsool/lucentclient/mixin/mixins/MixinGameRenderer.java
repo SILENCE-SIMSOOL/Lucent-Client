@@ -94,4 +94,5 @@ public class MixinGameRenderer {
 		}
 		SaturationHandler.render(this.mainRenderTarget, this.resourcePool);
 	}
+
 }

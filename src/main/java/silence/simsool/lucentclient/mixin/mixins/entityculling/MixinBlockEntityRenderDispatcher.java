@@ -73,4 +73,5 @@ public abstract class MixinBlockEntityRenderDispatcher {
 			cullable.setOutOfCamera(false);
 		}
 	}
+
 }

@@ -11,6 +11,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(value = LevelExtractor.class, priority = 500)
 public abstract class MixinLevelExtractor {
+
 	@Shadow
 	protected abstract void setSectionDirty(int i, int j, int k, boolean bl);
 
@@ -54,4 +55,5 @@ public abstract class MixinLevelExtractor {
 			ThreadUtil.enqueueClientTask(() -> this.setSectionRangeDirty(i, j, k, l, m, n));
 		}
 	}
+
 }

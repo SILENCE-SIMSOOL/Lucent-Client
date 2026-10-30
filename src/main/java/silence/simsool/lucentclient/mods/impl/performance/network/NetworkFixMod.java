@@ -89,8 +89,8 @@ public class NetworkFixMod extends Mod {
 	public static void configureNettyMemory() {
 		if (NettyMemoryOptimize) {
 			if (System.getProperty("io.netty.allocator.maxOrder") == null) {
-	            System.setProperty("io.netty.allocator.maxOrder", "9");
-	        }
+				System.setProperty("io.netty.allocator.maxOrder", "9");
+			}
 		}
 	}
 

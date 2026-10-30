@@ -1,6 +1,7 @@
 package silence.simsool.lucentclient.features.asyncparticles.compat;
 
 public class Mappings {
+
 	public static String getTickParticlesMethod() {
 		return "tickParticles";
 	}
@@ -16,4 +17,5 @@ public class Mappings {
 	public static String getRenderRotatedQuadMethod2() {
 		return "extractRotatedQuad";
 	}
+
 }

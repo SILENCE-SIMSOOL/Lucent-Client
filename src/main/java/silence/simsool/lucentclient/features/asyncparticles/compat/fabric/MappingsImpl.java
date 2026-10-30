@@ -3,6 +3,7 @@ package silence.simsool.lucentclient.features.asyncparticles.compat.fabric;
 import net.fabricmc.loader.api.FabricLoader;
 
 public class MappingsImpl {
+
 	public static String getTickParticlesMethod() {
 		return FabricLoader.getInstance().getMappingResolver().mapMethodName(
 			"intermediary",
@@ -44,4 +45,5 @@ public class MappingsImpl {
 			"net.minecraft.class_677$class_680"
 		);
 	}
+
 }

@@ -21,6 +21,7 @@ import java.util.concurrent.ConcurrentHashMap;
 
 @Mixin(value = LevelChunk.class, priority = 1500)
 public abstract class MixinLevelChunk_SafeBlockEntityMap_On extends ChunkAccess {
+
 	@Shadow
 	@Final
 	Level level;
@@ -50,4 +51,5 @@ public abstract class MixinLevelChunk_SafeBlockEntityMap_On extends ChunkAccess 
 			cir.setReturnValue(blockEntities.get(pos));
 		}
 	}
+
 }

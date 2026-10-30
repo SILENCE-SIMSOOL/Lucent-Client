@@ -4,6 +4,7 @@ import java.lang.invoke.MethodHandles;
 import java.lang.invoke.VarHandle;
 
 public class SingleSpinLock implements SpinLock {
+
 	private static final VarHandle OWNER;
 
 	static {
@@ -44,4 +45,5 @@ public class SingleSpinLock implements SpinLock {
 			throw new IllegalMonitorStateException("Attempt to unlock an non-locked lock!");
 		}
 	}
+
 }

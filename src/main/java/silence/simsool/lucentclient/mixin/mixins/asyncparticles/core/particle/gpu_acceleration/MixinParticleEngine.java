@@ -29,6 +29,7 @@ import java.util.Queue;
 
 @Mixin(value = ParticleEngine.class, priority = 500)
 public abstract class MixinParticleEngine implements ParticleEngineAddon {
+
 	@Shadow
 	@Final
 	public Map<ParticleRenderType, ParticleGroup<?>> particles;
@@ -99,4 +100,5 @@ public abstract class MixinParticleEngine implements ParticleEngineAddon {
 		}
 		renderer.tick(GpuParticleBehavior.getInstance().getPerTickCameraPos(), particles);
 	}
+
 }

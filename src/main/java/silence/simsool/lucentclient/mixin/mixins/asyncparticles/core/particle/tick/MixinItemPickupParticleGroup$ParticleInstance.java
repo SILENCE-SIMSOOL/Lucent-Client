@@ -10,10 +10,12 @@ import org.spongepowered.asm.mixin.injection.ModifyArg;
 
 @Mixin(ItemPickupParticleGroup.class)
 public class MixinItemPickupParticleGroup$ParticleInstance {
+
 	@ModifyArg(method = "lambda$extractRenderState$0", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/particle/ItemPickupParticleGroup$ParticleInstance;fromParticle(Lnet/minecraft/client/particle/ItemPickupParticle;Lnet/minecraft/client/Camera;F)Lnet/minecraft/client/particle/ItemPickupParticleGroup$ParticleInstance;"))
 	private static float modifyParticleRecord(float deltaPartialTick,
-	                                          @Local(argsOnly = true, ordinal = 0)
+											  @Local(argsOnly = true, ordinal = 0)
 											  ItemPickupParticle particle) {
 		return !((ParticleAddon) particle).asyncparticles$isTicked() && deltaPartialTick <= 1.0f ? deltaPartialTick + 1.0f : deltaPartialTick;
 	}
+
 }

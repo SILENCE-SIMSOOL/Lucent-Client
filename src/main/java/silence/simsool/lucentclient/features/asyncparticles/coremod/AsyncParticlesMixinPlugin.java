@@ -22,6 +22,7 @@ import java.util.Set;
 import static silence.simsool.lucentclient.features.asyncparticles.compat.ModListHelper.*;
 
 public class AsyncParticlesMixinPlugin implements IMixinConfigPlugin {
+
 	public static final ILogger LOGGER = MixinService.getService().getLogger("asyncparticles:plugin");
 
 	@Override

@@ -4,6 +4,7 @@ import java.lang.invoke.MethodHandles;
 import java.lang.invoke.VarHandle;
 
 public class ReentrantSpinLock implements SpinLock {
+
 	private static final VarHandle OWNER;
 
 	static {
@@ -49,4 +50,5 @@ public class ReentrantSpinLock implements SpinLock {
 			owner = null;
 		}
 	}
+
 }

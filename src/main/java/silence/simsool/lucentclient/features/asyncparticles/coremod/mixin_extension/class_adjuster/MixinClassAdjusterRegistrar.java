@@ -14,6 +14,7 @@ import java.util.Set;
  * APIs may be removed or change frequently before pull requests are merged.
  */
 public class MixinClassAdjusterRegistrar {
+
 	private static final ILogger LOGGER = MixinService.getService().getLogger("asyncparticles-class-adjuster");
 	private static Map<String, MixinClassAdjuster> pendingAdjusters = new HashMap<>();
 	private static Set<MixinClassProvider> pendingProviders = new HashSet<>();
@@ -45,4 +46,5 @@ public class MixinClassAdjusterRegistrar {
 		pendingProviders = null;
 		return l;
 	}
+
 }

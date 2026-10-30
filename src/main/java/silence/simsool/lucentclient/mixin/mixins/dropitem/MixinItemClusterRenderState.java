@@ -53,4 +53,5 @@ public class MixinItemClusterRenderState implements ItemClusterRenderStateDuck {
 	public void lucent$setScale(float scale) {
 		this.lucent$scale = scale;
 	}
+
 }

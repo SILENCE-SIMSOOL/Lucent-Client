@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AdjusterReplaceRandom implements MixinClassAdjuster {
+
 	private static final String CLASS_NAME = "silence.simsool.lucentclient.mixin.mixins.asyncparticles.conditional.Mixin_ReplaceRandom";
 	@Override
 	public String getMixinClassName() {
@@ -24,4 +25,5 @@ public class AdjusterReplaceRandom implements MixinClassAdjuster {
 	public String getRefMapperConfig() {
 		return null;
 	}
+
 }

@@ -19,6 +19,7 @@ import java.util.Queue;
 
 @Mixin(ParticleEngine.class)
 public class MixinParticleEngine implements ParticleEngineAddon {
+
 	@Mutable
 	@Shadow
 	@Final
@@ -46,4 +47,5 @@ public class MixinParticleEngine implements ParticleEngineAddon {
 	public void clearParticles(CallbackInfo ci) {
 		ParticleHelper.onClearParticles();
 	}
+
 }

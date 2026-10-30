@@ -4,6 +4,7 @@ import silence.simsool.lucentclient.features.asyncparticles.fabric.FabricPlatfor
 import net.minecraft.world.phys.AABB;
 
 public interface Platform {
+
 	Platform PLATFORM = new FabricPlatform();
 
 	boolean isForge();
@@ -23,4 +24,5 @@ public interface Platform {
 	boolean isDevelopmentEnvironment();
 
 	AABB infinityAABB();
+
 }

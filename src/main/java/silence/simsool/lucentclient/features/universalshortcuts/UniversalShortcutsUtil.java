@@ -68,4 +68,5 @@ public abstract class UniversalShortcutsUtil {
 	public static KeyEvent remapKeyEventToQWERTY(KeyEvent localKeyEvent) {
 		return new KeyEvent(remapKeyCodeToQWERTY(localKeyEvent.key()), localKeyEvent.scancode(), localKeyEvent.modifiers());
 	}
+
 }

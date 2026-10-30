@@ -105,4 +105,5 @@ public abstract class MixinClientLevel {
 		float f = warden.getClientAngerLevel() / AngerLevel.ANGRY.getMinimumAnger();
 		return 40 - Mth.floor(Mth.clamp(f, 0.0F, 1.0F) * 30.0F);
 	}
+
 }

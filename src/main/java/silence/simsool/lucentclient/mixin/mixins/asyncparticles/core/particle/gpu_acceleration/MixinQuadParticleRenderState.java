@@ -13,6 +13,7 @@ import org.spongepowered.asm.mixin.injection.At;
 
 @Mixin(QuadParticleRenderState.class)
 public class MixinQuadParticleRenderState implements GpuQuadParticleRenderState {
+
 	@Unique
 	private GpuParticleGroup asyncparticles$gpuParticleGroup;
 
@@ -32,4 +33,5 @@ public class MixinQuadParticleRenderState implements GpuQuadParticleRenderState 
 	public void asyncparticles$setGroup(QuadParticleGroup quadParticleGroup) {
 		this.asyncparticles$gpuParticleGroup = (GpuParticleGroup) quadParticleGroup;
 	}
+
 }

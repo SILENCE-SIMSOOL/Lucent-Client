@@ -9,6 +9,7 @@ import net.minecraft.util.Mth;
  */
 
 public record BinaryFastMapKey(int numValues, byte firstBitInValue, byte firstBitAfterValue) implements FastMapKey {
+
 	public BinaryFastMapKey(int numValues, byte firstBitInValue, byte firstBitAfterValue) {
 		this.numValues = numValues;
 		this.firstBitInValue = firstBitInValue;

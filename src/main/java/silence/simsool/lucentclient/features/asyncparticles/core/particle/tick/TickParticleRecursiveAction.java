@@ -14,6 +14,7 @@ import java.util.concurrent.RecursiveAction;
 
 @SuppressWarnings("serial")
 public class TickParticleRecursiveAction<T extends Particle> extends RecursiveAction {
+
 	private static final int MAX_DEPTH = (int) Math.round(Math.log(HashCommon.nextPowerOfTwo(AsyncTickBehavior.THREADS)) / Math.log(2)) + 2;
 	private final ParticleGroup<?> group;
 	private final Spliterator<T> spliterator;
@@ -69,4 +70,5 @@ public class TickParticleRecursiveAction<T extends Particle> extends RecursiveAc
 			});
 		}
 	}
+
 }

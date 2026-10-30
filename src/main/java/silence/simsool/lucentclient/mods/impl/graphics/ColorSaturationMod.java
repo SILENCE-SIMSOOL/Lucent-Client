@@ -68,4 +68,5 @@ public class ColorSaturationMod extends Mod {
 	public static boolean isActive() {
 		return isEnabled() && !isIdentity();
 	}
+
 }

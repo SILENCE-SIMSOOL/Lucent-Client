@@ -8,6 +8,7 @@ import net.minecraft.client.gui.screens.options.controls.KeyBindsList;
 import net.minecraft.client.gui.screens.options.controls.KeyBindsScreen;
 
 public class CustomList extends KeyBindsList {
+
 	public List<Entry> allEntries;
 
 	public CustomList(KeyBindsScreen keyBindsScreen, Minecraft minecraft) {
@@ -40,4 +41,5 @@ public class CustomList extends KeyBindsList {
 	public int addEntryInternal(Entry entry) {
 		return super.addEntry(entry);
 	}
+
 }

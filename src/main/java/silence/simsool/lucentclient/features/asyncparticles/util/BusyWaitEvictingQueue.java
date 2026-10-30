@@ -8,6 +8,7 @@ import java.util.function.Consumer;
 import java.util.function.Predicate;
 
 public class BusyWaitEvictingQueue<E> extends IterationSafeEvictingQueue<E> {
+
 	private final ReentrantSpinLock lock = new ReentrantSpinLock();
 
 	public BusyWaitEvictingQueue(int initialCapacity, int maxCapacity) {
@@ -79,4 +80,5 @@ public class BusyWaitEvictingQueue<E> extends IterationSafeEvictingQueue<E> {
 	public E poll() {
 		return lock.wrap(super::poll);
 	}
+
 }

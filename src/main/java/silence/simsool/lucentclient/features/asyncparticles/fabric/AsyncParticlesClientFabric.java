@@ -27,6 +27,7 @@ import static net.fabricmc.fabric.api.client.command.v2.ClientCommands.argument;
 import static net.fabricmc.fabric.api.client.command.v2.ClientCommands.literal;
 
 public final class AsyncParticlesClientFabric implements ClientModInitializer {
+
 	private static CompletableFuture<Suggestions> suggestModId(CommandContext<FabricClientCommandSource> context, SuggestionsBuilder builder) {
 		return SharedSuggestionProvider.suggest(FabricLoader.getInstance().getAllMods().stream().map(modContainer -> modContainer.getMetadata().getId()), builder);
 	}
@@ -145,4 +146,5 @@ public final class AsyncParticlesClientFabric implements ClientModInitializer {
 			});
 		}
 	}
+
 }

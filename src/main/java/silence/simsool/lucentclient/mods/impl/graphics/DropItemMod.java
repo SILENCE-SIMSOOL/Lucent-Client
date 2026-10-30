@@ -52,4 +52,5 @@ public class DropItemMod extends Mod {
 		min = 0.0, max = 3.0, step = 0.1
 	)
 	public static double UHCOverlay = 0.0;
+
 }

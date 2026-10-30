@@ -7,6 +7,7 @@ import org.spongepowered.asm.mixin.extensibility.IMixinErrorHandler;
 import org.spongepowered.asm.mixin.extensibility.IMixinInfo;
 
 public class AsyncParticlesMixinErrorHandler implements IMixinErrorHandler {
+
 	@Override
 	public ErrorAction onPrepareError(IMixinConfig config, Throwable th, IMixinInfo mixin, ErrorAction action) {
 		return null;
@@ -24,4 +25,5 @@ public class AsyncParticlesMixinErrorHandler implements IMixinErrorHandler {
 		}
 		return null;
 	}
+
 }

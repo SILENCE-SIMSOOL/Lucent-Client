@@ -18,165 +18,167 @@ import java.util.Collection;
  * APIs may be removed or change frequently before pull requests are merged.
  */
 public class MixinServiceWrapper implements IMixinService, IClassBytecodeProvider {
-    public final IMixinService delegate;
 
-    public MixinServiceWrapper(IMixinService delegate) {
-        this.delegate = delegate;
-    }
+	public final IMixinService delegate;
 
-    @Override
-    public IClassBytecodeProvider getBytecodeProvider() {
-        return this;
-    }
+	public MixinServiceWrapper(IMixinService delegate) {
+		this.delegate = delegate;
+	}
 
-    @Override
-    public ClassNode getClassNode(String name) throws ClassNotFoundException, IOException {
-        byte[] bytes = MixinClassAdjusterApplication.getInstance().getByteCode(name);
-        if (bytes == null) {
-            return delegate.getBytecodeProvider().getClassNode(name);
-        }
-        MixinClassAdjusterApplication.LOGGER.info("Redirecting IClassBytecodeProvider#getClassNode for {}", name);
-        ClassNode node = new ClassNode();
-        new ClassReader(bytes).accept(node, 0);
-        return node;
-    }
+	@Override
+	public IClassBytecodeProvider getBytecodeProvider() {
+		return this;
+	}
 
-    @Override
-    public ClassNode getClassNode(String name, boolean runTransformers) throws ClassNotFoundException, IOException {
-        byte[] bytes = MixinClassAdjusterApplication.getInstance().getByteCode(name);
-        if (bytes == null) {
-            return delegate.getBytecodeProvider().getClassNode(name, runTransformers);
-        }
-        MixinClassAdjusterApplication.LOGGER.info("Redirecting IClassBytecodeProvider#getClassNode for {}", name);
-        ClassNode node = new ClassNode();
-        new ClassReader(bytes).accept(node, 0);
-        return node;
-    }
+	@Override
+	public ClassNode getClassNode(String name) throws ClassNotFoundException, IOException {
+		byte[] bytes = MixinClassAdjusterApplication.getInstance().getByteCode(name);
+		if (bytes == null) {
+			return delegate.getBytecodeProvider().getClassNode(name);
+		}
+		MixinClassAdjusterApplication.LOGGER.info("Redirecting IClassBytecodeProvider#getClassNode for {}", name);
+		ClassNode node = new ClassNode();
+		new ClassReader(bytes).accept(node, 0);
+		return node;
+	}
 
-    @Override
-    public ClassNode getClassNode(String name, boolean runTransformers, int readerFlags) throws ClassNotFoundException, IOException {
-        byte[] bytes = MixinClassAdjusterApplication.getInstance().getByteCode(name);
-        if (bytes == null) {
-            return delegate.getBytecodeProvider().getClassNode(name, runTransformers, readerFlags);
-        }
-        MixinClassAdjusterApplication.LOGGER.info("Redirecting IClassBytecodeProvider#getClassNode for {}", name);
-        ClassNode node = new ClassNode();
-        new ClassReader(bytes).accept(node, readerFlags);
-        return node;
-    }
+	@Override
+	public ClassNode getClassNode(String name, boolean runTransformers) throws ClassNotFoundException, IOException {
+		byte[] bytes = MixinClassAdjusterApplication.getInstance().getByteCode(name);
+		if (bytes == null) {
+			return delegate.getBytecodeProvider().getClassNode(name, runTransformers);
+		}
+		MixinClassAdjusterApplication.LOGGER.info("Redirecting IClassBytecodeProvider#getClassNode for {}", name);
+		ClassNode node = new ClassNode();
+		new ClassReader(bytes).accept(node, 0);
+		return node;
+	}
 
-    @Override
-    public String getName() {
-        return delegate.getName();
-    }
+	@Override
+	public ClassNode getClassNode(String name, boolean runTransformers, int readerFlags) throws ClassNotFoundException, IOException {
+		byte[] bytes = MixinClassAdjusterApplication.getInstance().getByteCode(name);
+		if (bytes == null) {
+			return delegate.getBytecodeProvider().getClassNode(name, runTransformers, readerFlags);
+		}
+		MixinClassAdjusterApplication.LOGGER.info("Redirecting IClassBytecodeProvider#getClassNode for {}", name);
+		ClassNode node = new ClassNode();
+		new ClassReader(bytes).accept(node, readerFlags);
+		return node;
+	}
 
-    @Override
-    public boolean isValid() {
-        return delegate.isValid();
-    }
+	@Override
+	public String getName() {
+		return delegate.getName();
+	}
 
-    @Override
-    public void prepare() {
-        delegate.prepare();
-    }
+	@Override
+	public boolean isValid() {
+		return delegate.isValid();
+	}
 
-    @Override
-    public MixinEnvironment.Phase getInitialPhase() {
-        return delegate.getInitialPhase();
-    }
+	@Override
+	public void prepare() {
+		delegate.prepare();
+	}
 
-    @Override
-    public void offer(IMixinInternal internal) {
-        delegate.offer(internal);
-    }
+	@Override
+	public MixinEnvironment.Phase getInitialPhase() {
+		return delegate.getInitialPhase();
+	}
 
-    @Override
-    public void init() {
-        delegate.init();
-    }
+	@Override
+	public void offer(IMixinInternal internal) {
+		delegate.offer(internal);
+	}
 
-    @Override
-    public void beginPhase() {
-        delegate.beginPhase();
-    }
+	@Override
+	public void init() {
+		delegate.init();
+	}
 
-    @Override
-    public void checkEnv(Object bootSource) {
-        delegate.checkEnv(bootSource);
-    }
+	@Override
+	public void beginPhase() {
+		delegate.beginPhase();
+	}
 
-    @Override
-    public ReEntranceLock getReEntranceLock() {
-        return delegate.getReEntranceLock();
-    }
+	@Override
+	public void checkEnv(Object bootSource) {
+		delegate.checkEnv(bootSource);
+	}
 
-    @Override
-    public IClassProvider getClassProvider() {
-        return delegate.getClassProvider();
-    }
+	@Override
+	public ReEntranceLock getReEntranceLock() {
+		return delegate.getReEntranceLock();
+	}
 
-    @Override
-    public ITransformerProvider getTransformerProvider() {
-        return delegate.getTransformerProvider();
-    }
+	@Override
+	public IClassProvider getClassProvider() {
+		return delegate.getClassProvider();
+	}
 
-    @Override
-    public IClassTracker getClassTracker() {
-        return delegate.getClassTracker();
-    }
+	@Override
+	public ITransformerProvider getTransformerProvider() {
+		return delegate.getTransformerProvider();
+	}
 
-    @Override
-    public IMixinAuditTrail getAuditTrail() {
-        return delegate.getAuditTrail();
-    }
+	@Override
+	public IClassTracker getClassTracker() {
+		return delegate.getClassTracker();
+	}
 
-    @Override
-    public IFeatureValidator getFeatureValidator() {
-        return delegate.getFeatureValidator();
-    }
+	@Override
+	public IMixinAuditTrail getAuditTrail() {
+		return delegate.getAuditTrail();
+	}
 
-    @Override
-    public IAdviceProvider getAdviceProvider() {
-        return delegate.getAdviceProvider();
-    }
+	@Override
+	public IFeatureValidator getFeatureValidator() {
+		return delegate.getFeatureValidator();
+	}
 
-    @Override
-    public Collection<String> getPlatformAgents() {
-        return delegate.getPlatformAgents();
-    }
+	@Override
+	public IAdviceProvider getAdviceProvider() {
+		return delegate.getAdviceProvider();
+	}
 
-    @Override
-    public IContainerHandle getPrimaryContainer() {
-        return delegate.getPrimaryContainer();
-    }
+	@Override
+	public Collection<String> getPlatformAgents() {
+		return delegate.getPlatformAgents();
+	}
 
-    @Override
-    public Collection<IContainerHandle> getMixinContainers() {
-        return delegate.getMixinContainers();
-    }
+	@Override
+	public IContainerHandle getPrimaryContainer() {
+		return delegate.getPrimaryContainer();
+	}
 
-    @Override
-    public InputStream getResourceAsStream(String name) {
-        return delegate.getResourceAsStream(name);
-    }
+	@Override
+	public Collection<IContainerHandle> getMixinContainers() {
+		return delegate.getMixinContainers();
+	}
 
-    @Override
-    public String getSideName() {
-        return delegate.getSideName();
-    }
+	@Override
+	public InputStream getResourceAsStream(String name) {
+		return delegate.getResourceAsStream(name);
+	}
 
-    @Override
-    public MixinEnvironment.CompatibilityLevel getMinCompatibilityLevel() {
-        return delegate.getMinCompatibilityLevel();
-    }
+	@Override
+	public String getSideName() {
+		return delegate.getSideName();
+	}
 
-    @Override
-    public MixinEnvironment.CompatibilityLevel getMaxCompatibilityLevel() {
-        return delegate.getMaxCompatibilityLevel();
-    }
+	@Override
+	public MixinEnvironment.CompatibilityLevel getMinCompatibilityLevel() {
+		return delegate.getMinCompatibilityLevel();
+	}
 
-    @Override
-    public ILogger getLogger(String name) {
-        return delegate.getLogger(name);
-    }
+	@Override
+	public MixinEnvironment.CompatibilityLevel getMaxCompatibilityLevel() {
+		return delegate.getMaxCompatibilityLevel();
+	}
+
+	@Override
+	public ILogger getLogger(String name) {
+		return delegate.getLogger(name);
+	}
+
 }

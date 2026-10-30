@@ -61,7 +61,7 @@ public final class FastPing {
 			.setNameFormat("FastPing #%d")
 			.setDaemon(true)
 			.build(),
-		new ThreadPoolExecutor.DiscardPolicy()
+		new ThreadPoolExecutor.AbortPolicy()
 	);
 
 	public static CompletableFuture<Status> ping(String host, int port, Consumer<Status> listener) {
@@ -97,7 +97,10 @@ public final class FastPing {
 				channel.channel().close();
 			}
 		}, 10, TimeUnit.SECONDS);
-		future.whenComplete((s, e) -> deadline.cancel(false));
+		future.whenComplete((s, e) -> {
+			deadline.cancel(false);
+			channel.channel().close();
+		});
 
 		return future;
 	}
@@ -345,6 +348,7 @@ public final class FastPing {
 				inner.release();
 			}
 		}
+
 	}
 
 }

@@ -11,6 +11,7 @@ import org.spongepowered.asm.mixin.Unique;
 @Pseudo
 @Mixin(Particle.class) // Will be replaced with the actual targets
 public class MixinParticles_LockProvider implements SpinLockProvider {
+
 	@Unique
 	protected SpinLock asyncparticles$lock = new ReentrantSpinLock();
 
@@ -18,4 +19,5 @@ public class MixinParticles_LockProvider implements SpinLockProvider {
 	public SpinLock asyncparticles$getSpinLock() {
 		return asyncparticles$lock;
 	}
+
 }

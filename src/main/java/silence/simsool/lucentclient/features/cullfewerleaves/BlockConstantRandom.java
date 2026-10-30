@@ -9,4 +9,5 @@ public class BlockConstantRandom {
 		seed = seed * 25214903917L + 11L & 281474976710655L;
 		return ((int) (seed >> 48 - 24)) * 5.9604645E-8F;
 	}
+
 }

@@ -21,6 +21,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(value = LevelChunk.class, priority = 1500)
 public abstract class MixinLevelChunk_SafeBlockEntityMap_Off extends ChunkAccess {
+
 	@Shadow
 	@Final
 	private Level level;
@@ -32,8 +33,8 @@ public abstract class MixinLevelChunk_SafeBlockEntityMap_Off extends ChunkAccess
 	@Inject(method = "getBlockEntity(Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/chunk/LevelChunk$EntityCreationType;)Lnet/minecraft/world/level/block/entity/BlockEntity;",
 		at = @At("HEAD"), cancellable = true)
 	private void onGetBlockEntity(BlockPos pos,
-	                              LevelChunk.EntityCreationType creationType,
-	                              CallbackInfoReturnable<BlockEntity> cir) {
+								  LevelChunk.EntityCreationType creationType,
+								  CallbackInfoReturnable<BlockEntity> cir) {
 		if (level.isClientSide() && ThreadUtil.isOnParticleThread()) {
 			cir.setReturnValue(blockEntities.get(pos));
 		}
@@ -50,4 +51,5 @@ public abstract class MixinLevelChunk_SafeBlockEntityMap_Off extends ChunkAccess
 			}
 		}
 	}
+
 }

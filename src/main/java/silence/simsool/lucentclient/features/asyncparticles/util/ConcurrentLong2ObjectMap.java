@@ -15,6 +15,7 @@ import java.util.function.LongFunction;
 
 @SuppressWarnings("serial")
 public class ConcurrentLong2ObjectMap<V> extends AbstractLong2ObjectMap<V> implements Long2ObjectMap<V> {
+
 	private final ConcurrentHashMap<Long, V> delegate = new ConcurrentHashMap<>();
 
 	public ConcurrentLong2ObjectMap() {
@@ -196,4 +197,5 @@ public class ConcurrentLong2ObjectMap<V> extends AbstractLong2ObjectMap<V> imple
 	public void forEach(final BiConsumer<? super Long, ? super V> consumer) {
 		delegate.forEach(consumer);
 	}
+
 }

@@ -6,6 +6,7 @@ import org.spongepowered.asm.mixin.gen.Accessor;
 
 @Mixin(DiscreteVoxelShape.class)
 public interface DiscreteVSAccess {
+
 	@Accessor
 	int getXSize();
 
@@ -14,4 +15,5 @@ public interface DiscreteVSAccess {
 
 	@Accessor
 	int getZSize();
+
 }

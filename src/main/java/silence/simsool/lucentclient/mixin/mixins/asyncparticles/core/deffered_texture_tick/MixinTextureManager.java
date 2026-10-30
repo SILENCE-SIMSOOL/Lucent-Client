@@ -18,6 +18,7 @@ import java.util.concurrent.Executor;
 
 @Mixin(TextureManager.class)
 public class MixinTextureManager {
+
 	@Unique
 	private static boolean asyncparticles$deferredTickEnabled = true;
 
@@ -59,4 +60,5 @@ public class MixinTextureManager {
 		return original.call(currentReload, taskExecutor, preparationBarrier, reloadExecutor)
 			.whenCompleteAsync((_, _) -> asyncparticles$deferredTickEnabled = true, reloadExecutor);
 	}
+
 }

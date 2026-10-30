@@ -16,6 +16,7 @@ import java.util.Queue;
 
 @Mixin(ParticleGroup.class)
 public abstract class MixinParticleGroup {
+
 	@WrapOperation(method = "isEmpty", at = @At(value = "INVOKE", target = "Ljava/util/Queue;isEmpty()Z"))
 	private boolean wrapIsEmpty(Queue<?> instance, Operation<Boolean> original) {
 		boolean call = original.call(instance);
@@ -53,4 +54,5 @@ public abstract class MixinParticleGroup {
 		}
 		return gpuParticleGroup.asyncparticles$getGpuParticles().size() + call;
 	}
+
 }

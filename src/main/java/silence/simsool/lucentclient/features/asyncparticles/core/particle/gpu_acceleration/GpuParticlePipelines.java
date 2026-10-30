@@ -16,6 +16,7 @@ import org.lwjgl.opengl.ARBVertexAttribBinding;
 import java.util.Map;
 
 public class GpuParticlePipelines {
+
 	public static final GpuFormat POSITION_FORMAT = GpuFormat.RGB32_FLOAT;
 	public static final GpuFormat COLOR_FORMAT = GpuFormat.RGBA8_UNORM;
 	public static final GpuFormat UV0_FORMAT = GpuFormat.RG32_FLOAT;
@@ -122,4 +123,5 @@ public class GpuParticlePipelines {
 		}
 		ParticleVertexBuffer.unbind();
 	}
+
 }

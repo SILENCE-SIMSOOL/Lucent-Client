@@ -5,7 +5,9 @@ import org.jetbrains.annotations.ApiStatus;
 
 @ApiStatus.Internal
 public interface ParticleEngineAddon {
+
 	default void asyncparticle$addRenderType(ParticleRenderType particleRenderType) {
 		throw new AssertionError("Must be implemented!");
 	}
+
 }

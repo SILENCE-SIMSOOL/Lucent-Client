@@ -6,6 +6,7 @@ import org.lwjgl.opengl.*;
 import java.nio.ByteBuffer;
 
 public abstract class GlCommands {
+
 	private final boolean directStateAccess;
 	private final boolean vertexAttribBinding;
 
@@ -51,6 +52,7 @@ public abstract class GlCommands {
 	public abstract void glUnmapBuffer(int buffer);
 
 	public static class GLonES extends GlCommands {
+
 		public GLonES(boolean directStateAccess, boolean vertexAttribBinding) {
 			super(directStateAccess, vertexAttribBinding);
 		}
@@ -113,9 +115,11 @@ public abstract class GlCommands {
 			GL15C.glUnmapBuffer(GL15C.GL_ARRAY_BUFFER);
 			GL15C.glBindBuffer(GL15C.GL_ARRAY_BUFFER, 0);
 		}
+
 	}
 
 	public static class GL extends GlCommands {
+
 		public GL(boolean directStateAccess, boolean vertexAttribBinding) {
 			super(directStateAccess, vertexAttribBinding);
 		}
@@ -192,9 +196,11 @@ public abstract class GlCommands {
 				GL15C.glBindBuffer(GL15C.GL_ARRAY_BUFFER, 0);
 			}
 		}
+
 	}
 
 	public static class Unsupported extends GlCommands {
+
 		public Unsupported() {
 			super(false, false);
 		}
@@ -243,9 +249,11 @@ public abstract class GlCommands {
 		public void glUnmapBuffer(int buffer) {
 			throw new UnsupportedOperationException();
 		}
+
 	}
 
 	public abstract static class ComputeShader {
+
 		public abstract boolean isSupported();
 
 		public abstract void glBindShaderStorageBuffer(int ssbo);
@@ -259,6 +267,7 @@ public abstract class GlCommands {
 		}
 
 		public static class Unsupported extends ComputeShader {
+
 			@Override
 			public boolean isSupported() {
 				return false;
@@ -278,9 +287,11 @@ public abstract class GlCommands {
 			public void glShaderStorageBufferData(int size, int usage) {
 				throw new UnsupportedOperationException();
 			}
+
 		}
 
 		public static class ARB extends ComputeShader {
+
 			@Override
 			public boolean isSupported() {
 				return true;
@@ -300,13 +311,17 @@ public abstract class GlCommands {
 			public void glShaderStorageBufferData(int size, int usage) {
 				GL15C.glBufferData(ARBShaderStorageBufferObject.GL_SHADER_STORAGE_BUFFER, size, usage);
 			}
+
 		}
 
 		public static class GL43 extends ARB {
+
 		}
+
 	}
 
 	public abstract static class TransformFeedback {
+
 		public abstract boolean isTfObjectSupported();
 
 		public abstract boolean isSupported();
@@ -338,6 +353,7 @@ public abstract class GlCommands {
 		}
 
 		public static class Unsupported extends TransformFeedback {
+
 			@Override
 			public boolean isTfObjectSupported() {
 				return false;
@@ -402,9 +418,11 @@ public abstract class GlCommands {
 			public void glTransformFeedbackVaryings(int tshProg, String[] varyings, int glInterleavedAttribs) {
 				throw new UnsupportedOperationException();
 			}
+
 		}
 
 		public static class GL30 extends TransformFeedback {
+
 			@Override
 			public boolean isTfObjectSupported() {
 				return false;
@@ -467,9 +485,11 @@ public abstract class GlCommands {
 			public void glTransformFeedbackVaryings(int tshProg, String[] varyings, int glInterleavedAttribs) {
 				GL30C.glTransformFeedbackVaryings(tshProg, varyings, glInterleavedAttribs);
 			}
+
 		}
 
 		public static class ARB2 extends GL30 {
+
 			@Override
 			public boolean isTfObjectSupported() {
 				return true;
@@ -531,9 +551,11 @@ public abstract class GlCommands {
 			public void glResumeTransformFeedback(int primitiveMode) {
 				ARBTransformFeedback2.glResumeTransformFeedback();
 			}
+
 		}
 
 		public static class GL45 extends ARB2 {
+
 			@Override
 			public int genTransformFeedback() {
 				return GL45C.glCreateTransformFeedbacks();
@@ -548,6 +570,9 @@ public abstract class GlCommands {
 			public void glBindTransformFeedbackBufferRange(int tf, int index, int buffer, long offset, long size) {
 				GL45C.glTransformFeedbackBufferRange(tf, index, buffer, offset, size);
 			}
+
 		}
+
 	}
+
 }

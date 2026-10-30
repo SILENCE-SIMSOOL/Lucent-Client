@@ -44,4 +44,5 @@ public class SmoothChat {
 		float scale = mc.options.chatScale().get().floatValue();
 		return LINE_HEIGHT * (1.0f - p) * scale;
 	}
+
 }

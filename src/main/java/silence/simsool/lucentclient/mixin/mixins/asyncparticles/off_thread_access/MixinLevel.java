@@ -12,6 +12,7 @@ import org.spongepowered.asm.mixin.injection.At;
 
 @Mixin(value = Level.class, priority = 1500)
 public abstract class MixinLevel {
+
 	@WrapOperation(method = "<init>", at = @At(value = "INVOKE", target = "Lnet/minecraft/util/RandomSource;create()Lnet/minecraft/util/RandomSource;"))
 	private RandomSource redirectRandomSource(Operation<RandomSource> original) {
 		if (((Object) this) instanceof ClientLevel) {
@@ -19,4 +20,5 @@ public abstract class MixinLevel {
 		}
 		return original.call();
 	}
+
 }

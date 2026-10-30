@@ -18,4 +18,5 @@ public class MixinRecipeBookComponent {
 		}
 		return original;
 	}
+
 }

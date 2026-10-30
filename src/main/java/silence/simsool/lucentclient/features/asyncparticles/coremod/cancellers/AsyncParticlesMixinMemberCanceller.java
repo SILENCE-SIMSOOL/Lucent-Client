@@ -5,15 +5,16 @@ import silence.simsool.lucentclient.features.asyncparticles.coremod.mixin_extens
 import java.util.List;
 
 public class AsyncParticlesMixinMemberCanceller implements MixinMemberCanceller {
+
 	@Override
 	public boolean preCancel(List<String> targetClassNames, String mixinClassName) {
 		return switch (mixinClassName) {
 			case "einstein.subtle_effects.mixin.client.particle.ParticleEngineMixin",
-			     "io.github.fabricators_of_create.porting_lib.mixin.client.ParticleEngineMixin",
-			     "net.diebuddies.mixins.weather.MixinParticleEngine",
-			     "me.fzzyhmstrs.particle_core.mixins.ParticleManagerAsyncMixin",
-			     "team.teampotato.ruok.mixin.minecraft.ParticleManagerMixin",
-			     "team.teampotato.ruok.mixin.minecraft.particle.ParticleManagerMixin" -> true;
+				 "io.github.fabricators_of_create.porting_lib.mixin.client.ParticleEngineMixin",
+				 "net.diebuddies.mixins.weather.MixinParticleEngine",
+				 "me.fzzyhmstrs.particle_core.mixins.ParticleManagerAsyncMixin",
+				 "team.teampotato.ruok.mixin.minecraft.ParticleManagerMixin",
+				 "team.teampotato.ruok.mixin.minecraft.particle.ParticleManagerMixin" -> true;
 			default -> false;
 		};
 	}
@@ -39,4 +40,5 @@ public class AsyncParticlesMixinMemberCanceller implements MixinMemberCanceller 
 	public boolean shouldCancelField(List<String> targetClassNames, String mixinClassName, String mixinFieldName, String mixinFieldDesc) {
 		return false;
 	}
+
 }

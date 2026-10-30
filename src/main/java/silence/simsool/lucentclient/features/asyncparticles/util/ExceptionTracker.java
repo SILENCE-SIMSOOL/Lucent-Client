@@ -10,6 +10,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.function.IntSupplier;
 
 public class ExceptionTracker<T> {
+
 	private static final Logger LOGGER = LogUtils.getLogger();
 	private final Map<T, Map<Class<? extends Throwable>, ExceptionQueue>> exceptions = new ConcurrentHashMap<>();
 	private final IntSupplier duration;
@@ -48,6 +49,7 @@ public class ExceptionTracker<T> {
 	}
 
 	private class ExceptionQueue {
+
 		private final LongPriorityQueue queue = new LongArrayFIFOQueue();
 
 		public synchronized boolean push() {
@@ -68,5 +70,7 @@ public class ExceptionTracker<T> {
 		public String toString() {
 			return "Exception queue size: " + queue.size();
 		}
+
 	}
+
 }

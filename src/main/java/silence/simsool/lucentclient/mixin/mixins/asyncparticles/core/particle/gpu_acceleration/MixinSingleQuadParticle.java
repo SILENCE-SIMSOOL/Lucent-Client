@@ -12,6 +12,7 @@ import org.spongepowered.asm.mixin.Unique;
 
 @Mixin(SingleQuadParticle.class)
 public abstract class MixinSingleQuadParticle extends Particle implements GpuParticleAddon, ParticleAddon {
+
 	@Unique
 	private boolean asyncparticles$isGpuLightGot = false;
 
@@ -178,4 +179,5 @@ public abstract class MixinSingleQuadParticle extends Particle implements GpuPar
 	public float asyncparticles$getBlue() {
 		return bCol;
 	}
+
 }

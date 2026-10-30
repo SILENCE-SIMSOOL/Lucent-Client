@@ -14,13 +14,14 @@ import org.spongepowered.asm.mixin.Mixin;
 
 @Mixin(WeatherEffectRenderer.class)
 public class MixinWeatherEffectRenderer {
+
 	@WrapMethod(method = "tickRainParticles")
 	private void wrapTickRain(ClientLevel level,
-	                          Camera camera,
-	                          int ticks,
-	                          ParticleStatus particleStatus,
-	                          int weatherRadius,
-	                          Operation<Void> original) {
+							  Camera camera,
+							  int ticks,
+							  ParticleStatus particleStatus,
+							  int weatherRadius,
+							  Operation<Void> original) {
 		if (ConfigHelper.isTickWeatherAsync()
 			&& AsyncTickBehavior.getInstance().isTailTick()) {
 			AsyncTickBehavior.getInstance().addTaskEnsureLevelRunning(
@@ -29,4 +30,5 @@ public class MixinWeatherEffectRenderer {
 			original.call(level, camera, ticks, particleStatus, weatherRadius);
 		}
 	}
+
 }

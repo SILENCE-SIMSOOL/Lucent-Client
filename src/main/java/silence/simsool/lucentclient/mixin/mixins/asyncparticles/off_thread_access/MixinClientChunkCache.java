@@ -12,6 +12,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(value = ClientChunkCache.class, priority = 500)
 public abstract class MixinClientChunkCache {
+
 	@Shadow
 	public abstract void onLightUpdate(LightLayer layer, SectionPos pos);
 
@@ -22,4 +23,5 @@ public abstract class MixinClientChunkCache {
 			ThreadUtil.enqueueClientTask(() -> this.onLightUpdate(layer, pos));
 		}
 	}
+
 }

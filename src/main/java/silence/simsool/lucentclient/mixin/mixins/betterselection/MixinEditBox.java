@@ -89,4 +89,5 @@ public abstract class MixinEditBox extends AbstractWidget {
 	private String onFindAppropriateCursorPosition(Font instance, String displayedText, int x) {
 		return displayedText.substring(0, lucent$nearestCharacterBoundary(this.font, displayedText, x));
 	}
+
 }

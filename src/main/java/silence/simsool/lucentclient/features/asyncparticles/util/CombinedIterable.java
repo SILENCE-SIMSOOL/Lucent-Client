@@ -8,6 +8,7 @@ import java.util.Iterator;
 import java.util.Set;
 
 public class CombinedIterable<T> implements Iterable<T> {
+
 	private final Iterable<T> left;
 	private final Iterable<T> right;
 
@@ -22,6 +23,7 @@ public class CombinedIterable<T> implements Iterable<T> {
 	}
 
 	public static class CombinedIterator<T> implements Iterator<T> {
+
 		private final Iterator<T> l;
 		private final Iterator<T> r;
 		private boolean isLeft = true;
@@ -58,6 +60,7 @@ public class CombinedIterable<T> implements Iterable<T> {
 		public boolean isLeft() {
 			return isLeft;
 		}
+
 	}
 
 	public static <T> Iterator<T> of(Iterator<T> left, Iterator<T> right) {
@@ -101,4 +104,5 @@ public class CombinedIterable<T> implements Iterable<T> {
 		merged.addAll(right);
 		return merged;
 	}
+
 }

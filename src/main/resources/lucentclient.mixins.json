@@ -15,6 +15,7 @@
 		"accessors.DisplayAccessor",
 		"accessors.EntityRendererAccessor",
 		"accessors.KeyBindAccessor",
+		"accessors.LevelRendererAccessor",
 		"accessors.LivingEntityRendererAccessor",
 		"accessors.memoryleak.ArrayVSAccess",
 		"accessors.memoryleak.BitSetDVSAccess",

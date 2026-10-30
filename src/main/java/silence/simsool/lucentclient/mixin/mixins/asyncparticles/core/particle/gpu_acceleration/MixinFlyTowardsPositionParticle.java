@@ -12,6 +12,7 @@ import org.spongepowered.asm.mixin.Shadow;
 
 @Mixin(FlyTowardsPositionParticle.class)
 public abstract class MixinFlyTowardsPositionParticle extends SingleQuadParticle implements GpuParticleAddon {
+
 	@Shadow
 	@Final
 	private LifetimeAlpha lifetimeAlpha;
@@ -34,4 +35,5 @@ public abstract class MixinFlyTowardsPositionParticle extends SingleQuadParticle
 		this.setAlpha(alpha);
 		return ARGB.color((int) (alpha * 255.0f), oColor);
 	}
+
 }

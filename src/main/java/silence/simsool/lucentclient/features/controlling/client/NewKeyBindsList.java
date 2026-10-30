@@ -26,6 +26,7 @@ import silence.simsool.lucentclient.features.controlling.api.entries.ICategoryEn
 import silence.simsool.lucentclient.features.controlling.api.entries.IKeyEntry;
 
 public class NewKeyBindsList extends CustomList {
+
 	private final KeyBindsScreen controlsScreen;
 	private final Minecraft mc;
 	private int maxListLabelWidth;
@@ -75,6 +76,7 @@ public class NewKeyBindsList extends CustomList {
 	}
 
 	public class CategoryEntry extends Entry implements ICategoryEntry {
+
 		private final KeyMapping.Category category;
 		private final FocusableTextWidget categoryName;
 
@@ -114,9 +116,11 @@ public class NewKeyBindsList extends CustomList {
 		public KeyMapping.Category category() {
 			return this.category;
 		}
+
 	}
 
 	public class KeyEntry extends KeyBindsList.Entry implements IKeyEntry {
+
 		private final KeyMapping key;
 		private final Component name;
 		private final Button btnChangeKeyBinding;
@@ -260,5 +264,7 @@ public class NewKeyBindsList extends CustomList {
 					.withStyle(ChatFormatting.YELLOW));
 			}
 		}
+
 	}
+
 }

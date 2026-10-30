@@ -80,4 +80,5 @@ public class MixinGuiGraphics implements DrawContextFloatDrawTexture {
 			null
 		));
 	}
+
 }

@@ -14,6 +14,7 @@ import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 
 public class FallbackScreen extends Screen {
+
 	@Nullable
 	public final Screen parent;
 	public Component message;
@@ -117,4 +118,5 @@ public class FallbackScreen extends Screen {
 		}
 		super.tick();
 	}
+
 }

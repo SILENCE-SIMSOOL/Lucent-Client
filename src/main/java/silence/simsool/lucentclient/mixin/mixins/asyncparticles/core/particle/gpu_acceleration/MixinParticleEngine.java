@@ -28,14 +28,15 @@ import java.util.Queue;
 
 @Mixin(value = ParticleEngine.class, priority = 1500)
 public abstract class MixinParticleEngine implements ParticleEngineAddon {
+
 	@Shadow
 	@Final
 	public Map<ParticleRenderType, ParticleGroup<?>> particles;
 
 	@WrapOperation(method = "tick", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/particle/ParticleGroup;add(Lnet/minecraft/client/particle/Particle;)V"))
 	public void wrapAdd(ParticleGroup<?> group,
-	                    Particle particle,
-	                    Operation<Void> original) {
+						Particle particle,
+						Operation<Void> original) {
 		if (ConfigHelper.isGpuParticles()
 			&& group instanceof GpuParticleGroup gpuParticleGroup
 			&& particle instanceof SingleQuadParticle sqp
@@ -113,4 +114,5 @@ public abstract class MixinParticleEngine implements ParticleEngineAddon {
 		}
 		renderer.tick(GpuParticleBehavior.getInstance().getPerTickCameraPos(), particles);
 	}
+
 }

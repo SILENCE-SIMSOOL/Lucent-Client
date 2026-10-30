@@ -1,6 +1,7 @@
 package silence.simsool.lucentclient.mods.impl.performance.network.utils;
 
 public class NetworkVarIntUtils {
+
 	private static final int[] VARINT_EXACT_BYTE_LENGTHS = new int[33];
 
 	static {
@@ -13,4 +14,5 @@ public class NetworkVarIntUtils {
 	public static int getVarIntLength(int value) {
 		return VARINT_EXACT_BYTE_LENGTHS[Integer.numberOfLeadingZeros(value)];
 	}
+
 }

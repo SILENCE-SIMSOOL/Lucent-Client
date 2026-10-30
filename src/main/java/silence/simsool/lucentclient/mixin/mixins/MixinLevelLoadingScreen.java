@@ -28,4 +28,5 @@ public class MixinLevelLoadingScreen {
 	private void onLevelLoadingScreenClose(CallbackInfo ci) {
 		LoadingScreenMod.initialJoin = false;
 	}
+
 }

@@ -15,6 +15,7 @@ import org.spongepowered.asm.mixin.Pseudo;
 	TrailParticle.class,
 }) // Will be replaced with the actual targets
 public abstract class MixinParticles_LightCacheNoRefresh implements LightCachedParticleAddon {
+
 	@Override
 	public boolean asyncparticles$isStaticLight() {
 		return true;
@@ -24,4 +25,5 @@ public abstract class MixinParticles_LightCacheNoRefresh implements LightCachedP
 	public void asyncparticles$refresh() {
 		asyncparticles$setLight(asyncparticles$invoke_getLightColor(0f));
 	}
+
 }

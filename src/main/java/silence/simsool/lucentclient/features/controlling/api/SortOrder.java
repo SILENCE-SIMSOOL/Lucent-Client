@@ -7,6 +7,7 @@ import silence.simsool.lucentclient.features.controlling.ControllingConstants;
 import silence.simsool.lucentclient.features.controlling.api.entries.IKeyEntry;
 
 public enum SortOrder implements Comparator<KeyBindsList.Entry> {
+
 	NONE("options.sortNone", (o1, o2) -> 0),
 	AZ("options.sortAZ", Comparator.comparing(o -> o.getName().getString())),
 	ZA("options.sortZA", Comparator.comparing(o -> o.getName().getString(), Comparator.reverseOrder())),
@@ -40,4 +41,5 @@ public enum SortOrder implements Comparator<KeyBindsList.Entry> {
 	public int compare(KeyBindsList.Entry o1, KeyBindsList.Entry o2) {
 		return this.sorter.compare(o1, o2);
 	}
+
 }

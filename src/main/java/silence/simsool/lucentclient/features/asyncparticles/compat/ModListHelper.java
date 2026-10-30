@@ -3,6 +3,7 @@ package silence.simsool.lucentclient.features.asyncparticles.compat;
 import static silence.simsool.lucentclient.features.asyncparticles.Platform.PLATFORM;
 
 public class ModListHelper {
+
 	public static final boolean IS_FORGE = PLATFORM.isForge();
 	public static final boolean IS_CLIENT = PLATFORM.isClient();
 	public static final boolean DEV_ENV = PLATFORM.isDevelopmentEnvironment();
@@ -141,4 +142,5 @@ public class ModListHelper {
 			return false;
 		}
 	}
+
 }

@@ -40,4 +40,5 @@ public abstract class MixinKeyEvent implements InputWithModifiers {
 			&& !this.hasShiftDown()
 			&& !this.hasAltDown();
 	}
+
 }

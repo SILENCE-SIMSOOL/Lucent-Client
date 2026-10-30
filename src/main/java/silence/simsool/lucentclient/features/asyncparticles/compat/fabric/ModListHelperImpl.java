@@ -8,6 +8,7 @@ import net.fabricmc.loader.api.VersionParsingException;
 import java.util.Optional;
 
 public class ModListHelperImpl {
+
 	public static boolean isClient() {
 		return FabricLoader.getInstance().getEnvironmentType() == EnvType.CLIENT;
 	}
@@ -54,4 +55,5 @@ public class ModListHelperImpl {
 	public static boolean isDevelopmentEnvironment() {
 		return FabricLoader.getInstance().isDevelopmentEnvironment();
 	}
+
 }

@@ -42,4 +42,5 @@ public class InternalTargetTracker {
 			prevHeight = -1;
 		}
 	}
+
 }

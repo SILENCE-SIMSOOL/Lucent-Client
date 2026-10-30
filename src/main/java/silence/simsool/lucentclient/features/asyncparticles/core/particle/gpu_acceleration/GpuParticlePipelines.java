@@ -17,6 +17,7 @@ import java.util.List;
 import java.util.Map;
 
 public class GpuParticlePipelines {
+
 	public static final VertexFormatElement IDENTITY_COLOR = new VertexFormatElement(1, 0, VertexFormatElement.Type.FLOAT, VertexFormatElement.Usage.GENERIC, 4);
 	public static final VertexFormatElement IDENTITY_UV2 = new VertexFormatElement(4, 0, VertexFormatElement.Type.INT, VertexFormatElement.Usage.UV, 2);
 	public static final VertexFormat RAW_PARTICLE = VertexFormat.builder()
@@ -139,6 +140,7 @@ public class GpuParticlePipelines {
 	}
 
 	private static class IdentityParticleVertexFormat extends VertexFormat {
+
 		private final int identityColorOffset;
 		private final int identityUv2Offset;
 
@@ -158,5 +160,7 @@ public class GpuParticlePipelines {
 			}
 			return super.getOffset(element);
 		}
+
 	}
+
 }

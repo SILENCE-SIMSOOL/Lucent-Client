@@ -54,7 +54,7 @@ public class CullTask implements Runnable {
 	}
 
 	public synchronized boolean tryPopulateAndSwap(Iterable<Entity> entities, Vec3 camPos) {
-		if (this.isProcessing.get()) {
+		if (!this.running || this.isProcessing.get()) {
 			return false;
 		}
 
@@ -85,8 +85,8 @@ public class CullTask implements Runnable {
 				this.lastPlayerChunkZ = currentChunkZ;
 				populateBlockEntities(mc.level, currentChunkX, currentChunkZ);
 			}
-		} else if (!this.blockReadBuffer.isEmpty()) {
-			this.blockReadBuffer = Collections.emptyList();
+		} else {
+			clearBlockBuffers();
 		}
 
 		this.cameraMC = camPos;
@@ -137,11 +137,20 @@ public class CullTask implements Runnable {
 		return true;
 	}
 
+	private void clearBlockBuffers() {
+		for (Cullable cullable : this.blockBufferA) cullable.setCulled(false);
+		for (Cullable cullable : this.blockBufferB) cullable.setCulled(false);
+		this.blockBufferA.clear();
+		this.blockBufferB.clear();
+		this.blockReadBuffer = Collections.emptyList();
+		this.captureCounter = 0;
+		EntityCullingMod.consideredBlockEntities = 0;
+	}
+
 	private void clearBuffers() {
 		this.bufferA.clear();
 		this.bufferB.clear();
-		this.blockBufferA.clear();
-		this.blockBufferB.clear();
+		clearBlockBuffers();
 		this.readBuffer = Collections.emptyList();
 		this.blockReadBuffer = Collections.emptyList();
 		this.capturedLevel = null;
@@ -154,34 +163,43 @@ public class CullTask implements Runnable {
 
 	private synchronized void releaseIdleBuffers() {
 		if (!this.isProcessing.get() && this.capturedLevel != null
-				&& (!EntityCullingMod.isEnabled() || mc.level == null)) {
+				&& (!EntityCullingMod.isEnabled() || mc.level != this.capturedLevel)) {
 			clearBuffers();
 		}
+		if (!this.isProcessing.get() && !EntityCullingMod.CullBlockEntities) clearBlockBuffers();
 	}
 
 	@Override
 	public void run() {
-		while (this.running) {
-			try {
-				Thread.sleep(Math.max(1, EntityCullingMod.SleepDelay));
-			} catch (InterruptedException ignored) {
-				break;
-			}
-			if (!takePendingCapture()) {
-				releaseIdleBuffers();
-				continue;
-			}
-			try {
-				if (!EntityCullingMod.isEnabled() || mc.level != this.capturedLevel || mc.player == null) continue;
-				Vec3 cam = this.cameraMC;
-				this.lastCameraPos.set(cam.x, cam.y, cam.z);
-				if (!this.readBuffer.isEmpty() || (EntityCullingMod.CullBlockEntities && !this.blockReadBuffer.isEmpty())) {
-					this.culling.resetCache();
+		try {
+			while (this.running) {
+				try {
+					Thread.sleep(Math.max(1, EntityCullingMod.SleepDelay));
+				} catch (InterruptedException ignored) {
+					break;
 				}
-				cullEntities(cam, this.lastCameraPos);
-				cullBlockEntities(cam, this.lastCameraPos);
-			} catch (Exception ignored) {
-			} finally {
+				if (!takePendingCapture()) {
+					releaseIdleBuffers();
+					continue;
+				}
+				try {
+					if (!EntityCullingMod.isEnabled() || mc.level != this.capturedLevel || mc.player == null) continue;
+					Vec3 cam = this.cameraMC;
+					this.lastCameraPos.set(cam.x, cam.y, cam.z);
+					if (!this.readBuffer.isEmpty() || (EntityCullingMod.CullBlockEntities && !this.blockReadBuffer.isEmpty())) {
+						this.culling.resetCache();
+					}
+					cullEntities(cam, this.lastCameraPos);
+					cullBlockEntities(cam, this.lastCameraPos);
+				} catch (Exception ignored) {
+				} finally {
+					this.isProcessing.set(false);
+				}
+			}
+		} finally {
+			synchronized (this) {
+				clearBuffers();
+				this.requestCull = false;
 				this.isProcessing.set(false);
 			}
 		}

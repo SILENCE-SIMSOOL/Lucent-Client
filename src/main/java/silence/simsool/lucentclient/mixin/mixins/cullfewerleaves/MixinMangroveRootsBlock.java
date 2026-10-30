@@ -23,4 +23,5 @@ public abstract class MixinMangroveRootsBlock implements Cullable {
 			block -> block instanceof MangroveRootsBlock
 		);
 	}
+
 }

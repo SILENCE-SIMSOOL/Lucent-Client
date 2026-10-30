@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.CompletionException;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.RejectedExecutionException;
 import java.util.function.Consumer;
 
 import org.spongepowered.asm.mixin.Mixin;
@@ -143,20 +144,49 @@ public abstract class MixinServerStatusPinger {
 		Runnable onRetry,
 		Consumer<Status> listener
 	) {
-		return ACTIVE_PINGS.computeIfAbsent(host + ":" + port, k ->
-			CompletableFuture.supplyAsync(() -> {
+		String key = host + ":" + port;
+		CompletableFuture<Status> future = new CompletableFuture<>();
+		CompletableFuture<Status> existing = ACTIVE_PINGS.putIfAbsent(key, future);
+		if (existing != null) {
+			return existing.thenApply(status -> {
+				listener.accept(status);
+				return status;
+			});
+		}
+		future.whenComplete((result, error) -> ACTIVE_PINGS.remove(key, future));
+		try {
+			FastPing.pinger().execute(() -> {
 				Throwable last = null;
 				for (int i = 0; i < attempts; i++) {
+					if (future.isDone()) return;
 					try {
-						return FastPing.ping(host, port, listener).join();
-					} catch (Throwable t) {
-						last = t;
-						onRetry.run();
+						CompletableFuture<Status> ping = FastPing.ping(host, port, status -> {
+							if (!future.isDone()) listener.accept(status);
+						});
+						future.whenComplete((result, error) -> {
+							if (future.isCancelled()) ping.cancel(true);
+						});
+						future.complete(ping.join());
+						return;
+					} catch (Throwable error) {
+						last = error;
+					}
+					if (future.isDone()) return;
+					if (i + 1 < attempts) {
+						try {
+							onRetry.run();
+						} catch (Throwable error) {
+							future.completeExceptionally(error);
+							return;
+						}
 					}
 				}
-				throw new CompletionException(last);
-			}, FastPing.pinger()).whenComplete((r, e) -> ACTIVE_PINGS.remove(k))
-		);
+				future.completeExceptionally(new CompletionException(last));
+			});
+		} catch (RejectedExecutionException error) {
+			future.completeExceptionally(error);
+		}
+		return future;
 	}
 
 	@Inject(
@@ -208,6 +238,7 @@ public abstract class MixinServerStatusPinger {
 					fastping$applyStatus(entry, s);
 					pingCallback.run();
 				} else if (s.type() == StatusType.COMPLETE) {
+					fastping$applyStatus(entry, s);
 					FastPingCache.put(key, s);
 					entry.ping = s.ping();
 					pingCallback.run();
@@ -224,4 +255,5 @@ public abstract class MixinServerStatusPinger {
 			entry.ping = -1;
 		}
 	}
+
 }

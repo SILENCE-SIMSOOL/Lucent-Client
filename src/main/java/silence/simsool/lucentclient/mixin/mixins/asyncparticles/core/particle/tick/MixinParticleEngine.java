@@ -21,6 +21,7 @@ import java.util.function.Consumer;
 
 @Mixin(ParticleEngine.class)
 public abstract class MixinParticleEngine implements ParticleEngineAddon {
+
 	@Shadow
 	@Final
 	private Queue<TrackingEmitter> trackingEmitters;
@@ -120,4 +121,5 @@ public abstract class MixinParticleEngine implements ParticleEngineAddon {
 	private static  <E> void asyncparticles$forEach(Iterable<E> i, Consumer<E> f) {
 		i.forEach(f);
 	}
+
 }

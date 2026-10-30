@@ -8,6 +8,7 @@ import java.util.BitSet;
 
 @Mixin(BitSetDiscreteVoxelShape.class)
 public interface BitSetDVSAccess extends DiscreteVSAccess {
+
 	@Accessor
 	BitSet getStorage();
 
@@ -28,4 +29,5 @@ public interface BitSetDVSAccess extends DiscreteVSAccess {
 
 	@Accessor
 	int getZMax();
+
 }

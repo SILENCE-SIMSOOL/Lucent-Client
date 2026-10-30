@@ -17,18 +17,19 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(LevelRenderer.class)
 public class MixinLevelRenderer {
+
 	@Inject(method = "renderLevel", at = @At("HEAD"))
 	private void onExtractLevel(GraphicsResourceAllocator graphicsResourceAllocator,
-	                            DeltaTracker deltaTracker,
-	                            boolean renderBlockOutline,
-	                            Camera camera,
-	                            Matrix4f frustumMatrix,
-	                            Matrix4f projectionMatrix,
-	                            Matrix4f cullingProjectionMatrix,
-	                            GpuBufferSlice shaderFog,
-	                            Vector4f fogColor,
-	                            boolean renderSky,
-	                            CallbackInfo ci) {
+								DeltaTracker deltaTracker,
+								boolean renderBlockOutline,
+								Camera camera,
+								Matrix4f frustumMatrix,
+								Matrix4f projectionMatrix,
+								Matrix4f cullingProjectionMatrix,
+								GpuBufferSlice shaderFog,
+								Vector4f fogColor,
+								boolean renderSky,
+								CallbackInfo ci) {
 		if (ConfigHelper.isGpuParticles()) {
 			GpuParticleBehavior.getInstance().beginFrame(deltaTracker.getGameTimeDeltaPartialTick(false));
 			if (ConfigHelper.getComputeExecutionStage() == ComputeExecutionStage.LEVEL_EXTRACTION) {
@@ -43,4 +44,5 @@ public class MixinLevelRenderer {
 			GpuParticleBehavior.getInstance().compute();
 		}
 	}
+
 }

@@ -10,6 +10,7 @@ import java.util.Collection;
 import java.util.Map;
 
 public interface IParticleRenderer extends Closeable {
+
 	static boolean shouldRenderParticle(GpuParticleAddon gpuParticle, Vec3 camPos) {
 		return gpuParticle.asyncparticles$shouldRender();
 	}
@@ -65,4 +66,5 @@ public interface IParticleRenderer extends Closeable {
 
 	@Override
 	void close();
+
 }

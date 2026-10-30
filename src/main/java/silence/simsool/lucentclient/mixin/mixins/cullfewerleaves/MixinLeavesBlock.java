@@ -24,4 +24,5 @@ public abstract class MixinLeavesBlock implements Cullable {
 			block -> block instanceof LeavesBlock
 		);
 	}
+
 }

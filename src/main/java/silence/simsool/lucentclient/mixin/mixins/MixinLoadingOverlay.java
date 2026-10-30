@@ -49,4 +49,5 @@ public abstract class MixinLoadingOverlay {
 			cir.setReturnValue(true);
 		}
 	}
+
 }

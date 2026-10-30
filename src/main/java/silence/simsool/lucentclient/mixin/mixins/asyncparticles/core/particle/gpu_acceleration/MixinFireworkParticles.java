@@ -10,8 +10,10 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 
 public class MixinFireworkParticles {
+
 	@Mixin(FireworkParticles.SparkParticle.class)
 	public static abstract class SparkParticle extends SingleQuadParticle implements GpuParticleAddon {
+
 		@Shadow
 		private boolean twinkle;
 
@@ -23,10 +25,12 @@ public class MixinFireworkParticles {
 		public boolean asyncparticles$shouldRender() {
 			return !this.twinkle || this.age < this.lifetime / 3 || (this.age + this.lifetime) / 3 % 2 == 0;
 		}
+
 	}
 
 	@Mixin(FireworkParticles.OverlayParticle.class)
 	public static abstract class OverlayParticle extends SingleQuadParticle implements GpuParticleAddon {
+
 		protected OverlayParticle(ClientLevel level, double x, double y, double z, TextureAtlasSprite sprite) {
 			super(level, x, y, z, sprite);
 		}
@@ -45,5 +49,7 @@ public class MixinFireworkParticles {
 			this.setAlpha(alpha);
 			return ARGB.color((int) (alpha * 255.0f), oColor);
 		}
+
 	}
+
 }

@@ -6,6 +6,7 @@ import net.minecraft.network.chat.Component;
 import java.util.function.Supplier;
 
 public enum RainEffect implements TranslatableEnum {
+
 	NONE(() -> Component.translatable("config.asyncparticles.enum.RainEffect.NONE")),
 	STATIONARY(() -> Component.translatable("config.asyncparticles.enum.RainEffect.STATIONARY")),
 	ALWAYS(() -> Component.translatable("config.asyncparticles.enum.RainEffect.ALWAYS"));
@@ -19,4 +20,5 @@ public enum RainEffect implements TranslatableEnum {
 	public Component getComponent() {
 		return componentSupplier.get();
 	}
+
 }

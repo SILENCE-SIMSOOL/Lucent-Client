@@ -10,6 +10,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(RenderSystem.class)
 public class MixinRenderSystem {
+
 	@Inject(method = "initRenderer", at = @At("RETURN"))
 	private static void onInitRenderer(CallbackInfo ci) {
 		Backends.init();
@@ -20,4 +21,5 @@ public class MixinRenderSystem {
 		AsyncParticlesMixinPlugin.LOGGER
 			.info("AsyncParticles will cancel some of its mixins to achieve specific functions, so you can ignore the related Mixinsquared-canceller warnings below.");
 	}
+
 }

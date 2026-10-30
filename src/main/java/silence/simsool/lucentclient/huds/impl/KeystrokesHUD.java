@@ -46,7 +46,7 @@ public class KeystrokesHUD extends LucentHUD {
 
 	private void render(GuiGraphics guiGraphics, boolean preview) {
 		if (!preview && mc.player == null) return;
-		
+
 		int sw = UDisplay.getGuiScaledWidth();
 		int sh = UDisplay.getGuiScaledHeight();
 
@@ -72,11 +72,11 @@ public class KeystrokesHUD extends LucentHUD {
 		drawKey(guiGraphics, "A", rx, ry + bw + gap, bw, bw, a);
 		drawKey(guiGraphics, "S", rx + bw + gap, ry + bw + gap, bw, bw, s);
 		drawKey(guiGraphics, "D", rx + (bw + gap) * 2, ry + bw + gap, bw, bw, d);
-		
+
 		float mbw = (bw * 3 + gap * 2) / 2f - gap / 2f;
 		boolean lmb = !preview && mc.options.keyAttack.isDown();
 		boolean rmb = !preview && mc.options.keyUse.isDown();
-		
+
 		drawKey(guiGraphics, "LMB", rx, ry + (bw + gap) * 2, mbw, bw, lmb);
 		drawKey(guiGraphics, "RMB", rx + mbw + gap, ry + (bw + gap) * 2, mbw, bw, rmb);
 	}

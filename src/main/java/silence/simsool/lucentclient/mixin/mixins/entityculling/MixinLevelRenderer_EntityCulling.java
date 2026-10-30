@@ -8,6 +8,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
+import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.Camera;
 import net.minecraft.client.DeltaTracker;
 import net.minecraft.client.entity.ClientAvatarEntity;
@@ -23,12 +24,20 @@ import net.minecraft.world.entity.EntityAttachment;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import silence.simsool.lucentclient.mixin.accessors.LivingEntityRendererAccessor;
+import silence.simsool.lucentclient.mixin.accessors.LevelRendererAccessor;
 import silence.simsool.lucentclient.mods.impl.performance.EntityCullingMod;
 import silence.simsool.lucentclient.mods.impl.performance.culling.Cullable;
 import silence.simsool.lucentclient.mods.impl.performance.culling.CullingHelper;
 
 @Mixin(LevelRenderer.class)
 public class MixinLevelRenderer_EntityCulling {
+	@Inject(method = "setLevel", at = @At("TAIL"))
+	private void clearExtractionContext(ClientLevel level, CallbackInfo ci) {
+		if (level == null) {
+			((LevelRendererAccessor) this).lucent$getExtractionContext().prepare(null, null, null, null, null, false, null, null, null);
+			mc.gameRenderer.getMainCamera().reset();
+		}
+	}
 
 	@Inject(at = @At("HEAD"), method = "extractVisibleEntities")
 	private void onExtractVisibleEntities(
@@ -109,4 +118,5 @@ public class MixinLevelRenderer_EntityCulling {
 
 		return state;
 	}
+
 }

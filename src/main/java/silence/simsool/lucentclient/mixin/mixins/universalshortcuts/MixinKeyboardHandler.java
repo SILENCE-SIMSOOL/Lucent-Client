@@ -15,4 +15,5 @@ public abstract class MixinKeyboardHandler {
 	private KeyEvent remapChunkDebugKey(KeyEvent keyEvent) {
 		return UniversalShortcutsUtil.remapKeyEventToQWERTY(keyEvent);
 	}
+
 }

@@ -7,19 +7,21 @@ import net.minecraft.world.level.block.state.properties.Property;
 import silence.simsool.lucentclient.mods.impl.performance.memory.impl.fastmap.FastMap;
 
 public interface FastMapStateHolder<S> {
-    FastMap<S> getStateMap();
 
-    void setStateMap(FastMap<S> newValue);
+	FastMap<S> getStateMap();
 
-    int getStateIndex();
+	void setStateMap(FastMap<S> newValue);
 
-    void setStateIndex(int newValue);
+	int getStateIndex();
 
-    Reference2ObjectMap<Property<?>, Comparable<?>> getVanillaPropertyMap();
+	void setStateIndex(int newValue);
 
-    void replacePropertyMap(Reference2ObjectMap<Property<?>, Comparable<?>> newMap);
+	Reference2ObjectMap<Property<?>, Comparable<?>> getVanillaPropertyMap();
 
-    void setNeighborMap(Map<Property<?>, S[]> table);
+	void replacePropertyMap(Reference2ObjectMap<Property<?>, Comparable<?>> newMap);
 
-    Map<Property<?>, S[]> getNeighborMap();
+	void setNeighborMap(Map<Property<?>, S[]> table);
+
+	Map<Property<?>, S[]> getNeighborMap();
+
 }

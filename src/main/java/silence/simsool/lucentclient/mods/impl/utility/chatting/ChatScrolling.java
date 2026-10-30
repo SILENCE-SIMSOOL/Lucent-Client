@@ -60,4 +60,5 @@ public class ChatScrolling {
 	public static int pos() {
 		return Math.max(0, frozen);
 	}
+
 }

@@ -23,6 +23,7 @@ import java.util.Queue;
 
 @Mixin(ParticleGroup.class)
 public abstract class MixinParticleGroup implements ParticleGroupAddition {
+
 	@Mutable
 	@Shadow
 	@Final
@@ -116,4 +117,5 @@ public abstract class MixinParticleGroup implements ParticleGroupAddition {
 			gpuGroup.asyncparticles$getGpuParticles().forEach(ParticleHelper::onClearParticle);
 		}
 	}
+
 }

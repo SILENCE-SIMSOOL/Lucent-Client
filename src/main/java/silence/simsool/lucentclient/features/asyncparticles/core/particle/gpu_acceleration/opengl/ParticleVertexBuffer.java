@@ -8,6 +8,7 @@ import java.nio.ByteBuffer;
 import java.util.Objects;
 
 public class ParticleVertexBuffer {
+
 	public final int vao;
 	public final int vbo;
 	private ByteBuffer oldBuffer;
@@ -147,4 +148,5 @@ public class ParticleVertexBuffer {
 	public boolean isMapped() {
 		return mapped;
 	}
+
 }

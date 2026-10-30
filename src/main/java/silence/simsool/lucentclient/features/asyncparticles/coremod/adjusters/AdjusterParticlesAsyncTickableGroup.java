@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AdjusterParticlesAsyncTickableGroup implements MixinClassAdjuster {
+
 	public static final String CLASS_NAME = "silence.simsool.lucentclient.mixin.mixins.asyncparticles.conditional.MixinAsyncTick_AsyncTickableParticleGroup";
 
 	@Override
@@ -26,4 +27,5 @@ public class AdjusterParticlesAsyncTickableGroup implements MixinClassAdjuster {
 	public String getRefMapperConfig() {
 		return MixinUtil.getRefMapperName(CLASS_NAME, "asyncparticles-common-refmap.json");
 	}
+
 }

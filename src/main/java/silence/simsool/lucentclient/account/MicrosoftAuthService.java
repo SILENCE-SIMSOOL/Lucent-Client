@@ -13,9 +13,10 @@ import java.security.SecureRandom;
 import java.time.Duration;
 import java.util.Base64;
 import java.util.UUID;
-import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Future;
 import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.ScheduledThreadPoolExecutor;
 import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.TimeUnit;
 import java.util.function.Consumer;
@@ -25,6 +26,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.sun.net.httpserver.HttpServer;
 
+import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientLifecycleEvents;
 import silence.simsool.lucent.general.utils.useful.UDesktop;
 
 public class MicrosoftAuthService {
@@ -38,9 +40,31 @@ public class MicrosoftAuthService {
 		.connectTimeout(Duration.ofSeconds(15))
 		.build();
 
-	private static final ScheduledExecutorService SCHEDULER = Executors.newSingleThreadScheduledExecutor();
-	private static HttpServer currentServer = null;
-	private static ScheduledFuture<?> timeoutFuture = null;
+	private static final ScheduledThreadPoolExecutor SCHEDULER = new ScheduledThreadPoolExecutor(1, task -> {
+		Thread thread = new Thread(task, "Lucent-AuthTimeout");
+		thread.setDaemon(true);
+		return thread;
+	});
+	private static final ExecutorService WORKER = Executors.newSingleThreadExecutor(task -> {
+		Thread thread = new Thread(task, "Lucent-AuthWorker");
+		thread.setDaemon(true);
+		return thread;
+	});
+	private static LoginAttempt currentAttempt;
+
+	private static final class LoginAttempt {
+
+		HttpServer server;
+		ScheduledFuture<?> timeout;
+		Future<?> worker;
+		boolean exchanging;
+
+	}
+
+	static {
+		SCHEDULER.setRemoveOnCancelPolicy(true);
+		ClientLifecycleEvents.CLIENT_STOPPING.register(client -> shutdown());
+	}
 
 	private static final String SUCCESS_HTML = "<!DOCTYPE html><html><head><meta charset=\"utf-8\"><title>Lucent Client</title>"
 		+ "<style>body{background:#121318;color:#fff;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;"
@@ -51,36 +75,45 @@ public class MicrosoftAuthService {
 		+ "<body><div class=\"card\"><div class=\"check\">&#10003;</div><h1>Login Successful</h1><p>You have linked your account to <b>LucentClient</b>.<br>You can close this tab and return to the game.</p></div></body></html>";
 
 	public static synchronized void cancel() {
-		if (timeoutFuture != null) {
-			timeoutFuture.cancel(true);
-			timeoutFuture = null;
-		}
-		if (currentServer != null) {
-			try {
-				currentServer.stop(0);
-			} catch (Exception ignored) {}
-			currentServer = null;
-		}
+		if (currentAttempt != null) closeAttempt(currentAttempt, true);
 	}
 
-	public static void startOAuthFlow(Consumer<Account> onSuccess, Consumer<String> onError) {
-		cancel();
+	private static void closeAttempt(LoginAttempt attempt, boolean cancelWorker) {
+		if (currentAttempt != attempt) return;
+		currentAttempt = null;
+		if (attempt.timeout != null) attempt.timeout.cancel(false);
+		if (attempt.server != null) attempt.server.stop(0);
+		if (cancelWorker && attempt.worker != null) attempt.worker.cancel(true);
+	}
 
-		CompletableFuture.runAsync(() -> {
+	public static synchronized void shutdown() {
+		cancel();
+		SCHEDULER.shutdownNow();
+		WORKER.shutdownNow();
+		HTTP_CLIENT.shutdownNow();
+	}
+
+	public static synchronized void startOAuthFlow(Consumer<Account> onSuccess, Consumer<String> onError) {
+		cancel();
+		LoginAttempt attempt = new LoginAttempt();
+		currentAttempt = attempt;
+		attempt.timeout = SCHEDULER.schedule(() -> {
+			synchronized (MicrosoftAuthService.class) {
+				if (currentAttempt != attempt) return;
+				closeAttempt(attempt, true);
+				onError.accept("Login timed out. Please try again.");
+			}
+		}, 90, TimeUnit.SECONDS);
+		attempt.worker = WORKER.submit(() -> {
 			try {
 				byte[] verifierBytes = new byte[32];
 				new SecureRandom().nextBytes(verifierBytes);
 				String codeVerifier = Base64.getUrlEncoder().withoutPadding().encodeToString(verifierBytes);
-
-				MessageDigest sha256 = MessageDigest.getInstance("SHA-256");
-				byte[] challengeBytes = sha256.digest(codeVerifier.getBytes(StandardCharsets.US_ASCII));
+				byte[] challengeBytes = MessageDigest.getInstance("SHA-256").digest(codeVerifier.getBytes(StandardCharsets.US_ASCII));
 				String codeChallenge = Base64.getUrlEncoder().withoutPadding().encodeToString(challengeBytes);
-
 				HttpServer server = HttpServer.create(new InetSocketAddress("127.0.0.1", 0), 0);
-				currentServer = server;
 				int port = server.getAddress().getPort();
 				String redirectUri = "http://127.0.0.1:" + port;
-
 				String msAuthUrl = AUTHORIZE_URL
 					+ "?client_id=" + CLIENT_ID
 					+ "&response_type=code"
@@ -89,70 +122,87 @@ public class MicrosoftAuthService {
 					+ "&prompt=select_account"
 					+ "&code_challenge=" + codeChallenge
 					+ "&code_challenge_method=S256";
-
 				server.createContext("/", exchange -> {
 					try {
-						String path = exchange.getRequestURI().getPath();
-						if ("/login".equals(path)) {
+						if ("/login".equals(exchange.getRequestURI().getPath())) {
 							exchange.getResponseHeaders().set("Location", msAuthUrl);
 							exchange.sendResponseHeaders(302, -1);
 							return;
 						}
-
 						String query = exchange.getRequestURI().getQuery();
 						String code = null;
+						String oauthError = null;
 						if (query != null) {
 							for (String param : query.split("&")) {
 								String[] pair = param.split("=", 2);
 								if (pair.length == 2 && "code".equals(pair[0])) {
 									code = pair[1];
-									break;
+								} else if (pair.length == 2 && "error".equals(pair[0])) {
+									oauthError = pair[1];
 								}
 							}
 						}
-
-						if (code != null) {
-							byte[] responseBytes = SUCCESS_HTML.getBytes(StandardCharsets.UTF_8);
-							exchange.getResponseHeaders().set("Content-Type", "text/html; charset=UTF-8");
-							exchange.sendResponseHeaders(200, responseBytes.length);
-							try (OutputStream os = exchange.getResponseBody()) {
-								os.write(responseBytes);
+						if (oauthError != null) {
+							exchange.sendResponseHeaders(400, -1);
+							exchange.close();
+							failAttempt(attempt, onError, "Auth failed: " + oauthError);
+							return;
+						}
+						synchronized (MicrosoftAuthService.class) {
+							if (currentAttempt != attempt || attempt.exchanging || code == null) {
+								exchange.sendResponseHeaders(400, -1);
+								return;
 							}
-
-							String finalCode = code;
-							CompletableFuture.runAsync(() -> {
+							attempt.exchanging = true;
+						}
+						byte[] responseBytes = SUCCESS_HTML.getBytes(StandardCharsets.UTF_8);
+						exchange.getResponseHeaders().set("Content-Type", "text/html; charset=UTF-8");
+						exchange.sendResponseHeaders(200, responseBytes.length);
+						try (OutputStream os = exchange.getResponseBody()) {
+							os.write(responseBytes);
+						}
+						exchange.close();
+						String finalCode = code;
+						synchronized (MicrosoftAuthService.class) {
+							if (currentAttempt != attempt) return;
+							attempt.worker = WORKER.submit(() -> {
 								try {
 									Account account = exchangeCodeForAccount(finalCode, codeVerifier, redirectUri);
-									onSuccess.accept(account);
-								} catch (Exception e) {
-									onError.accept("Auth failed: " + e.getMessage());
+									synchronized (MicrosoftAuthService.class) {
+										if (currentAttempt != attempt) return;
+										closeAttempt(attempt, false);
+										onSuccess.accept(account);
+									}
+								} catch (Exception error) {
+									failAttempt(attempt, onError, "Auth failed: " + error.getMessage());
 								}
 							});
-							SCHEDULER.schedule(MicrosoftAuthService::cancel, 1, TimeUnit.SECONDS);
-						} else {
-							exchange.sendResponseHeaders(400, 0);
-							exchange.close();
 						}
-					} catch (Exception ignored) {
+					} catch (Exception error) {
+						failAttempt(attempt, onError, "Auth failed: " + error.getMessage());
 					} finally {
 						exchange.close();
 					}
 				});
-
-				server.start();
-
-				timeoutFuture = SCHEDULER.schedule(() -> {
-					cancel();
-					onError.accept("Login timed out. Please try again.");
-				}, 90, TimeUnit.SECONDS);
-
-				String localGateway = "http://127.0.0.1:" + port + "/login";
-				UDesktop.openBrowse(URI.create(localGateway));
-			} catch (Exception e) {
-				cancel();
-				onError.accept("Could not start login: " + e.getMessage());
+				synchronized (MicrosoftAuthService.class) {
+					if (currentAttempt != attempt) {
+						server.stop(0);
+						return;
+					}
+					attempt.server = server;
+					server.start();
+					UDesktop.openBrowse(URI.create(redirectUri + "/login"));
+				}
+			} catch (Exception error) {
+				failAttempt(attempt, onError, "Could not start login: " + error.getMessage());
 			}
 		});
+	}
+
+	private static synchronized void failAttempt(LoginAttempt attempt, Consumer<String> onError, String message) {
+		if (currentAttempt != attempt) return;
+		closeAttempt(attempt, true);
+		onError.accept(message);
 	}
 
 	private static Account exchangeCodeForAccount(String code, String codeVerifier, String redirectUri) throws Exception {
@@ -164,6 +214,7 @@ public class MicrosoftAuthService {
 			+ "&code_verifier=" + codeVerifier;
 
 		HttpRequest tokenReq = HttpRequest.newBuilder()
+			.timeout(Duration.ofSeconds(30))
 			.uri(URI.create(TOKEN_URL))
 			.header("Content-Type", "application/x-www-form-urlencoded")
 			.POST(HttpRequest.BodyPublishers.ofString(tokenParams))
@@ -188,6 +239,7 @@ public class MicrosoftAuthService {
 			+ "&grant_type=refresh_token";
 
 		HttpRequest tokenReq = HttpRequest.newBuilder()
+			.timeout(Duration.ofSeconds(30))
 			.uri(URI.create(TOKEN_URL))
 			.header("Content-Type", "application/x-www-form-urlencoded")
 			.POST(HttpRequest.BodyPublishers.ofString(tokenParams))
@@ -222,6 +274,7 @@ public class MicrosoftAuthService {
 		xblBody.addProperty("TokenType", "JWT");
 
 		HttpRequest xblReq = HttpRequest.newBuilder()
+			.timeout(Duration.ofSeconds(30))
 			.uri(URI.create("https://user.auth.xboxlive.com/user/authenticate"))
 			.header("Content-Type", "application/json")
 			.header("Accept", "application/json")
@@ -251,6 +304,7 @@ public class MicrosoftAuthService {
 		xstsBody.addProperty("TokenType", "JWT");
 
 		HttpRequest xstsReq = HttpRequest.newBuilder()
+			.timeout(Duration.ofSeconds(30))
 			.uri(URI.create("https://xsts.auth.xboxlive.com/xsts/authorize"))
 			.header("Content-Type", "application/json")
 			.header("Accept", "application/json")
@@ -270,6 +324,7 @@ public class MicrosoftAuthService {
 		mcLoginBody.addProperty("identityToken", "XBL3.0 x=" + userHash + ";" + xstsToken);
 
 		HttpRequest mcLoginReq = HttpRequest.newBuilder()
+			.timeout(Duration.ofSeconds(30))
 			.uri(URI.create("https://api.minecraftservices.com/authentication/login_with_xbox"))
 			.header("Content-Type", "application/json")
 			.header("Accept", "application/json")
@@ -287,6 +342,7 @@ public class MicrosoftAuthService {
 
 		// 4. Minecraft Profile
 		HttpRequest profileReq = HttpRequest.newBuilder()
+			.timeout(Duration.ofSeconds(30))
 			.uri(URI.create("https://api.minecraftservices.com/minecraft/profile"))
 			.header("Authorization", "Bearer " + mcAccessToken)
 			.header("Accept", "application/json")

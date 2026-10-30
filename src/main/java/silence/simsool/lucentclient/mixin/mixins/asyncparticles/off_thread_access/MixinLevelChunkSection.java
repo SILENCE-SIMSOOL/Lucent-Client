@@ -17,6 +17,7 @@ import org.spongepowered.asm.mixin.Mixin;
 
 @Mixin(LevelChunkSection.class)
 public class MixinLevelChunkSection {
+
 	@WrapMethod(method = "getBlockState")
 	public BlockState onGetBlockState(int x, int y, int z, Operation<BlockState> original) {
 		BlockState call;
@@ -69,4 +70,5 @@ public class MixinLevelChunkSection {
 		}
 		return call;
 	}
+
 }

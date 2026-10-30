@@ -106,4 +106,5 @@ public class SaturationHandler {
 			renderPass.draw(0, FullscreenTriangle.VERTEX_COUNT);
 		}
 	}
+
 }

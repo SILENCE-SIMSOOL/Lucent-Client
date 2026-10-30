@@ -15,6 +15,7 @@ import java.util.List;
 // some mod get entities when ticking particles, may cause a CME
 @Mixin(value = ClassInstanceMultiMap.class, priority = 1500) // higher priority to run after VMP's mixin
 public class MixinClassInstanceMultiMap_SafeClassInstanceMultiMap_Off {
+
 	@WrapMethod(method = "getAllInstances")
 	public List<?> onGetAllInstances(Operation<List<?>> original) {
 		if (!ThreadUtil.isOnParticleThread()) {
@@ -41,4 +42,5 @@ public class MixinClassInstanceMultiMap_SafeClassInstanceMultiMap_Off {
 		Diagnostic.illegalEntityStorageAccess();
 		return Collections.emptyList();
 	}
+
 }

@@ -9,6 +9,7 @@ import org.spongepowered.asm.mixin.gen.Accessor;
 
 @Mixin(VoxelShape.class)
 public interface VoxelShapeAccess {
+
 	@Accessor
 	DiscreteVoxelShape getShape();
 
@@ -22,4 +23,5 @@ public interface VoxelShapeAccess {
 
 	@Accessor
 	void setFaces(@Nullable VoxelShape[] newCache);
+
 }

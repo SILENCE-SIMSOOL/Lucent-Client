@@ -14,6 +14,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(Minecraft.class)
 public class MixinMinecraft {
+
 	@Inject(method = "runTick", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/Minecraft;tick()V"))
 	private void onPreTick(boolean advanceGameTime, CallbackInfo ci, @Local(ordinal = 0) int ticksToDo, @Local(ordinal = 1) int i) {
 		AsyncTickBehavior.getInstance().preTick(i == ticksToDo - 1);
@@ -36,4 +37,5 @@ public class MixinMinecraft {
 			instance.tick();
 		}
 	}
+
 }

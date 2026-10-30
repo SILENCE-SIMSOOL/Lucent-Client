@@ -7,6 +7,7 @@ import java.util.Collection;
 import static silence.simsool.lucentclient.features.asyncparticles.config.AsyncParticlesMixinConfig.CONFIG;
 
 public class MixinConfigHelper {
+
 	public static Collection<String> getNoLightCache() {
 		return CONFIG.getNoLightCache().stream().filter(ModListHelper::classExists).toList();
 	}
@@ -38,4 +39,5 @@ public class MixinConfigHelper {
 	public static Collection<String> getAsyncTickableParticleGroups() {
 		return CONFIG.getAsyncTickableParticleGroups().stream().filter(ModListHelper::classExists).toList();
 	}
+
 }

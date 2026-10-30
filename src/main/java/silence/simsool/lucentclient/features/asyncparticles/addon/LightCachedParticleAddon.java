@@ -4,6 +4,7 @@ import org.jetbrains.annotations.ApiStatus;
 
 @ApiStatus.Internal
 public interface LightCachedParticleAddon {
+
 	byte INITIAL_LIGHT_CACHE = 0;
 
 	static byte compress(int light) {
@@ -35,4 +36,5 @@ public interface LightCachedParticleAddon {
 	boolean asyncparticles$isEnabledLightCache();
 
 	int asyncparticles$invoke_getLightColor(float partialTickTime);
+
 }

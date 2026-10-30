@@ -12,6 +12,7 @@ import net.minecraft.server.packs.metadata.MetadataSectionType;
 import net.minecraft.server.packs.resources.IoSupplier;
 
 public class FilteredPackResources implements PackResources {
+
 	private final PackResources delegate;
 	private static final String FONT_PATH = "font/default.json";
 
@@ -65,4 +66,5 @@ public class FilteredPackResources implements PackResources {
 	public void close() {
 		// delegate.close() 를 호출하지 않고 비워둠
 	}
+
 }

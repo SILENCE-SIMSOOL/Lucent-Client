@@ -11,6 +11,7 @@ import org.spongepowered.asm.mixin.Pseudo;
 @Pseudo
 @Mixin(Particle.class) // Will be replaced with the actual targets
 public abstract class MixinParticles_LockRequired_Tick implements SpinLockProvider {
+
 	@WrapMethod(method = "tick")
 	public void wrapTick(Operation<Void> original) {
 		SpinLock lock = asyncparticles$getSpinLock();
@@ -21,4 +22,5 @@ public abstract class MixinParticles_LockRequired_Tick implements SpinLockProvid
 			lock.unlock();
 		}
 	}
+
 }

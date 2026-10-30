@@ -5,16 +5,17 @@ import static silence.simsool.lucent.Lucent.config;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.command.v2.ClientCommandRegistrationCallback;
 import silence.simsool.lucent.Lucent;
-import silence.simsool.lucent.guide.ConfigScreenGuide;
-import silence.simsool.lucent.guide.GuideManager;
 import silence.simsool.lucent.config.api.LucentAPI;
 import silence.simsool.lucent.events.impl.LucentEvent;
 import silence.simsool.lucent.general.utils.useful.UChat;
+import silence.simsool.lucent.guide.ConfigScreenGuide;
+import silence.simsool.lucent.guide.GuideManager;
+import silence.simsool.lucentclient.asynclogger.AsyncLoggerBootstrap;
 import silence.simsool.lucentclient.commands.BasicCommand;
+import silence.simsool.lucentclient.features.fastrender.IrisCompat;
 import silence.simsool.lucentclient.handler.ServerHandler;
 import silence.simsool.lucentclient.huds.HUDRegister;
 import silence.simsool.lucentclient.init.Keybinds;
-import silence.simsool.lucentclient.asynclogger.AsyncLoggerBootstrap;
 import silence.simsool.lucentclient.mods.LucentClientModRegister;
 import silence.simsool.lucentclient.mods.impl.performance.network.NetworkFixMod;
 import silence.simsool.lucentclient.updater.AutoUpdater;
@@ -24,7 +25,7 @@ public class LucentClient implements ClientModInitializer {
 
 	public static final String ID = "lucentclient";
 	public static final String NAME = "Lucent Client";
-	public static final String VERSION = "1.2.16";
+	public static final String VERSION = "1.2.17";
 
 	public static final String PREFIX = "§b[§fLucent Client§b] ";
 
@@ -44,7 +45,7 @@ public class LucentClient implements ClientModInitializer {
 		AutoUpdater.cleanOldJars();
 
 		Lucent.LOG.info("Initializing LucentClient...");
-		silence.simsool.lucentclient.features.fastrender.IrisCompat.init();
+		IrisCompat.init();
 
 		LucentClientModRegister.register(config);
 		GuideManager.register(ConfigScreenGuide.create("lucentclient:config-v1", config, 100));

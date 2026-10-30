@@ -53,4 +53,5 @@ public class SaturationUniforms {
 		uploadedBrightness = brightness;
 		uploadedHue = hue;
 	}
+
 }

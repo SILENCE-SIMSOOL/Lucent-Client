@@ -13,6 +13,7 @@ import java.util.Optional;
  * APIs may be removed or change frequently before pull requests are merged.
  */
 public class MixinTransformerExtension {
+
 	public static Optional<List<IMixinConfig>> getPendingConfigs(Object reference) {
 		Optional<IMixinTransformer> mixinTransformer = tryAs(reference);
 		if (mixinTransformer.isEmpty()) {
@@ -72,4 +73,5 @@ public class MixinTransformerExtension {
 			return recursiveGetDelegate(reference.getSuperclass());
 		}
 	}
+
 }

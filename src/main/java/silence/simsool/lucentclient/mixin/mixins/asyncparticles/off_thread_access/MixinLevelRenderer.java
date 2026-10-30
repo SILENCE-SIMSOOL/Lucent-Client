@@ -11,6 +11,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(value = LevelRenderer.class, priority = 500)
 public abstract class MixinLevelRenderer {
+
 	@Shadow
 	protected abstract void setSectionDirty(int i, int j, int k, boolean bl);
 
@@ -76,4 +77,5 @@ public abstract class MixinLevelRenderer {
 			ThreadUtil.enqueueClientTask(() -> this.destroyBlockProgress(id, pos, progress));
 		}
 	}
+
 }

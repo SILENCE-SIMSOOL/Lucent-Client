@@ -4,6 +4,7 @@ import silence.simsool.lucentclient.features.asyncparticles.compat.Mappings;
 import net.fabricmc.loader.api.FabricLoader;
 
 public class MappingsImpl implements Mappings.IMappings {
+
 	public String getTickParticlesMethod() {
 		return FabricLoader.getInstance().getMappingResolver().mapMethodName(
 			"intermediary",
@@ -41,4 +42,5 @@ public class MappingsImpl implements Mappings.IMappings {
 			"(Lnet/minecraft/class_11944;Lorg/joml/Quaternionf;FFFF)V"
 		);
 	}
+
 }

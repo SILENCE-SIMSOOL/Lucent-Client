@@ -265,6 +265,7 @@ public class AutoUpdater {
 	}
 
 	private static class AssetInfo {
+
 		final String assetName;
 		final String version;
 		final String downloadUrl;
@@ -274,6 +275,7 @@ public class AutoUpdater {
 			this.version = version;
 			this.downloadUrl = downloadUrl;
 		}
+
 	}
 
 }

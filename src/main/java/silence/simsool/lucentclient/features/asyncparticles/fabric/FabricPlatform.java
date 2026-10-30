@@ -8,6 +8,7 @@ import silence.simsool.lucentclient.features.asyncparticles.core.fabric.GameUtil
 import net.minecraft.world.phys.AABB;
 
 public class FabricPlatform implements Platform {
+
 	private static final MappingsImpl mappings = new MappingsImpl();
 
 	public boolean isForge() {
@@ -53,4 +54,5 @@ public class FabricPlatform implements Platform {
 	public Mappings.IMappings getMappings() {
 		return mappings;
 	}
+
 }

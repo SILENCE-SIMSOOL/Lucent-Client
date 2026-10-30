@@ -22,4 +22,5 @@ public class MixinOverlayTexture {
 	private void onInit(CallbackInfo ci) {
 		DamageTintHelper.init(this.texture);
 	}
+
 }

@@ -19,6 +19,7 @@ import org.joml.Vector4f;
 import org.jspecify.annotations.Nullable;
 
 public class GpuParticleGroupRenderer implements SubmitNodeCollector.ParticleGroupRenderer {
+
 	private static final GpuParticleGroupRenderer instance = new GpuParticleGroupRenderer();
 	private final QuadParticleRenderState.PreparedBuffers emptyBuffers =
 		new QuadParticleRenderState.PreparedBuffers(0, null, null);
@@ -58,10 +59,10 @@ public class GpuParticleGroupRenderer implements SubmitNodeCollector.ParticleGro
 
 	@Override
 	public void render(QuadParticleRenderState.PreparedBuffers preparedBuffers,
-	                   ParticleFeatureRenderer.ParticleBufferCache cache,
-	                   RenderPass renderPass,
-	                   TextureManager textureManager,
-	                   boolean translucent) {
+					   ParticleFeatureRenderer.ParticleBufferCache cache,
+					   RenderPass renderPass,
+					   TextureManager textureManager,
+					   boolean translucent) {
 		renderPass.setVertexBuffer(0, result.buffer());
 		renderPass.setUniform("DynamicTransforms", dynamicTransforms);
 		renderPass.setIndexBuffer(indexBuffer, indexType);
@@ -84,4 +85,5 @@ public class GpuParticleGroupRenderer implements SubmitNodeCollector.ParticleGro
 		indexBuffer = null;
 		indexType = null;
 	}
+
 }

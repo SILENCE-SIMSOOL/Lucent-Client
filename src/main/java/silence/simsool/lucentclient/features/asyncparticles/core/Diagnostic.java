@@ -16,6 +16,7 @@ import org.spongepowered.asm.mixin.Unique;
 import java.util.function.Supplier;
 
 public class Diagnostic {
+
 	private static final Logger LOGGER = LogManager.getLogger();
 	private static boolean illegalEntityStorageAccess = false;
 	private static boolean illegalBlockEntityStorageAccess = false;
@@ -155,6 +156,7 @@ public class Diagnostic {
 			));
 		}
 	}
+
 
 	public static boolean isTemporaryDisableAsyncRainTick() {
 		return temporaryMark_disableAsyncRainTick;

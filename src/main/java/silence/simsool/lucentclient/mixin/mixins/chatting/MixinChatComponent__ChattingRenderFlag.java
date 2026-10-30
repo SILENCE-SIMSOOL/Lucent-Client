@@ -73,4 +73,5 @@ public class MixinChatComponent__ChattingRenderFlag {
 		}
 		return this.chatScrollbarPos;
 	}
+
 }

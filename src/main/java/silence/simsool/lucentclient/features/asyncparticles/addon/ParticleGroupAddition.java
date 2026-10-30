@@ -3,6 +3,7 @@ package silence.simsool.lucentclient.features.asyncparticles.addon;
 import net.minecraft.client.particle.Particle;
 
 public interface ParticleGroupAddition {
+
 	default void asyncparticles$tickParticles(boolean isGpu) {
 		throw new AssertionError("Must be implemented!");
 	}
@@ -22,4 +23,5 @@ public interface ParticleGroupAddition {
 	default boolean asyncparticles$isSyncParticle(Particle particle) {
 		return false;
 	}
+
 }

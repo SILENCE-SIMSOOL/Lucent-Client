@@ -12,6 +12,7 @@ import silence.simsool.lucentclient.features.controlling.client.NewKeyBindsScree
 
 @Mixin(Minecraft.class)
 public class MixinMinecraftControlling {
+
 	@Shadow
 	@Nullable
 	public Screen screen;
@@ -23,4 +24,5 @@ public class MixinMinecraftControlling {
 		}
 		return targetScreen;
 	}
+
 }

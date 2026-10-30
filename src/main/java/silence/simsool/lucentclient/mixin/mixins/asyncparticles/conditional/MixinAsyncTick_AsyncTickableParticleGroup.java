@@ -35,6 +35,7 @@ import java.util.stream.Stream;
 	ElderGuardianParticleGroup.class
 })
 public abstract class MixinAsyncTick_AsyncTickableParticleGroup extends MixinParticleGroup implements AsyncTickableParticleGroup {
+
 	@Unique
 	private final boolean asyncparticles$canTickAsync = ConfigHelper.isAsyncParticleTick()
 		&& AsyncTickParticleGroupBehavior.canTickAsync((ParticleGroup<?>) (Object) this);
@@ -45,10 +46,10 @@ public abstract class MixinAsyncTick_AsyncTickableParticleGroup extends MixinPar
 
 	@Inject(method = "extractRenderState", require = 0, at = @At(value = "HEAD"))
 	private static void injectExtra(Frustum frustum,
-	                                Camera camera,
-	                                float partialTickTime,
-	                                CallbackInfoReturnable<ParticleGroupRenderState> cir,
-	                                @Share("originalPartialTick") LocalFloatRef originalPartialTick) {
+									Camera camera,
+									float partialTickTime,
+									CallbackInfoReturnable<ParticleGroupRenderState> cir,
+									@Share("originalPartialTick") LocalFloatRef originalPartialTick) {
 		originalPartialTick.set(partialTickTime);
 	}
 
@@ -56,8 +57,8 @@ public abstract class MixinAsyncTick_AsyncTickableParticleGroup extends MixinPar
 	@Coerce
 	@ModifyExpressionValue(method = "extractRenderState", require = 0, at = @At(value = "INVOKE", target = "Ljava/util/Iterator;next()Ljava/lang/Object;"))
 	private static Object wrapNext(@Coerce Object original,
-	                               @Share("originalPartialTick") LocalFloatRef originalPartialTick,
-	                               @Local(argsOnly = true, ordinal = 0) LocalFloatRef partialTickTime) {
+								   @Share("originalPartialTick") LocalFloatRef originalPartialTick,
+								   @Local(argsOnly = true, ordinal = 0) LocalFloatRef partialTickTime) {
 		if (((ParticleAddon) original).asyncparticles$isTicked()) {
 			partialTickTime.set(originalPartialTick.get());
 		} else {
@@ -155,4 +156,5 @@ public abstract class MixinAsyncTick_AsyncTickableParticleGroup extends MixinPar
 		return (asyncparticles$syncParticles != null && asyncparticles$syncParticles.contains(particle))
 			|| (asyncparticles$syncGpuParticles != null && asyncparticles$syncGpuParticles.contains(particle));
 	}
+
 }

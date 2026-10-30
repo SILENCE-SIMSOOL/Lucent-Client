@@ -87,4 +87,5 @@ public class MixinMouseHandler {
 		this.xpos = cursorPosition.getKey();
 		this.ypos = cursorPosition.getValue();
 	}
+
 }

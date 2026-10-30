@@ -107,4 +107,5 @@ public class MixinGameRenderer {
 		}
 		SaturationHandler.render(this.minecraft.getMainRenderTarget(), this.resourcePool);
 	}
+
 }

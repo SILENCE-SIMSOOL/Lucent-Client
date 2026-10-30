@@ -3,6 +3,7 @@ package silence.simsool.lucentclient.features.asyncparticles.compat;
 import silence.simsool.lucentclient.features.asyncparticles.Platform;
 
 public class Mappings {
+
 	public static String getTickParticlesMethod() {
 		return Platform.PLATFORM.getMappings().getTickParticlesMethod();
 	}
@@ -20,6 +21,7 @@ public class Mappings {
 	}
 
 	public interface IMappings {
+
 		String getTickParticlesMethod();
 
 		String getRenderMethod();
@@ -27,5 +29,7 @@ public class Mappings {
 		String getRenderRotatedQuadMethod1();
 
 		String getRenderRotatedQuadMethod2();
+
 	}
+
 }

@@ -7,6 +7,7 @@ import net.minecraft.core.particles.ParticleLimit;
 
 @SuppressWarnings({"deprecation", "serial"})
 public class TrackedParticleCountsMap extends Object2IntOpenHashMap<ParticleLimit> {
+
 	private final SpinLock spinLock = new ReentrantSpinLock();
 
 	@Override
@@ -87,4 +88,5 @@ public class TrackedParticleCountsMap extends Object2IntOpenHashMap<ParticleLimi
 			spinLock.unlock();
 		}
 	}
+
 }

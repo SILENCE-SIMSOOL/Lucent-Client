@@ -23,6 +23,7 @@ import silence.simsool.lucentclient.mixin.mixins.controlling.AccessInputConstant
 import silence.simsool.lucentclient.mixin.mixins.controlling.AccessKeyMapping;
 
 public class FreeKeysList extends CustomList {
+
 	private final KeyBindsScreen keyBindsScreen;
 	private final Minecraft mc;
 	private int maxListLabelWidth;
@@ -75,6 +76,7 @@ public class FreeKeysList extends CustomList {
 	}
 
 	public class InputEntry extends Entry implements IInputEntry {
+
 		private final InputConstants.Key input;
 
 		public InputEntry(InputConstants.Key input) {
@@ -107,9 +109,11 @@ public class FreeKeysList extends CustomList {
 		@Override
 		public void refreshEntry() {
 		}
+
 	}
 
 	public class HeaderEntry extends Entry {
+
 		private final String text;
 
 		public HeaderEntry(String text) {
@@ -134,5 +138,7 @@ public class FreeKeysList extends CustomList {
 		@Override
 		public void refreshEntry() {
 		}
+
 	}
+
 }

@@ -13,6 +13,7 @@ import org.spongepowered.asm.mixin.Pseudo;
 @Pseudo
 @Mixin(SingleQuadParticle.class) // Will be replaced with the actual targets
 public abstract class MixinParticles_LockRequired_Extract implements SpinLockProvider {
+
 	@WrapMethod(method = "extract")
 	public void wrapTick(QuadParticleRenderState particleTypeRenderState, Camera camera, float f, Operation<Void> original) {
 		SpinLock lock = asyncparticles$getSpinLock();
@@ -23,4 +24,5 @@ public abstract class MixinParticles_LockRequired_Extract implements SpinLockPro
 			lock.unlock();
 		}
 	}
+
 }

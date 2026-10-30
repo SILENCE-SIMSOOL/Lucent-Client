@@ -22,6 +22,7 @@ import java.util.Queue;
 
 @Mixin(ParticleEngine.class)
 public class MixinParticleEngine implements ParticleEngineAddon {
+
 	@Mutable
 	@Shadow
 	@Final
@@ -51,4 +52,5 @@ public class MixinParticleEngine implements ParticleEngineAddon {
 		particles.values().forEach(g -> ((ParticleGroupAddition) g).asyncparticles$onClearParticles());
 		ParticleHelper.onClearParticles();
 	}
+
 }

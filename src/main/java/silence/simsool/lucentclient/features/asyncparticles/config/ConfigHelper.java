@@ -8,6 +8,7 @@ import java.util.Objects;
 import static silence.simsool.lucentclient.features.asyncparticles.config.AsyncParticlesConfig.*;
 
 public class ConfigHelper {
+
 	public static boolean isAsyncAnimateTick() {
 		return tick$asyncAnimateTick && !Diagnostic.isTemporaryDisableAnimationTick();
 	}
@@ -111,4 +112,5 @@ public class ConfigHelper {
 	public static ParticleCleanupStrategy getParticleCleanupStrategy() {
 		return particle$cleanupStrategy;
 	}
+
 }

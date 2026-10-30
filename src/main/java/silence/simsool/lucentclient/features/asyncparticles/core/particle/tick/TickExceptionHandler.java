@@ -24,6 +24,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
 import static silence.simsool.lucentclient.features.asyncparticles.util.ExceptionUtil.toThrowDirectly;
 
 public class TickExceptionHandler {
+
 	private static final Logger LOGGER = LogManager.getLogger();
 	final AtomicBoolean cancelled = new AtomicBoolean(false);
 	final Object cancelledLock = new Object();
@@ -116,4 +117,5 @@ public class TickExceptionHandler {
 	public void resetCancelled() {
 		cancelled.setRelease(false);
 	}
+
 }

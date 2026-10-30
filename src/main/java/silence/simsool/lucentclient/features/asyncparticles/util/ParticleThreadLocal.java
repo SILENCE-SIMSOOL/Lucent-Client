@@ -1,5 +1,5 @@
 package silence.simsool.lucentclient.features.asyncparticles.util;
- 
+
 import org.jspecify.annotations.NonNull;
 
 
@@ -7,6 +7,7 @@ import java.util.function.BooleanSupplier;
 import java.util.function.Supplier;
 
 public sealed class ParticleThreadLocal<T> permits ParticleThreadLocal.SuppliedParticleThreadLocal {
+
 	public final int index;
 	protected ThreadLocal<T> fallback;
 	protected BooleanSupplier isMainThread;
@@ -126,6 +127,7 @@ public sealed class ParticleThreadLocal<T> permits ParticleThreadLocal.SuppliedP
 	}
 
 	protected static final class SuppliedParticleThreadLocal<S> extends ParticleThreadLocal<S> {
+
 		private static final Object NULL_VALUE = new Object();
 		private final Supplier<? extends S> supplier;
 
@@ -179,5 +181,7 @@ public sealed class ParticleThreadLocal<T> permits ParticleThreadLocal.SuppliedP
 		protected ThreadLocal<S> newFallbackThreadLocal() {
 			return ThreadLocal.withInitial(supplier);
 		}
+
 	}
+
 }

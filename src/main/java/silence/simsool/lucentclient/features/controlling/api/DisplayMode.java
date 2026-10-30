@@ -8,6 +8,7 @@ import silence.simsool.lucentclient.features.controlling.api.entries.IKeyEntry;
 import silence.simsool.lucentclient.mixin.mixins.controlling.AccessKeyMapping;
 
 public enum DisplayMode {
+
 	ALL(entry -> true),
 	NONE(keyEntry -> keyEntry.getKey().isUnbound()),
 	CONFLICTING(keyEntry -> {
@@ -30,4 +31,5 @@ public enum DisplayMode {
 	public Predicate<KeyBindsList.Entry> getPredicate() {
 		return entry -> entry instanceof IKeyEntry keyEntry && predicate.test(keyEntry);
 	}
+
 }

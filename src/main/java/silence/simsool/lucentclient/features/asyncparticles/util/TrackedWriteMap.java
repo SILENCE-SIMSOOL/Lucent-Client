@@ -8,6 +8,7 @@ import java.util.function.BiFunction;
 import java.util.function.Function;
 
 public class TrackedWriteMap<K, V> implements Map<K, V> {
+
 	private final Runnable onWrite;
 	private final Map<K, V> delegated;
 
@@ -163,4 +164,5 @@ public class TrackedWriteMap<K, V> implements Map<K, V> {
 	public int hashCode() {
 		return Objects.hash(onWrite, delegated);
 	}
+
 }

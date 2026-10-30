@@ -30,6 +30,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(value = ClientLevel.class, priority = 1100)
 public abstract class MixinClientLevel {
+
 	@Unique
 	private RandomSource asyncparticles$random;
 
@@ -96,4 +97,5 @@ public abstract class MixinClientLevel {
 		}
 		return this.asyncparticles$random = new SingleThreadedRandomSource(RandomSupport.generateUniqueSeed());
 	}
+
 }

@@ -12,6 +12,7 @@ import org.spongepowered.asm.mixin.Unique;
 
 @Mixin(Particle.class)
 public abstract class MixinParticle implements ParticleAddon, LightCachedParticleAddon {
+
 	@Shadow
 	public double x;
 	@Shadow
@@ -63,4 +64,5 @@ public abstract class MixinParticle implements ParticleAddon, LightCachedParticl
 			return 0;
 		}
 	}
+
 }

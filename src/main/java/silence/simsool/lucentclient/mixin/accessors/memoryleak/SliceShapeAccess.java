@@ -8,9 +8,11 @@ import org.spongepowered.asm.mixin.gen.Accessor;
 
 @Mixin(SliceShape.class)
 public interface SliceShapeAccess extends VoxelShapeAccess {
+
 	@Accessor
 	VoxelShape getDelegate();
 
 	@Accessor
 	Direction.Axis getAxis();
+
 }

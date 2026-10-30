@@ -13,6 +13,7 @@ import silence.simsool.lucentclient.mods.impl.performance.memory.impl.fastmap.ne
 import silence.simsool.lucentclient.mods.impl.performance.memory.impl.fastmap.neighbormap.FastmapNeighborMap;
 
 public class FastMapStateHolderImpl {
+
 	public static final ThreadLocal<Map<Map<Property<?>, Comparable<?>>, ?>> LAST_STATE_MAP = new ThreadLocal<>();
 	public static final ThreadLocal<FastMap<?>> LAST_FAST_STATE_MAP = new ThreadLocal<>();
 

@@ -13,10 +13,12 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(ParticlesRenderState.class)
 public class MixinParticlesRenderState {
+
 	@Inject(method = "submit", at = @At("RETURN"))
 	private void onSubmit(SubmitNodeStorage submitNodeStorage, CameraRenderState camera, CallbackInfo ci) {
 		if (ConfigHelper.isGpuParticles() && !GpuParticleBehavior.getInstance().getOrCreateRenderer().isShouldSkip()) {
 			submitNodeStorage.submitParticleGroup(GpuParticleGroupRenderer.getInstance());
 		}
 	}
+
 }

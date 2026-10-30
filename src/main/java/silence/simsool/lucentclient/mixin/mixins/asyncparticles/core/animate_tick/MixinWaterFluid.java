@@ -10,8 +10,10 @@ import org.spongepowered.asm.mixin.injection.At;
 
 @Mixin(WaterFluid.class)
 public class MixinWaterFluid {
+
 	@WrapWithCondition(method = "animateTick", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/level/Level;addParticle(Lnet/minecraft/core/particles/ParticleOptions;DDDDDD)V"))
 	public boolean cullUnderWaterParticleType(Level instance, ParticleOptions particle, double x, double y, double z, double xd, double yd, double zd) {
 		return ParticleHelper.CULL_UNDERWATER_PARTICLE_TYPE.get();
 	}
+
 }

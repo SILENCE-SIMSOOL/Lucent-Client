@@ -35,4 +35,5 @@ public class BetterNightVisionMod extends Mod {
 		description = "lucent.config.lucentclient.betternightvisionmod.property.disablenightvision.description"
 	)
 	public static boolean DisableNightVision = false;
+
 }

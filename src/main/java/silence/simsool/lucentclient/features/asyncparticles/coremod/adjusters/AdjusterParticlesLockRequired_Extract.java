@@ -7,6 +7,7 @@ import silence.simsool.lucentclient.features.asyncparticles.coremod.mixin_extens
 import java.util.List;
 
 public class AdjusterParticlesLockRequired_Extract implements MixinClassAdjuster {
+
 	private static final String CLASS_NAME = "silence.simsool.lucentclient.mixin.mixins.asyncparticles.conditional.MixinParticles_LockRequired_Extract";
 	@Override
 	public String getMixinClassName() {
@@ -22,4 +23,5 @@ public class AdjusterParticlesLockRequired_Extract implements MixinClassAdjuster
 	public String getRefMapperConfig() {
 		return MixinUtil.getRefMapperName(CLASS_NAME,"asyncparticles-common-refmap.json");
 	}
+
 }

@@ -6,12 +6,14 @@ package silence.simsool.lucentclient.features.asyncparticles.coremod.mixin_exten
  * APIs may be removed or change frequently before pull requests are merged.
  */
 public class MixinMemberCancellerRegistrar {
-    /**
-     * Registers a MixinMemberCanceller to be used by the ExtensionCancelMixinMember.
-     * @param canceller The MixinMemberCanceller to register.
-     */
-    public static void register(MixinMemberCanceller canceller) {
-        ExtensionMemberCancelApplication.CANCELLERS.add(canceller);
-        ExtensionMemberCancelApplication.LOGGER.debug("Registered mixin member canceller {}", canceller.getClass().getName());
-    }
+
+	/**
+	 * Registers a MixinMemberCanceller to be used by the ExtensionCancelMixinMember.
+	 * @param canceller The MixinMemberCanceller to register.
+	 */
+	public static void register(MixinMemberCanceller canceller) {
+		ExtensionMemberCancelApplication.CANCELLERS.add(canceller);
+		ExtensionMemberCancelApplication.LOGGER.debug("Registered mixin member canceller {}", canceller.getClass().getName());
+	}
+
 }

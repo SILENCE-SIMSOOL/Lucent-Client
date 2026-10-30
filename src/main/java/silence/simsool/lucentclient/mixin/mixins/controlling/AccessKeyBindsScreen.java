@@ -8,6 +8,7 @@ import org.spongepowered.asm.mixin.gen.Accessor;
 
 @Mixin(KeyBindsScreen.class)
 public interface AccessKeyBindsScreen {
+
 	@Accessor("keyBindsList")
 	KeyBindsList lucent$getKeyBindsList();
 
@@ -19,4 +20,5 @@ public interface AccessKeyBindsScreen {
 
 	@Accessor("resetButton")
 	void lucent$setResetButton(Button button);
+
 }
